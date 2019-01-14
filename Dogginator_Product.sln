@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".shared", ".shared", "{10BDD7B8-50F7-4DCB-A63E-C6098B7C227D}"
+	ProjectSection(SolutionItems) = preProject
+		.shared\SharedAssemblyInfo.cs = .shared\SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dogginator", "Dogginator\Dogginator.csproj", "{0C3E6EBB-AB46-4509-AD7E-AB5E0E416647}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DogginatorLibrary", "DogginatorLibrary\DogginatorLibrary.csproj", "{1CD608E6-6E86-4BAF-866E-0D13073BCC2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C3E6EBB-AB46-4509-AD7E-AB5E0E416647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C3E6EBB-AB46-4509-AD7E-AB5E0E416647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C3E6EBB-AB46-4509-AD7E-AB5E0E416647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C3E6EBB-AB46-4509-AD7E-AB5E0E416647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CD608E6-6E86-4BAF-866E-0D13073BCC2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CD608E6-6E86-4BAF-866E-0D13073BCC2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CD608E6-6E86-4BAF-866E-0D13073BCC2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CD608E6-6E86-4BAF-866E-0D13073BCC2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58B34B7E-818A-478A-81AC-068236E57FAD}
+	EndGlobalSection
+EndGlobal

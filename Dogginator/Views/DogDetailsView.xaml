@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="de.rietrob.dogginator_product.dogginator.Views.DogDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
+                         mc:Ignorable="d" FontSize="14" Background="White"
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock FontSize="30" Grid.Row="0" Grid.Column="0" 
+                   Grid.ColumnSpan="4" FontWeight="Bold" 
+                   HorizontalAlignment="Center"> 
+            Hunde Details
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
+            <StackPanel Orientation="Vertical" Margin="0 5 0 5" MaxWidth="160" MinWidth="160">
+                <TextBlock>Name:</TextBlock>
+                <TextBox x:Name="Name" Height="20"/>
+                <TextBlock>Rasse:</TextBlock>
+                <TextBox x:Name="Breed" Height="20"/>
+                <TextBlock>Farbe:</TextBlock>
+                <TextBox x:Name="Color" Height="20"/>
+                <TextBlock>Geschlecht:</TextBlock>
+                <ComboBox x:Name="Gender" SelectedItem="SelectedGender" Height="25"/>
+                <TextBlock>Geburtsdatum:</TextBlock>
+                <TextBox x:Name="Birthday" Height="25" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="160" MinWidth="160">
+                <TextBlock>Tasso Registrierung:</TextBlock>
+                <TextBox x:Name="TassoRegistration" Height="20"/>
+                <TextBlock>Identifikation:</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="RDBChipChecked"  Margin="0 0 5 0">Chip</RadioButton>
+                    <RadioButton x:Name="RDBTattooChecked" Margin="5 0 0 0">Tattoo</RadioButton>
+                </StackPanel>
+                <TextBlock>An welcher Stelle:</TextBlock>
+                <TextBox x:Name="WhichPoint"/>
+                <CheckBox x:Name="IsSelectedCastrated" Margin="0 5 0 0">Kastriert</CheckBox>
+                <StackPanel x:Name="WhenAndMethodIsVisible"  Orientation="Vertical" Margin="0 0 0 0" MaxWidth="200">
+                    <TextBlock>Seit:</TextBlock>
+                    <DatePicker x:Name="CastratedSince"/>
+                    <TextBlock>Methode:</TextBlock>
+                    <TextBox x:Name="CastrateMethod"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="160">
+                <TextBlock>Krankheiten:</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="AddDiseaseText" MinWidth="125" MaxWidth="125"/>
+                    <Button x:Name="AddDisease" Margin="0 0 5 0">hinzufügen</Button>
+                </StackPanel>
+                <ListView x:Name="DiseasesList" MaxHeight="100" MinHeight="20" 
+                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Name"
+                          Margin="0 5 0 0" SelectedItem="{Binding Path=SelectedDisease, Mode=OneWayToSource}"/>
+                <Button x:Name="RemoveDisease" Margin="0 5 0 0">entfernen</Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="160">
+                <TextBlock>Besonderheiten:</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="AddCharacteristicsText" MinWidth="125" MaxWidth="125"/>
+                    <Button x:Name="AddCharacteristics" Margin="0 0 5 0">hinzufügen</Button>
+                </StackPanel>
+                <ListView x:Name="CharacteristicsList" MaxHeight="100" MinHeight="20" 
+                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Description"
+                          Margin="0 5 0 0"  SelectedItem="{Binding Path=SelectedCharacteristics, Mode=OneWayToSource}"/>
+                <Button x:Name="RemoveCharacteristics" Margin="0 5 0 0">entfernen</Button>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button x:Name="EditDog" Margin="0 10 0 0" Background="Green">Speichern</Button>
+                    <Button x:Name="CancelCreation" Margin="60 10 0 0" Background="Red" Foreground="White">Abbrechen</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
