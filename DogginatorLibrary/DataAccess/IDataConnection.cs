@@ -42,9 +42,6 @@ namespace DogginatorLibrary.DataAccess
         /// <summary>
         /// Updates a Customer
         /// </summary>
-        /// <returns>
-        /// Updated Customer Model
-        /// </returns>
         void UpdateCustomer(CustomerModel cModel);
 
         /// <summary>
@@ -58,10 +55,7 @@ namespace DogginatorLibrary.DataAccess
         /// <summary>
         /// Updates a Dog
         /// </summary>
-        /// <returns>
-        /// Updated Dog Model
-        /// </returns>
-        DogModel UpdateDog(DogModel dModel);
+        void UpdateDog(DogModel dModel);
 
         /// <summary>
         /// Saves the new Note about the Customer in the DataBase

@@ -11,13 +11,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
     class DogDetailsViewModel : Screen
     {
         #region Fields
+        private DogModel _dogToEdit;
         private bool _whenAndMethodIsVisible = false;
+        private bool _isChipped;
         private BindableCollection<string> _gender = new BindableCollection<string>();
         private string _name = "";
         private string _breed = "";
         private string _color = "";
         private string _selectedGender = "";
-        private string _birthday;
+        private DateTime _birthday;
         private string _tassoRegistration;
         private bool _rDBChipChecked = true;
         private bool _rDBTattooChecked = false;
@@ -34,6 +36,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Properties
+
+        public DogModel DogToEdit
+        {
+            get { return _dogToEdit; }
+            set
+            {
+                _dogToEdit = value;
+                NotifyOfPropertyChange(() => DogToEdit);
+            }
+        }
 
         public BindableCollection<string> Gender
         {
@@ -95,7 +107,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanSaveDog);
             }
         }
-        public string Birthday
+        public DateTime Birthday
         {
             get { return _birthday; }
             set
@@ -130,6 +142,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 _rDBTattooChecked = value;
                 NotifyOfPropertyChange(() => RDBTattooChecked);
 
+            }
+        }
+        public bool IsChipped
+        {
+            get { return _isChipped; }
+            set
+            {
+                _isChipped = value;
+                NotifyOfPropertyChange(() => IsChipped);
             }
         }
         public string WhichPoint
@@ -239,37 +260,45 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #region Constructor
         public DogDetailsViewModel(DogModel dog)
         {
-            Name = dog.Name;
-            Breed = dog.Breed;
-            Color = dog.Color;
+            DogToEdit = dog;
+            Name = DogToEdit.Name;
+            Breed = DogToEdit.Breed;
+            Color = DogToEdit.Color;
             Gender.Add("Weibchen");
             Gender.Add("Rüde");
-            SelectedGender = dog.Gender;
-            Birthday = dog.Birthday;
-            TassoRegistration = dog.TassoRegistration;
-            if (dog.IsChippped)
+            SelectedGender = DogToEdit.Gender;
+            Birthday = Convert.ToDateTime(DogToEdit.Birthday);
+            TassoRegistration = DogToEdit.TassoRegistration;
+            if (DogToEdit.IsChippped)
             {
                 RDBChipChecked = true;
+                RDBTattooChecked = false;
             }
             else
             {
                 RDBTattooChecked = true;
+                RDBChipChecked = false;
             }
-            WhichPoint = dog.WhichPoint;
-            IsSelectedCastrated = true;
+            WhichPoint = DogToEdit.WhichPoint;
+            IsSelectedCastrated = DogToEdit.Castrated;
             if (IsSelectedCastrated)
             {
-                CastratedSince = Convert.ToDateTime(dog.CastratedSince);
-
+                CastratedSince = Convert.ToDateTime(DogToEdit.CastratedSince);
+                CastrateMethod = DogToEdit.CastrateMethod;
             }
-            CastrateMethod = dog.CastrateMethod;
-            if (dog.Diseases != null && dog.Diseases.Count > 0)
+            else
             {
-                DiseasesList = new BindableCollection<DiseasesModel>(dog.Diseases);
+                CastratedSince = DateTime.Now;
+                CastrateMethod = "";
             }
-            if (dog.Characteristics != null && dog.Characteristics.Count > 0)
+            
+            if (DogToEdit.Diseases != null && DogToEdit.Diseases.Count > 0)
             {
-                CharacteristicsList = new BindableCollection<CharacteristicsModel>(dog.Characteristics);
+                DiseasesList = new BindableCollection<DiseasesModel>(DogToEdit.Diseases);
+            }
+            if (DogToEdit.Characteristics != null && DogToEdit.Characteristics.Count > 0)
+            {
+                CharacteristicsList = new BindableCollection<CharacteristicsModel>(DogToEdit.Characteristics);
             }
         }
         #endregion
@@ -395,42 +424,50 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         /// <summary>
         /// this saves the dog to the list
         /// </summary>
-        public void SaveDog()
+        public void EditDog()
         {
-            //DogModel dogModel = new DogModel();
-
-            //dogModel.Name = Name;
-            //dogModel.Breed = Breed;
-            //dogModel.Color = Color;
-            //dogModel.Gender = SelectedGender;
-            //if (Birthday != null)
-            //{
-            //    dogModel.Birthday = Birthday.ToString("dd.MM.yyyy");
-            //}
-            //if (!string.IsNullOrWhiteSpace(TassoRegistration))
-            //{
-            //    dogModel.TassoRegistration = TassoRegistration;
-            //}
-            //dogModel.WhichPoint = WhichPoint;
-            //if (IsSelectedCastrated)
-            //{
-            //    dogModel.Castrated = true;
-            //    dogModel.CastratedSince = CastratedSince.ToString("dd.MM.yyyy");
-            //    dogModel.CastrateMethod = CastrateMethod;
-            //}
-            //else
-            //{
-            //    dogModel.Castrated = false;
-            //}
-            //if (DiseasesList.Count > 0)
-            //{
-            //    dogModel.Diseases = new List<DiseasesModel>(DiseasesList);
-            //}
-            //if (CharacteristicsList.Count > 0)
-            //{
-            //    dogModel.Characteristics = new List<CharacteristicsModel>(CharacteristicsList);
-            //}
-            //EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(dogModel);
+            DogToEdit.Name = Name;
+            DogToEdit.Breed = Breed;
+            DogToEdit.Color = Color;
+            DogToEdit.Gender = SelectedGender;
+           if (Birthday != null)
+           {
+                DogToEdit.Birthday = Birthday.ToString("dd.MM.yyyy");
+           }
+           if (!string.IsNullOrWhiteSpace(TassoRegistration))
+           {
+                DogToEdit.TassoRegistration = TassoRegistration;
+           }
+           if (RDBChipChecked)
+            {
+                DogToEdit.IsChippped = true;
+            }
+            else
+            {
+                DogToEdit.IsChippped = false;
+            }
+            
+            DogToEdit.WhichPoint = WhichPoint;
+           if (IsSelectedCastrated)
+           {
+                DogToEdit.Castrated = true;
+                DogToEdit.CastratedSince = CastratedSince.ToString("dd.MM.yyyy");
+                DogToEdit.CastrateMethod = CastrateMethod;
+           }
+           else
+            {
+                DogToEdit.Castrated = false;
+            }
+            if (DiseasesList.Count > 0)
+            {
+                DogToEdit.Diseases = new List<DiseasesModel>(DiseasesList);
+            }
+            if (CharacteristicsList.Count > 0)
+            {
+                DogToEdit.Characteristics = new List<CharacteristicsModel>(CharacteristicsList);
+            }
+            EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(DogToEdit);
+            TryClose();
         }
 
         /// <summary>

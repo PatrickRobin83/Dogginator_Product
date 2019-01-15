@@ -696,26 +696,31 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public void Handle(DogModel dogModel)
         {
-            if (!string.IsNullOrWhiteSpace(dogModel.Name))
+            if (dogModel.Id > 0)
             {
-                if(dogModel.CustomerList == null)
-                {
-                    dogModel.CustomerList = new List<CustomerModel>();
-                }
-                dogModel.CustomerList.Add(CModel);
-                GlobalConfig.Connection.AddDog(dogModel, CModel);
-                GlobalConfig.Connection.GetAllCustomerForDog(dogModel);
-                OwnedDogs.Add(dogModel);
+                GlobalConfig.Connection.UpdateDog(dogModel);
                 _isDogToSave = true;
             }
-            if(dogModel.Id > 0)
+            else
             {
-                // TODO - Wire up the upgrade to the Database
-                //GlobalConfig.Connection.UpdateDog(dogModel);
+                if (!string.IsNullOrWhiteSpace(dogModel.Name))
+                {
+                    if (dogModel.CustomerList == null)
+                    {
+                        dogModel.CustomerList = new List<CustomerModel>();
+                    }
+                    dogModel.CustomerList.Add(CModel);
+                    GlobalConfig.Connection.AddDog(dogModel, CModel);
+                    GlobalConfig.Connection.GetAllCustomerForDog(dogModel);
+                    AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+                    OwnedDogs.Add(dogModel);
+                    _isDogToSave = true;
+                }
             }
             CustomerDetailsIsVisible = true;
             AddDogIsVisible = false;
             EditDogIsVisible = false;
+
         }
 
         /// <summary>
