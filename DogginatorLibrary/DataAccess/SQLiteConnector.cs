@@ -29,8 +29,6 @@ namespace DogginatorLibrary.DataAccess
         #endregion
 
         #region Methods
-        
-
         public DogModel AddDog(DogModel dModel, CustomerModel cModel)
         {
             AddDogToDatabase(dModel);
@@ -310,6 +308,7 @@ namespace DogginatorLibrary.DataAccess
                 {
                     connection.Query("UPDATE note SET active = 0  WHERE note.id = " + noteModel.Id + ";");
                     Get_Customer(cModel);
+                    UpdateCustomer(cModel);
                 }
 
             }
@@ -327,6 +326,7 @@ namespace DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     connection.Query("DELETE FROM customer_to_dog WHERE customerId = " + cModel.Id + " AND dogId = " + dModel.Id);
+                    UpdateDog(dModel);
                 }
             }
             catch (SQLiteException ex)
@@ -334,6 +334,159 @@ namespace DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public void DeleteDogDiseasesRelation(DogModel dModel)
+        {
+            try
+            {
+                if (dModel.Diseases != null && dModel.Diseases.Count > 0)
+                {
+                    using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                    {
+                        foreach (DiseasesModel d in dModel.Diseases)
+                        {
+                            connection.Query("DELETE FROM dog_to_diseases WHERE dogId = " + dModel.Id + " AND diseasesId = " + d.Id);
+                            DeleteDiseases(d);
+                            UpdateDog(dModel);
+                        }
+                    }
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void DeleteDogToCharacteristicsRelation(DogModel dModel)
+        {
+            try
+            {
+                if (dModel.Characteristics != null && dModel.Characteristics.Count > 0)
+                {
+                    using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                    {
+                        foreach (CharacteristicsModel c in dModel.Characteristics)
+                        {
+                            connection.Query("DELETE FROM dog_to_characteristics WHERE dogId = " + dModel.Id + " AND characteristicsId = " + c.Id);
+                            DeleteCharacteristics(c);
+                            UpdateDog(dModel);
+                        }
+                    } 
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
+        public void DeleteDiseases(DiseasesModel model)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {    
+                        connection.Query("DELETE FROM diseases WHERE id = " + model.Id);
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void DeleteCharacteristics(CharacteristicsModel model)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query("DELETE FROM characteristics WHERE id = " + model.Id);
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void DeleteDogFromDatabase(DogModel model)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query("UPDATE dog SET edit_date = datetime('now'), active = 0 WHERE id= " + model.Id);
+                }
+            }
+            catch (SQLiteException sqLiteEx)
+            {
+                Console.WriteLine(sqLiteEx.Message);
+                return;
+            }
+        }
+
+        public List<DogModel> Get_DogsInactiveAndActive()
+        {
+            List<DogModel> output = new List<DogModel>();
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    output = connection.Query<DogModel>("SELECT * FROM Dog ;").ToList();
+
+                    foreach (DogModel dogModel in output)
+                    {
+                        dogModel.Characteristics = connection.Query<CharacteristicsModel>("SELECT c.* FROM characteristics c INNER JOIN dog_to_characteristics dc on dc.id = c.id WHERE active = 1 AND dogId = " + dogModel.Id).ToList();
+                        dogModel.Diseases = connection.Query<DiseasesModel>("SELECT d.* FROM diseases d INNER JOIN dog_to_diseases dd on dd.id = d.id WHERE active = 1 AND dogId = " + dogModel.Id).ToList();
+                        if (dogModel.CustomerList == null)
+                        {
+                            dogModel.CustomerList = new List<CustomerModel>();
+                        }
+                        dogModel.CustomerList = connection.Query<CustomerModel>("SELECT c.* FROM customer c INNER JOIN customer_to_dog cd on customerId = c.id WHERE dogId = " + dogModel.Id).ToList();
+
+                    }
+                }
+                return output;
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+                return new List<DogModel>();
+            }
+        }
+
+        public List<CustomerModel> Get_CustomerInactiveAndActive()
+        {
+            List<CustomerModel> output;
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    output = connection.Query<CustomerModel>("SELECT * FROM CUSTOMER;").ToList();
+
+                    foreach (CustomerModel customerModel in output)
+                    {
+                        customerModel.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + customerModel.Id).ToList();
+                        customerModel.OwnedDogs = connection.Query<DogModel>("SELECT d.* FROM dog d INNER JOIN customer_to_dog cd on dogId = d.id WHERE customerId = " + customerModel.Id).ToList();
+                        foreach (DogModel dogModel in customerModel.OwnedDogs)
+                        {
+                            dogModel.Characteristics = connection.Query<CharacteristicsModel>("SELECT c.* FROM characteristics c INNER JOIN dog_to_characteristics dc on dc.id = c.id WHERE dogId = " + dogModel.Id).ToList();
+                            dogModel.Diseases = connection.Query<DiseasesModel>("SELECT d.* FROM diseases d INNER JOIN dog_to_diseases dd on dd.id = d.id WHERE dogId = " + dogModel.Id).ToList();
+                            dogModel.CustomerList = connection.Query<CustomerModel>("SELECT c.* FROM customer c INNER JOIN customer_to_dog cd on customerId = c.id WHERE dogId = " + dogModel.Id).ToList();
+                        }
+                    }
+                }
+                return output;
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+                return new List<CustomerModel>();
+            }
+        }
+
 
         #endregion
     }

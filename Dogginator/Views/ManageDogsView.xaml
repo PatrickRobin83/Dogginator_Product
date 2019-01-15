@@ -4,55 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
-             mc:Ignorable="d"
+             mc:Ignorable="d" Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Row 1 -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
                    HorizontalAlignment="Center" FontSize="28" 
-                   FontWeight="DemiBold">
+                   Margin=" 0 0 0 20" FontWeight="DemiBold">
             Hunde Verwaltung
         </TextBlock>
 
-        <!-- Row 2 -->
-
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Height="25">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
-                       Margin="5 0 5 0">Suche:</TextBlock>
-            <TextBox x:Name="DogSearchText" MinWidth="700" Margin="0 5 0 0"/>
-            <Button x:Name="DogSearch" Margin="10 0 0 0" Padding="2">Suchen</Button>
-        </StackPanel>
-
-        <!-- Row 3 -->
-        <ListView x:Name="AvailableDogs" Grid.Row="3" Grid.Column="1" 
-                  Grid.ColumnSpan="2" MinHeight="25" MaxHeight="450" Margin="0 5 0 0"
+        <StackPanel x:Name="DogOverviewIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="5 0 5 0">Suche:</TextBlock>
+                <TextBox x:Name="DogSearchText" MinHeight="25" MinWidth="700"/>
+                <Button x:Name="DogSearch" MinHeight="25" Margin="10 0 0 0">Suchen</Button>
+            </StackPanel>
+            <ListView x:Name="AvailableDogs" MinHeight="300" MaxHeight="300" Margin="0 5 0 0"
                   SelectedItem="{Binding Path=SelectedDog, Mode=OneWayToSource}"
-                  DisplayMemberPath="FullDog"/>
-
-        <!-- Row 4 -->
-        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
-                    HorizontalAlignment="Left" Orientation="Horizontal" 
+                  DisplayMemberPath="FullDog" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" 
                     Margin=" 5 5 5 5">
-            <Button x:Name="EditDog"  Margin="0 0 5 0" Padding="5">
-                Hund bearbeiten
-            </Button>
-            <Button x:Name="DeleteDog"  Margin="0 0 5 0" Padding="5">
-                Hund Löschen
-            </Button>
+                <Button x:Name="EditDog"  Margin="0 0 5 0" Padding="5">
+                    Hund bearbeiten
+                </Button>
+                <Button x:Name="DeleteDog" Background="Red" Foreground="White"  Margin="0 0 5 0" Padding="5">
+                    Hund Löschen
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="DogDetailsIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <ContentControl x:Name="ActiveDogsDetailsView"/>
         </StackPanel>
     </Grid>
 </UserControl>

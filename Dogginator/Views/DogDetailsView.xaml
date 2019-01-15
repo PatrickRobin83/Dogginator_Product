@@ -39,7 +39,7 @@
                 <TextBlock>Geschlecht:</TextBlock>
                 <ComboBox x:Name="Gender" SelectedItem="SelectedGender" Height="25"/>
                 <TextBlock>Geburtsdatum:</TextBlock>
-                <TextBox x:Name="Birthday" Height="25" IsReadOnly="True"/>
+                <DatePicker x:Name="Birthday" Height="25" SelectedDateFormat="Short"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="160" MinWidth="160">
                 <TextBlock>Tasso Registrierung:</TextBlock>

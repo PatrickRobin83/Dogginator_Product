@@ -17,6 +17,8 @@ namespace DogginatorLibrary.DataAccess
        /// </returns>
         List<CustomerModel> Get_CustomerAll();
 
+        List<CustomerModel> Get_CustomerInactiveAndActive();
+
         /// <summary>
         /// This Method should connect to the Database and get Information about all saved Dogs
         /// </summary>
@@ -24,6 +26,8 @@ namespace DogginatorLibrary.DataAccess
         /// Returns a List of DogModels
         /// </returns>
         List<DogModel> Get_DogsAll();
+
+        List<DogModel> Get_DogsInactiveAndActive();
 
         /// <summary>
         /// Adds the Customer Model
@@ -76,6 +80,18 @@ namespace DogginatorLibrary.DataAccess
         List<CustomerModel> GetAllCustomerForDog(DogModel dModel);
 
         void DeleteDogToCustomerRelation(CustomerModel cModel, DogModel dModel);
+
+        void DeleteDogDiseasesRelation(DogModel dModel);
+
+        void DeleteDogToCharacteristicsRelation(DogModel dModel);
+
+        void DeleteDiseases(DiseasesModel model);
+
+        void DeleteCharacteristics(CharacteristicsModel model);
+
+        void DeleteDogFromDatabase(DogModel model);
+
+
 
     }
 }

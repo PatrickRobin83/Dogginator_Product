@@ -18,7 +18,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private string _breed = "";
         private string _color = "";
         private string _selectedGender = "";
-        private string _birthday;
+        private DateTime _birthday;
         private string _tassoRegistration;
         private bool _rDBChipChecked = true;
         private bool _rDBTattooChecked = false;
@@ -105,7 +105,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanSaveDog);
             }
         }
-        public string Birthday
+        public DateTime Birthday
         {
             get { return _birthday; }
             set
@@ -265,7 +265,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             Gender.Add("Weibchen");
             Gender.Add("Rüde");
             SelectedGender = DogToEdit.Gender;
-            Birthday = DogToEdit.Birthday;
+            Birthday = Convert.ToDateTime(DogToEdit.Birthday);
             TassoRegistration = DogToEdit.TassoRegistration;
             if (DogToEdit.Chipped)
             {
@@ -408,6 +408,12 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
+        public void RemoveCharacteristics()
+        {
+            CharacteristicsList.Remove(SelectedCharacteristics);
+        }
+
+
         /// <summary>
         /// this checks if all required fields are set
         /// </summary>
@@ -431,7 +437,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DogToEdit.Gender = SelectedGender;
            if (Birthday != null)
            {
-                DogToEdit.Birthday = Birthday;
+                DogToEdit.Birthday = Birthday.ToString("dd.MM.yyyy");
            }
            if (!string.IsNullOrWhiteSpace(TassoRegistration))
            {
