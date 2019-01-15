@@ -139,6 +139,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
             DogOverviewIsVisible = true;
             DogDetailsIsVisible = false;
+            SelectedDog = null;
         }
 
 

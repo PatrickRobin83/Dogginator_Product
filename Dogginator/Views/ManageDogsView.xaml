@@ -30,9 +30,9 @@
                 <Button x:Name="DogSearch" MinHeight="25" Margin="10 0 0 0">Suchen</Button>
             </StackPanel>
             <ListView x:Name="AvailableDogs" MinHeight="300" MaxHeight="300" Margin="0 5 0 0"
-                  SelectedItem="{Binding Path=SelectedDog, Mode=OneWayToSource}"
+                  SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}"
                   DisplayMemberPath="FullDog" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" 
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" 
                     Margin=" 5 5 5 5">
                 <Button x:Name="EditDog"  Margin="0 0 5 0" Padding="5">
                     Hund bearbeiten

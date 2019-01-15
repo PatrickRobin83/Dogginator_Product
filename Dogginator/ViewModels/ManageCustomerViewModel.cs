@@ -212,6 +212,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 LoadCustomerDetailsIsVisible = false;
                 CustomerListIsVisible = true;
             }
+            SelectedCustomer = null;
         }
 
         public bool CanCustomerSearch
