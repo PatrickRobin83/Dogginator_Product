@@ -13,7 +13,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
     {
         #region Fields
         BindableCollection<DogModel> _availableDogs = new BindableCollection<DogModel>();
-        private DogModel _selectedDog = new DogModel();
+        private DogModel _selectedDog = null;
         private bool _dogOverviewIsVisible = true;
         private bool _dogDetailsIsVisible = false;
 

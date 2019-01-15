@@ -490,6 +490,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 System.Windows.MessageBox.Show($"Der Hund {SelectedDog.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
                                                $"{SelectedDog.CustomerList.First().FirstName} {SelectedDog.CustomerList.First().LastName} der einzige Besitzer ist");
             }
+            AvailableSelectedDog = null;
+            SelectedDog = null;
         }
 
         /// <summary>
@@ -571,6 +573,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             AvailableSelectedDog.CustomerList.Add(CModel);
             GlobalConfig.Connection.AddDogToCustomer(AvailableSelectedDog, CModel);
             GlobalConfig.Connection.GetAllCustomerForDog(AvailableSelectedDog);
+            AvailableSelectedDog = null;
+            SelectedDog = null;
             IsDogToSave = true;
         }
 
@@ -582,6 +586,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 if (IsDogToSave || IsDogRemoveToSave)
                 {
                     output = true;
+                    
                 }
 
                 if (!CModel.FirstName.Equals(FirstName) || !CModel.LastName.Equals(LastName) || !CModel.Street.Equals(Street)
@@ -601,11 +606,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                         output = true;
                     }
                 }
-                else
-                {
-                    output = false;
-                }
-
+               
                 if (string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(CModel.Email))
                 {
                     output = true;
@@ -714,6 +715,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     GlobalConfig.Connection.GetAllCustomerForDog(dogModel);
                     AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
                     OwnedDogs.Add(dogModel);
+                    AvailableSelectedDog = null;
+                    SelectedDog = null;
                     _isDogToSave = true;
                 }
             }

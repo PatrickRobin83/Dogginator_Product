@@ -102,10 +102,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 {
                     output = false;
                 }
-                else if (SelectedCustomer.LastName.Length <= 0)
-                {
-                    output = false;
-                }
                 return output;
             }
         }
@@ -116,10 +112,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 bool output = true;
 
                 if (SelectedCustomer == null)
-                {
-                    output = false;
-                }
-                else if (SelectedCustomer.LastName.Length <= 0)
                 {
                     output = false;
                 }
@@ -198,6 +190,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 LoadCreateCustomerIsVisible = false;
                 LoadCustomerDetailsIsVisible = false;
                 CustomerListIsVisible = true;
+                SelectedCustomer = null;
                 return;
             }
 
@@ -211,8 +204,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 LoadCreateCustomerIsVisible = false;
                 LoadCustomerDetailsIsVisible = false;
                 CustomerListIsVisible = true;
+                SelectedCustomer = null;
             }
-            SelectedCustomer = null;
+            
+           
         }
 
         public bool CanCustomerSearch
