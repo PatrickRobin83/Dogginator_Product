@@ -13,16 +13,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #region Fields
         private DogModel _dogToEdit;
         private bool _whenAndMethodIsVisible = false;
-        private bool _isChipped;
         private BindableCollection<string> _gender = new BindableCollection<string>();
         private string _name = "";
         private string _breed = "";
         private string _color = "";
         private string _selectedGender = "";
-        private DateTime _birthday;
+        private string _birthday;
         private string _tassoRegistration;
         private bool _rDBChipChecked = true;
         private bool _rDBTattooChecked = false;
+        private bool _chipped = false;
         private string _whichPoint = "";
         private bool _isSelectedCastrated = false;
         private DateTime _castratedSince;
@@ -46,7 +46,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => DogToEdit);
             }
         }
-
         public BindableCollection<string> Gender
         {
             get { return _gender; }
@@ -57,7 +56,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
 
         }
-
         public bool WhenAndMethodIsVisible
         {
             get { return _whenAndMethodIsVisible; }
@@ -107,7 +105,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanSaveDog);
             }
         }
-        public DateTime Birthday
+        public string Birthday
         {
             get { return _birthday; }
             set
@@ -144,13 +142,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             }
         }
-        public bool IsChipped
+        public bool Chipped
         {
-            get { return _isChipped; }
+            get { return _chipped; }
             set
             {
-                _isChipped = value;
-                NotifyOfPropertyChange(() => IsChipped);
+                _chipped = value;
+                NotifyOfPropertyChange(() => Chipped);
             }
         }
         public string WhichPoint
@@ -267,9 +265,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             Gender.Add("Weibchen");
             Gender.Add("Rüde");
             SelectedGender = DogToEdit.Gender;
-            Birthday = Convert.ToDateTime(DogToEdit.Birthday);
+            Birthday = DogToEdit.Birthday;
             TassoRegistration = DogToEdit.TassoRegistration;
-            if (DogToEdit.IsChippped)
+            if (DogToEdit.Chipped)
             {
                 RDBChipChecked = true;
                 RDBTattooChecked = false;
@@ -417,6 +415,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         {
             get
             {
+                // TODO - When should it be possible to save a dog
                 return true;
             }
         }
@@ -432,7 +431,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DogToEdit.Gender = SelectedGender;
            if (Birthday != null)
            {
-                DogToEdit.Birthday = Birthday.ToString("dd.MM.yyyy");
+                DogToEdit.Birthday = Birthday;
            }
            if (!string.IsNullOrWhiteSpace(TassoRegistration))
            {
@@ -440,11 +439,11 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
            }
            if (RDBChipChecked)
             {
-                DogToEdit.IsChippped = true;
+                DogToEdit.Chipped = true;
             }
             else
             {
-                DogToEdit.IsChippped = false;
+                DogToEdit.Chipped = true;
             }
             
             DogToEdit.WhichPoint = WhichPoint;

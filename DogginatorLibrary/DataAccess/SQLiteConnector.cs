@@ -65,15 +65,15 @@ namespace DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query(@"UPDATE dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday,
-               tassoregistration = @TassoRegistration, isChipped = @IsChipped, whichpoint = @WhichPoint, castrated = @Castrated, castratedsince = @CastratedSince, castratemethod = @CastrateMethid WHERE id = @Id", dModel);
-                    
+                    connection.Query(@"UPDATE Dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday, 
+                                       tassoregistration = @TassoRegistration, chipped = @Chipped, whichpoint = @WhichPoint, castrated = @Castrated, 
+                                       castratedsince = @CastratedSince, castratemethod = @CastrateMethod  WHERE id = @Id", dModel);
                 }
             }
 
             catch (SQLiteException sqLiteEx)
             {
-                Console.WriteLine(sqLiteEx.Message);
+                Console.WriteLine(sqLiteEx.Message + "\r\n" + sqLiteEx.StackTrace);
             }
 
             
@@ -197,7 +197,7 @@ namespace DogginatorLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday, tassoregistration, isChipped, whichpoint, castrated, castratedsince, castratemethod, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @TassoRegistration, @IsChippped, @WhichPoint, @Castrated, @CastratedSince, @CastrateMethod, datetime('now'), null, 1 ); SELECT last_insert_rowid();",dModel).First();
+                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday, tassoregistration, chipped, whichpoint, castrated, castratedsince, castratemethod, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @TassoRegistration, @Chipped, @WhichPoint, @Castrated, @CastratedSince, @CastrateMethod, datetime('now'), null, 1 ); SELECT last_insert_rowid();",dModel).First();
                 if (dModel.Diseases != null && dModel.Diseases.Count > 0)
                 {
                     foreach (DiseasesModel disModel in dModel.Diseases)

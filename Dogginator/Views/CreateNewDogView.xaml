@@ -39,7 +39,7 @@
                 <TextBlock>Geschlecht:</TextBlock>
                 <ComboBox x:Name="Gender" SelectedItem="SelectedGender" Height="25" />
                 <TextBlock>Geburtsdatum:</TextBlock>
-                <DatePicker x:Name="Birthday" Height="25"/>
+                <DatePicker x:Name="Birthday" Height="25" SelectedDateFormat="Short"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="160" MinWidth="160">
                 <TextBlock>Tasso Registrierung:</TextBlock>
@@ -54,7 +54,7 @@
                 <CheckBox x:Name="IsSelectedCastrated" Margin="0 5 0 0">Kastriert</CheckBox>
                 <StackPanel x:Name="WhenAndMethodIsVisible"  Orientation="Vertical" Margin="0 0 0 0" MaxWidth="200">
                     <TextBlock>Seit:</TextBlock>
-                    <DatePicker x:Name="CastratedSince"/>
+                    <DatePicker x:Name="CastratedSince" SelectedDateFormat="Short"/>
                     <TextBlock>Methode:</TextBlock>
                     <TextBox x:Name="CastrateMethod"/>
                 </StackPanel>

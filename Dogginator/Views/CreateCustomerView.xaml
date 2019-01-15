@@ -67,7 +67,8 @@
                     <TextBlock Margin=" 135 0 0 0">Notiz:</TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <DatePicker x:Name="Birthday" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left" SelectedDateFormat="Short"/>
+                    <DatePicker x:Name="Birthday" MinWidth="150" MaxWidth="150" 
+                                HorizontalAlignment="Left" SelectedDateFormat="Short"/>
                     <TextBox x:Name="NoteToSave" Margin="60 0 0 0" MinWidth="150" MaxWidth="150"/>
                 </StackPanel>
 

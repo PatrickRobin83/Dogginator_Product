@@ -28,7 +28,7 @@ namespace DogginatorLibrary.Models
 
         public string TassoRegistration { get; set; }
 
-        public bool IsChippped { get; set; }
+        public bool Chipped { get; set; }
 
         public string WhichPoint { get; set; }
 

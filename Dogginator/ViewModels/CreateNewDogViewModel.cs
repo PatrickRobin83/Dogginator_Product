@@ -22,7 +22,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private string _tassoRegistration;
         private bool _rDBChipChecked = true;
         private bool _rDBTattooChecked = false;
-        private bool _isChipped = false;
+        private bool _chipped = false;
         private string _whichPoint = "";
         private bool _isSelectedCastrated = false;
         private DateTime _castratedSince;
@@ -133,13 +133,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             }
         }
-        public bool IsChipped
+        public bool Chipped
         {
-            get { return _isChipped; }
+            get { return _chipped; }
             set
             {
-                _isChipped = value;
-                NotifyOfPropertyChange(() => IsChipped);
+                _chipped = value;
+                NotifyOfPropertyChange(() => Chipped);
             }
         }
         public string WhichPoint
@@ -411,11 +411,11 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
             if (RDBChipChecked)
             {
-                IsChipped = true;
+                Chipped = true;
             }
             else
             {
-                IsChipped = false;
+                Chipped = false;
             }
 
             dogModel.WhichPoint = WhichPoint;
