@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
         mc:Ignorable="d" FontSize="14"
-        Title="Dogginator - Arnold Edition" Height="850" Width="1250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Dogginator - Arnold Edition" Height="850" Width="1250" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />

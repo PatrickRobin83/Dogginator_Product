@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DogginatorLibrary.Models
 {
     public class DiseasesModel
-    {S
+    {
         #region Fields
 
         #endregion

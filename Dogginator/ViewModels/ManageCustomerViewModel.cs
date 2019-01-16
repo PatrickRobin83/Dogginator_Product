@@ -22,6 +22,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private CustomerModel _selectedCustomer;
         private BindableCollection<CustomerModel> _availableCustomers = new BindableCollection<CustomerModel>();
         private string _customerSearchText = "";
+        private bool _showAlsoInactive = false;
 
 
         #endregion
@@ -125,20 +126,61 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _customerSearchText = value;
                 NotifyOfPropertyChange(() => CustomerSearchText);
-                NotifyOfPropertyChange(() => CanCustomerSearch);
+                AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.SearchResultsCustomer(CustomerSearchText,ShowAlsoInactive));
+                ActiveCustomer(AvailableCustomers);
+                NotifyOfPropertyChange(() => AvailableCustomers);
+                
+            }
+        }
+        public bool ShowAlsoInactive
+        {
+            get { return _showAlsoInactive; }
+            set
+            {
+                _showAlsoInactive = value;
+                NotifyOfPropertyChange(() => ShowAlsoInactive);
+                if (ShowAlsoInactive)
+                {
+                    AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerInactiveAndActive());
+                    ActiveCustomer(AvailableCustomers);
+
+                }
+                else
+                {
+                    AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
+                    ActiveCustomer(AvailableCustomers);
+                }
+               
             }
         }
         #endregion
 
         #region Contstructor
         public ManageCustomerViewModel()
-        {
+        { 
             AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
+            ActiveCustomer(AvailableCustomers);
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
 
         #region Methods
+
+        public void ActiveCustomer(BindableCollection<CustomerModel> customerList)
+        {
+            foreach (CustomerModel model in customerList)
+
+            {
+                if (model.Active)
+                {
+                    model.CustomerActive = "Aktiv";
+                }
+                else
+                {
+                    model.CustomerActive = "inaktiv";
+                }
+            }
+        }
 
         /// <summary>
         /// Loads the CreateNewCustomer View in the ContentArea
@@ -200,50 +242,17 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             else
             {
                 AvailableCustomers.Add(message);
-                NotifyOfPropertyChange(() => AvailableCustomers);
-                LoadCreateCustomerIsVisible = false;
-                LoadCustomerDetailsIsVisible = false;
-                CustomerListIsVisible = true;
-                SelectedCustomer = null;
             }
-            
-           
-        }
+            LoadCreateCustomerIsVisible = false;
+            LoadCustomerDetailsIsVisible = false;
+            CustomerListIsVisible = true;
+            SelectedCustomer = null;
+            AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
+            ActiveCustomer(AvailableCustomers);
+            NotifyOfPropertyChange(() => AvailableCustomers);
 
-        public bool CanCustomerSearch
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(CustomerSearchText))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        public void CustomerSearch()
-        {
-            // TODO - Imrpove the Search
-            //if(AvailableCustomers != null && AvailableCustomers.Count > 0)
-            //{
-            //    foreach (CustomerModel customer in AvailableCustomers)
-            //    {
-            //        Type t = customer.GetType();
-            //        PropertyInfo[] pi = t.GetProperties();
-            //        foreach (PropertyInfo prop in pi)
-            //        {
-            //            if(prop.GetValue(customer, null).Equals(CustomerSearchText))
-            //            {
-            //                SelectedCustomer = customer;
-            //            }
-            //        }
-            //    }
-            //}
-        }
 
+        }
         #endregion
     }
 }

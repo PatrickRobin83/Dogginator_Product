@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DogginatorLibrary.Models
 {
-    public class CustomerModel : IEquatable<CustomerModel>
+    public class CustomerModel
     { 
 
         #region Fields
@@ -47,20 +47,18 @@ namespace DogginatorLibrary.Models
         
         public List<DogModel> OwnedDogs { get; set; }
 
+        public bool Active { get; set; }
+
+        public string CustomerActive { get; set; }
+
         public string FullCustomer
         { 
             get
             {
-                return $" { Salution }  { FirstName }  { LastName }  { Street } { HouseNumber }  { ZipCode }  { City } ";
+                return $" { Salution }  { FirstName }  { LastName }  { Street } { HouseNumber }  { ZipCode }  { City } { PhoneNumber } { MobileNumber } { CustomerActive }";
             }
         }
-
-        public bool Equals(CustomerModel other)
-        {
-            return this.Id == other.Id;
-        }
-
-        #endregion
+#endregion
 
         #region Contstructor
 

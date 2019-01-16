@@ -19,9 +19,9 @@
         </Grid.ColumnDefinitions>
 
         <!-- Row 0 -->
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="180 20 0 0" 
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 10 0 0" 
                    Grid.ColumnSpan="2" 
-                   HorizontalAlignment="Left" FontSize="28" FontWeight="Bold">
+                   HorizontalAlignment="Center" FontSize="28" FontWeight="Bold">
             Kunden Details
         </TextBlock>
 
@@ -29,7 +29,10 @@
         <!-- Row 1 -->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="350" MinWidth="350">
-                <TextBlock>Anrede:</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Anrede:</TextBlock>
+                    <CheckBox x:Name="NotActive" Margin="200 0 0 0">Inaktiv</CheckBox>
+                </StackPanel>
                 <TextBox x:Name="Salution" IsReadOnly="True" MinWidth="60" MaxWidth="60" HorizontalAlignment="Left"></TextBox>
                 <TextBlock>Vorname:</TextBlock>
                 <TextBox x:Name="FirstName" MaxWidth="200" MinWidth="200" HorizontalAlignment="Left"/>

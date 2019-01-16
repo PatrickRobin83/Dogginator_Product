@@ -44,6 +44,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private bool _isDogToSave = false;
         private bool _isDogRemoveToSave = false;
         private DogModel _dogToEdit = new DogModel();
+        private bool _notActive;
         #endregion
 
         #region Properties
@@ -367,7 +368,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanSaveCustomer);
             }
         }
-
+        public bool NotActive
+        {
+            get { return _notActive; }
+            set
+            {
+                _notActive = value;
+                NotifyOfPropertyChange(() => NotActive);
+                NotifyOfPropertyChange(() => CanSaveCustomer);
+            }
+        }
         #endregion
 
         #region Contstructor
@@ -377,7 +387,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DataToFormularFields();
             CustomerDetailsIsVisible = true;
             AddDogIsVisible = false;
-
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
@@ -410,6 +419,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
             }
             Notes = new BindableCollection<NoteModel>(CModel.Notes);
+            if (CModel.Active)
+            {
+                NotActive = false;
+
+            }
+            else
+            {
+                NotActive = true;                
+            }
         }
 
         /// <summary>
@@ -589,6 +607,21 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     
                 }
 
+                if (NotActive)
+                {
+                    if (CModel.Active == true)
+                    {
+                        output = true;
+                    }
+                }
+                else
+                {
+                    if(CModel.Active == false)
+                    {
+                        output = true;
+                    }
+                }
+
                 if (!CModel.FirstName.Equals(FirstName) || !CModel.LastName.Equals(LastName) || !CModel.Street.Equals(Street)
                     || !CModel.HouseNumber.Equals(Housenumber) || !CModel.City.Equals(City) || !CModel.ZipCode.Equals(ZipCode)) 
                 {
@@ -677,10 +710,19 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             CModel.PhoneNumber = PhoneNumber;
             CModel.MobileNumber = MobileNumber;
             CModel.Email = Email;
+            if (NotActive)
+            {
+                CModel.Active = false;
+            }
+            else
+            {
+                CModel.Active = true;
+            }
+
             GlobalConfig.Connection.UpdateCustomer(CModel);
+            GlobalConfig.Connection.Get_Customer(CModel);
+            System.Windows.MessageBox.Show("Änderungen wurden gespeichert", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(CModel);
-            System.Windows.MessageBox.Show("Änderungen wurden gespeichert","Hinweis",System.Windows.MessageBoxButton.OK,System.Windows.MessageBoxImage.Information);
-            NotifyOfPropertyChange(() => CanSaveCustomer);
             
         }
 

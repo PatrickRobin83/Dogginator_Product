@@ -34,8 +34,8 @@
             <StackPanel  Height="25" Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
                        Margin="5 0 5 0">Suche:</TextBlock>
-                <TextBox x:Name="CustomerSearchText" MinWidth="700" Margin="0 5 0 0"/>
-                <Button x:Name="CustomerSearch" Margin="10 0 0 0" Padding="2">Suchen</Button>
+                <TextBox x:Name="CustomerSearchText" MinWidth="560" Margin="0 0 0 0"/>
+                <CheckBox x:Name="ShowAlsoInactive" Margin="90 0 0 0" VerticalAlignment="Center" >Zeige auch inaktive</CheckBox>
             </StackPanel>
 
             <!-- Row 3 -->
@@ -54,7 +54,7 @@
                 <Button x:Name="LoadCustomerDetails"  Margin="0 0 5 0" Padding="5">
                     Kunde bearbeiten
                 </Button>
-                <Button x:Name="DeleteCustomer"  Margin="0 0 5 0" Padding="5">
+                <Button x:Name="DeleteCustomer" Background="Red" Foreground="White"  Margin="0 0 5 0" Padding="5">
                     Kunde Löschen
                 </Button>
             </StackPanel>

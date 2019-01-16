@@ -45,7 +45,7 @@ namespace DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     connection.Query(@"UPDATE Customer SET edit_date = datetime('now'),firstname = @Firstname, lastname = @LastName, street = @Street, 
-                                       housenumber = @HouseNumber, zipcode = @ZipCode, city = @City, phonenumber = @PhoneNumber, mobilenumber = @MobileNumber, email = @Email WHERE id = @Id",cModel);
+                                       housenumber = @HouseNumber, zipcode = @ZipCode, city = @City, phonenumber = @PhoneNumber, mobilenumber = @MobileNumber, email = @Email, active = @Active WHERE id = @Id",cModel);
                 }
             }
 
@@ -486,6 +486,51 @@ namespace DogginatorLibrary.DataAccess
                 return new List<CustomerModel>();
             }
         }
+
+        public List<CustomerModel> SearchResultsCustomer(string searchText, bool activeAndInactive)
+        {
+            List<CustomerModel> results = new List<CustomerModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (activeAndInactive)
+                    {
+                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
+                        $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
+                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%'").ToList();
+                    }
+                    else
+                    {
+                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
+                        $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
+                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%' AND Active = 1").ToList();
+                    }
+                    
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+
+            }
+            return results;
+        //            SELECT * FROM customer where firstname like '%07%' OR
+        //Lastname like '%07%' OR Street Like '%07%' OR
+        //housenumber like '%07%' or zipcode like '%07%' or city like '%07%'
+        //or phonenumber like '%07%' or mobilenumber like '%07%'
+        //or email like '%07%' or birthday like '%07%';
+
+
+        }
+
+        public List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
 
         #endregion
