@@ -8,7 +8,7 @@ namespace DogginatorLibrary.Models
 {
     public class DogModel
     {
-        // TODO - Comment all Properties
+       
         #region Fields
 
         #endregion

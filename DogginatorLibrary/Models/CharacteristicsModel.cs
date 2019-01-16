@@ -8,14 +8,18 @@ namespace DogginatorLibrary.Models
 {
     public class CharacteristicsModel
     {
-        // TODO - Comment all Properties
-
         #region Fields
 
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Id of the characteristics model out of the database
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Description of the Characteristics
+        /// </summary>
         public string Description { get; set; }
         #endregion
 

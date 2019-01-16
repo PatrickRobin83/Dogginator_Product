@@ -80,7 +80,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Methods
-        // TODO - Comment Code
+        /// <summary>
+        /// Activates or deactivates the Delete Dog Button
+        /// </summary>
         public bool CanDeleteDog
         {
             get
@@ -95,6 +97,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
+        /// <summary>
+        /// Deletes the dog to customer relation and dog to disease relation and the dog to characteristic relation and finally sets the dog active
+        /// </summary>
         public void DeleteDog()
         {
             GlobalConfig.Connection.DeleteDogDiseasesRelation(SelectedDog);
@@ -108,6 +113,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
         }
 
+        /// <summary>
+        /// Activates or deactivate the EditDog Button
+        /// </summary>
         public bool CanEditDog
         {
             get
@@ -122,6 +130,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
+        /// <summary>
+        /// opens the DogsDetailsView
+        /// </summary>
         public void EditDog()
         {
             ActiveDogsDetailsView = new DogDetailsViewModel(SelectedDog);
@@ -130,6 +141,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DogDetailsIsVisible = true;
         }
 
+        /// <summary>
+        /// Is triggered if a Dogmodel is given back to the UI-Thread
+        /// </summary>
+        /// <param name="message"></param>
         public void Handle(DogModel message)
         {
             if(message != null && message.Id > 0)

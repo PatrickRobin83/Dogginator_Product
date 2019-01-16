@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace DogginatorLibrary.Models
 {
     public class CustomerModel : IEquatable<CustomerModel>
-    {
-        // TODO - Comment all Properties
+    { 
 
         #region Fields
 
         #endregion
 
         #region Properties
+
         public int Id { get; set; }
 
         public string Salution { get; set; }

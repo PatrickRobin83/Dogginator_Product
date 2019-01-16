@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace DogginatorLibrary.Models
 {
     public class DiseasesModel
-    {
-        // TODO - Comment all Properties
+    {S
         #region Fields
 
         #endregion

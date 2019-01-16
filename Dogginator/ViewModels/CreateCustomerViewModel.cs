@@ -360,17 +360,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
                 else
                 {
-                    //TODO - What to do if a dog has a customer, but the new Customer not saved
-                    //System.Windows.MessageBox.Show($"Der Hund {SelectedDogToRemove.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
-                    //                               $"{SelectedDogToRemove.CustomerList.First().FirstName} {SelectedDogToRemove.CustomerList.First().LastName} der einzige Besitzer ist");
+                    System.Windows.MessageBox.Show($"Der Hund {SelectedDogToRemove.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
+                                                   $"{SelectedDogToRemove.CustomerList.First().FirstName} {SelectedDogToRemove.CustomerList.First().LastName} der einzige Besitzer ist");
                 }
 
             }
             else
             {
-                // TODO - What happens with a Dog without an ID?
-                //OwnedDogs.Remove(SelectedDogToRemove);
-                //NotifyOfPropertyChange(() => OwnedDogs);
+               
+               OwnedDogs.Remove(SelectedDogToRemove);
+               NotifyOfPropertyChange(() => OwnedDogs);
             }
 
         }

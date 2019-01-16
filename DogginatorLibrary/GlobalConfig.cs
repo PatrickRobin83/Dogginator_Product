@@ -11,8 +11,6 @@ namespace DogginatorLibrary
 {
     public static class GlobalConfig
     {
-        // TODO - Comment Methods
-
         #region Fields
 
         #endregion
@@ -27,6 +25,10 @@ namespace DogginatorLibrary
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Select which Datastorage to use 
+        /// </summary>
+        /// <param name="dbType"></param>
         public static void InitalizeConnections(DataBaseType dbType)
         {
             if (dbType == DataBaseType.SQLite)
@@ -34,8 +36,13 @@ namespace DogginatorLibrary
                 SQLiteConnector sql = new SQLiteConnector();
                 Connection = sql;
             }
-
         }
+
+        /// <summary>
+        /// get the Connection String from the Configuration Manager
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static string CnnString(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
