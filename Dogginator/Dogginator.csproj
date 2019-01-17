@@ -101,6 +101,7 @@
     <Compile Include="ViewModels\CreateNewDogViewModel.cs" />
     <Compile Include="ViewModels\CustomerDetailsViewModel.cs" />
     <Compile Include="ViewModels\DogDetailsViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ManageAppointmentsViewModel.cs" />
     <Compile Include="ViewModels\ManageCustomerViewModel.cs" />
     <Compile Include="ViewModels\ManageDogsViewModel.cs" />
@@ -120,6 +121,9 @@
     </Compile>
     <Compile Include="Views\DogDetailsView.xaml.cs">
       <DependentUpon>DogDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManageAppointmentsView.xaml.cs">
       <DependentUpon>ManageAppointmentsView.xaml</DependentUpon>
@@ -185,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DogDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

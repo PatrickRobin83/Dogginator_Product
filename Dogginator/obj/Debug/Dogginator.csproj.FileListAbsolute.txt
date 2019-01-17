@@ -83,6 +83,7 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\CreateC
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\CreateNewDogView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\CustomerDetailsView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\DogDetailsView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\LoginView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ManageAppointmentsView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ManageCustomerView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ManageDogsView.g.cs
@@ -99,6 +100,7 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\CreateC
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\CreateNewDogView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\CustomerDetailsView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\DogDetailsView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\LoginView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ManageAppointmentsView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ManageCustomerView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ManageDogsView.baml

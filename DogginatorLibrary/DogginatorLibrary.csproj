@@ -42,6 +42,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -61,16 +63,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\.shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DataAccess\IDataConnection.cs" />
-    <Compile Include="DataAccess\IPassword.cs" />
     <Compile Include="DataAccess\SQLiteConnector.cs" />
     <Compile Include="DataBaseType.cs" />
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="HarvestPasswordEventArgs.cs" />
+    <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Models\CharacteristicsModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\DiseasesModel.cs" />

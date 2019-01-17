@@ -95,7 +95,7 @@ namespace DogginatorLibrary.DataAccess
 
         List<DogModel> SearchResultDogs(string searchText,bool activeAndInactive);
 
-
+        string IsUserAndPasswordRight(string username);
 
 
     }

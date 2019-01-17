@@ -4,6 +4,7 @@ using DogginatorLibrary.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,31 +13,20 @@ using System.Windows.Controls;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class ShellViewModel : Conductor<object>, IPassword
+    public class ShellViewModel : Conductor<object>, IHandle<bool>
     {
         #region Fields
-        private string _username;
-        private SecureString _password;
+        private bool _isLoggedIn = false;
         #endregion
 
         #region Properties
-        public string UserName
+       public bool IsLoggedIn
         {
-            get { return _username; }
+            get { return _isLoggedIn; }
             set
             {
-                _username = value;
-                NotifyOfPropertyChange(() => UserName);
-            }
-        }
-
-        public System.Security.SecureString Password
-        {
-            get { return _password; }
-            set
-            {
-                _password = value;
-                NotifyOfPropertyChange(() => Password);
+                _isLoggedIn = value;
+                NotifyOfPropertyChange(() => IsLoggedIn);
             }
         }
         #endregion
@@ -45,15 +35,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public ShellViewModel()
         {
             GlobalConfig.InitalizeConnections(DataBaseType.SQLite);
-            ActivateItem(new OverViewViewModel());
+            ActivateItem(new LoginViewModel());
         }
         #endregion
 
         #region Methods
-
+       
         public bool CanLoadOverview()
         {
-            return true;
+            return IsLoggedIn;
         }
         
         public void LoadOverview()
@@ -63,7 +53,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public bool CanLoadCustomer()
         {
-            return true;
+            return IsLoggedIn;
         }
 
         public void LoadCustomer()
@@ -73,7 +63,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public bool CanLoadDog()
         {
-            return true;
+            return IsLoggedIn;
         }
 
         public void LoadDog()
@@ -83,7 +73,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public bool CanLoadAppointment()
         {
-            return true;
+            return IsLoggedIn;
         }
 
         public void LoadAppointment()
@@ -93,7 +83,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public bool CanLoadConsistedBook()
         {
-            return true;
+            return IsLoggedIn;
         }
 
         public void LoadConsistedBook()
@@ -104,17 +94,20 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         {
             TryClose();
         }
-        public bool CanLogin()
+
+        public void Handle(bool message)
         {
-            return true;
+            if (message)
+            {
+                IsLoggedIn = true;
+            }
+            else
+            {
+                IsLoggedIn = false;
+            }
+
         }
 
-        
-
-        public void Login()
-        {
-            
-        }
 
         #endregion
     }
