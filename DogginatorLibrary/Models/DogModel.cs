@@ -52,6 +52,8 @@ namespace DogginatorLibrary.Models
 
         public string DogActive { get; set; }
 
+        public string Marker { get; set; }
+
         public string FullDog
         {
             get

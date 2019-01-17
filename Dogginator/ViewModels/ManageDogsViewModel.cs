@@ -20,6 +20,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         private string _dogSearchText = "";
         private bool _showalsoInactive = false;
+        private string _marker = "";
 
         #endregion
 
@@ -97,6 +98,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
+        public string Marker
+        {
+            get { return _marker; }
+            set
+            {
+                _marker = value;
+                NotifyOfPropertyChange(() => Marker);
+            }
+        }
+
         #endregion
 
         #region Contstructor
@@ -129,6 +140,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 else
                 {
                     model.DogActive = "inaktiv";
+                }
+
+                if (model.Chipped == true)
+                {
+                    model.Marker = "Chip";
+                }
+                else
+                {
+                    model.Marker = "Tattoo";
                 }
             }
         }
