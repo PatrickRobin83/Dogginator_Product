@@ -25,10 +25,9 @@
 
         <StackPanel x:Name="DogOverviewIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                <TextBlock HorizontalAlignment="Left" Margin="5 0 5 0">Suche:</TextBlock>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 5 0">Suche:</TextBlock>
                 <TextBox x:Name="DogSearchText" MinHeight="25" MinWidth="560"/>
-                <Button x:Name="DogSearch" MinHeight="25" Margin="10 0 0 0">Suchen</Button>
-                <CheckBox x:Name="ShowalsoInactive" Margin="10 0 0 0" VerticalAlignment="Center">Zeige auch Inaktive</CheckBox>
+                <CheckBox x:Name="ShowalsoInactive" Margin="60 0 0 0" VerticalAlignment="Center">Zeige auch Inaktive</CheckBox>
             </StackPanel>
             <ListView x:Name="AvailableDogs" MinHeight="300" MaxHeight="300" Margin="0 5 0 0"
                   SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}"

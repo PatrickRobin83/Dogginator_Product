@@ -39,10 +39,26 @@
             </StackPanel>
 
             <!-- Row 3 -->
-            <ListView x:Name="AvailableCustomers" Grid.Row="3" Grid.Column="1" 
-                  Grid.ColumnSpan="2" MinHeight="425" MaxHeight="425" Margin="0 5 0 0"
-                  SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}"
-                  DisplayMemberPath="FullCustomer"/>
+            <DataGrid x:Name="AvailableCustomerList" ItemsSource="{Binding Path=AvailableCustomers}" 
+                      AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
+                      CanUserResizeColumns="False"
+                      Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="425" MaxHeight="425"
+                      Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Anrede" IsReadOnly="True" Binding="{Binding Salution}"/>
+                    <DataGridTextColumn Header="Vorname" IsReadOnly="True" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Nachname" IsReadOnly="True" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header="Straße" IsReadOnly="True" Binding="{Binding Street}"/>
+                    <DataGridTextColumn Header="Hausnummer" IsReadOnly="True" Binding="{Binding HouseNumber}"/>
+                    <DataGridTextColumn Header="Postleitzahl" IsReadOnly="True" Binding="{Binding ZipCode}"/>
+                    <DataGridTextColumn Header="Stadt" IsReadOnly="True" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="Telefonnummer" IsReadOnly="True" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header="Mobil" IsReadOnly="True" Binding="{Binding MobileNumber}"/>
+                    <DataGridTextColumn Header="Email" IsReadOnly="True" Binding="{Binding Email}"/>
+                    <DataGridCheckBoxColumn Header="Ist Aktiv" IsReadOnly="True" Binding="{Binding Active}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
 
             <!-- Row 4 -->
             <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 

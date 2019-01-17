@@ -48,11 +48,15 @@ namespace DogginatorLibrary.Models
 
         public List<CustomerModel> CustomerList { get; set; }
 
+        public bool Active { get; set; }
+
+        public string DogActive { get; set; }
+
         public string FullDog
         {
             get
             {
-                return $" Name: { Name } | Rasse: { Breed } | Farbe: { Color } | Geschlecht: { Gender } | geb. Datum: { Birthday }";
+                return $"{ Name } { Breed } { Color } { Gender } { Birthday } {DogActive}";
             }
         }
 

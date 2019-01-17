@@ -38,6 +38,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private bool _createNewDogIsVisible = false;
         private bool _rDBFemaleSalutionIsChecked;
         private bool _rDBMaleSalutionIsChecked;
+        private bool _dogCreated = false;
         #endregion
 
         #region Properties
@@ -279,6 +280,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => RDBMaleSalutionIsChecked);
             }
         }
+        public bool DogCreated
+        {
+            get { return _dogCreated; }
+            set
+            {
+                _dogCreated = value;
+                NotifyOfPropertyChange(() => DogCreated);
+                NotifyOfPropertyChange(() => CanCreateCustomer);
+            }
+        }
 
 
         #endregion
@@ -392,15 +403,18 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         {
             get
             {
+                bool output = false;
                 if (!string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(Street) &&
-                    !string.IsNullOrWhiteSpace(Housenumber) && !string.IsNullOrWhiteSpace(ZipCode) && !string.IsNullOrWhiteSpace(City) && (!string.IsNullOrWhiteSpace(PhoneNumber) || !string.IsNullOrWhiteSpace(MobileNumber) || !string.IsNullOrWhiteSpace(Email)))
+                    !string.IsNullOrWhiteSpace(Housenumber) && !string.IsNullOrWhiteSpace(ZipCode) && !string.IsNullOrWhiteSpace(City) && 
+                    (!string.IsNullOrWhiteSpace(PhoneNumber) || !string.IsNullOrWhiteSpace(MobileNumber) || !string.IsNullOrWhiteSpace(Email)))
                 {
-                    return true;
+                    output = true;
                 }
-                else
+                if (DogCreated)
                 {
-                    return false;
+                    output = true;
                 }
+                return output;
             }
         }
 
@@ -466,6 +480,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                     GlobalConfig.Connection.GetAllCustomerForDog(dog);
             }
+            DogCreated = false;
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(cm);
             this.TryClose();
         }
@@ -501,6 +516,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             if (!string.IsNullOrWhiteSpace(dogModel.Name))
             {
                 OwnedDogs.Add(dogModel);
+                DogCreated = true;
             }
             DogListsIsVisible = true;
             CreateNewDogIsVisible = false;

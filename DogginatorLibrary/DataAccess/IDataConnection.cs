@@ -91,7 +91,8 @@ namespace DogginatorLibrary.DataAccess
 
         void DeleteDogFromDatabase(DogModel model);
 
-        List<CustomerModel> SearchResultsCustomer(string searchText, bool activeAndInactive);
+        List<CustomerModel> SearchResultsCustomer(string searchText, bool isActiveAndInactive);
+
         List<DogModel> SearchResultDogs(string searchText,bool activeAndInactive);
 
 

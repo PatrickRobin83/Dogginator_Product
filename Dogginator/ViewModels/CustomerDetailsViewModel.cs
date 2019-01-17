@@ -760,6 +760,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     AvailableSelectedDog = null;
                     SelectedDog = null;
                     _isDogToSave = true;
+                    NotifyOfPropertyChange(() => CanSaveCustomer);
                 }
             }
             CustomerDetailsIsVisible = true;

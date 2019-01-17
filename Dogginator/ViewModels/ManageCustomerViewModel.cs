@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
@@ -126,10 +127,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _customerSearchText = value;
                 NotifyOfPropertyChange(() => CustomerSearchText);
-                AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.SearchResultsCustomer(CustomerSearchText,ShowAlsoInactive));
+                AvailableCustomers = getCustomers();
                 ActiveCustomer(AvailableCustomers);
                 NotifyOfPropertyChange(() => AvailableCustomers);
-                
+
             }
         }
         public bool ShowAlsoInactive
@@ -139,20 +140,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _showAlsoInactive = value;
                 NotifyOfPropertyChange(() => ShowAlsoInactive);
-                if (ShowAlsoInactive)
-                {
-                    AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerInactiveAndActive());
-                    ActiveCustomer(AvailableCustomers);
+                AvailableCustomers = getCustomers();
+                ActiveCustomer(AvailableCustomers);
+                NotifyOfPropertyChange(() => AvailableCustomers);
 
-                }
-                else
-                {
-                    AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
-                    ActiveCustomer(AvailableCustomers);
-                }
-               
             }
         }
+
         #endregion
 
         #region Contstructor
@@ -161,12 +155,20 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
             ActiveCustomer(AvailableCustomers);
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
+            
         }
         #endregion
 
         #region Methods
 
-        public void ActiveCustomer(BindableCollection<CustomerModel> customerList)
+        private BindableCollection<CustomerModel> getCustomers()
+        {
+            AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.SearchResultsCustomer(CustomerSearchText, ShowAlsoInactive));
+           
+            return AvailableCustomers;
+        }
+
+        private void ActiveCustomer(BindableCollection<CustomerModel> customerList)
         {
             foreach (CustomerModel model in customerList)
 

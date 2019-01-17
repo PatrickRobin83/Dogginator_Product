@@ -33,6 +33,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private string _addCharacteristicsText = "";
         private BindableCollection<CharacteristicsModel> _characteristicsList = new BindableCollection<CharacteristicsModel>();
         private CharacteristicsModel _selectedCharacteristics = new CharacteristicsModel();
+        private bool _notActive;
         #endregion
 
         #region Properties
@@ -253,6 +254,17 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanRemoveCharacteristics);
             }
         }
+
+        public bool NotActive
+        {
+            get { return _notActive; }
+            set
+            {
+                _notActive = value;
+                NotifyOfPropertyChange(() => NotActive);
+                NotifyOfPropertyChange(() => CanSaveDog);
+            }
+        }
         #endregion
 
         #region Constructor
@@ -297,6 +309,14 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             if (DogToEdit.Characteristics != null && DogToEdit.Characteristics.Count > 0)
             {
                 CharacteristicsList = new BindableCollection<CharacteristicsModel>(DogToEdit.Characteristics);
+            }
+            if (DogToEdit.Active)
+            {
+                NotActive = false;
+            }
+            else
+            {
+                NotActive = true;
             }
         }
         #endregion
@@ -471,6 +491,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 DogToEdit.Characteristics = new List<CharacteristicsModel>(CharacteristicsList);
             }
+            if (NotActive)
+            {
+                DogToEdit.Active = false;
+            }
+            else
+            {
+                DogToEdit.Active = true;
+            }
+
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(DogToEdit);
             TryClose();
         }

@@ -34,3 +34,4 @@ D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\Doggin
 D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.dll
 D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.pdb
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csprojResolveAssemblyReference.cache
+D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csprojAssemblyReference.cache

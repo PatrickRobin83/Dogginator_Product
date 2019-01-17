@@ -16,8 +16,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private DogModel _selectedDog = null;
         private bool _dogOverviewIsVisible = true;
         private bool _dogDetailsIsVisible = false;
-
         private Screen _activeDogsDetailsView;
+
+        private string _dogSearchText = "";
+        private bool _showalsoInactive = false;
 
         #endregion
 
@@ -69,17 +71,68 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => ActiveDogsDetailsView);
             }
         }
+
+        public string DogSearchText
+        {
+            get { return _dogSearchText; }
+            set
+            {
+                _dogSearchText = value;
+                NotifyOfPropertyChange(() => DogSearchText);
+                AvailableDogs = getDogs();
+                ActiveDog(AvailableDogs);
+                NotifyOfPropertyChange(() => AvailableDogs);
+            }
+        }
+        public bool ShowalsoInactive
+        {
+            get { return _showalsoInactive; }
+            set
+            {
+                _showalsoInactive = value;
+                NotifyOfPropertyChange(() => _showalsoInactive);
+                AvailableDogs = getDogs();
+                ActiveDog(AvailableDogs);
+                NotifyOfPropertyChange(() => AvailableDogs);
+            }
+        }
+
         #endregion
 
         #region Contstructor
         public ManageDogsViewModel()
         {
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+            ActiveDog(AvailableDogs);
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
 
         #region Methods
+
+        private BindableCollection<DogModel> getDogs()
+        {
+            AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.SearchResultDogs(DogSearchText, ShowalsoInactive));
+
+            return AvailableDogs;
+        }
+
+        private void ActiveDog(BindableCollection<DogModel> dogList)
+        {
+            foreach (DogModel model in dogList)
+
+            {
+                if (model.Active)
+                {
+                    model.DogActive = "Aktiv";
+                }
+                else
+                {
+                    model.DogActive = "inaktiv";
+                }
+            }
+        }
+
         /// <summary>
         /// Activates or deactivates the Delete Dog Button
         /// </summary>
@@ -155,6 +208,11 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DogOverviewIsVisible = true;
             DogDetailsIsVisible = false;
             SelectedDog = null;
+            AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+            ActiveDog(AvailableDogs);
+            NotifyOfPropertyChange(() => AvailableDogs);
+            ShowalsoInactive = false;
+            NotifyOfPropertyChange(() => ShowalsoInactive);
         }
 
 

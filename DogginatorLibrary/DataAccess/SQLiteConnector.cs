@@ -17,7 +17,7 @@ namespace DogginatorLibrary.DataAccess
         /// Database Name
         ///</summary>
         private const string db = "Dogginator";
-        
+
         #endregion
 
         #region Properties
@@ -45,14 +45,14 @@ namespace DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     connection.Query(@"UPDATE Customer SET edit_date = datetime('now'),firstname = @Firstname, lastname = @LastName, street = @Street, 
-                                       housenumber = @HouseNumber, zipcode = @ZipCode, city = @City, phonenumber = @PhoneNumber, mobilenumber = @MobileNumber, email = @Email, active = @Active WHERE id = @Id",cModel);
+                                       housenumber = @HouseNumber, zipcode = @ZipCode, city = @City, phonenumber = @PhoneNumber, mobilenumber = @MobileNumber, email = @Email, active = @Active WHERE id = @Id", cModel);
                 }
             }
 
             catch (SQLiteException sqLiteEx)
             {
                 Console.WriteLine(sqLiteEx.Message);
-                
+
             }
         }
 
@@ -65,7 +65,7 @@ namespace DogginatorLibrary.DataAccess
                 {
                     connection.Query(@"UPDATE Dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday, 
                                        tassoregistration = @TassoRegistration, chipped = @Chipped, whichpoint = @WhichPoint, castrated = @Castrated, 
-                                       castratedsince = @CastratedSince, castratemethod = @CastrateMethod  WHERE id = @Id", dModel);
+                                       castratedsince = @CastratedSince, castratemethod = @CastrateMethod, active = @Active  WHERE id = @Id", dModel);
                 }
             }
 
@@ -74,7 +74,7 @@ namespace DogginatorLibrary.DataAccess
                 Console.WriteLine(sqLiteEx.Message + "\r\n" + sqLiteEx.StackTrace);
             }
 
-            
+
         }
 
         public List<CustomerModel> Get_CustomerAll()
@@ -179,7 +179,7 @@ namespace DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    dModel.CustomerList = connection.Query<CustomerModel>(@"SELECT c.* FROM customer c INNER JOIN customer_to_dog cd  on customerId = c.id WHERE dogId = @id",dModel).ToList();
+                    dModel.CustomerList = connection.Query<CustomerModel>(@"SELECT c.* FROM customer c INNER JOIN customer_to_dog cd  on customerId = c.id WHERE dogId = @id", dModel).ToList();
 
                     return dModel.CustomerList;
                 }
@@ -191,11 +191,11 @@ namespace DogginatorLibrary.DataAccess
             }
         }
 
-        public  DogModel AddDogToDatabase(DogModel dModel)
+        public DogModel AddDogToDatabase(DogModel dModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday, tassoregistration, chipped, whichpoint, castrated, castratedsince, castratemethod, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @TassoRegistration, @Chipped, @WhichPoint, @Castrated, @CastratedSince, @CastrateMethod, datetime('now'), null, 1 ); SELECT last_insert_rowid();",dModel).First();
+                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday, tassoregistration, chipped, whichpoint, castrated, castratedsince, castratemethod, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @TassoRegistration, @Chipped, @WhichPoint, @Castrated, @CastratedSince, @CastrateMethod, datetime('now'), null, 1 ); SELECT last_insert_rowid();", dModel).First();
                 if (dModel.Diseases != null && dModel.Diseases.Count > 0)
                 {
                     foreach (DiseasesModel disModel in dModel.Diseases)
@@ -268,10 +268,10 @@ namespace DogginatorLibrary.DataAccess
                     connection.Query("UPDATE customer SET edit_date = datetime('now') WHERE customer.id= " + cModel.Id);
                     connection.Execute("INSERT INTO note_to_customer (customerId, noteId) Values(" + cModel.Id + ", " + nModel.Id + ")");
                     cModel.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + cModel.Id).ToList();
-                   
+
                     return nModel;
                 }
-               
+
             }
             catch (SQLiteException sqLiteEx)
             {
@@ -282,7 +282,7 @@ namespace DogginatorLibrary.DataAccess
 
         public CustomerModel Get_Customer(CustomerModel model)
         {
-           
+
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
                 model = connection.Query<CustomerModel>("SELECT * FROM CUSTOMER WHERE id = " + model.Id + ";").First();
@@ -372,7 +372,7 @@ namespace DogginatorLibrary.DataAccess
                             DeleteCharacteristics(c);
                             UpdateDog(dModel);
                         }
-                    } 
+                    }
                 }
             }
             catch (SQLiteException ex)
@@ -380,14 +380,14 @@ namespace DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        
+
         public void DeleteDiseases(DiseasesModel model)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-                {    
-                        connection.Query("DELETE FROM diseases WHERE id = " + model.Id);
+                {
+                    connection.Query("DELETE FROM diseases WHERE id = " + model.Id);
                 }
             }
             catch (SQLiteException ex)
@@ -503,11 +503,11 @@ namespace DogginatorLibrary.DataAccess
                     }
                     else
                     {
-                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
+                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where (firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
                         $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
-                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%' AND Active = 1").ToList();
+                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%') AND active = 1").ToList();
                     }
-                    
+
                 }
             }
             catch (SQLiteException sqEx)
@@ -516,23 +516,37 @@ namespace DogginatorLibrary.DataAccess
 
             }
             return results;
-        //            SELECT * FROM customer where firstname like '%07%' OR
-        //Lastname like '%07%' OR Street Like '%07%' OR
-        //housenumber like '%07%' or zipcode like '%07%' or city like '%07%'
-        //or phonenumber like '%07%' or mobilenumber like '%07%'
-        //or email like '%07%' or birthday like '%07%';
-
-
         }
 
         public List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive)
         {
-            throw new NotImplementedException();
+            List<DogModel> results = new List<DogModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (activeAndInactive)
+                    {
+                        results = connection.Query<DogModel>($"SELECT * FROM dog WHERE name like '%{searchText}%' OR breed like '%{searchText}%' OR " +
+                            $"color like '%{searchText}%' OR gender like '%{searchText}%' OR birthday like '%{searchText}%' OR tassoregistration like '%{searchText}%' OR whichpoint like '%{searchText}%' OR " +
+                            $"castratedsince like '%{searchText}%'").ToList();
+                    }
+                    else
+                    {
+                        results = connection.Query<DogModel>($"SELECT * FROM dog WHERE (name like '%{searchText}%' OR breed like '%{searchText}%' OR " +
+                            $"color like '%{searchText}%' OR gender like '%{searchText}%' OR birthday like '%{searchText}%' OR tassoregistration like '%{searchText}%' OR whichpoint like '%{searchText}%' OR " +
+                            $"castratedsince like '%{searchText}%') AND active = 1").ToList();
+                    }
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+
+            }
+            return results;
+            #endregion
         }
-
-
-
-
-        #endregion
     }
 }
