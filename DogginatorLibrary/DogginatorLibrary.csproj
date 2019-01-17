@@ -67,6 +67,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DataAccess\IDataConnection.cs" />
+    <Compile Include="DataAccess\IPassword.cs" />
     <Compile Include="DataAccess\SQLiteConnector.cs" />
     <Compile Include="DataBaseType.cs" />
     <Compile Include="GlobalConfig.cs" />

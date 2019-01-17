@@ -408,7 +408,19 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     !string.IsNullOrWhiteSpace(Housenumber) && !string.IsNullOrWhiteSpace(ZipCode) && !string.IsNullOrWhiteSpace(City) && 
                     (!string.IsNullOrWhiteSpace(PhoneNumber) || !string.IsNullOrWhiteSpace(MobileNumber) || !string.IsNullOrWhiteSpace(Email)))
                 {
-                    output = true;
+                    if (!string.IsNullOrEmpty(Email))
+                    {
+                        if (Email.Contains("@") && Email.Length >= 6)
+                        {
+                            output = true;
+                            
+                        }
+                    }
+                    else
+                    {
+                        output = true;
+                    }
+                    //output = true;
                 }
                 if (DogCreated)
                 {

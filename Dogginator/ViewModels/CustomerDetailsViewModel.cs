@@ -630,7 +630,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
                 if (string.IsNullOrWhiteSpace(CModel.Email) && !string.IsNullOrWhiteSpace(Email))
                 {
-                    output = true;
+                    if (Email.Contains("@") && Email.Length >= 6)
+                    {
+                        output = true;
+                    }
                 }
                 if (Email.Contains("@") && Email.Length >= 6)
                 {

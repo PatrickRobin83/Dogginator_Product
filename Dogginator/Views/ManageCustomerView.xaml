@@ -25,17 +25,17 @@
         <!-- Row 1 -->
         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
                    HorizontalAlignment="Center" FontSize="28" 
-                   FontWeight="DemiBold">
+                    Margin=" 0 0 0 20" FontWeight="DemiBold">
             Kunden Verwaltung
         </TextBlock>
 
         <!-- Row 2 -->
         <StackPanel x:Name="CustomerListIsVisible" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
-            <StackPanel  Height="25" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
                        Margin="5 0 5 0">Suche:</TextBlock>
-                <TextBox x:Name="CustomerSearchText" MinWidth="560" Margin="0 0 0 0"/>
-                <CheckBox x:Name="ShowAlsoInactive" Margin="90 0 0 0" VerticalAlignment="Center" >Zeige auch inaktive</CheckBox>
+                <TextBox x:Name="CustomerSearchText" MinWidth="560"/>
+                <CheckBox x:Name="ShowAlsoInactive" Margin="60 0 0 0" VerticalAlignment="Center" >Zeige auch inaktive</CheckBox>
             </StackPanel>
 
             <!-- Row 3 -->
@@ -45,17 +45,16 @@
                       Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="425" MaxHeight="425"
                       Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Anrede" IsReadOnly="True" Binding="{Binding Salution}"/>
-                    <DataGridTextColumn Header="Vorname" IsReadOnly="True" Binding="{Binding FirstName}"/>
-                    <DataGridTextColumn Header="Nachname" IsReadOnly="True" Binding="{Binding LastName}"/>
-                    <DataGridTextColumn Header="Straße" IsReadOnly="True" Binding="{Binding Street}"/>
-                    <DataGridTextColumn Header="Hausnummer" IsReadOnly="True" Binding="{Binding HouseNumber}"/>
-                    <DataGridTextColumn Header="Postleitzahl" IsReadOnly="True" Binding="{Binding ZipCode}"/>
-                    <DataGridTextColumn Header="Stadt" IsReadOnly="True" Binding="{Binding City}"/>
-                    <DataGridTextColumn Header="Telefonnummer" IsReadOnly="True" Binding="{Binding PhoneNumber}"/>
-                    <DataGridTextColumn Header="Mobil" IsReadOnly="True" Binding="{Binding MobileNumber}"/>
-                    <DataGridTextColumn Header="Email" IsReadOnly="True" Binding="{Binding Email}"/>
-                    <DataGridCheckBoxColumn Header="Ist Aktiv" IsReadOnly="True" Binding="{Binding Active}"/>
+                    <DataGridTextColumn Header=" Anrede " IsReadOnly="True" Binding="{Binding Salution}"/>
+                    <DataGridTextColumn Header=" Vorname " IsReadOnly="True" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header=" Nachname " IsReadOnly="True" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header=" Straße " IsReadOnly="True" Binding="{Binding Address}"/>
+                    <DataGridTextColumn Header=" Postleitzahl " IsReadOnly="True" Binding="{Binding ZipCode}"/>
+                    <DataGridTextColumn Header=" Stadt " IsReadOnly="True" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header=" Telefonnummer " IsReadOnly="True" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header=" Mobil " IsReadOnly="True" Binding="{Binding MobileNumber}"/>
+                    <DataGridTextColumn Header=" Email " IsReadOnly="True" Binding="{Binding Email}"/>
+                    <DataGridCheckBoxColumn Header=" Ist Aktiv " IsReadOnly="True" Binding="{Binding Active}"/>
 
                 </DataGrid.Columns>
             </DataGrid>

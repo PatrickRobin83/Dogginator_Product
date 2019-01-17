@@ -51,6 +51,14 @@ namespace DogginatorLibrary.Models
 
         public string CustomerActive { get; set; }
 
+        public string Address
+        {
+            get
+            {
+                return $"{Street} {HouseNumber}";
+            }
+        }
+
         public string FullCustomer
         { 
             get
