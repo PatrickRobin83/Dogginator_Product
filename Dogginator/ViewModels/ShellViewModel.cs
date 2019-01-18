@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using DogginatorLibrary;
 using DogginatorLibrary.DataAccess;
+using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,15 @@ using System.Windows.Controls;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class ShellViewModel : Conductor<object>, IHandle<bool>
+    public class ShellViewModel : Conductor<object>, IHandle<UserModel>
     {
         #region Fields
         private bool _isLoggedIn = false;
+        private bool _isAdmin = false;
         #endregion
 
         #region Properties
-       public bool IsLoggedIn
+        public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
             set
@@ -29,6 +31,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => IsLoggedIn);
             }
         }
+        public bool IsAdmin {
+            get { return _isAdmin; }
+            set
+            {
+                _isAdmin = value;
+                NotifyOfPropertyChange(() => IsAdmin);
+            }
+        }
+    
+
         #endregion
 
         #region Contstructor
@@ -49,7 +61,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         
         public void LoadOverview()
         {
-           ActivateItem(new OverViewViewModel());
+           ActivateItem(new OverViewViewModel(IsLoggedIn, IsAdmin));
         }
 
         public bool CanLoadCustomer
@@ -103,6 +115,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public void Logout()
         {
             IsLoggedIn = false;
+            IsAdmin = false;
             ActivateItem(new LoginViewModel());
             NotifyOfPropertyChange(() => IsLoggedIn);
             NotifyOfPropertyChange(() => CanLoadAppointment);
@@ -118,14 +131,21 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             TryClose();
         }
 
-        public void Handle(bool message)
+        public void Handle(UserModel message)
         {
-            if (message)
+
+            if (!string.IsNullOrWhiteSpace(message.Password))
             {
                 IsLoggedIn = true;
+                if (message.IsAdmin)
+                {
+                    IsAdmin = true;
+                }
+                LoadOverview();
             }
             else
             {
+                // TODO What happens if a Customer Creation is cancled?
                 IsLoggedIn = false;
             }
             NotifyOfPropertyChange(() => IsLoggedIn);

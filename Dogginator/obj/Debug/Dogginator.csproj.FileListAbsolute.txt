@@ -115,3 +115,5 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.ex
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.pdb
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\LoginView.g.cs
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\LoginView.baml
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\CreateUserView.g.cs
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\CreateUserView.baml
