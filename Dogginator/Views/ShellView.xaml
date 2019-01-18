@@ -25,6 +25,7 @@
         <!-- Row 1 -->
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5 5 5 5" VerticalAlignment="Top">
+            <Button x:Name="Logout" Padding="5" Margin="5">Ausloggen</Button>
             <Button x:Name="LoadOverview" Padding="5" Margin="5">Übersicht</Button>
             <Button x:Name="LoadCustomer" Padding="5" Margin="5">Kunden Verwaltung</Button>
             <Button x:Name="LoadDog" Padding="5" Margin="5">Hunde Verwaltung</Button>

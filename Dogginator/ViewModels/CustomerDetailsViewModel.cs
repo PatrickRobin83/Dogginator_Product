@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DogginatorLibrary;
+using DogginatorLibrary.Messages;
 using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -505,8 +506,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
             else
             {
-                System.Windows.MessageBox.Show($"Der Hund {SelectedDog.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
-                                               $"{SelectedDog.CustomerList.First().FirstName} {SelectedDog.CustomerList.First().LastName} der einzige Besitzer ist");
+                ErrorMessages.DogCanNotRemovedFromCustomerError(SelectedDog);
             }
             AvailableSelectedDog = null;
             SelectedDog = null;
@@ -574,7 +574,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     }
                     else
                     {
-                        System.Windows.MessageBox.Show("Hund ist dem Kunden bereits zugeordnet!", "Hinweis",System.Windows.MessageBoxButton.OK,System.Windows.MessageBoxImage.Exclamation);
+                    ErrorMessages.DogAlreadCustomerRelationError();
                         return;
                     }
                 
@@ -724,7 +724,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             GlobalConfig.Connection.UpdateCustomer(CModel);
             GlobalConfig.Connection.Get_Customer(CModel);
-            System.Windows.MessageBox.Show("Änderungen wurden gespeichert", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+            SuccessMessages.ChangesSavedSuccess();
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(CModel);
             
         }

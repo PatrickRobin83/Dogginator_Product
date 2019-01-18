@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DogginatorLibrary;
+using DogginatorLibrary.Messages;
 using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -371,8 +372,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show($"Der Hund {SelectedDogToRemove.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
-                                                   $"{SelectedDogToRemove.CustomerList.First().FirstName} {SelectedDogToRemove.CustomerList.First().LastName} der einzige Besitzer ist");
+                    ErrorMessages.DogToRemoveError(SelectedDogToRemove);
                 }
 
             }

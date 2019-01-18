@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using DogginatorLibrary;
 using DogginatorLibrary.Helper;
+using DogginatorLibrary.Messages;
+using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private string _username;
         private string _password;
         private bool _isUserValid;
-        private string _passfromDatabase;
+        private UserModel _user = new UserModel();
+        
 
 
         #endregion
@@ -54,7 +57,17 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => UserName);
             }
         }
-       
+
+        public UserModel User
+        {
+            get { return _user; }
+            set
+            {
+                _user = value;
+                NotifyOfPropertyChange(() => User);
+            }
+        }
+
         #endregion
 
         #region Contstructor
@@ -69,17 +82,28 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public void Login()
         {
-            _passfromDatabase = GlobalConfig.Connection.IsUserAndPasswordRight(UserName);
-
-            if (!string.IsNullOrEmpty(_passfromDatabase) && _passfromDatabase.Equals(HashThePassword(Password)))
+            if (!string.IsNullOrWhiteSpace(UserName))
             {
-                EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(true);
-                TryClose();
+                User.Username = UserName.ToLower();
+                User = GlobalConfig.Connection.IsUserAndPasswordRight(User);
+
+                if (User != null && !string.IsNullOrWhiteSpace(User.Password) && !string.IsNullOrWhiteSpace(Password) && User.Password.Equals(HashThePassword(Password)))
+                {
+                    EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(true);
+                    TryClose();
+                }
+                else
+                {
+                    ErrorMessages.ShowUserPasswordError();
+                    EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(false);
+                }
             }
             else
             {
-                EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(false);
+                ErrorMessages.ShowUserPasswordError();
             }
+            
+           
         }
 
         private string HashThePassword(string password)

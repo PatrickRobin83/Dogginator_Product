@@ -74,12 +74,15 @@
     <Compile Include="DataBaseType.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="HarvestPasswordEventArgs.cs" />
+    <Compile Include="Messages\ErrorMessages.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
+    <Compile Include="Messages\SuccessMessages.cs" />
     <Compile Include="Models\CharacteristicsModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\DiseasesModel.cs" />
     <Compile Include="Models\DogModel.cs" />
     <Compile Include="Models\NoteModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

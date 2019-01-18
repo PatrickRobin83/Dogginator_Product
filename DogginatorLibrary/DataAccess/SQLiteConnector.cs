@@ -549,18 +549,16 @@ namespace DogginatorLibrary.DataAccess
             #endregion
         }
 
-        public string IsUserAndPasswordRight(string input)
+        public UserModel IsUserAndPasswordRight(UserModel input)
         {
-            //TODO - Why is the fucking SQL not working!!!
-            //string output = "";
-
-            //using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-            //{
-            //    output = connection.Query<string>("SELECT password FROM user WHERE " + input + " = username").First().ToString();
-            //}
-
-            //return output;
-            return "864f9a4fbb8df49f1f59068a7f9a94d4";
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            {
+                if(connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").ToList().Count > 0)
+                {
+                    input = connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").First();
+                }
+            }  
+            return input;
         }
     }
 }

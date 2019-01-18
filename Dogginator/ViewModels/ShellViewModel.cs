@@ -35,15 +35,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public ShellViewModel()
         {
             GlobalConfig.InitalizeConnections(DataBaseType.SQLite);
+            EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             ActivateItem(new LoginViewModel());
         }
         #endregion
 
         #region Methods
        
-        public bool CanLoadOverview()
+        public bool CanLoadOverview
         {
-            return IsLoggedIn;
+            get { return IsLoggedIn; }
         }
         
         public void LoadOverview()
@@ -51,9 +52,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
            ActivateItem(new OverViewViewModel());
         }
 
-        public bool CanLoadCustomer()
+        public bool CanLoadCustomer
         {
-            return IsLoggedIn;
+            get { return IsLoggedIn; }
         }
 
         public void LoadCustomer()
@@ -61,9 +62,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ActivateItem(new ManageCustomerViewModel());
         }
 
-        public bool CanLoadDog()
+        public bool CanLoadDog
         {
-            return IsLoggedIn;
+            get { return IsLoggedIn; }
         }
 
         public void LoadDog()
@@ -71,9 +72,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ActivateItem(new ManageDogsViewModel());
         }
 
-        public bool CanLoadAppointment()
+        public bool CanLoadAppointment
         {
-            return IsLoggedIn;
+            get { return IsLoggedIn; }
         }
 
         public void LoadAppointment()
@@ -81,15 +82,37 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ActivateItem(new ManageAppointmentsViewModel());
         }
 
-        public bool CanLoadConsistedBook()
+        public bool CanLoadConsistedBook
         {
-            return IsLoggedIn;
+            get { return IsLoggedIn; }
         }
 
         public void LoadConsistedBook()
         {
             ActivateItem(new ConsistedBookViewModel());
         }
+
+        public bool CanLogout
+        {
+            get
+            {
+                return IsLoggedIn;
+            }
+        }
+
+        public void Logout()
+        {
+            IsLoggedIn = false;
+            ActivateItem(new LoginViewModel());
+            NotifyOfPropertyChange(() => IsLoggedIn);
+            NotifyOfPropertyChange(() => CanLoadAppointment);
+            NotifyOfPropertyChange(() => CanLoadConsistedBook);
+            NotifyOfPropertyChange(() => CanLoadCustomer);
+            NotifyOfPropertyChange(() => CanLoadDog);
+            NotifyOfPropertyChange(() => CanLoadOverview);
+            NotifyOfPropertyChange(() => CanLogout);
+        }
+
         public void Exit()
         {
             TryClose();
@@ -105,7 +128,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 IsLoggedIn = false;
             }
-
+            NotifyOfPropertyChange(() => IsLoggedIn);
+            NotifyOfPropertyChange(() => CanLoadAppointment);
+            NotifyOfPropertyChange(() => CanLoadConsistedBook);
+            NotifyOfPropertyChange(() => CanLoadCustomer);
+            NotifyOfPropertyChange(() => CanLoadDog);
+            NotifyOfPropertyChange(() => CanLoadOverview);
+            NotifyOfPropertyChange(() => CanLogout);
         }
 
 
