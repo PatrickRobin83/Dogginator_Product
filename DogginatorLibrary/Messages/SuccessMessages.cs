@@ -13,5 +13,10 @@ namespace DogginatorLibrary.Messages
         {
             MessageBox.Show("Änderungen wurden gespeichert", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
         }
+
+        public static void UserCreatedSuccess()
+        {
+            MessageBox.Show("User wurde angelegt", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+        }
     }
 }

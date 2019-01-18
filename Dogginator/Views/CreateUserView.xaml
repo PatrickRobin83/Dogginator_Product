@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:helper="clr-namespace:DogginatorLibrary.Helper;assembly=DogginatorLibrary"
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
-             mc:Ignorable="d" Background="White"
+             mc:Ignorable="d"
              d:DesignHeight="300" Width="400.319">
     <Grid>
         <StackPanel Orientation="Vertical" Margin="5 5 5 5 ">
@@ -15,9 +16,14 @@
                 <CheckBox x:Name="IsAdmin" Margin="15 0 0 0" VerticalAlignment="Center">Administrator</CheckBox>
             </StackPanel>
             <TextBlock>Kennwort</TextBlock>
-            <PasswordBox x:Name="UserPassword" Width="140" HorizontalAlignment="Left"/>
-            <TextBlock>Passwort Validierung:</TextBlock>
-            <PasswordBox x:Name="UserPasswordRepeat" Width="140" HorizontalAlignment="Left"/>
+            <PasswordBox x:Name="UserPassword" Width="140" HorizontalAlignment="Left"
+                         helper:PasswordHelper.BindPassword="true" PasswordChar="*"
+                         helper:PasswordHelper.BoundPassword="{Binding Path=UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock>Kennwort Validierung:</TextBlock>
+            <PasswordBox x:Name="UserPasswordRepeat" Width="140" HorizontalAlignment="Left"
+                         helper:PasswordHelper.BindPassword="true" PasswordChar="*"
+                         helper:PasswordHelper.BoundPassword="{Binding Path=UserPasswordRepeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+           
             <StackPanel Orientation="Horizontal" MaxHeight="25" Margin="0 15 0 0" >
                 <Button x:Name="CreateUser" Width="120" HorizontalAlignment="Left">Benutzer anlegen</Button>
                 <Button x:Name="CancelCreation" MinHeight="25" Margin="15 0 0 0" 

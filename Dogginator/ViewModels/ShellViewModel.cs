@@ -145,7 +145,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
             else
             {
-                // TODO What happens if a Customer Creation is cancled?
                 IsLoggedIn = false;
             }
             NotifyOfPropertyChange(() => IsLoggedIn);

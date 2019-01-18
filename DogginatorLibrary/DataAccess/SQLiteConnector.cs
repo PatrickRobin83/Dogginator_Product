@@ -58,7 +58,7 @@ namespace DogginatorLibrary.DataAccess
 
         public void UpdateDog(DogModel dModel)
         {
-            //name, breed, color, gender, birthday, tassoregistration, isChipped, whichpoint, castrated, castratedsince, castratemethod, create_date, edit_date, active
+            
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -395,6 +395,7 @@ namespace DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
+
         public void DeleteCharacteristics(CharacteristicsModel model)
         {
             try
@@ -551,14 +552,132 @@ namespace DogginatorLibrary.DataAccess
 
         public UserModel IsUserAndPasswordRight(UserModel input)
         {
-            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            try
             {
-                if(connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").ToList().Count > 0)
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    input = connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").First();
+                    if (connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").ToList().Count > 0)
+                    {
+                        input = connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").First();
+                    }
                 }
-            }  
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
             return input;
         }
+
+        public void InsertUserToDatabase(UserModel model)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query(@"INSERT INTO user (username, password, isadmin,isactive,create_date) VALUES(@Username, @Password, @IsAdmin,1, datetime('now') );", model);
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
+        }
+
+        public List<UserModel> GetAllActiveUser()
+        {
+            List<UserModel> output = new List<UserModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    output = connection.Query<UserModel>("SELECT * FROM user where isactive = 1").ToList();
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
+            return output;
+        }
+
+        public void DeleteUserFromDataBase(UserModel model)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query($" UPDATE user SET edit_date = datetime('now'), isactive = 0 WHERE {model.Id} = id");
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
+        }
+
+        public List<UserModel> GetAllUser()
+        {
+            List<UserModel> output = new List<UserModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    output = connection.Query<UserModel>("SELECT * FROM user").ToList();
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
+            return output;
+        }
+
+        public void UpdateUser(UserModel model)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query($" UPDATE user SET edit_date = datetime('now'), isactive = {model.IsActive}, username = '{model.Username}' , password = '{model.Password}', isadmin = {model.IsAdmin} WHERE '{model.Id}' = id");
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
+        }
+
+        public List<UserModel> SearchResultUser(string searchText, bool showInactive)
+        {
+            List<UserModel> output = new List<UserModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (showInactive)
+                    {
+                        output = connection.Query<UserModel>($"SELECT * FROM user WHERE username like '%{searchText}%'").ToList();
+                    }
+                    else
+                    {
+                        output = connection.Query<UserModel>($"SELECT * FROM user WHERE username like '%{searchText}%' AND isactive = 1").ToList();
+                    }
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+
+            }
+
+            return output;
+        }
+
+
+
     }
 }

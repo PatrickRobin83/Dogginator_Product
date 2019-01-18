@@ -97,6 +97,16 @@ namespace DogginatorLibrary.DataAccess
 
         UserModel IsUserAndPasswordRight(UserModel input);
 
+        void InsertUserToDatabase(UserModel model);
 
+        List<UserModel> GetAllActiveUser();
+
+        void DeleteUserFromDataBase(UserModel model);
+
+        List<UserModel> GetAllUser();
+
+        void UpdateUser(UserModel model);
+
+        List<UserModel> SearchResultUser(string searchText, bool showInactive);
     }
 }

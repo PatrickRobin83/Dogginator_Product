@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using DogginatorLibrary;
+using DogginatorLibrary.Messages;
 using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #region Fields
 
         private UserModel _user = new UserModel();
+        private string _username = "";
+        private string _userPassword = "";
+        private string _userPasswordRepeat = "";
+        private bool _isAdmin;
 
         #endregion
 
@@ -27,6 +33,45 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => User);
             }
         }
+        public string UserName
+        {
+            get { return _username; }
+            set
+            {
+                _username = value;
+                NotifyOfPropertyChange(() => UserName);
+            }
+        }
+        public string UserPassword
+        {
+            get { return _userPassword; }
+            set
+            {
+                _userPassword = value;
+                NotifyOfPropertyChange(() => UserPassword);
+                NotifyOfPropertyChange(() => CanCreateUser);
+            }
+        }
+        public string UserPasswordRepeat
+        {
+            get { return _userPasswordRepeat; }
+            set
+            {
+                _userPasswordRepeat = value;
+                NotifyOfPropertyChange(() => UserPasswordRepeat);
+                NotifyOfPropertyChange(() => CanCreateUser);
+            }
+        }
+        public bool IsAdmin
+        {
+            get { return _isAdmin; }
+            set
+            {
+                _isAdmin = value;
+                NotifyOfPropertyChange(() => IsAdmin);
+            }
+        }
+
 
         #endregion
 
@@ -36,13 +81,52 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             
         }
         #endregion
+
         #region Methods
 
         public void CancelCreation()
         {
-            EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(User);
+            EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(GlobalConfig.CANCEL);
             TryClose();
         }
+
+        public bool CanCreateUser
+        {
+            get
+            {
+                bool output = false;
+
+                if(UserName.Length > 3 &&  UserPassword.Length > 3 && UserPasswordRepeat.Length > 3 && UserPassword.Equals(UserPasswordRepeat))
+                {
+                    output = true;
+                }
+
+                return output;
+            }
+
+            
+        }
+
+        public void CreateUser()
+        {
+            User.Username = UserName.ToLower();
+
+            User.Password = GlobalConfig.HashThePassword(UserPassword);
+
+            if (IsAdmin)
+            {
+                User.IsAdmin = true;
+            }
+            else
+            {
+                User.IsAdmin = false;
+            }
+
+            GlobalConfig.Connection.InsertUserToDatabase(User);
+            EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(GlobalConfig.USERCREATED);
+        }
+        
+
 
         #endregion
     }

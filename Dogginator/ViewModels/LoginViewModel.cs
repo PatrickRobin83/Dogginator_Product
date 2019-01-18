@@ -87,11 +87,19 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 User.Username = UserName.ToLower();
                 User = GlobalConfig.Connection.IsUserAndPasswordRight(User);
 
-                if (User != null && !string.IsNullOrWhiteSpace(User.Password) && !string.IsNullOrWhiteSpace(Password) && User.Password.Equals(GlobalConfig.HashThePassword(Password)))
+                 if (!User.IsActive)
+                {
+                    ErrorMessages.ShowUserNotActiveError();
+                    return;
+
+                }
+
+                else if (User != null && !string.IsNullOrWhiteSpace(User.Password) && !string.IsNullOrWhiteSpace(Password) && User.Password.Equals(GlobalConfig.HashThePassword(Password)))
                 {
                     EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(User);
                     TryClose();
                 }
+                
                 else
                 {
                     ErrorMessages.ShowUserPasswordError();

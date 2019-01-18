@@ -55,9 +55,9 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header=" Benutzname " IsReadOnly="True" Binding="{Binding Username}"/>
                     <DataGridCheckBoxColumn Header="Administrator" IsReadOnly="True" Binding="{Binding IsAdmin}"/>
+                    <DataGridTextColumn Header="Erstell Datum" IsReadOnly="True" Binding="{Binding create_date}"/>
+                    <DataGridTextColumn Header="Zuletzt geändert" IsReadOnly="True" Binding="{Binding edit_date}"/>
                     <DataGridCheckBoxColumn Header="Aktiv" IsReadOnly="True" Binding="{Binding IsActive}"/>
-                    <DataGridCheckBoxColumn Header="Erstell Datum" IsReadOnly="True" Binding="{Binding create_date}"/>
-                    <DataGridCheckBoxColumn Header="Zuletzt geändert" IsReadOnly="True" Binding="{Binding edit_date}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class OverViewViewModel : Conductor<object>.Collection.OneActive, IHandle<UserModel>
+    public class OverViewViewModel : Conductor<object>.Collection.OneActive, IHandle<string>
     {
         #region Fields
         private int _customerCount;
@@ -18,7 +18,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private string _userSearchText = "";
         private bool _showAlsoInactive = false;
         private BindableCollection<UserModel> _availableUserList;
-        private UserModel _selectedUser = new UserModel(); 
+        private UserModel _selectedUser = null; 
         private Screen _activeAddUser;
         private bool _addUserIsVisible;
         private Screen _activeEditUser;
@@ -64,6 +64,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _userSearchText = value;
                 NotifyOfPropertyChange(() => UserSearchText);
+                AvailableUserList = getUser();
+                NotifyOfPropertyChange(() => AvailableUserList);
             }
         }
         public bool ShowAlsoInactive
@@ -73,6 +75,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _showAlsoInactive = value;
                 NotifyOfPropertyChange(() => ShowAlsoInactive);
+                AvailableUserList = getUser();
+                NotifyOfPropertyChange(() => AvailableUserList);
+              
             }
         }
 
@@ -82,7 +87,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             set
             {
                 _availableUserList = value;
-                NotifyOfPropertyChange(() => ShowAlsoInactive);
+                NotifyOfPropertyChange(() => AvailableUserList);
             }
         }
 
@@ -93,6 +98,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _selectedUser = value;
                 NotifyOfPropertyChange(() => SelectedUser);
+                NotifyOfPropertyChange(() => CanLoadUserDetails);
+                NotifyOfPropertyChange(() => CanDeleteUser);
             }
         }
 
@@ -141,6 +148,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ManageUserIsVisible = isAdmin;
             CustomerCount = GlobalConfig.Connection.Get_CustomerInactiveAndActive().Count;
             DogCount = GlobalConfig.Connection.Get_DogsAll().Count;
+            AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
 
@@ -156,23 +164,56 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ManageUserIsVisible = false;
             NotifyOfPropertyChange(() => ManageUserIsVisible);
         }
+
+        public bool CanLoadUserDetails
+        {
+            get
+            {
+                bool output = false; 
+
+                if(SelectedUser != null)
+                {
+                    output = true;
+                }
+
+                return output;
+            }
+        }
+
         public void LoadUserDetails()
         {
-
+            ActiveEditUser = new EditUserViewModel(SelectedUser);
+            Items.Add(ActiveEditUser);
+            EditUserIsVisible = true;
+            AddUserIsVisible = false;
+            ManageUserIsVisible = false;
+            NotifyOfPropertyChange(() => ManageUserIsVisible);
         }
 
-        public void DeletUser()
+        public bool CanDeleteUser
         {
-
-        }
-
-        public void Handle(UserModel message)
-        {
-            if(message != null && message.Username != null && message.Username.Length > 0)
+            get
             {
-                // TODO Do Something
+                bool output = false;
+
+                if (SelectedUser != null)
+                {
+                    output = true;
+                }
+
+                return output;
             }
-            else
+        }
+
+        public void DeleteUser()
+        {
+            GlobalConfig.Connection.DeleteUserFromDataBase(SelectedUser);
+            AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
+        }
+
+        public void Handle(string message)
+        {
+            if (message.Equals(GlobalConfig.CANCEL))
             {
                 EditUserIsVisible = false;
                 AddUserIsVisible = false; ;
@@ -181,7 +222,42 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => AddUserIsVisible);
                 NotifyOfPropertyChange(() => EditUserIsVisible);
             }
-            
+            if (message.Equals(GlobalConfig.USERCREATED))
+            {
+                EditUserIsVisible = false;
+                AddUserIsVisible = false;
+                ManageUserIsVisible = true;
+                AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
+                NotifyOfPropertyChange(() => AvailableUserList);
+                NotifyOfPropertyChange(() => ManageUserIsVisible);
+                NotifyOfPropertyChange(() => AddUserIsVisible);
+                NotifyOfPropertyChange(() => EditUserIsVisible);
+            }
+
+            if (message.Equals(GlobalConfig.USEREDIT))
+            {
+                EditUserIsVisible = false;
+                AddUserIsVisible = false;
+                ManageUserIsVisible = true;
+                AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
+                NotifyOfPropertyChange(() => AvailableUserList);
+                NotifyOfPropertyChange(() => ManageUserIsVisible);
+                NotifyOfPropertyChange(() => AddUserIsVisible);
+                NotifyOfPropertyChange(() => EditUserIsVisible);
+            }
+
+            if (message.Equals(GlobalConfig.USERDELETED))
+            {
+                AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
+            }
+            SelectedUser = null;
+        }
+
+        private BindableCollection<UserModel> getUser()
+        {
+            AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.SearchResultUser(UserSearchText, ShowAlsoInactive));
+
+            return AvailableUserList;
         }
 
 

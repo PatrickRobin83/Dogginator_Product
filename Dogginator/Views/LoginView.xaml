@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-            <TextBlock FontSize="18" Margin="0 200 0 0">Bitte loggen Sie sich mit Ihrem Benutzernamen und Passwort ein</TextBlock>
+            <TextBlock FontSize="18" Margin="0 200 0 0">Bitte melden Sie sich mit Ihrem Benutzernamen und Passwort an.</TextBlock>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" >
