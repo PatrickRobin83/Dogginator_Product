@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
              mc:Ignorable="d" FontSize="14"
-             d:DesignHeight="450" d:DesignWidth="900">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -59,29 +59,29 @@
                     <TextBox x:Name="CastrateMethod"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="160">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="300" MinWidth="300">
                 <TextBlock>Krankheiten:</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="AddDiseaseText" MinWidth="125" MaxWidth="125"/>
+                    <TextBox x:Name="AddDiseaseText" MinWidth="220" MaxWidth="220"/>
                     <Button x:Name="AddDisease" Margin="0 0 5 0">hinzufügen</Button>
                 </StackPanel>
                 <ListView x:Name="DiseasesList" MaxHeight="100" MinHeight="20" 
-                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.CanContentScroll="True" MaxWidth="295" MinWidth="295"
                           ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Name"
                           Margin="0 5 0 0" SelectedItem="{Binding Path=SelectedDisease, Mode=OneWayToSource}"/>
-                <Button x:Name="RemoveDisease" Margin="0 5 0 0">entfernen</Button>
+                <Button x:Name="RemoveDisease" MaxWidth="100" Margin="0 5 0 0">entfernen</Button>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="160">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="300" MinWidth="300">
                 <TextBlock>Besonderheiten:</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="AddCharacteristicsText" MinWidth="125" MaxWidth="125"/>
+                    <TextBox x:Name="AddCharacteristicsText" MinWidth="220" MaxWidth="220"/>
                     <Button x:Name="AddCharacteristics" Margin="0 0 5 0">hinzufügen</Button>
                 </StackPanel>
                 <ListView x:Name="CharacteristicsList" MaxHeight="100" MinHeight="20" 
-                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.CanContentScroll="True" MinWidth="295" MaxWidth="295"
                           ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Description"
                           Margin="0 5 0 0"  SelectedItem="{Binding Path=SelectedCharacteristics, Mode=OneWayToSource}"/>
-                <Button x:Name="RemoveCharacteristics" Margin="0 5 0 0">entfernen</Button>
+                <Button x:Name="RemoveCharacteristics" MaxWidth="100" Margin="0 5 0 0">entfernen</Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">

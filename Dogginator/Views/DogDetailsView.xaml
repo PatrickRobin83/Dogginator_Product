@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
                          mc:Ignorable="d" FontSize="14" Background="White"
-             d:DesignHeight="450" d:DesignWidth="900">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -42,7 +42,7 @@
                 <TextBlock>Geburtsdatum:</TextBlock>
                 <DatePicker x:Name="Birthday" Height="25" SelectedDateFormat="Short"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="160" MinWidth="160">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="200">
                 <TextBlock>Tasso Registrierung:</TextBlock>
                 <TextBox x:Name="TassoRegistration" Height="20"/>
                 <TextBlock>Identifikation:</TextBlock>
@@ -53,36 +53,36 @@
                 <TextBlock>An welcher Stelle:</TextBlock>
                 <TextBox x:Name="WhichPoint"/>
                 <CheckBox x:Name="IsSelectedCastrated" Margin="0 5 0 0">Kastriert</CheckBox>
-                <StackPanel x:Name="WhenAndMethodIsVisible"  Orientation="Vertical" Margin="0 0 0 0" MaxWidth="200">
+                <StackPanel x:Name="WhenAndMethodIsVisible"  Orientation="Vertical" Margin="0 0 0 0" MaxWidth="300">
                     <TextBlock>Seit:</TextBlock>
                     <DatePicker x:Name="CastratedSince" SelectedDateFormat="Short"/>
                     <TextBlock>Methode:</TextBlock>
-                    <TextBox x:Name="CastrateMethod"/>
+                    <TextBox x:Name="CastrateMethod" MinWidth="200" MaxWidth="200"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="160">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="310" MinWidth="310">
                 <TextBlock>Krankheiten:</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="AddDiseaseText" MinWidth="125" MaxWidth="125"/>
+                    <TextBox x:Name="AddDiseaseText" MinWidth="230" MaxWidth="125"/>
                     <Button x:Name="AddDisease" Margin="0 0 5 0">hinzufügen</Button>
                 </StackPanel>
-                <ListView x:Name="DiseasesList" MaxHeight="100" MinHeight="20" 
-                          ScrollViewer.CanContentScroll="True" 
+                <ListView x:Name="DiseasesList" MaxHeight="100" MinHeight="20" HorizontalAlignment="Left"
+                          ScrollViewer.CanContentScroll="True" MinWidth="300" MaxWidth="300"
                           ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Name"
                           Margin="0 5 0 0" SelectedItem="{Binding Path=SelectedDisease, Mode=OneWayToSource}"/>
-                <Button x:Name="RemoveDisease" Margin="0 5 0 0">entfernen</Button>
+                <Button x:Name="RemoveDisease" MaxWidth="100" Margin="0 5 0 0">entfernen</Button>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="160">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="310" MinWidth="300">
                 <TextBlock>Besonderheiten:</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="AddCharacteristicsText" MinWidth="125" MaxWidth="125"/>
+                    <TextBox x:Name="AddCharacteristicsText" MinWidth="230" MaxWidth="230"/>
                     <Button x:Name="AddCharacteristics" Margin="0 0 5 0">hinzufügen</Button>
                 </StackPanel>
                 <ListView x:Name="CharacteristicsList" MaxHeight="100" MinHeight="20" 
-                          ScrollViewer.CanContentScroll="True" 
+                          ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" MaxWidth="300" MinWidth="300" 
                           ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Description"
                           Margin="0 5 0 0"  SelectedItem="{Binding Path=SelectedCharacteristics, Mode=OneWayToSource}"/>
-                <Button x:Name="RemoveCharacteristics" Margin="0 5 0 0">entfernen</Button>
+                <Button x:Name="RemoveCharacteristics" MaxWidth="100" Margin="0 5 0 0">entfernen</Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">

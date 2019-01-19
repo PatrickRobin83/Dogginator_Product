@@ -764,6 +764,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     SelectedDog = null;
                     _isDogToSave = true;
                     NotifyOfPropertyChange(() => CanSaveCustomer);
+                    NotifyOfPropertyChange(() => OwnedDogs);
+                    NotifyOfPropertyChange(() => AvailableDogs);
                 }
             }
             CustomerDetailsIsVisible = true;

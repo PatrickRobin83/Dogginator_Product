@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\
 de.rietrob.dogginator_product.dogginator
 none
 false
 DEBUG;TRACE
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\App.xaml
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\App.xaml
 13386550766
 1-1570409366
 33-985832068
-1281771667860
+128-1762340510
 Views\ConsistedBookView.xaml;Views\CreateCustomerView.xaml;Views\CreateNewDogView.xaml;Views\CustomerDetailsView.xaml;Views\DogDetailsView.xaml;Views\EditUserView.xaml;Views\LoginView.xaml;Views\ManageAppointmentsView.xaml;Views\ManageCustomerView.xaml;Views\ManageDogsView.xaml;Views\CreateUserView.xaml;Views\OverViewView.xaml;Views\ShellView.xaml;
 
 False
