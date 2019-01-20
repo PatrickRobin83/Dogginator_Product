@@ -63,7 +63,7 @@ namespace DogginatorLibrary.Models
         { 
             get
             {
-                return $" { Salution }  { FirstName }  { LastName }  { Street } { HouseNumber }  { ZipCode }  { City } { PhoneNumber } { MobileNumber } { CustomerActive }";
+                return $" { Salution }  { FirstName }  { LastName }";
             }
         }
 #endregion

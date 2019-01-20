@@ -16,5 +16,5 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\App.xaml
 1281771667860
 Views\ConsistedBookView.xaml;Views\CreateCustomerView.xaml;Views\CreateNewDogView.xaml;Views\CustomerDetailsView.xaml;Views\DogDetailsView.xaml;Views\EditUserView.xaml;Views\LoginView.xaml;Views\ManageAppointmentsView.xaml;Views\ManageCustomerView.xaml;Views\ManageDogsView.xaml;Views\CreateUserView.xaml;Views\OverViewView.xaml;Views\ShellView.xaml;
 
-False
+True
 

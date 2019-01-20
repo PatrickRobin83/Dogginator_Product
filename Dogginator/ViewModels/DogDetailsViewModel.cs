@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DogginatorLibrary;
 using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private BindableCollection<CharacteristicsModel> _characteristicsList = new BindableCollection<CharacteristicsModel>();
         private CharacteristicsModel _selectedCharacteristics = new CharacteristicsModel();
         private bool _notActive;
+        private BindableCollection<CustomerModel> _owner = new BindableCollection<CustomerModel>();
+        private bool _isDiseaseToSave = false;
+        private bool _isCharacteristicToSave = false;
         #endregion
 
         #region Properties
@@ -73,7 +77,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _name = value;
                 NotifyOfPropertyChange(() => Name);
-                NotifyOfPropertyChange(() => CanSaveDog);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string Breed
@@ -83,7 +87,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _breed = value;
                 NotifyOfPropertyChange(() => Breed);
-                NotifyOfPropertyChange(() => CanSaveDog);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string Color
@@ -93,7 +97,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _color = value;
                 NotifyOfPropertyChange(() => Color);
-                NotifyOfPropertyChange(() => CanSaveDog);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string SelectedGender
@@ -103,7 +107,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _selectedGender = value;
                 NotifyOfPropertyChange(() => Gender);
-                NotifyOfPropertyChange(() => CanSaveDog);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public DateTime Birthday
@@ -113,6 +117,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _birthday = value;
                 NotifyOfPropertyChange(() => Birthday);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string TassoRegistration
@@ -122,6 +127,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _tassoRegistration = value;
                 NotifyOfPropertyChange(() => TassoRegistration);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public bool RDBChipChecked
@@ -131,6 +137,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _rDBChipChecked = value;
                 NotifyOfPropertyChange(() => RDBChipChecked);
+                Chipped = true;
+                NotifyOfPropertyChange(() => Chipped);
             }
         }
         public bool RDBTattooChecked
@@ -140,6 +148,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _rDBTattooChecked = value;
                 NotifyOfPropertyChange(() => RDBTattooChecked);
+                Chipped = false;
+                NotifyOfPropertyChange(() => Chipped);
+               
 
             }
         }
@@ -150,6 +161,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _chipped = value;
                 NotifyOfPropertyChange(() => Chipped);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string WhichPoint
@@ -159,6 +171,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _whichPoint = value;
                 NotifyOfPropertyChange(() => WhichPoint);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public bool IsSelectedCastrated
@@ -176,6 +189,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 {
                     WhenAndMethodIsVisible = false;
                 }
+
             }
         }
         public DateTime CastratedSince
@@ -185,6 +199,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _castratedSince = value;
                 NotifyOfPropertyChange(() => CastratedSince);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string CastrateMethod
@@ -194,6 +209,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _castrateMethod = value;
                 NotifyOfPropertyChange(() => CastrateMethod);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public string AddDiseaseText
@@ -213,6 +229,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _diseasesList = value;
                 NotifyOfPropertyChange(() => DiseasesList);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public DiseasesModel SelectedDisease
@@ -242,6 +259,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _characteristicsList = value;
                 NotifyOfPropertyChange(() => CharacteristicsList);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         public CharacteristicsModel SelectedCharacteristics
@@ -252,9 +270,38 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 _selectedCharacteristics = value;
                 NotifyOfPropertyChange(() => SelectedCharacteristics);
                 NotifyOfPropertyChange(() => CanRemoveCharacteristics);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
-
+        public BindableCollection<CustomerModel> Owner
+        {
+            get { return _owner; }
+            set
+            {
+                _owner = value;
+                NotifyOfPropertyChange(() => Owner);
+            }
+        }
+        public bool IsDiseaseToSave
+        {
+            get { return _isDiseaseToSave; }
+            set
+            {
+                _isDiseaseToSave = value;
+                NotifyOfPropertyChange(() => IsDiseaseToSave);
+                NotifyOfPropertyChange(() => CanEditDog);
+            }
+        }
+        public bool IsCharacteristicToSave
+        {
+            get { return _isCharacteristicToSave; }
+            set
+            {
+                _isCharacteristicToSave = value;
+                NotifyOfPropertyChange(() => IsCharacteristicToSave);
+                NotifyOfPropertyChange(() => CanEditDog);
+            }
+        }
         public bool NotActive
         {
             get { return _notActive; }
@@ -262,7 +309,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 _notActive = value;
                 NotifyOfPropertyChange(() => NotActive);
-                NotifyOfPropertyChange(() => CanSaveDog);
+                NotifyOfPropertyChange(() => CanEditDog);
             }
         }
         #endregion
@@ -283,11 +330,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 RDBChipChecked = true;
                 RDBTattooChecked = false;
+                Chipped = true;
             }
             else
             {
                 RDBTattooChecked = true;
                 RDBChipChecked = false;
+                Chipped = false;
             }
             WhichPoint = DogToEdit.WhichPoint;
             IsSelectedCastrated = DogToEdit.Castrated;
@@ -318,6 +367,14 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 NotActive = true;
             }
+            DogToEdit.CustomerList = GlobalConfig.Connection.GetAllCustomerForDog(DogToEdit);
+            if(DogToEdit.CustomerList != null && DogToEdit.CustomerList.Count > 0)
+            {
+                Owner = new BindableCollection<CustomerModel>(DogToEdit.CustomerList);
+                
+            }
+            NotifyOfPropertyChange(() => Owner);
+
         }
         #endregion
 
@@ -351,6 +408,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             diseases.Name = AddDiseaseText;
             DiseasesList.Add(diseases);
             AddDiseaseText = "";
+            IsDiseaseToSave = true;
 
         }
 
@@ -382,6 +440,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             model.Description = AddCharacteristicsText;
             CharacteristicsList.Add(model);
             AddCharacteristicsText = "";
+            IsCharacteristicToSave = true;
         }
 
         /// <summary>
@@ -408,6 +467,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public void RemoveDisease()
         {
             DiseasesList.Remove(SelectedDisease);
+            IsDiseaseToSave = true;
         }
 
         /// <summary>
@@ -431,18 +491,83 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public void RemoveCharacteristics()
         {
             CharacteristicsList.Remove(SelectedCharacteristics);
+            IsCharacteristicToSave = true;
         }
 
 
         /// <summary>
         /// this checks if all required fields are set
         /// </summary>
-        public bool CanSaveDog
+        public bool CanEditDog
         {
             get
             {
-                // TODO - When should it be possible to save a dog
-                return true;
+                if (NotActive)
+                {
+                    if (DogToEdit.Active == true)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (DogToEdit.Active == false)
+                    {
+                        return true;
+                    }
+                }
+                if (!DogToEdit.Name.Equals(Name) && Name.Length > 3)
+                {
+                    return true;
+                }
+                if (!DogToEdit.Breed.Equals(Breed) && Breed.Length > 3)
+                {
+                    return true;
+                }
+                if (!DogToEdit.Color.Equals(Color) && Color.Length > 3)
+                {
+                    return true;
+                }
+                if (!DogToEdit.Birthday.Equals(Birthday.ToShortDateString()))
+                {
+                    return true;
+                }
+                if (!DogToEdit.TassoRegistration.Equals(TassoRegistration))
+                {
+                    return true;
+                }
+                if (RDBChipChecked)
+                {
+                    if (DogToEdit.Chipped == false)
+                    {
+                        return true;
+                    }
+                }
+                if(RDBTattooChecked)
+                {
+                    if (DogToEdit.Chipped == true)
+                    {
+                        return true;
+                    }
+                }
+
+                if (DogToEdit.Castrated == false && IsSelectedCastrated == true)
+                {
+                    return true;
+                }
+                if (IsSelectedCastrated && !DogToEdit.CastratedSince.Equals(CastratedSince.ToShortDateString()))
+                {
+                    return true;
+                }
+                if (IsSelectedCastrated && !DogToEdit.CastrateMethod.Equals(CastrateMethod))
+                {
+                    return true;
+                }
+                if (IsCharacteristicToSave || IsDiseaseToSave)
+                {
+                    return true;
+                }
+                return false;
             }
         }
 
@@ -499,7 +624,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 DogToEdit.Active = true;
             }
-
+            IsDiseaseToSave = false;
+            IsCharacteristicToSave = false;
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(DogToEdit);
             TryClose();
         }
@@ -509,6 +635,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         /// </summary>
         public void CancelCreation()
         {
+            IsDiseaseToSave = false;
+            IsCharacteristicToSave = false;
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new DogModel());
             this.TryClose();
         }

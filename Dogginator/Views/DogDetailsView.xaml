@@ -83,11 +83,16 @@
                           ScrollViewer.VerticalScrollBarVisibility="Auto" DisplayMemberPath="Description"
                           Margin="0 5 0 0"  SelectedItem="{Binding Path=SelectedCharacteristics, Mode=OneWayToSource}"/>
                 <Button x:Name="RemoveCharacteristics" MaxWidth="100" Margin="0 5 0 0">entfernen</Button>
+                <TextBlock Margin="0 10 0 0">Eigentümer:</TextBlock>
+                <ListView MinHeight="60" MaxHeight="60" x:Name="Owner" MinWidth="230" MaxWidth="230" 
+                          ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          HorizontalAlignment="Left" 
+                          DisplayMemberPath="FullCustomer"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">
-            <Button x:Name="EditDog" Margin="0 10 0 0" Background="Green">Speichern</Button>
-            <Button x:Name="CancelCreation" Margin="60 10 0 0" Background="Red" Foreground="White">Abbrechen</Button>
+            <Button x:Name="EditDog" Margin="0 5 0 0" Background="Green">Speichern</Button>
+            <Button x:Name="CancelCreation" Margin="60 5 0 0" Background="Red" Foreground="White">Abbrechen</Button>
         </StackPanel>
     </Grid>
 </UserControl>
