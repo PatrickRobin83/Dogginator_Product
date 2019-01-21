@@ -1,4 +1,4 @@
-Das Rechnungsmodul
+﻿Das Rechnungsmodul
 
     Es soll möglich sein Rechnungen erstellen, bearbeiten, löschen und drucken zu können. (Vielleicht auch per Email versenden. Spätere Version)
     
@@ -31,4 +31,7 @@ Die Artikelverwaltung:
 
 
     Es wird eine Tabelle benötigt welche die Artikel ID zu Rechnungs ID herstellt.
+
+
+http://www.pdfsharp.com/PDFsharp/index.php
     
