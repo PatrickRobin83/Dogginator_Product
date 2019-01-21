@@ -1,0 +1,34 @@
+Das Rechnungsmodul
+
+    Es soll möglich sein Rechnungen erstellen, bearbeiten, löschen und drucken zu können. (Vielleicht auch per Email versenden. Spätere Version)
+    
+    Um eine Rechnung erstellen zu können werden verschiedene weitere Komponenten benötigt. 
+
+        1. Es werden Artikel (Dienstleistungen) benötigt welche einer Rechnung hinzugefügt werden können. 
+        2. Die Rechnung muss einem Kunden zugeordnet werden. 
+        3. Die Rechnung soll vor dem Drucken in einer Vorschau angezeigt werden. 
+        4. Die Rechnung soll als PDF abgespeichert werden, um sie auch als Email Anhang versenden zu können.
+        5. Der Rechnungskopf soll über eine allgemeine Konfiguration erstellt / aufegbaut werden können. 
+           Dieser Rechnungskopf sollte mindestens den Firmenname, die Adresse und alle anderen Komponenten enthalten, welche gesetzlich vorgeschrieben sind. 
+        6. Die Rechnung soll sowohl als einzelabrechung mit vielen Positionen als auch als Pauschalrechnung erstellt werden können. 
+        7. Es sollte ein rudimentäres Rabattsystem vorhanden sein, so dass sowohl ein Prozentsatz als auch ein Betrag als Rabatt berechnet werden kann. 
+        8. Die am Ende muss aus dem Gesamtbetrag noch die Mehrwertsteuer ausgewiesen werden. 
+        9. Außerdem sollte noch ein Schlusssatz wie bei Zahlen auf Rechnung bzw. auf Zahlungsziel das spätest mögliche Zahlungsdatum angegeben werden. 
+       10. Eine Rechung muss mit einem Status versehen werden können. Also z.B.: neu, bezahlt und erledigt.
+       11. Es sollte eine Übersicht vorhanden sein in welcher man die einzelnen Status sieht. 
+       12. Ist eine Rechung bereits bezahlt und abgeschlossen kann sie nicht mehr verändert werden.
+
+
+Die Artikelverwaltung:
+
+    In einer Artikel Datenbank werden die Artikel gespeichert.
+    Ein Artikel benötigt eine Artikelnummer, eine Kurzbeschreibung, einen Artikeltext einen Preis. 
+    Diese müssen bearbeitet werden können. Der Artikel an sich muss sich also bearbeiten und löschen lassen. 
+    Außerdem muss ein Artikel einer schon vorhandenen Rechung bzw. einer neuen Rechnung hinzugefügt werden können. 
+    Der Artikel wird bei dem hinzugefügen zur Rechnung zugewiesen.
+
+
+
+
+    Es wird eine Tabelle benötigt welche die Artikel ID zu Rechnungs ID herstellt.
+    
