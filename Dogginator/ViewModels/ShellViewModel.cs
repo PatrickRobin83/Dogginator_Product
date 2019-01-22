@@ -1,16 +1,8 @@
 ﻿using Caliburn.Micro;
 using DogginatorLibrary;
-using DogginatorLibrary.DataAccess;
 using DogginatorLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+using DogginatorLibrary.Enums;
+
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {

@@ -1,12 +1,8 @@
 ﻿using DogginatorLibrary.DataAccess;
-using System;
-using System.Collections.Generic;
+using DogginatorLibrary.Enums;
 using System.Configuration;
-using System.Data.SQLite;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DogginatorLibrary
 {
