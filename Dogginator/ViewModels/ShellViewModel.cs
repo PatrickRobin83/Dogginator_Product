@@ -100,9 +100,17 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         {
             get { return IsLoggedIn; }
         }
+<<<<<<< HEAD
+
         public void LoadBilling()
         {
             // TODO - What should be loaded by click
+            ActivateItem(new ManageInvoicesViewModel());
+=======
+        public void LoadBilling()
+        {
+            // TODO - What should be loaded by click
+>>>>>>> b0bb3c2d1f256dece14b2dc740f6810da7ccf7a3
         }
 
         public bool CanLoadProducts
@@ -113,6 +121,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public void LoadProducts()
         {
             // TODO - What should be loaded after click
+<<<<<<< HEAD
+            ActivateItem(new ManageProductsViewModel());
+=======
+>>>>>>> b0bb3c2d1f256dece14b2dc740f6810da7ccf7a3
         }
 
         public bool CanLogout

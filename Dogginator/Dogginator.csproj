@@ -96,53 +96,77 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConsistedBookViewModel.cs" />
-    <Compile Include="ViewModels\CreateCustomerViewModel.cs" />
-    <Compile Include="ViewModels\CreateNewDogViewModel.cs" />
-    <Compile Include="ViewModels\CreateUserViewModel.cs" />
-    <Compile Include="ViewModels\CustomerDetailsViewModel.cs" />
-    <Compile Include="ViewModels\DogDetailsViewModel.cs" />
-    <Compile Include="ViewModels\EditUserViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ManageAppointmentsViewModel.cs" />
-    <Compile Include="ViewModels\ManageCustomerViewModel.cs" />
-    <Compile Include="ViewModels\ManageDogsViewModel.cs" />
-    <Compile Include="ViewModels\OverViewViewModel.cs" />
+    <Compile Include="ViewModels\ConsistedBook\ConsistedBookViewModel.cs" />
+    <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Dog\CreateNewDogViewModel.cs" />
+    <Compile Include="ViewModels\Invoice\CreateNewInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Product\CreateNewProductsViewModel.cs" />
+    <Compile Include="ViewModels\User\CreateUserViewModel.cs" />
+    <Compile Include="ViewModels\Customer\CustomerDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Dog\DogDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Invoice\InvoiceDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Product\ManageProductsViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProdductsDetailsViewModel.cs" />
+    <Compile Include="ViewModels\User\UserDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Login\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Appointment\ManageAppointmentsViewModel.cs" />
+    <Compile Include="ViewModels\Invoice\ManageInvoicesViewModel.cs" />
+    <Compile Include="ViewModels\Customer\ManageCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Dog\ManageDogsViewModel.cs" />
+    <Compile Include="ViewModels\Overview\OverViewViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\ConsistedBookView.xaml.cs">
+    <Compile Include="Views\ConsistedBook\ConsistedBookView.xaml.cs">
       <DependentUpon>ConsistedBookView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateCustomerView.xaml.cs">
+    <Compile Include="Views\Customer\CreateCustomerView.xaml.cs">
       <DependentUpon>CreateCustomerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateNewDogView.xaml.cs">
+    <Compile Include="Views\Dog\CreateNewDogView.xaml.cs">
       <DependentUpon>CreateNewDogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomerDetailsView.xaml.cs">
+    <Compile Include="Views\Invoice\CreateNewInvoiceView.xaml.cs">
+      <DependentUpon>CreateNewInvoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Product\CreateNewProductView.xaml.cs">
+      <DependentUpon>CreateNewProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerDetailsView.xaml.cs">
       <DependentUpon>CustomerDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DogDetailsView.xaml.cs">
+    <Compile Include="Views\Dog\DogDetailsView.xaml.cs">
       <DependentUpon>DogDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditUserView.xaml.cs">
-      <DependentUpon>EditUserView.xaml</DependentUpon>
+    <Compile Include="Views\Invoice\InvoiceDetailsView.xaml.cs">
+      <DependentUpon>InvoiceDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginView.xaml.cs">
+    <Compile Include="Views\Product\ManageProductsView.xaml.cs">
+      <DependentUpon>ManageProductsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Product\ProdductsDetailsView.xaml.cs">
+      <DependentUpon>ProdductsDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\UserDetailsView.xaml.cs">
+      <DependentUpon>UserDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ManageAppointmentsView.xaml.cs">
+    <Compile Include="Views\Appointment\ManageAppointmentsView.xaml.cs">
       <DependentUpon>ManageAppointmentsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ManageCustomerView.xaml.cs">
+    <Compile Include="Views\Invoice\ManageInvoicesView.xaml.cs">
+      <DependentUpon>ManageInvoicesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\ManageCustomerView.xaml.cs">
       <DependentUpon>ManageCustomerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ManageDogsView.xaml.cs">
+    <Compile Include="Views\Dog\ManageDogsView.xaml.cs">
       <DependentUpon>ManageDogsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateUserView.xaml.cs">
+    <Compile Include="Views\User\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OverViewView.xaml.cs">
+    <Compile Include="Views\Overview\OverViewView.xaml.cs">
       <DependentUpon>OverViewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
@@ -180,51 +204,75 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\ConsistedBookView.xaml">
+    <Page Include="Views\ConsistedBook\ConsistedBookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateCustomerView.xaml">
+    <Page Include="Views\Customer\CreateCustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateNewDogView.xaml">
+    <Page Include="Views\Dog\CreateNewDogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CustomerDetailsView.xaml">
+    <Page Include="Views\Invoice\CreateNewInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DogDetailsView.xaml">
+    <Page Include="Views\Product\CreateNewProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditUserView.xaml">
+    <Page Include="Views\Customer\CustomerDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoginView.xaml">
+    <Page Include="Views\Dog\DogDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ManageAppointmentsView.xaml">
+    <Page Include="Views\Invoice\InvoiceDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ManageCustomerView.xaml">
+    <Page Include="Views\Product\ManageProductsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ManageDogsView.xaml">
+    <Page Include="Views\Product\ProdductsDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateUserView.xaml">
+    <Page Include="Views\User\UserDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OverViewView.xaml">
+    <Page Include="Views\Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Appointment\ManageAppointmentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Invoice\ManageInvoicesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\ManageCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dog\ManageDogsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\CreateUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Overview\OverViewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

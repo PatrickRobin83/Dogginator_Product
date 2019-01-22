@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="de.rietrob.dogginator_product.dogginator.Views.UserDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:helper="clr-namespace:DogginatorLibrary.Helper;assembly=DogginatorLibrary"
+             xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="5 5 5 5 ">
+            <TextBlock FontSize="18" FontWeight="SemiBold">Benutzer anlegen:</TextBlock>
+            <CheckBox x:Name="IsUserActive" Margin="15 15 0 0" VerticalAlignment="Center">Aktiv</CheckBox>
+            <TextBlock>Benutzername:</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="UserName"  Width="140" HorizontalAlignment="Left"/>
+                <CheckBox x:Name="IsAdmin" Margin="15 0 0 0" VerticalAlignment="Center">Administrator</CheckBox>
+            </StackPanel>
+            <TextBlock>Kennwort</TextBlock>
+            <PasswordBox x:Name="UserPassword" Width="140" HorizontalAlignment="Left"
+                         helper:PasswordHelper.BindPassword="true" PasswordChar="*"
+                         helper:PasswordHelper.BoundPassword="{Binding Path=UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock>Kennwort Validierung:</TextBlock>
+            <PasswordBox x:Name="UserPasswordRepeat" Width="140" HorizontalAlignment="Left"
+                         helper:PasswordHelper.BindPassword="true" PasswordChar="*"
+                         helper:PasswordHelper.BoundPassword="{Binding Path=UserPasswordRepeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <StackPanel Orientation="Horizontal" MaxHeight="25" Margin="0 15 0 0" >
+                <Button x:Name="EditUser" Width="120" HorizontalAlignment="Left">Speichern</Button>
+                <Button x:Name="CancelEdit" MinHeight="25" Margin="15 0 0 0" 
+                        Width="120" Background="Red" Foreground="White">
+                    Abbrechen
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
