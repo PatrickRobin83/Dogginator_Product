@@ -30,8 +30,12 @@ Die Artikelverwaltung:
 
 
 
-    Es wird eine Tabelle benötigt welche die Artikel ID zu Rechnungs ID herstellt.
+    Es wird eine Tabelle benötigt welche die Artikel ID zu Rechnungs ID herstellt. 
+	Ebenso wird einer Tabelle benötigt welche die Rechnung dann mit dem Kunden/Besitzer verbindet
 
+
+
+Link zu einer Library, welche PDFs erstellen kann. 
 
 http://www.pdfsharp.com/PDFsharp/index.php
     

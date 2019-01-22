@@ -104,6 +104,25 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ActivateItem(new ConsistedBookViewModel());
         }
 
+        public bool CanLoadBilling
+        {
+            get { return IsLoggedIn; }
+        }
+        public void LoadBilling()
+        {
+            // TODO - What should be loaded by click
+        }
+
+        public bool CanLoadProducts
+        {
+            get { return IsLoggedIn; }
+        }
+
+        public void LoadProducts()
+        {
+            // TODO - What should be loaded after click
+        }
+
         public bool CanLogout
         {
             get
@@ -124,6 +143,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             NotifyOfPropertyChange(() => CanLoadDog);
             NotifyOfPropertyChange(() => CanLoadOverview);
             NotifyOfPropertyChange(() => CanLogout);
+            NotifyOfPropertyChange(() => CanLoadBilling);
+            NotifyOfPropertyChange(() => CanLoadProducts);
         }
 
         public void Exit()
@@ -154,6 +175,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             NotifyOfPropertyChange(() => CanLoadDog);
             NotifyOfPropertyChange(() => CanLoadOverview);
             NotifyOfPropertyChange(() => CanLogout);
+            NotifyOfPropertyChange(() => CanLoadBilling);
+            NotifyOfPropertyChange(() => CanLoadProducts);
         }
 
 

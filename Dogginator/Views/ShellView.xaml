@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <!-- Row 0 -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="28">Dogginator </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="28">Dogginator</TextBlock>
         <!-- Row 1 -->
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5 5 5 5" VerticalAlignment="Top">
@@ -30,6 +30,8 @@
             <Button x:Name="LoadDog" Padding="5" Margin="5">Hunde Verwaltung</Button>
             <Button x:Name="LoadAppointment" Padding="5" Margin="5">Termin Verwaltung</Button>
             <Button x:Name="LoadConsistedBook" Padding="5" Margin="5">Bestandsbuch</Button>
+            <Button x:Name="LoadProducts" Padding="5" Margin="5" Content="Artikel Verwaltung"/>
+            <Button x:Name="LoadBilling" Padding="5" Margin="5">Rechnungs Verwaltung</Button>
             <Button x:Name="Logout" Padding="5" Margin="5">Ausloggen</Button>
             <Button x:Name="Exit" Padding="5" Margin="5" Background="Red" Foreground="White">Beenden</Button>
         </StackPanel>
