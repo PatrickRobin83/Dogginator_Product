@@ -101,12 +101,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             get { return IsLoggedIn; }
         }
 
-
         public void LoadBilling()
         {
-            // TODO - What should be loaded by click
             ActivateItem(new ManageInvoicesViewModel());
-
         }
 
         public bool CanLoadProducts
@@ -116,9 +113,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public void LoadProducts()
         {
-            // TODO - What should be loaded after click
             ActivateItem(new ManageProductsViewModel());
-
         }
 
         public bool CanLogout
@@ -176,7 +171,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             NotifyOfPropertyChange(() => CanLoadBilling);
             NotifyOfPropertyChange(() => CanLoadProducts);
         }
-
 
         #endregion
     }

@@ -58,7 +58,7 @@ namespace DogginatorLibrary.DataAccess
 
         public void UpdateDog(DogModel dModel)
         {
-            
+
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -677,7 +677,24 @@ namespace DogginatorLibrary.DataAccess
             return output;
         }
 
+        public List<ProductModel> GetAllProducts()
+        {
+            List<ProductModel> products = new List<ProductModel>();
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    products = connection.Query<ProductModel>("SELECT * FROM product").ToList();
 
+                    return products;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<ProductModel>();
+            }
+        }
 
     }
 }

@@ -24,14 +24,11 @@
         </TextBlock>
 
         <StackPanel x:Name="DogOverviewIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 5 0">Suche:</TextBlock>
                 <TextBox x:Name="DogSearchText" MinWidth="560"/>
                 <CheckBox x:Name="ShowalsoInactive" Margin="60 0 0 0" VerticalAlignment="Center">Zeige auch Inaktive</CheckBox>
             </StackPanel>
-            <!--<ListView x:Name="AvailableDogs" MinHeight="300" MaxHeight="300" Margin="0 5 0 0"
-                  SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}"
-                  DisplayMemberPath="FullDog" ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
             <DataGrid x:Name="AvailableDogList" ItemsSource="{Binding Path=AvailableDogs}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
                       CanUserResizeColumns="False" MinHeight="425" MaxHeight="425"

@@ -108,5 +108,7 @@ namespace DogginatorLibrary.DataAccess
         void UpdateUser(UserModel model);
 
         List<UserModel> SearchResultUser(string searchText, bool showInactive);
+
+        List<ProductModel> GetAllProducts();
     }
 }
