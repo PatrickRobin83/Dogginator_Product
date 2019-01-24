@@ -31,7 +31,6 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Custome
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\DogDetailsView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ManageProductsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProdductsDetailsView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\User\UserDetailsView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Login\LoginView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Appointment\ManageAppointmentsView.g.cs
@@ -56,7 +55,6 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Custome
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\DogDetailsView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ManageProductsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProdductsDetailsView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\User\UserDetailsView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Login\LoginView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Appointment\ManageAppointmentsView.baml
@@ -147,3 +145,5 @@ D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginat
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.pdb
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.g.cs
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.baml

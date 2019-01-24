@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class CreateNewProductsViewModel : Conductor<object>
+    public class CreateNewProductViewModel : Conductor<object>
     {
        
     }

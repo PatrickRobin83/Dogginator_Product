@@ -100,7 +100,7 @@
     <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\Dog\CreateNewDogViewModel.cs" />
     <Compile Include="ViewModels\Invoice\CreateNewInvoiceViewModel.cs" />
-    <Compile Include="ViewModels\Product\CreateNewProductsViewModel.cs" />
+    <Compile Include="ViewModels\Product\CreateNewProductViewModel.cs" />
     <Compile Include="ViewModels\User\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerDetailsViewModel.cs" />
     <Compile Include="ViewModels\Dog\DogDetailsViewModel.cs" />

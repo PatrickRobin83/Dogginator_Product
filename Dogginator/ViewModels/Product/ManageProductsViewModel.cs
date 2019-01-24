@@ -32,6 +32,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => SearchText);
             }
         }
+
         public BindableCollection<ProductModel> AvailableProducts
         {
             get { return _availableProducts; }
@@ -41,6 +42,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => AvailableProducts);
             }
         }
+
         public ProductModel SelectedProduct
         {
             get { return _selectedProduct; }
@@ -52,6 +54,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditProduct);
             }
         }
+
         public bool CanEditProduct
         {
             get
@@ -64,6 +67,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 return output;
             }
         }
+
         public bool CanDeleteProduct
         {
             get
@@ -103,7 +107,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             set
             {
                 _productDetailsIsVisible = value;
-                NotifyOfPropertyChange(() => ProductOverviewIsVisible);
+                NotifyOfPropertyChange(() => ProductDetailsIsVisible);
             }
         }
 
@@ -116,6 +120,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => ActiveProductDetailsView);
             }
         }
+
         public Screen ActiveAddProductView
         {
             get { return _activeAddProductView; }
@@ -136,7 +141,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Methods
-       
 
         public void EditProduct()
         {
@@ -150,7 +154,11 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public void AddProduct()
         {
-            Console.WriteLine("Add Product pressed");
+            ActiveAddProductView = new CreateNewProductViewModel();
+            Items.Add(ActiveAddProductView);
+            ProductOverviewIsVisible = false;
+            AddProductIsVisible = true;
+            ProductOverviewIsVisible = false;
         }
 
        
