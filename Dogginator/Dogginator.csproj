@@ -106,7 +106,7 @@
     <Compile Include="ViewModels\Dog\DogDetailsViewModel.cs" />
     <Compile Include="ViewModels\Invoice\InvoiceDetailsViewModel.cs" />
     <Compile Include="ViewModels\Product\ManageProductsViewModel.cs" />
-    <Compile Include="ViewModels\Product\ProdductsDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\User\UserDetailsViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="ViewModels\Appointment\ManageAppointmentsViewModel.cs" />
@@ -142,8 +142,8 @@
     <Compile Include="Views\Product\ManageProductsView.xaml.cs">
       <DependentUpon>ManageProductsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Product\ProdductsDetailsView.xaml.cs">
-      <DependentUpon>ProdductsDetailsView.xaml</DependentUpon>
+    <Compile Include="Views\Product\ProductDetailsView.xaml.cs">
+      <DependentUpon>ProductDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\User\UserDetailsView.xaml.cs">
       <DependentUpon>UserDetailsView.xaml</DependentUpon>
@@ -240,7 +240,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Product\ProdductsDetailsView.xaml">
+    <Page Include="Views\Product\ProductDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

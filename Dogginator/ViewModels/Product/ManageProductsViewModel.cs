@@ -9,12 +9,17 @@ using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class ManageProductsViewModel : Conductor<object>
+    public class ManageProductsViewModel : Conductor<object>.Collection.OneActive
     {
         #region Fields
         private string _searchText = "";
-        private BindableCollection<ProductModel> _availableProducts= new BindableCollection<ProductModel>();
+        private BindableCollection<ProductModel> _availableProducts = new BindableCollection<ProductModel>();
         private ProductModel _selectedProduct;
+        private bool _productOverviewIsVisible = true;
+        private bool _addProductIsVisible = false;
+        private bool _productDetailsIsVisible = false;
+        private Screen _activeProductDetailsView;
+        private Screen _activeAddProductView;
         #endregion
 
         #region Properties
@@ -71,6 +76,56 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 return output;
             }
         }
+
+        public bool ProductOverviewIsVisible
+        {
+            get { return _productOverviewIsVisible; }
+            set
+            {
+                _productOverviewIsVisible = value;
+                NotifyOfPropertyChange(() => ProductOverviewIsVisible);
+            }
+        }
+
+        public bool AddProductIsVisible
+        {
+            get { return _addProductIsVisible; }
+            set
+            {
+                _addProductIsVisible = value;
+                NotifyOfPropertyChange(() => AddProductIsVisible);
+            }
+        }
+
+        public bool ProductDetailsIsVisible
+        {
+            get { return _productDetailsIsVisible; }
+            set
+            {
+                _productDetailsIsVisible = value;
+                NotifyOfPropertyChange(() => ProductOverviewIsVisible);
+            }
+        }
+
+        public Screen ActiveProductDetailsView
+        {
+            get { return _activeProductDetailsView; }
+            set
+            {
+                _activeProductDetailsView = value;
+                NotifyOfPropertyChange(() => ActiveProductDetailsView);
+            }
+        }
+        public Screen ActiveAddProductView
+        {
+            get { return _activeAddProductView; }
+            set
+            {
+                _activeAddProductView = value;
+                NotifyOfPropertyChange(() => ActiveAddProductView);
+            }
+        }
+
         #endregion
 
         #region Contstructor
@@ -85,7 +140,12 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public void EditProduct()
         {
-            Console.WriteLine("Edit Product pressed");
+            ActiveProductDetailsView = new ProductDetailsViewModel();
+            Items.Add(ActiveProductDetailsView);
+            ProductOverviewIsVisible = false;
+            AddProductIsVisible = false;
+            ProductDetailsIsVisible = true;
+
         }
 
         public void AddProduct()

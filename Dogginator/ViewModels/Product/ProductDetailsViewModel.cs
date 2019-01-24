@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class ProdductsDetailsViewModel : Conductor<object>.Collection.OneActive
+    public class ProductDetailsViewModel : Screen
     {
 
     }

@@ -12,9 +12,9 @@ DEBUG;TRACE
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\App.xaml
 19-921108975
 1-1570409366
-451642387543
+49-678225215
 128-1762340510
 Views\ConsistedBook\ConsistedBookView.xaml;Views\Customer\CreateCustomerView.xaml;Views\Dog\CreateNewDogView.xaml;Views\Invoice\CreateNewInvoiceView.xaml;Views\Product\CreateNewProductView.xaml;Views\Customer\CustomerDetailsView.xaml;Views\Dog\DogDetailsView.xaml;Views\Invoice\InvoiceDetailsView.xaml;Views\Product\ManageProductsView.xaml;Views\Product\ProductDetailsView.xaml;Views\User\UserDetailsView.xaml;Views\Login\LoginView.xaml;Views\Appointment\ManageAppointmentsView.xaml;Views\Invoice\ManageInvoicesView.xaml;Views\Customer\ManageCustomerView.xaml;Views\Dog\ManageDogsView.xaml;Views\User\CreateUserView.xaml;Views\Overview\OverViewView.xaml;Views\ShellView.xaml;
 
-False
+True
 

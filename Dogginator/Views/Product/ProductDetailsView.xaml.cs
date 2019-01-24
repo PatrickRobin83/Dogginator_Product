@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace de.rietrob.dogginator_product.dogginator.Views
 {
     /// <summary>
-    /// Interaktionslogik für ProdductsDetailsView.xaml
+    /// Interaktionslogik für ProductDetailsView.xaml
     /// </summary>
-    public partial class ProdductsDetailsView : UserControl
+    public partial class ProductDetailsView : UserControl
     {
-        public ProdductsDetailsView()
+        public ProductDetailsView()
         {
             InitializeComponent();
         }
