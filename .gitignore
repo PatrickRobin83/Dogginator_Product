@@ -37,3 +37,10 @@
 *.pidb
 *.svclog
 *.scc
+
+###############
+# Directories #
+###############
+obj/
+TestResults/
+[Oo]bj/
