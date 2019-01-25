@@ -14,6 +14,7 @@ namespace DogginatorLibrary
 
         #region Properties
         public static IDataConnection Connection { get; private set; }
+        public const string DATABASEBACKUPFILENAME = @"Dogginator_Backup.db"; 
         public const string CANCEL = "Cancel";
         public const string USERCREATED = "User Created";
         public const string USERDELETED = "User Deleted";
@@ -52,6 +53,11 @@ namespace DogginatorLibrary
         public static string DatabaseFilename()
         {
             return ConfigurationManager.AppSettings[0].ToString();
+        }
+
+        public static string DatabaseBackupPath()
+        {
+            return $"{ConfigurationManager.AppSettings[1].ToString()}{DATABASEBACKUPFILENAME}";
         }
 
         public  static string HashThePassword(string password)

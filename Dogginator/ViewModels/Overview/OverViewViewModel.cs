@@ -3,6 +3,7 @@ using de.rietrob.dogginator_product.dogginator.ViewModels.Option;
 using DogginatorLibrary;
 using DogginatorLibrary.Helper;
 using DogginatorLibrary.Models;
+using System;
 using System.Windows;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
@@ -171,6 +172,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => ActiveOption);
             }
         }
+
         #endregion
 
         #region Constructor
@@ -186,7 +188,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DogCount = GlobalConfig.Connection.Get_DogsAll().Count;
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
-            System.Console.WriteLine(BackupDatabaseHelper.CheckDatabaseDate());
+            BackupDatabaseHelper.BackupDatabase();
+            
         }
 
         #endregion

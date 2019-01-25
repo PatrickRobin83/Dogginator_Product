@@ -149,3 +149,5 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.baml
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.g.cs
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.baml
