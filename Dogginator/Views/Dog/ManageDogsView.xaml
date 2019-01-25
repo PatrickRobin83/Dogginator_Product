@@ -31,7 +31,7 @@
             </StackPanel>
             <DataGrid x:Name="AvailableDogList" ItemsSource="{Binding Path=AvailableDogs}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
-                      CanUserResizeColumns="False" MinHeight="425" MaxHeight="425"
+                      CanUserResizeColumns="False" MinHeight="425" MaxHeight="425" SelectionMode="Single"
                       Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Name}"/>

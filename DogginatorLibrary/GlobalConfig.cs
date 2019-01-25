@@ -57,7 +57,7 @@ namespace DogginatorLibrary
 
         public static string DatabaseBackupPath()
         {
-            return $"{ConfigurationManager.AppSettings[1].ToString()}{DATABASEBACKUPFILENAME}";
+            return $"{ConfigurationManager.AppSettings[1].ToString()}";
         }
 
         public  static string HashThePassword(string password)

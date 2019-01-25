@@ -2,7 +2,7 @@
 using DogginatorLibrary;
 using DogginatorLibrary.Models;
 using DogginatorLibrary.Enums;
-
+using DogginatorLibrary.Helper;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
@@ -39,8 +39,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public ShellViewModel()
         {
             GlobalConfig.InitalizeConnections(DataBaseType.SQLite);
+            BackupDatabaseHelper.BackupDatabase();
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             ActivateItem(new LoginViewModel());
+
         }
         #endregion
 

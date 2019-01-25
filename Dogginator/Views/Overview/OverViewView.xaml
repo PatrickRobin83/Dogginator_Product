@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
-             mc:Ignorable="d" FontSize="14" Background="LightBlue"
+             mc:Ignorable="d" FontSize="14"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -50,7 +50,7 @@
 
             <DataGrid x:Name="AvailableUserList" ItemsSource="{Binding Path=AvailableUserList}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
-                      CanUserResizeColumns="False"
+                      CanUserResizeColumns="False" SelectionMode="Single"
                       Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="300" MaxHeight="300"
                       Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}">
                 <DataGrid.Columns>

@@ -25,24 +25,23 @@ namespace DogginatorLibrary.Helper
 
         public static void BackupDatabase()
         {
-            _dataBaseDate = CheckDatabaseDate();
-            TimeSpan sp = _dateOnStartup - _dataBaseDate;
-            if (sp.Days > 0)
+            if (!Directory.Exists(GlobalConfig.DatabaseBackupPath()))
             {
-                //TODO - How to copy the Database to the BackupFolder
-
-                Console.WriteLine($"Die Tage an denen die Datnebank nicht gebackuped wurde ist größer als {sp.Days}");
+                Directory.CreateDirectory(GlobalConfig.DatabaseBackupPath());
             }
-        }
-
-        private static DateTime CheckDatabaseDate()
-        {
-
-            if (File.Exists(GlobalConfig.DatabaseFilename()))
+            if (!File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
             {
-                output = File.GetLastWriteTime(GlobalConfig.DatabaseFilename());
+                File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
             }
-            return output;
+            else
+            {
+                _dataBaseDate = File.GetLastWriteTime($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
+                TimeSpan sp = _dateOnStartup - _dataBaseDate;
+                if (sp.Days > 3)
+                {
+                    File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
+                }
+            }
         }
 
         #endregion

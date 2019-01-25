@@ -502,6 +502,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 SelectedDog.CustomerList.Remove(CModel);
                 OwnedDogs.Remove(SelectedDog);
                 NotifyOfPropertyChange(() => OwnedDogs);
+                NotifyOfPropertyChange(() => AvailableDogs);
                 IsDogRemoveToSave = true;
             }
             else
@@ -536,17 +537,19 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             get
             {
                 bool output = false;
-
+               
                 if (OwnedDogs != null && OwnedDogs.Count > 0)
                 {
                     foreach (DogModel dogModel in OwnedDogs)
                     {
-                        if (AvailableSelectedDog != null)
+                        if (AvailableSelectedDog != null && OwnedDogs.Any(d => AvailableSelectedDog.Id == d.Id))
                         {
-                            if (dogModel.Id != AvailableSelectedDog.Id)
-                            {
-                                output = true;
-                            }
+                            output = false;
+                            break;
+                        }
+                        else
+                        {
+                            output = true;
                         }
                         
                     }

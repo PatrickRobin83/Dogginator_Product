@@ -188,8 +188,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             DogCount = GlobalConfig.Connection.Get_DogsAll().Count;
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
-            BackupDatabaseHelper.BackupDatabase();
-            
         }
 
         #endregion

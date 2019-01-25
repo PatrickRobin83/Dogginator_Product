@@ -29,7 +29,7 @@
             </StackPanel>
             <DataGrid x:Name="AvailableProductList" ItemsSource="{Binding Path=AvailableProducts}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
-                      CanUserResizeColumns="False" MinHeight="425" MaxHeight="425"
+                      CanUserResizeColumns="False" MinHeight="425" MaxHeight="425" SelectionMode="Single"
                       Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Artikelnummer" IsReadOnly="True" Binding="{Binding ItemNumber}"/>

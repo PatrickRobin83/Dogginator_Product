@@ -41,9 +41,9 @@
             <!-- Row 3 -->
             <DataGrid x:Name="AvailableCustomerList" ItemsSource="{Binding Path=AvailableCustomers}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
-                      CanUserResizeColumns="False"
+                      CanUserResizeColumns="False" 
                       Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" MinHeight="425" MaxHeight="425"
-                      Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}">
+                      Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedCustomer, Mode=TwoWay}" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header=" Anrede " IsReadOnly="True" Binding="{Binding Salution}"/>
                     <DataGridTextColumn Header=" Vorname " IsReadOnly="True" Binding="{Binding FirstName}"/>
