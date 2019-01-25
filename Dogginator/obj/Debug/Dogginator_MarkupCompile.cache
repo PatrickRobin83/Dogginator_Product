@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\
 de.rietrob.dogginator_product.dogginator
 none
 false
 DEBUG;TRACE
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\App.xaml
-19-921108975
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\App.xaml
+20-1189875526
 1-1570409366
-4592536065
-1281771667860
-Views\ConsistedBook\ConsistedBookView.xaml;Views\Customer\CreateCustomerView.xaml;Views\Dog\CreateNewDogView.xaml;Views\Invoice\CreateNewInvoiceView.xaml;Views\Product\CreateNewProductView.xaml;Views\Customer\CustomerDetailsView.xaml;Views\Dog\DogDetailsView.xaml;Views\Invoice\InvoiceDetailsView.xaml;Views\Product\ManageProductsView.xaml;Views\Product\ProductDetailsView.xaml;Views\User\UserDetailsView.xaml;Views\Login\LoginView.xaml;Views\Appointment\ManageAppointmentsView.xaml;Views\Invoice\ManageInvoicesView.xaml;Views\Customer\ManageCustomerView.xaml;Views\Dog\ManageDogsView.xaml;Views\User\CreateUserView.xaml;Views\Overview\OverViewView.xaml;Views\ShellView.xaml;
+47185556892
+128-1762340510
+Views\ConsistedBook\ConsistedBookView.xaml;Views\Customer\CreateCustomerView.xaml;Views\Dog\CreateNewDogView.xaml;Views\Invoice\CreateNewInvoiceView.xaml;Views\Option\OptionView.xaml;Views\Product\CreateNewProductView.xaml;Views\Customer\CustomerDetailsView.xaml;Views\Dog\DogDetailsView.xaml;Views\Invoice\InvoiceDetailsView.xaml;Views\Product\ManageProductsView.xaml;Views\Product\ProductDetailsView.xaml;Views\User\UserDetailsView.xaml;Views\Login\LoginView.xaml;Views\Appointment\ManageAppointmentsView.xaml;Views\Invoice\ManageInvoicesView.xaml;Views\Customer\ManageCustomerView.xaml;Views\Dog\ManageDogsView.xaml;Views\User\CreateUserView.xaml;Views\Overview\OverViewView.xaml;Views\ShellView.xaml;
 
 False
 

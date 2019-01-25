@@ -1,11 +1,9 @@
 ﻿using Caliburn.Micro;
+using de.rietrob.dogginator_product.dogginator.ViewModels.Option;
 using DogginatorLibrary;
+using DogginatorLibrary.Helper;
 using DogginatorLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
@@ -23,7 +21,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private bool _addUserIsVisible;
         private Screen _activeEditUser;
         private bool _editUserIsVisible;
-        
+        private bool _optionIsVisible;
+        private Screen _activeOption;
+        protected Visibility _optionVisibility;
 
         #endregion
 
@@ -38,6 +38,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CustomerCount);
             }
         }
+
         public int DogCount
         {
             get { return _dogCount; }
@@ -47,6 +48,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => DogCount);
             }
         }
+
         public bool ManageUserIsVisible
         {
             get { return _manageUserIsVisible; }
@@ -68,6 +70,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => AvailableUserList);
             }
         }
+
         public bool ShowAlsoInactive
         {
             get { return _showAlsoInactive; }
@@ -78,6 +81,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 AvailableUserList = getUser();
                 NotifyOfPropertyChange(() => AvailableUserList);
               
+            }
+        }
+        public Visibility OptionVisibility
+        {
+            get { return _optionVisibility; }
+            set
+            {
+                _optionVisibility = value;
+                NotifyOfPropertyChange(() => OptionVisibility);
             }
         }
 
@@ -140,16 +152,41 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => EditUserIsVisible);
             }
         }
+
+        public bool OptionIsVisible
+        {
+            get { return _optionIsVisible; }
+            set
+            {
+                _optionIsVisible = value;
+                NotifyOfPropertyChange(() => OptionIsVisible);
+            }
+        }
+        public Screen ActiveOption
+        {
+            get { return _activeOption; }
+            set
+            {
+                _activeOption = value;
+                NotifyOfPropertyChange(() => ActiveOption);
+            }
+        }
         #endregion
 
         #region Constructor
         public OverViewViewModel(bool isLoggedIn, bool isAdmin)
         {
+            OptionVisibility = Visibility.Hidden;
             ManageUserIsVisible = isAdmin;
+            if (isAdmin)
+            {
+                OptionVisibility = Visibility.Visible;
+            }
             CustomerCount = GlobalConfig.Connection.Get_CustomerInactiveAndActive().Count;
             DogCount = GlobalConfig.Connection.Get_DogsAll().Count;
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
+            System.Console.WriteLine(BackupDatabaseHelper.CheckDatabaseDate());
         }
 
         #endregion
@@ -160,6 +197,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ActiveAddUser = new CreateUserViewModel();
             Items.Add(ActiveAddUser);
             EditUserIsVisible = false;
+            OptionIsVisible = false;
             AddUserIsVisible = true;
             ManageUserIsVisible = false;
             NotifyOfPropertyChange(() => ManageUserIsVisible);
@@ -187,6 +225,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             EditUserIsVisible = true;
             AddUserIsVisible = false;
             ManageUserIsVisible = false;
+            OptionIsVisible = false;
             NotifyOfPropertyChange(() => ManageUserIsVisible);
         }
 
@@ -210,6 +249,18 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             GlobalConfig.Connection.DeleteUserFromDataBase(SelectedUser);
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
         }
+
+        public void LoadOption()
+        {
+            ActiveOption = new OptionViewModel();
+            Items.Add(ActiveOption);
+            OptionIsVisible = true;
+            EditUserIsVisible = false;
+            AddUserIsVisible = false;
+            ManageUserIsVisible = false;
+            NotifyOfPropertyChange(() => ManageUserIsVisible);
+        }
+
 
         public void Handle(string message)
         {
@@ -251,6 +302,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
             }
             SelectedUser = null;
+            ShowAlsoInactive = false;
         }
 
         private BindableCollection<UserModel> getUser()

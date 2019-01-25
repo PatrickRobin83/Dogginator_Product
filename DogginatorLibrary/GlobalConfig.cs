@@ -49,6 +49,11 @@ namespace DogginatorLibrary
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
+        public static string DatabaseFilename()
+        {
+            return ConfigurationManager.AppSettings[0].ToString();
+        }
+
         public  static string HashThePassword(string password)
         {
             using (MD5 md5Hash = MD5.Create())

@@ -73,6 +73,7 @@
     <Compile Include="DataAccess\SQLiteConnector.cs" />
     <Compile Include="Enums\DataBaseType.cs" />
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Helper\BackupDatabaseHelper.cs" />
     <Compile Include="Messages\ErrorMessages.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Messages\SuccessMessages.cs" />
