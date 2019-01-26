@@ -453,7 +453,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             cm.PhoneNumber = PhoneNumber;
             cm.MobileNumber = MobileNumber;
             cm.Email = Email;
-            cm.Birthday = Birthday.ToString("dd.MM.yyyy");
+            cm.Birthday = Birthday;
             NoteModel noteModel = new NoteModel();
             if (!string.IsNullOrWhiteSpace(NoteToSave))
             {
@@ -490,7 +490,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             if(cm.OwnedDogs.Count > 0)
             foreach (DogModel dog in cm.OwnedDogs)
             {
-                    GlobalConfig.Connection.GetAllCustomerForDog(dog);
+                GlobalConfig.Connection.GetAllCustomerForDog(dog);
             }
             DogCreated = false;
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(cm);

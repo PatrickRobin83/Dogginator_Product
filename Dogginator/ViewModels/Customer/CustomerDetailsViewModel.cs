@@ -25,7 +25,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private string _phoneNumber = "";
         private string _mobileNumber = "";
         private string _email = "";
-        private string _birthday = "";
+        private DateTime _birthday;
         private string _create_Date = "";
         private string _edit_Date = "";
         private string _noteToAdd = "";
@@ -97,13 +97,14 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => Salution);
             }
         }
-        public string Birthday
+        public DateTime Birthday
         {
             get { return _birthday; }
             set
             {
                 _birthday = value;
                 NotifyOfPropertyChange(() => Birthday);
+                NotifyOfPropertyChange(() => CanSaveCustomer);
             }
         }
         public string Email
@@ -626,7 +627,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
 
                 if (!CModel.FirstName.Equals(FirstName) || !CModel.LastName.Equals(LastName) || !CModel.Street.Equals(Street)
-                    || !CModel.HouseNumber.Equals(Housenumber) || !CModel.City.Equals(City) || !CModel.ZipCode.Equals(ZipCode)) 
+                    || !CModel.HouseNumber.Equals(Housenumber) || !CModel.City.Equals(City) || !CModel.ZipCode.Equals(ZipCode) || !CModel.Birthday.Equals(Birthday)) 
                 {
                     output = true;
 
@@ -716,6 +717,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             CModel.PhoneNumber = PhoneNumber;
             CModel.MobileNumber = MobileNumber;
             CModel.Email = Email;
+            CModel.Birthday = Birthday;
             if (NotActive)
             {
                 CModel.Active = false;

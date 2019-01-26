@@ -396,7 +396,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     return false;
                 }
             }
-
         }
 
         /// <summary>
@@ -493,8 +492,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             CharacteristicsList.Remove(SelectedCharacteristics);
             IsCharacteristicToSave = true;
         }
-
-
         /// <summary>
         /// this checks if all required fields are set
         /// </summary>
@@ -534,7 +531,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 {
                     return true;
                 }
-                if (!DogToEdit.TassoRegistration.Equals(TassoRegistration))
+                if (DogToEdit.TassoRegistration != null && !DogToEdit.TassoRegistration.Equals(TassoRegistration))
                 {
                     return true;
                 }

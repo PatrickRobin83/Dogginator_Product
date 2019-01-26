@@ -65,7 +65,7 @@
                     <TextBox x:Name="Email" Margin="5 0 0 0"  MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <TextBlock>geb. Datum:</TextBlock>
-                <TextBox x:Name="Birthday" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left" IsReadOnly="True"/>
+                <DatePicker x:Name="Birthday" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <TextBlock Margin="20 0 0 0">Notizen/Besonderheiten</TextBlock>
