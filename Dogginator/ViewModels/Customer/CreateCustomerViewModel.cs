@@ -490,7 +490,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             if(cm.OwnedDogs.Count > 0)
             foreach (DogModel dog in cm.OwnedDogs)
             {
-                GlobalConfig.Connection.GetAllCustomerForDog(dog);
+                 GlobalConfig.Connection.GetAllCustomerForDog(dog);
             }
             DogCreated = false;
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(cm);
