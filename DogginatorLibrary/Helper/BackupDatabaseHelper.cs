@@ -39,6 +39,10 @@ namespace DogginatorLibrary.Helper
                 TimeSpan sp = _dateOnStartup - _dataBaseDate;
                 if (sp.Days > 3)
                 {
+                    if (File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
+                    {
+                        File.Delete($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
+                    }
                     File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
                 }
             }
