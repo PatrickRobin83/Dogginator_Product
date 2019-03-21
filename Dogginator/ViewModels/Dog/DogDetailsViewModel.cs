@@ -526,6 +526,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     return true;
                 }
 
+                if (!DogToEdit.Gender.Equals(SelectedGender))
+                {
+                    return true;
+                }
 
                 if (!DogToEdit.Birthday.Equals(Birthday.ToShortDateString()))
                 {

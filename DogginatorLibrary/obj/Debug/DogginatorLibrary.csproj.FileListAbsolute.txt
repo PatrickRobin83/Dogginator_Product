@@ -34,3 +34,4 @@ D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\bin\Debug\S
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csproj.CoreCompileInputs.cache
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.dll
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.pdb
+D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csprojResolveAssemblyReference.cache
