@@ -13,6 +13,7 @@ namespace DogginatorLibrary.Helper
 
         private static DateTime _dataBaseDate;
         private static DateTime _dateOnStartup = DateTime.Now;
+        private static string _fileNamePrefix = DateTime.Now.ToString("yyyy-MM-dd");
 
         #endregion
 
@@ -31,7 +32,7 @@ namespace DogginatorLibrary.Helper
             }
             if (!File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
             {
-                File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
+                File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}");
             }
             else
             {
@@ -39,11 +40,11 @@ namespace DogginatorLibrary.Helper
                 TimeSpan sp = _dateOnStartup - _dataBaseDate;
                 if (sp.Days > 3)
                 {
-                    if (File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
-                    {
-                        File.Delete($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
-                    }
-                    File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
+                    //if (File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
+                    //{
+                    //    File.Delete($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
+                    //}
+                    File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}");
                 }
             }
         }
