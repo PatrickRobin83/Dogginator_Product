@@ -65,7 +65,7 @@ namespace DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     connection.Query(@"UPDATE Dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday, 
-                                       castrated = @PermamentCastrated, 
+                                       permanentcastrated = @PermanentCastrated, 
                                        castratedsince = @CastratedSince, effectiveuntil = @EffectiveUntil, active = @Active  WHERE id = @Id", dModel);
                 }
             }
@@ -196,7 +196,7 @@ namespace DogginatorLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday,permamentcastrated, castratedsince, effectiveuntil, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @PermanentCastrated, @CastratedSince, @EffectiveUntil, datetime('now'), null, 1 ); SELECT last_insert_rowid();", dModel).First();
+                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday,permanentcastrated, castratedsince, effectiveuntil, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @PermanentCastrated, @CastratedSince, @EffectiveUntil, datetime('now'), null, 1 ); SELECT last_insert_rowid();", dModel).First();
                 if (dModel.Diseases != null && dModel.Diseases.Count > 0)
                 {
                     foreach (DiseasesModel disModel in dModel.Diseases)

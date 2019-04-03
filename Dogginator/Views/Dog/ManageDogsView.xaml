@@ -39,7 +39,7 @@
                     <DataGridTextColumn Header="Fellfarbe" IsReadOnly="True" Binding="{Binding Color}"/>
                     <DataGridTextColumn Header="Geschlecht" IsReadOnly="True" Binding="{Binding Gender}"/>
                     <DataGridTextColumn Header="geb. Tag" IsReadOnly="True" Binding="{Binding Birthday}"/>
-                    <DataGridCheckBoxColumn Header="Dauerhaft Kastriert" IsReadOnly="True" Binding="{Binding PermamentCastrated}"/>
+                    <DataGridCheckBoxColumn Header="Dauerhaft Kastriert" IsReadOnly="True" Binding="{Binding PermanentCastrated}"/>
                     <DataGridCheckBoxColumn Header="Ist Aktiv" IsReadOnly="True" Binding="{Binding Active}"/>
 
                 </DataGrid.Columns>

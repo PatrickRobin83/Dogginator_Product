@@ -142,14 +142,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     model.DogActive = "inaktiv";
                 }
 
-                if (model.Chipped == true)
-                {
-                    model.Marker = "Chip";
-                }
-                else
-                {
-                    model.Marker = "Tattoo";
-                }
             }
         }
 

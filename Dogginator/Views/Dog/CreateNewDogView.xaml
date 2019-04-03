@@ -43,6 +43,7 @@
                 <DatePicker x:Name="Birthday" Height="25" SelectedDateFormat="Short"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="160" MinWidth="160">
+                <!--
                 <TextBlock>Tasso Registrierung:</TextBlock>
                 <TextBox x:Name="TassoRegistration" Height="20"/>
                 <TextBlock>Identifikation:</TextBlock>
@@ -58,6 +59,21 @@
                     <DatePicker x:Name="CastratedSince" SelectedDateFormat="Short"/>
                     <TextBlock>Methode:</TextBlock>
                     <TextBox x:Name="CastrateMethod"/>
+                </StackPanel>
+                -->
+                <TextBlock>Dauerhaft Kastriert</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="CastrationIsDurable" Margin="0 5 0 0">Ja</RadioButton>
+                    <RadioButton x:Name="CastrationIsNotDurable" Margin="60 5 0 0">Nein</RadioButton>
+                </StackPanel>
+
+                <StackPanel x:Name="WhenIsVisible"  Orientation="Vertical" Margin="0 0 0 0" MaxWidth="300">
+                    <TextBlock>Seit:</TextBlock>
+                    <DatePicker x:Name="CastratedSince" SelectedDateFormat="Short"/>
+                </StackPanel>
+                <StackPanel x:Name="EffectiveUntilIsVisible"  Orientation="Vertical" Margin="0 0 0 0" MaxWidth="300">
+                    <TextBlock>Wirksam bis:</TextBlock>
+                    <DatePicker x:Name="EffectiveUntil" SelectedDateFormat="Short"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="300" MinWidth="300">

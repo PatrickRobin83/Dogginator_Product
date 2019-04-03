@@ -12,29 +12,20 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
     public class CreateNewDogViewModel : Screen
     {
         #region Fields
-        private bool _whenAndMethodIsVisible = false;
+        private bool _whenIsVisible = false;
+        private bool _effectiveUntilIsVisible = false;
+
         private string  _name = "";
         private string _breed = "";
         private string _color = "";
         private BindableCollection<string> _gender = new BindableCollection<string>();
         private string _selectedGender = "";
         private DateTime _birthday;
-        // TODO: remove after redesign
-        private string _tassoRegistration;
-        // TODO: remove after redesign
-        private bool _rDBChipChecked = true;
-        // TODO: remove after redesign
-        private bool _rDBTattooChecked = false;
-        // TODO: remove after redesign
-        private bool _chipped = false;
-        // TODO: remove after redesign
-        private string _whichPoint = "";
-        // TODO: remove after redesign
-        private bool _isSelectedCastrated = false;
-        // TODO: remove after redesign
+        private bool _castrationIsDurable = false;
+        private bool _castrationIsNotDurable = false;
         private DateTime _castratedSince;
-        // TODO: remove after redesign
-        private string _castrateMethod = "";
+        private DateTime _effectiveUntil;
+        private bool _permanentCastrated;
         private string _addDiseaseText = "";
         private BindableCollection<DiseasesModel> _diseasesList = new BindableCollection<DiseasesModel>();
         private DiseasesModel _selectedDisease = new DiseasesModel();
@@ -45,14 +36,23 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Properties
-        // TODO: remove affter redesign
-        public bool WhenAndMethodIsVisible
+        public bool WhenIsVisible
         {
-            get { return _whenAndMethodIsVisible; }
+            get { return _whenIsVisible; }
             set
             {
-                _whenAndMethodIsVisible = value;
-                NotifyOfPropertyChange(() => WhenAndMethodIsVisible);
+                _whenIsVisible = value;
+                NotifyOfPropertyChange(() => WhenIsVisible);
+            }
+        }
+
+        public bool EffectiveUntilIsVisible
+        {
+            get { return _effectiveUntilIsVisible; }
+            set
+            {
+                _effectiveUntilIsVisible = value;
+                NotifyOfPropertyChange(() => EffectiveUntilIsVisible);
             }
         }
 
@@ -116,76 +116,38 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
-        // TODO: remove after redesign
-        public string TassoRegistration
+        public bool CastrationIsDurable
         {
-            get { return _tassoRegistration; }
+            get { return _castrationIsDurable; }
             set
             {
-                _tassoRegistration = value;
-                NotifyOfPropertyChange(() => TassoRegistration);
-            }
-        }
-        // TODO: remove after redesign
-        public bool RDBChipChecked
-        {
-            get { return _rDBChipChecked; }
-            set
-            {
-                _rDBChipChecked = value;
-                NotifyOfPropertyChange(() => RDBChipChecked);
-            }
-        }
-        // TODO: remove after redesign
-        public bool RDBTattooChecked
-        {
-            get { return _rDBTattooChecked; }
-            set
-            {
-                _rDBTattooChecked = value;
-                NotifyOfPropertyChange(() => RDBTattooChecked);
-
-            }
-        }
-        // TODO: remove after redesign
-        public bool Chipped
-        {
-            get { return _chipped; }
-            set
-            {
-                _chipped = value;
-                NotifyOfPropertyChange(() => Chipped);
-            }
-        }
-        // TODO: remove after redesign
-        public string WhichPoint
-        {
-            get { return _whichPoint; }
-            set
-            {
-                _whichPoint = value;
-                NotifyOfPropertyChange(() => WhichPoint);
-            }
-        }
-        // TODO: remove after redesign
-        public bool IsSelectedCastrated
-        {
-            get { return _isSelectedCastrated; }
-            set
-            {
-                _isSelectedCastrated = value;
-                NotifyOfPropertyChange(() => IsSelectedCastrated);
-                if (IsSelectedCastrated)
+                _castrationIsDurable = value;
+                NotifyOfPropertyChange(() => CastrationIsDurable);
+                NotifyOfPropertyChange(() => CanSaveDog);
+                if (CastrationIsDurable)
                 {
-                    WhenAndMethodIsVisible = true;
+                    WhenIsVisible = true;
+                    EffectiveUntilIsVisible = false;
                 }
                 else
                 {
-                    WhenAndMethodIsVisible = false;
+                    WhenIsVisible = false;
+                    EffectiveUntilIsVisible = true;
                 }
             }
         }
-        // TODO: remove after redesign
+        public bool CastrationIsNotDurable
+        {
+            get { return _castrationIsNotDurable; }
+            set
+            {
+                _castrationIsNotDurable = value;
+                NotifyOfPropertyChange(() => CastrationIsNotDurable);
+                NotifyOfPropertyChange(() => CanSaveDog);
+
+            }
+        }
+
         public DateTime CastratedSince
         {
             get { return _castratedSince; }
@@ -195,17 +157,29 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CastratedSince);
             }
         }
-        // TODO: remove after redesign
-        public string CastrateMethod
+
+        public DateTime EffectiveUntil
         {
-            get { return _castrateMethod; }
+            get { return _effectiveUntil; }
             set
             {
-                _castrateMethod = value;
-                NotifyOfPropertyChange(() => CastrateMethod); 
+                _effectiveUntil = value;
+                NotifyOfPropertyChange(() => EffectiveUntil);
+                NotifyOfPropertyChange(() => CanSaveDog);
             }
         }
 
+        public bool PermanentCastrated
+        {
+            get { return _permanentCastrated; }
+            set
+            {
+                _permanentCastrated = value;
+                NotifyOfPropertyChange(() => PermanentCastrated);
+                NotifyOfPropertyChange(() => CanSaveDog);
+            }
+        }
+                
         public string AddDiseaseText
         {
             get { return _addDiseaseText; }
@@ -274,6 +248,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             Gender.Add("Rüde");
             Birthday = DateTime.Now;
             CastratedSince = DateTime.Now;
+            EffectiveUntil = DateTime.Now;
 
         }
         #endregion
@@ -425,32 +400,18 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 dogModel.Birthday = Birthday.ToString("dd.MM.yyyy");
             }
-            // TODO: remove after redesign
-            if (!string.IsNullOrWhiteSpace(TassoRegistration))
+           
+            if (PermanentCastrated)
             {
-                dogModel.TassoRegistration = TassoRegistration;
-            }
-            // TODO: remove after redesign
-            if (RDBChipChecked)
-            {
-                Chipped = true;
-            }
-            else
-            {
-                Chipped = false;
-            }
-            // TODO: remove after redesign
-            dogModel.WhichPoint = WhichPoint;
-            if (IsSelectedCastrated)
-            {
-                dogModel.Castrated = true;
                 dogModel.CastratedSince = CastratedSince.ToString("dd.MM.yyyy");
-                dogModel.CastrateMethod = CastrateMethod;
+                dogModel.PermanentCastrated = true;
             }
             else
             {
-                dogModel.Castrated = false;
+                dogModel.EffectiveUntil = EffectiveUntil.ToString("dd.MM.yyyy");
+                dogModel.PermanentCastrated = false;
             }
+
 
             if(DiseasesList.Count > 0)
             {
