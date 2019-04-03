@@ -13,21 +13,44 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
     {
         #region Fields
         private DogModel _dogToEdit;
+        // TODO: remove after redesign
         private bool _whenAndMethodIsVisible = false;
+
+        private bool _whenIsVisible = false;
+        private bool _effectiveUntilIsVisible;
+
         private BindableCollection<string> _gender = new BindableCollection<string>();
         private string _name = "";
         private string _breed = "";
         private string _color = "";
         private string _selectedGender = "";
         private DateTime _birthday;
+
+        // TODO: remove affter redesign
         private string _tassoRegistration;
+        // TODO: remove affter redesign
         private bool _rDBChipChecked = true;
+        // TODO: remove affter redesign
         private bool _rDBTattooChecked = false;
+
+        private bool _castrationIsDurable = false;
+        private bool _castrationIsNotDurable = false;
+
+        // TODO: remove affter redesign
         private bool _chipped = false;
+        // TODO: remove affter redesign
         private string _whichPoint = "";
+        // TODO: remove affter redesign
         private bool _isSelectedCastrated = false;
-        private DateTime _castratedSince;
+        
+        // TODO: remove affter redesign
         private string _castrateMethod = "";
+
+
+        private DateTime _castratedSince;
+        private DateTime _effectiveUntil;
+        private bool _permanentCastrated;
+
         private string _addDiseaseText = "";
         private BindableCollection<DiseasesModel> _diseasesList = new BindableCollection<DiseasesModel>();
         private DiseasesModel _selectedDisease = new DiseasesModel();
@@ -61,6 +84,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
 
         }
+        // TODO: remove affter redesign
         public bool WhenAndMethodIsVisible
         {
             get { return _whenAndMethodIsVisible; }
@@ -70,6 +94,27 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => WhenAndMethodIsVisible);
             }
         }
+
+        public bool WhenIsVisible
+        {
+            get { return _whenIsVisible; }
+            set
+            {
+                _whenIsVisible = value;
+                NotifyOfPropertyChange(() => WhenIsVisible);
+            }
+        }
+
+        public bool EffectiveUntilIsVisible
+        {
+            get { return _effectiveUntilIsVisible; }
+            set
+            {
+                _effectiveUntilIsVisible = value;
+                NotifyOfPropertyChange(() => EffectiveUntilIsVisible);
+            }
+        }
+
         public string Name
         {
             get { return _name; }
@@ -120,6 +165,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        // TODO: remove affter redesign
         public string TassoRegistration
         {
             get { return _tassoRegistration; }
@@ -130,6 +177,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+        // TODO: remove affter redesign
         public bool RDBChipChecked
         {
             get { return _rDBChipChecked; }
@@ -141,6 +189,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => Chipped);
             }
         }
+        // TODO: remove affter redesign
         public bool RDBTattooChecked
         {
             get { return _rDBTattooChecked; }
@@ -154,6 +203,38 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             }
         }
+
+        public bool CastrationIsDurable
+        {
+            get { return _castrationIsDurable; }
+            set
+            {
+                _castrationIsDurable = value;
+                NotifyOfPropertyChange(() => CastrationIsDurable);
+                if (CastrationIsDurable)
+                {
+                    WhenIsVisible = true;
+                    EffectiveUntilIsVisible = false;
+                }
+                else
+                {
+                    WhenIsVisible = false;
+                    EffectiveUntilIsVisible = true;
+                }
+            }
+        }
+        public bool CastrationIsNotDurable
+        {
+            get { return _castrationIsNotDurable; }
+            set
+            {
+                _castrationIsNotDurable = value;
+                NotifyOfPropertyChange(() => CastrationIsNotDurable);
+               
+            }
+        }
+
+
         public bool Chipped
         {
             get { return _chipped; }
@@ -164,6 +245,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+        // TODO: remove affter redesign
         public string WhichPoint
         {
             get { return _whichPoint; }
@@ -174,6 +256,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+        // TODO: remove affter redesign
         public bool IsSelectedCastrated
         {
             get { return _isSelectedCastrated; }
@@ -192,6 +275,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             }
         }
+        // TODO: remove affter redesign
         public DateTime CastratedSince
         {
             get { return _castratedSince; }
@@ -202,6 +286,29 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        public DateTime EffectiveUntil
+        {
+            get { return _effectiveUntil; }
+            set
+            {
+                _effectiveUntil = value;
+                NotifyOfPropertyChange(() => EffectiveUntil);
+                NotifyOfPropertyChange(() => CanEditDog);
+            }
+        }
+
+        public bool PermanentCastrated
+        {
+            get { return _permanentCastrated; }
+            set
+            {
+                _permanentCastrated = value;
+                NotifyOfPropertyChange(() => PermanentCastrated);
+            }
+        }
+
+        // TODO: remove affter redesign
         public string CastrateMethod
         {
             get { return _castrateMethod; }
@@ -212,6 +319,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
         public string AddDiseaseText
         {
             get { return _addDiseaseText; }
@@ -325,6 +433,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             Gender.Add("Rüde");
             SelectedGender = DogToEdit.Gender;
             Birthday = Convert.ToDateTime(DogToEdit.Birthday);
+
+            // TODO: remove affter redesign
             TassoRegistration = DogToEdit.TassoRegistration;
             if (DogToEdit.Chipped)
             {
@@ -338,19 +448,43 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 RDBChipChecked = false;
                 Chipped = false;
             }
+            // TODO: remove affter redesign
             WhichPoint = DogToEdit.WhichPoint;
-            IsSelectedCastrated = DogToEdit.Castrated;
-            if (IsSelectedCastrated)
+            // TODO: remove affter redesign
+            //IsSelectedCastrated = DogToEdit.Castrated;
+            //if (IsSelectedCastrated)
+            //{
+            //    CastratedSince = Convert.ToDateTime(DogToEdit.CastratedSince);
+            //    CastrateMethod = DogToEdit.CastrateMethod;
+            //}
+            //else
+            //{
+            //    CastratedSince = DateTime.Now;
+            //    CastrateMethod = "";
+            //}
+            
+            if (DogToEdit.PermamentCastrated)
             {
                 CastratedSince = Convert.ToDateTime(DogToEdit.CastratedSince);
-                CastrateMethod = DogToEdit.CastrateMethod;
+                CastrationIsDurable = true;
+                PermanentCastrated = true;
+                
             }
             else
             {
-                CastratedSince = DateTime.Now;
-                CastrateMethod = "";
+                if (DogToEdit.EffectiveUntil != null)
+                {
+                    EffectiveUntil = Convert.ToDateTime(DogToEdit.EffectiveUntil);
+                }
+                else
+                {
+                    EffectiveUntil = DateTime.Now;
+                }
+                CastrationIsDurable = false;
+                CastrationIsNotDurable = true;
+                PermanentCastrated = false;
             }
-            
+
             if (DogToEdit.Diseases != null && DogToEdit.Diseases.Count > 0)
             {
                 DiseasesList = new BindableCollection<DiseasesModel>(DogToEdit.Diseases);
@@ -535,10 +669,12 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 {
                     return true;
                 }
+                // TODO: remove affter redesign
                 if (DogToEdit.TassoRegistration != null && !DogToEdit.TassoRegistration.Equals(TassoRegistration))
                 {
                     return true;
                 }
+                // TODO: remove affter redesign
                 if (RDBChipChecked)
                 {
                     if (DogToEdit.Chipped == false)
@@ -546,22 +682,28 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                         return true;
                     }
                 }
-                if(RDBTattooChecked)
+                // TODO: remove affter redesign
+                if (RDBTattooChecked)
                 {
                     if (DogToEdit.Chipped == true)
                     {
                         return true;
                     }
                 }
-
-                if (DogToEdit.Castrated == false && IsSelectedCastrated == true)
+                if (DogToEdit.PermamentCastrated == false && CastrationIsDurable == true)
                 {
                     return true;
                 }
+                if (DogToEdit.PermamentCastrated == true && CastrationIsDurable == false)
+                {
+                    return true;
+                }
+                // TODO: remove affter redesign
                 if (IsSelectedCastrated && !DogToEdit.CastratedSince.Equals(CastratedSince.ToShortDateString()))
                 {
                     return true;
                 }
+                // TODO: remove affter redesign
                 if (IsSelectedCastrated && !DogToEdit.CastrateMethod.Equals(CastrateMethod))
                 {
                     return true;
@@ -591,7 +733,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
            {
                 DogToEdit.TassoRegistration = TassoRegistration;
            }
-           if (RDBChipChecked)
+            // TODO: remove affter redesign
+            if (RDBChipChecked)
             {
                 DogToEdit.Chipped = true;
             }
@@ -599,9 +742,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 DogToEdit.Chipped = true;
             }
-            
+            // TODO: remove affter redesign
             DogToEdit.WhichPoint = WhichPoint;
-           if (IsSelectedCastrated)
+            // TODO: remove affter redesign
+            if (IsSelectedCastrated)
            {
                 DogToEdit.Castrated = true;
                 DogToEdit.CastratedSince = CastratedSince.ToString("dd.MM.yyyy");

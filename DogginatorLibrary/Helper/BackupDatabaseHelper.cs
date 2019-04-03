@@ -30,7 +30,7 @@ namespace DogginatorLibrary.Helper
             {
                 Directory.CreateDirectory(GlobalConfig.DatabaseBackupPath());
             }
-            if (!File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
+            if (!File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}"))
             {
                 File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}");
             }
@@ -40,10 +40,10 @@ namespace DogginatorLibrary.Helper
                 TimeSpan sp = _dateOnStartup - _dataBaseDate;
                 if (sp.Days > 3)
                 {
-                    //if (File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}"))
-                    //{
-                    //    File.Delete($"{GlobalConfig.DatabaseBackupPath()}\\{GlobalConfig.DATABASEBACKUPFILENAME}");
-                    //}
+                    if (File.Exists($"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}"))
+                    {
+                        File.Delete($"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}");
+                    }
                     File.Copy(GlobalConfig.DatabaseFilename(), $"{GlobalConfig.DatabaseBackupPath()}\\{_fileNamePrefix}_{GlobalConfig.DATABASEBACKUPFILENAME}");
                 }
             }

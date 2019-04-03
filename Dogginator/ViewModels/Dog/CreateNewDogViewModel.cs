@@ -19,13 +19,21 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private BindableCollection<string> _gender = new BindableCollection<string>();
         private string _selectedGender = "";
         private DateTime _birthday;
+        // TODO: remove after redesign
         private string _tassoRegistration;
+        // TODO: remove after redesign
         private bool _rDBChipChecked = true;
+        // TODO: remove after redesign
         private bool _rDBTattooChecked = false;
+        // TODO: remove after redesign
         private bool _chipped = false;
+        // TODO: remove after redesign
         private string _whichPoint = "";
+        // TODO: remove after redesign
         private bool _isSelectedCastrated = false;
+        // TODO: remove after redesign
         private DateTime _castratedSince;
+        // TODO: remove after redesign
         private string _castrateMethod = "";
         private string _addDiseaseText = "";
         private BindableCollection<DiseasesModel> _diseasesList = new BindableCollection<DiseasesModel>();
@@ -37,6 +45,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Properties
+        // TODO: remove affter redesign
         public bool WhenAndMethodIsVisible
         {
             get { return _whenAndMethodIsVisible; }
@@ -46,6 +55,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => WhenAndMethodIsVisible);
             }
         }
+
         public string Name
         {
             get { return _name; }
@@ -105,6 +115,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => Birthday);
             }
         }
+
+        // TODO: remove after redesign
         public string TassoRegistration
         {
             get { return _tassoRegistration; }
@@ -114,6 +126,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => TassoRegistration);
             }
         }
+        // TODO: remove after redesign
         public bool RDBChipChecked
         {
             get { return _rDBChipChecked; }
@@ -123,6 +136,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => RDBChipChecked);
             }
         }
+        // TODO: remove after redesign
         public bool RDBTattooChecked
         {
             get { return _rDBTattooChecked; }
@@ -133,6 +147,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             }
         }
+        // TODO: remove after redesign
         public bool Chipped
         {
             get { return _chipped; }
@@ -142,6 +157,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => Chipped);
             }
         }
+        // TODO: remove after redesign
         public string WhichPoint
         {
             get { return _whichPoint; }
@@ -151,6 +167,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => WhichPoint);
             }
         }
+        // TODO: remove after redesign
         public bool IsSelectedCastrated
         {
             get { return _isSelectedCastrated; }
@@ -168,6 +185,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
             }
         }
+        // TODO: remove after redesign
         public DateTime CastratedSince
         {
             get { return _castratedSince; }
@@ -177,6 +195,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CastratedSince);
             }
         }
+        // TODO: remove after redesign
         public string CastrateMethod
         {
             get { return _castrateMethod; }
@@ -186,6 +205,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => CastrateMethod); 
             }
         }
+
         public string AddDiseaseText
         {
             get { return _addDiseaseText; }
@@ -405,10 +425,12 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 dogModel.Birthday = Birthday.ToString("dd.MM.yyyy");
             }
+            // TODO: remove after redesign
             if (!string.IsNullOrWhiteSpace(TassoRegistration))
             {
                 dogModel.TassoRegistration = TassoRegistration;
             }
+            // TODO: remove after redesign
             if (RDBChipChecked)
             {
                 Chipped = true;
@@ -417,7 +439,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 Chipped = false;
             }
-
+            // TODO: remove after redesign
             dogModel.WhichPoint = WhichPoint;
             if (IsSelectedCastrated)
             {
@@ -429,6 +451,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             {
                 dogModel.Castrated = false;
             }
+
             if(DiseasesList.Count > 0)
             {
                 dogModel.Diseases = new List<DiseasesModel>(DiseasesList);

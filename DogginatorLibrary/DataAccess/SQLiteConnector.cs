@@ -45,7 +45,8 @@ namespace DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     connection.Query(@"UPDATE Customer SET edit_date = datetime('now'),firstname = @Firstname, lastname = @LastName, street = @Street, birthday = @Birthday,
-                                       housenumber = @HouseNumber, zipcode = @ZipCode, city = @City, phonenumber = @PhoneNumber, mobilenumber = @MobileNumber, email = @Email, active = @Active WHERE id = @Id", cModel);
+                                       housenumber = @HouseNumber, zipcode = @ZipCode, city = @City, phonenumber = @PhoneNumber, mobilenumber = @MobileNumber, email = @Email, 
+                                        active = @Active WHERE id = @Id", cModel);
                 }
             }
 
@@ -64,8 +65,8 @@ namespace DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     connection.Query(@"UPDATE Dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday, 
-                                       tassoregistration = @TassoRegistration, chipped = @Chipped, whichpoint = @WhichPoint, castrated = @Castrated, 
-                                       castratedsince = @CastratedSince, castratemethod = @CastrateMethod, active = @Active  WHERE id = @Id", dModel);
+                                       castrated = @PermamentCastrated, 
+                                       castratedsince = @CastratedSince, effectiveuntil = @EffectiveUntil, active = @Active  WHERE id = @Id", dModel);
                 }
             }
 
@@ -195,7 +196,7 @@ namespace DogginatorLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday, tassoregistration, chipped, whichpoint, castrated, castratedsince, castratemethod, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @TassoRegistration, @Chipped, @WhichPoint, @Castrated, @CastratedSince, @CastrateMethod, datetime('now'), null, 1 ); SELECT last_insert_rowid();", dModel).First();
+                dModel.Id = connection.Query<int>(@"INSERT INTO Dog (name, breed, color, gender, birthday,permamentcastrated, castratedsince, effectiveuntil, create_date, edit_date, active) VALUES(@Name, @Breed, @Color, @Gender, @Birthday, @PermanentCastrated, @CastratedSince, @EffectiveUntil, datetime('now'), null, 1 ); SELECT last_insert_rowid();", dModel).First();
                 if (dModel.Diseases != null && dModel.Diseases.Count > 0)
                 {
                     foreach (DiseasesModel disModel in dModel.Diseases)
@@ -530,14 +531,12 @@ namespace DogginatorLibrary.DataAccess
                     if (activeAndInactive)
                     {
                         results = connection.Query<DogModel>($"SELECT * FROM dog WHERE name like '%{searchText}%' OR breed like '%{searchText}%' OR " +
-                            $"color like '%{searchText}%' OR gender like '%{searchText}%' OR birthday like '%{searchText}%' OR tassoregistration like '%{searchText}%' OR whichpoint like '%{searchText}%' OR " +
-                            $"castratedsince like '%{searchText}%'").ToList();
+                            $"color like '%{searchText}%' OR gender like '%{searchText}%' OR birthday like '%{searchText}%'").ToList();
                     }
                     else
                     {
                         results = connection.Query<DogModel>($"SELECT * FROM dog WHERE (name like '%{searchText}%' OR breed like '%{searchText}%' OR " +
-                            $"color like '%{searchText}%' OR gender like '%{searchText}%' OR birthday like '%{searchText}%' OR tassoregistration like '%{searchText}%' OR whichpoint like '%{searchText}%' OR " +
-                            $"castratedsince like '%{searchText}%') AND active = 1").ToList();
+                            $"color like '%{searchText}%' OR gender like '%{searchText}%' OR birthday like '%{searchText}%') AND active = 1").ToList();
                     }
                 }
             }
@@ -547,7 +546,7 @@ namespace DogginatorLibrary.DataAccess
 
             }
             return results;
-            #endregion
+           
         }
 
         public UserModel IsUserAndPasswordRight(UserModel input)
@@ -695,6 +694,6 @@ namespace DogginatorLibrary.DataAccess
                 return new List<ProductModel>();
             }
         }
-
+        #endregion
     }
 }

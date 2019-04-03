@@ -39,10 +39,7 @@
                     <DataGridTextColumn Header="Fellfarbe" IsReadOnly="True" Binding="{Binding Color}"/>
                     <DataGridTextColumn Header="Geschlecht" IsReadOnly="True" Binding="{Binding Gender}"/>
                     <DataGridTextColumn Header="geb. Tag" IsReadOnly="True" Binding="{Binding Birthday}"/>
-                    <DataGridTextColumn Header="Tasso Nummer" IsReadOnly="True" Binding="{Binding TassoRegistration}"/>
-                    <DataGridTextColumn Header="Chip oder Tattoo" IsReadOnly="True" Binding="{Binding Marker}"/>
-                    <DataGridTextColumn Header="Stelle" IsReadOnly="True" Binding="{Binding WhichPoint}"/>
-                    <DataGridCheckBoxColumn Header="Kastriert" IsReadOnly="True" Binding="{Binding Castrated}"/>
+                    <DataGridCheckBoxColumn Header="Dauerhaft Kastriert" IsReadOnly="True" Binding="{Binding PermamentCastrated}"/>
                     <DataGridCheckBoxColumn Header="Ist Aktiv" IsReadOnly="True" Binding="{Binding Active}"/>
 
                 </DataGrid.Columns>

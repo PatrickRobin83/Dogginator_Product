@@ -26,17 +26,29 @@ namespace DogginatorLibrary.Models
 
         public string Birthday { get; set; }
 
+        // TODO: remove after redesign
         public string TassoRegistration { get; set; }
 
+        // TODO: remove after redesign
         public bool Chipped { get; set; }
 
+        // TODO: remove after redesign
         public string WhichPoint { get; set; }
 
+        // TODO: remove after redesign
         public bool Castrated { get; set; }
 
+        // TODO: remove after redesign
         public string CastratedSince { get; set; }
 
+        // TODO: remove after redesign
         public string CastrateMethod { get; set; }
+
+        public bool PermamentCastrated { get; set; }
+
+        
+
+        public string EffectiveUntil { get; set; }
 
         public List<DiseasesModel> Diseases {get ; set; }
 
@@ -71,7 +83,6 @@ namespace DogginatorLibrary.Models
         }
         public DogModel()
         {
-
         }
         #endregion
 
