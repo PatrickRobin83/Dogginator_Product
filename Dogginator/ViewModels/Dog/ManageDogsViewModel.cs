@@ -167,6 +167,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         /// </summary>
         public void DeleteDog()
         {
+            SelectedDog.Active = false;
             GlobalConfig.Connection.DeleteDogDiseasesRelation(SelectedDog);
             GlobalConfig.Connection.DeleteDogToCharacteristicsRelation(SelectedDog);
             GlobalConfig.Connection.DeleteDogFromDatabase(SelectedDog);
@@ -176,6 +177,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
             
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+            ActiveDog(AvailableDogs);
+            NotifyOfPropertyChange(() => AvailableDogs);
+            ShowalsoInactive = false;
+            NotifyOfPropertyChange(() => ShowalsoInactive);
         }
 
         /// <summary>
