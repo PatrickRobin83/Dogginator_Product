@@ -4,9 +4,47 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
-             mc:Ignorable="d" Background="LightBlue"
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" FontSize="14" Background="White"
+             d:DesignHeight="700" d:DesignWidth="800" >
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">Create New Products View</TextBlock>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Row 0 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="180 10 0 0" 
+                   Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Left" FontSize="28" FontWeight="Bold">
+            Artikel hinzufügen
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="400" MinWidth="400">
+                
+                <TextBlock>Artikelnummer:</TextBlock>
+                <TextBox x:Name="ItemNumber"  MinWidth="200" MaxWidth="200" HorizontalAlignment="Left"/>
+                <TextBlock>Titel:</TextBlock>
+                <TextBox x:Name="ShortDescription" MinWidth="200" MaxWidth="200" HorizontalAlignment="Left"/>
+                <TextBlock>Beschreibung:</TextBlock>
+                <TextBox x:Name="LongDescription" MinWidth="400" MaxWidth="400" HorizontalAlignment="Left" MinLines="5" MaxLines="8"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Preis:</TextBlock>
+                    <TextBox TextWrapping="Wrap" x:Name="Price" MinWidth="100" MaxWidth="100" HorizontalAlignment="Left"/>
+
+                    <TextBlock>€</TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin=" 5 0 5 0">
+                <Button x:Name="CreateItem" Margin="0 0 5 0"  Background="Green">Artikel anlegen</Button>
+                <Button x:Name="CancelCreation" Margin="5 0 0 0" Background="Red" Foreground="White">Abbrechen</Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

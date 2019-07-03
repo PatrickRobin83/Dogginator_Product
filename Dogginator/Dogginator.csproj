@@ -204,9 +204,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\ConsistedBook\ConsistedBookView.xaml">
       <SubType>Designer</SubType>

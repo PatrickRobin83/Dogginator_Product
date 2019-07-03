@@ -110,5 +110,9 @@ namespace DogginatorLibrary.DataAccess
         List<UserModel> SearchResultUser(string searchText, bool showInactive);
 
         List<ProductModel> GetAllProducts();
+
+        ProductModel AddProductToDatabase(ProductModel productModel);
+        void DeleteProductFromDatabase(ProductModel productModel);
+        void UpdateProduct(ProductModel productModel);
     }
 }

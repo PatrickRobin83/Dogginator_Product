@@ -694,6 +694,49 @@ namespace DogginatorLibrary.DataAccess
                 return new List<ProductModel>();
             }
         }
+
+        public ProductModel AddProductToDatabase(ProductModel productModel)
+        {
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            {
+                productModel.ItemNumber = connection.Query<int>(@"INSERT INTO product (shortdescription, longdescription, price, active create_date, edit_date) VALUES @Shortdescription, @Longdescription, price, @active, datetime('now'), null, 1 ); SELECT last_insert_rowid();", productModel).First();
+
+                return productModel;
+            }
+        }
+
+        public void DeleteProductFromDatabase(ProductModel productModel)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query("UPDATE product SET edit_date = datetime('now'), active = 0 WHERE id= " + productModel.ItemNumber);
+                }
+            }
+            catch (SQLiteException sqLiteEx)
+            {
+                Console.WriteLine(sqLiteEx.Message);
+                return;
+            }
+        }
+
+        public void UpdateProduct(ProductModel productModel)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query($"UPDATE product SET edit_date = datetime('now'), shortdescription = '{productModel.Shortdescription}', longdescription = '{productModel.Longdescription}', price = {productModel.Price} WHERE '{productModel.ItemNumber}' = itemnumber ");
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
+        }
+
+
         #endregion
     }
 }

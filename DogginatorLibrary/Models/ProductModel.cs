@@ -13,10 +13,11 @@ namespace DogginatorLibrary.Models
         #endregion
 
         #region Properties
+        public bool isActive;
         public int ItemNumber { get; set; }
         public string Shortdescription { get; set; }
         public string Longdescription { get; set; }
-        public decimal Price { get; set; }
+        public float Price { get; set; }
         public string Create_Date { get; set; }
         public string Edit_Date { get; set; }
         #endregion

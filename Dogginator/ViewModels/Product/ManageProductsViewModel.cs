@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    public class ManageProductsViewModel : Conductor<object>.Collection.OneActive
+    public class ManageProductsViewModel : Conductor<object>.Collection.OneActive, IHandle<ProductModel>
     {
         #region Fields
         private string _searchText = "";
@@ -137,6 +137,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public ManageProductsViewModel()
         {
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
+            EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
 
@@ -165,6 +166,23 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         public void DeleteProduct()
         {
             Console.WriteLine("Delete Product pressed");
+        }
+
+        public void Handle(ProductModel message)
+        {
+            if (message != null && message.ItemNumber > 0)
+            {
+                GlobalConfig.Connection.UpdateProduct(message);
+                AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
+            }
+            ProductOverviewIsVisible = true;
+            ProductDetailsIsVisible = false;
+            AddProductIsVisible = false;
+            SelectedProduct = null;
+            AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
+            NotifyOfPropertyChange(() => AvailableProducts);
+            //ShowalsoInactive = false;
+            //NotifyOfPropertyChange(() => ShowalsoInactive);
         }
 
         #endregion
