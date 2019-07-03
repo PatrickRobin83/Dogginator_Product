@@ -120,7 +120,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Get all Available Dogs which contain the text from the searchbox
+        /// </summary>
+        /// <returns></returns>
         private BindableCollection<DogModel> getDogs()
         {
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.SearchResultDogs(DogSearchText, ShowalsoInactive));

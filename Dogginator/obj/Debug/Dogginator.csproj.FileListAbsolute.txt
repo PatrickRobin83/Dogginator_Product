@@ -94,7 +94,6 @@ D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\EntityFr
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.SqlServer.xml
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.xml
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.dll.config
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csprojResolveAssemblyReference.cache
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\ConsistedBook\ConsistedBookView.g.cs
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CreateCustomerView.g.cs
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\CreateNewDogView.g.cs
@@ -151,3 +150,5 @@ D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Op
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.baml
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.g.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.baml
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csprojAssemblyReference.cache
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CopyComplete

@@ -320,6 +320,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             if (DogToEdit.PermanentCastrated)
             {
                 CastratedSince = Convert.ToDateTime(DogToEdit.CastratedSince);
+                EffectiveUntil = DateTime.Now;
                 CastrationIsDurable = true;
                 PermanentCastrated = true;
 
@@ -329,6 +330,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 if (DogToEdit.EffectiveUntil != null)
                 {
                     EffectiveUntil = Convert.ToDateTime(DogToEdit.EffectiveUntil);
+                    CastratedSince = DateTime.Now;
                 }
                 else
                 {
