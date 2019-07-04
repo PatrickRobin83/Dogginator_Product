@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
     public class ManageProductsViewModel : Conductor<object>.Collection.OneActive, IHandle<ProductModel>
@@ -20,6 +21,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private bool _productDetailsIsVisible = false;
         private Screen _activeProductDetailsView;
         private Screen _activeAddProductView;
+        
         #endregion
 
         #region Properties
@@ -165,7 +167,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
        
         public void DeleteProduct()
         {
-            Console.WriteLine("Delete Product pressed");
+            GlobalConfig.Connection.DeleteProductFromDatabase(SelectedProduct);
+            AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
+            //Console.WriteLine("Delete Product pressed");
         }
 
         public void Handle(ProductModel message)

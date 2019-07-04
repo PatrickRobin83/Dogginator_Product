@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DogginatorLibrary.Models;
+using DogginatorLibrary;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
@@ -15,7 +16,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         private int _itemNumber;
         private string _shortdescription;
         private string _longdescription;
-        private float _price;
+        private string _price = "";
+        private decimal _priceInDecimal;
         private DateTime _createDate;
         private DateTime _editDate;
 
@@ -51,13 +53,24 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
-        public float Price
+        public string Price
         {
             get { return _price; }
             set
             {
                 _price = value;
                 NotifyOfPropertyChange(() => Price);
+                Decimal.TryParse(_price, out _priceInDecimal);
+            }
+        }
+
+        public decimal PriceInDecimal
+        {
+            get { return _priceInDecimal; }
+            set
+            {
+                _priceInDecimal = value;
+                NotifyOfPropertyChange(() => PriceInDecimal);
             }
         }
 
@@ -85,7 +98,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         {
             get
             {
-                bool canSave = false;
+                bool canSave = true;
                 if (ShortDescription == null || LongDescription == null || Price == null)
                 {
 
@@ -93,7 +106,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 else
                 {
                     if (ShortDescription.Length > 0 && !ShortDescription.Equals(_shortdescription) ||
-                    LongDescription.Length > 0 && !LongDescription.Equals(_longdescription) || Price != _price && Price != 0 || _isActive != IsActive)
+                    LongDescription.Length > 0 && !LongDescription.Equals(_longdescription) || !_price.Equals(Price) || _isActive != IsActive)
                     {
                         canSave = true;
                     }
@@ -111,7 +124,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             product.ItemNumber = ItemNumber;
             product.Shortdescription = ShortDescription;
             product.Longdescription = LongDescription;
-            product.Price = Price;
+            product.Price = PriceInDecimal;
+            GlobalConfig.Connection.AddProductToDatabase(product);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(product);
         }
 

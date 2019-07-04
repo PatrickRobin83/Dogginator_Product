@@ -683,7 +683,7 @@ namespace DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    products = connection.Query<ProductModel>("SELECT * FROM product").ToList();
+                    products = connection.Query<ProductModel>("SELECT * FROM product WHERE active = 1;").ToList();
 
                     return products;
                 }
@@ -699,7 +699,7 @@ namespace DogginatorLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                productModel.ItemNumber = connection.Query<int>(@"INSERT INTO product (shortdescription, longdescription, price, active create_date, edit_date) VALUES @Shortdescription, @Longdescription, price, @active, datetime('now'), null, 1 ); SELECT last_insert_rowid();", productModel).First();
+                productModel.ItemNumber = connection.Query<int>(@"INSERT INTO product (shortdescription, longdescription, price, active, create_date, edit_date) VALUES (@Shortdescription, @Longdescription, @price, 1, datetime('now'), null); SELECT last_insert_rowid();", productModel).First();
 
                 return productModel;
             }
@@ -711,7 +711,7 @@ namespace DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query("UPDATE product SET edit_date = datetime('now'), active = 0 WHERE id= " + productModel.ItemNumber);
+                    connection.Query("UPDATE product SET edit_date = datetime('now'), active = 0 WHERE itemnumber = " + productModel.ItemNumber);
                 }
             }
             catch (SQLiteException sqLiteEx)
