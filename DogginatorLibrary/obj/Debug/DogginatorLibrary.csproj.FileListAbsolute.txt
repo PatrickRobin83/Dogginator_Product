@@ -16,7 +16,6 @@ D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\Doggin
 D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csproj.CopyComplete
 D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.dll
 D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.pdb
-D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csprojAssemblyReference.cache
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\bin\Debug\DogginatorLibrary.dll.config
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\bin\Debug\DogginatorLibrary.dll
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\bin\Debug\DogginatorLibrary.pdb
@@ -36,3 +35,4 @@ D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\D
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.pdb
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csproj.CopyComplete
 D:\Projekte\MeineProgrammierung\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csprojAssemblyReference.cache
+D:\SourceCode\VisualStudio\Dogginator_Product\DogginatorLibrary\obj\Debug\DogginatorLibrary.csprojAssemblyReference.cache

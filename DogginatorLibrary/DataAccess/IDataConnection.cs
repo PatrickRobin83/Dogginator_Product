@@ -114,5 +114,7 @@ namespace DogginatorLibrary.DataAccess
         ProductModel AddProductToDatabase(ProductModel productModel);
         void DeleteProductFromDatabase(ProductModel productModel);
         void UpdateProduct(ProductModel productModel);
+
+        List<ProductModel> SearchResulProducts(string searchText, bool showInactive);
     }
 }

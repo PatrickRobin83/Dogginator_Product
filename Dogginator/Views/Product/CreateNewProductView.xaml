@@ -27,13 +27,12 @@
         </TextBlock>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="400" MinWidth="400">
-                
                 <TextBlock>Artikelnummer:</TextBlock>
                 <TextBox x:Name="ItemNumber"  MinWidth="200" MaxWidth="200" HorizontalAlignment="Left" IsReadOnly="True"/>
                 <TextBlock>Titel:</TextBlock>
                 <TextBox x:Name="ShortDescription" MinWidth="200" MaxWidth="200" HorizontalAlignment="Left"/>
                 <TextBlock>Beschreibung:</TextBlock>
-                <TextBox x:Name="LongDescription" MinWidth="400" MaxWidth="400" HorizontalAlignment="Left" MinLines="5" MaxLines="8"/>
+                <TextBox x:Name="LongDescription" MinWidth="400" MaxWidth="400" HorizontalAlignment="Left" MinLines="5" MaxLines="5" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock>Preis:</TextBlock>
                     <TextBox x:Name="Price" MinWidth="100" MaxWidth="100" HorizontalAlignment="Left"/>

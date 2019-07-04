@@ -42,7 +42,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             BackupDatabaseHelper.BackupDatabase();
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             ActivateItem(new LoginViewModel());
-
+            //ActivateItem(new ManageProductsViewModel());
         }
         #endregion
 

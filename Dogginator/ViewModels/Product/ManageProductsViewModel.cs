@@ -13,25 +13,28 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
     public class ManageProductsViewModel : Conductor<object>.Collection.OneActive, IHandle<ProductModel>
     {
         #region Fields
-        private string _searchText = "";
+        private string _productSearchText = "";
         private BindableCollection<ProductModel> _availableProducts = new BindableCollection<ProductModel>();
         private ProductModel _selectedProduct;
         private bool _productOverviewIsVisible = true;
         private bool _addProductIsVisible = false;
         private bool _productDetailsIsVisible = false;
+        private bool _showAlsoInactive = false;
         private Screen _activeProductDetailsView;
         private Screen _activeAddProductView;
         
         #endregion
 
         #region Properties
-        public string SearchText
+        public string ProductSearchText
         {
-            get { return _searchText; }
+            get { return _productSearchText; }
             set
             {
-                _searchText = value;
-                NotifyOfPropertyChange(() => SearchText);
+                _productSearchText = value;
+                AvailableProducts = getProducts();
+                NotifyOfPropertyChange(() => ProductSearchText);
+
             }
         }
 
@@ -132,6 +135,18 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => ActiveAddProductView);
             }
         }
+        public bool ShowAlsoInactive
+        {
+            get { return _showAlsoInactive; }
+
+            set
+            {
+                _showAlsoInactive = value;
+                AvailableProducts = getProducts();
+                NotifyOfPropertyChange(() => ShowAlsoInactive);
+
+            }
+        }
 
         #endregion
 
@@ -147,7 +162,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public void EditProduct()
         {
-            ActiveProductDetailsView = new ProductDetailsViewModel();
+            ActiveProductDetailsView = new ProductDetailsViewModel(SelectedProduct);
             Items.Add(ActiveProductDetailsView);
             ProductOverviewIsVisible = false;
             AddProductIsVisible = false;
@@ -176,7 +191,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         {
             if (message != null && message.ItemNumber > 0)
             {
-                GlobalConfig.Connection.UpdateProduct(message);
                 AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
             }
             ProductOverviewIsVisible = true;
@@ -187,6 +201,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             NotifyOfPropertyChange(() => AvailableProducts);
             //ShowalsoInactive = false;
             //NotifyOfPropertyChange(() => ShowalsoInactive);
+        }
+
+        private BindableCollection<ProductModel> getProducts()
+        {
+            AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.SearchResulProducts(ProductSearchText, ShowAlsoInactive));
+
+            return AvailableProducts;
         }
 
         #endregion

@@ -699,7 +699,7 @@ namespace DogginatorLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                productModel.ItemNumber = connection.Query<int>(@"INSERT INTO product (shortdescription, longdescription, price, active, create_date, edit_date) VALUES (@Shortdescription, @Longdescription, @price, 1, datetime('now'), null); SELECT last_insert_rowid();", productModel).First();
+                productModel.ItemNumber = connection.Query<int>($"INSERT INTO product (shortdescription, longdescription, price, active, create_date, edit_date) VALUES ('{productModel.Shortdescription}', '{productModel.Longdescription}', '{productModel.Price}', {productModel.Active}, datetime('now'), null); SELECT last_insert_rowid();", productModel).First();
 
                 return productModel;
             }
@@ -727,13 +727,40 @@ namespace DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query($"UPDATE product SET edit_date = datetime('now'), shortdescription = '{productModel.Shortdescription}', longdescription = '{productModel.Longdescription}', price = {productModel.Price} WHERE '{productModel.ItemNumber}' = itemnumber ");
+                    connection.Query($"UPDATE product SET edit_date = datetime('now'), shortdescription = '{productModel.Shortdescription}', longdescription = '{productModel.Longdescription}', price = '{productModel.Price}', active = {productModel.Active} WHERE '{productModel.ItemNumber}' = itemnumber ");
                 }
             }
             catch (SQLiteException sqEx)
             {
                 Console.WriteLine(sqEx.Message);
             }
+        }
+
+        public List<ProductModel> SearchResulProducts(string searchText, bool showInactive)
+        {
+            List<ProductModel> output = new List<ProductModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (showInactive)
+                    {
+                        output = connection.Query<ProductModel>($"SELECT * FROM product WHERE shortdescription like '%{searchText}%' or longdescription like '%{searchText}%' or itemnumber like '%{searchText}%'").ToList();
+                    }
+                    else
+                    {
+                        output = connection.Query<ProductModel>($"SELECT * FROM product WHERE shortdescription like '%{searchText}%' or longdescription like '%{searchText}%' or itemnumber like '%{searchText}%' AND active = 1").ToList();
+                    }
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+
+            }
+
+            return output;
         }
 
 

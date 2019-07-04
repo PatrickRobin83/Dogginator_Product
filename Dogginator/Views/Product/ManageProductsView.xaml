@@ -26,6 +26,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 5 0">Suche:</TextBlock>
                 <TextBox x:Name="ProductSearchText" MinWidth="560"/>
+                <CheckBox x:Name="ShowAlsoInactive" Margin="15 0 0 0" VerticalAlignment="Center">Zeige auch inaktive</CheckBox>
             </StackPanel>
             <DataGrid x:Name="AvailableProductList" ItemsSource="{Binding Path=AvailableProducts}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
