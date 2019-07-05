@@ -109,6 +109,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         public bool CanEditProduct
         {
+
             get
             {
                 bool output = false;
@@ -127,15 +128,22 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                     }
                 }
 
-                if(!ProductToEdit.Shortdescription.Equals(ShortDescription) || !ProductToEdit.Longdescription.Equals(LongDescription))
+                if(!ProductToEdit.Shortdescription.Equals(ShortDescription))
                 {
                     output = true;
                 }
 
-                if (!ProductToEdit.Price.Equals(Convert.ToDecimal(Price)))
+                if (!ProductToEdit.Longdescription.Equals(LongDescription))
                 {
                     output = true;
                 }
+                
+
+                if (!ProductToEdit.Price.Equals(Price))
+                {
+                    output = true;
+                }
+                
 
                 return output;
             }

@@ -744,13 +744,13 @@ namespace DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    if (showInactive)
+                    if (showInactive == true)
                     {
                         output = connection.Query<ProductModel>($"SELECT * FROM product WHERE shortdescription like '%{searchText}%' or longdescription like '%{searchText}%' or itemnumber like '%{searchText}%'").ToList();
                     }
                     else
                     {
-                        output = connection.Query<ProductModel>($"SELECT * FROM product WHERE shortdescription like '%{searchText}%' or longdescription like '%{searchText}%' or itemnumber like '%{searchText}%' AND active = 1").ToList();
+                        output = connection.Query<ProductModel>($"SELECT * FROM product WHERE shortdescription like '%{searchText}%' AND active = 1 or longdescription like '%{searchText}%' AND active = 1 or itemnumber like '%{searchText}%' AND active = 1").ToList();
                     }
                 }
             }

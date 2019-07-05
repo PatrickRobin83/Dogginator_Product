@@ -43,6 +43,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             ActivateItem(new LoginViewModel());
             //ActivateItem(new ManageProductsViewModel());
+            //ActivateItem(new OverViewViewModel(true,true));
         }
         #endregion
 

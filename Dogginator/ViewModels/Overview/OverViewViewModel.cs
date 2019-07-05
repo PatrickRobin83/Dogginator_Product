@@ -185,7 +185,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 OptionVisibility = Visibility.Visible;
             }
             CustomerCount = GlobalConfig.Connection.Get_CustomerInactiveAndActive().Count;
-            DogCount = GlobalConfig.Connection.Get_DogsAll().Count;
+            DogCount = GlobalConfig.Connection.Get_DogsInactiveAndActive().Count;
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }

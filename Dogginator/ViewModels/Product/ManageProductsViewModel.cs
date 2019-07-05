@@ -142,8 +142,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             set
             {
                 _showAlsoInactive = value;
-                AvailableProducts = getProducts();
                 NotifyOfPropertyChange(() => ShowAlsoInactive);
+                AvailableProducts = getProducts();
+                NotifyOfPropertyChange(() => AvailableProducts);
 
             }
         }
@@ -199,14 +200,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             SelectedProduct = null;
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
             NotifyOfPropertyChange(() => AvailableProducts);
-            //ShowalsoInactive = false;
-            //NotifyOfPropertyChange(() => ShowalsoInactive);
+            ShowAlsoInactive = false;
+            NotifyOfPropertyChange(() => ShowAlsoInactive);
         }
 
         private BindableCollection<ProductModel> getProducts()
         {
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.SearchResulProducts(ProductSearchText, ShowAlsoInactive));
-
             return AvailableProducts;
         }
 
