@@ -69,7 +69,6 @@ namespace DogginatorLibrary.Models
         #endregion
 
         #region Methods
-
         #endregion
     }
 }

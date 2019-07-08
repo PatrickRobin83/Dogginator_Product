@@ -41,9 +41,12 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             GlobalConfig.InitalizeConnections(DataBaseType.SQLite);
             BackupDatabaseHelper.BackupDatabase();
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
-            ActivateItem(new LoginViewModel());
+            //TODO: Activate the LoginView after Debugging
+            //ActivateItem(new LoginViewModel());
+            ActivateItem(new ManageAppointmentsViewModel());
             //ActivateItem(new ManageProductsViewModel());
             //ActivateItem(new OverViewViewModel(true,true));
+
         }
         #endregion
 

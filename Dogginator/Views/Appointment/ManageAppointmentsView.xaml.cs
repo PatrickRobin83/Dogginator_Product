@@ -24,5 +24,7 @@ namespace de.rietrob.dogginator_product.dogginator.Views
         {
             InitializeComponent();
         }
+
+        
     }
 }

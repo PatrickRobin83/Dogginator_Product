@@ -4,10 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:de.rietrob.dogginator_product.dogginator.Views"
-            mc:Ignorable="d" Background="LightBlue" FontSize="28" Foreground="Black"
+            mc:Ignorable="d" Background="White" FontSize="16" Foreground="Black"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Manage Appointments View</TextBlock>
-        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 1 -->
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+                   HorizontalAlignment="Center" FontSize="28" 
+                    Margin=" 0 0 0 20" FontWeight="DemiBold">
+            Termin Verwaltung
+            </TextBlock>
+            <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock FontSize="20" FontWeight="Medium">Termin erstellen</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Margin="0,0,50,0">
+                    <TextBlock>Hund auswählen</TextBlock>
+                    <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="Name"></ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,0,50,0">
+                    <TextBlock>Tag der Ankunft</TextBlock>
+                    <DatePicker x:Name="ArrivingDay" SelectedDateFormat="Short"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,0,50,0">
+                    <TextBlock>Tag der Abreise</TextBlock>
+                    <DatePicker x:Name="LeavingDay" SelectedDateFormat="Short"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Button x:Name="SaveAppointment" Margin="0,10,0,0" HorizontalAlignment="Center" Height="40">Termin eintragen</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="left" Margin="0,50,0,0">
+                <TextBlock>Hier kommt der Kalender hin</TextBlock>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </UserControl>
