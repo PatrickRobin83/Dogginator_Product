@@ -170,7 +170,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ProductDetailsIsVisible = true;
 
         }
-
         public void AddProduct()
         {
             ActiveAddProductView = new CreateNewProductViewModel();
@@ -179,15 +178,12 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             AddProductIsVisible = true;
             ProductOverviewIsVisible = false;
         }
-
-       
         public void DeleteProduct()
         {
             GlobalConfig.Connection.DeleteProductFromDatabase(SelectedProduct);
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
             //Console.WriteLine("Delete Product pressed");
         }
-
         public void Handle(ProductModel message)
         {
             if (message != null && message.ItemNumber > 0)
@@ -203,7 +199,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             ShowAlsoInactive = false;
             NotifyOfPropertyChange(() => ShowAlsoInactive);
         }
-
         private BindableCollection<ProductModel> getProducts()
         {
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.SearchResulProducts(ProductSearchText, ShowAlsoInactive));

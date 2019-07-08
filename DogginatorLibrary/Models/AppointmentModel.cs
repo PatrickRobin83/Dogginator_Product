@@ -10,10 +10,13 @@ namespace DogginatorLibrary.Models
     {
 
         #region Fields
-
         #endregion
 
         #region Properties
+        public int Id { get; set; }
+        public DateTime arrivingDate { get; set; }
+        public DateTime leavingDate { get; set; }
+        public DogModel dogFromCustomer { get; set; }
 
         #endregion
 

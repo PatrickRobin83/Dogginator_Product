@@ -139,7 +139,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 }
                 
 
-                if (!ProductToEdit.Price.Equals(Price))
+                if (!ProductToEdit.Price.Equals(Price + "€"))
                 {
                     output = true;
                 }
