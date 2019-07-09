@@ -18,10 +18,8 @@ namespace DogginatorLibrary.Models
         public DateTime leavingDate { get; set; }
         public DogModel dogFromCustomer { get; set; }
         public bool IsDailyGuest { get; set; }
-        public int DaysInMonth { get; set; }
 
-        //ToDo: Lets see whats happen
-
+        public int days { get; set; }
         #endregion
 
         #region Constructor
@@ -29,7 +27,6 @@ namespace DogginatorLibrary.Models
         #endregion
 
         #region Methods
-
         #endregion
     }
 }

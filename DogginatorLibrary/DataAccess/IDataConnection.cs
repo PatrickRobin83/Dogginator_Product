@@ -107,6 +107,12 @@ namespace DogginatorLibrary.DataAccess
         void UpdateProduct(ProductModel productModel);
         List<ProductModel> SearchResulProducts(string searchText, bool showInactive);
 
-        #endregion 
+        #endregion
+
+        #region Appointment
+
+        List<AppointmentModel> getAppointmentsForDog(DogModel dogModel);
+
+        #endregion
     }
 }

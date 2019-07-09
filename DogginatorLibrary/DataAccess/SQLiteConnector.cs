@@ -774,8 +774,32 @@ namespace DogginatorLibrary.DataAccess
             return output;
         }
 
+        #endregion
 
         #endregion
+
+        #region Appointment
+
+        public List<AppointmentModel> getAppointmentsForDog(DogModel dogModel)
+        {
+            List<AppointmentModel> appointments = new List<AppointmentModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    appointments = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE {dogModel.Id} = dogId").ToList();
+
+                    return appointments;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<AppointmentModel>();
+            }
+
+        }
 
         #endregion
     }

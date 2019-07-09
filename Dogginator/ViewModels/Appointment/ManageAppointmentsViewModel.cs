@@ -128,6 +128,11 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
             }
         }
+        public int getDays()
+        {
+            //TODO: Figure out how to calculate the Days of Visit
+            return 0;
+        }
         #endregion
 
     }
