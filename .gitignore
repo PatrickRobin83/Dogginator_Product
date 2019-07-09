@@ -42,5 +42,6 @@
 # Directories #
 ###############
 obj/
+bin/
 TestResults/
 [Oo]bj/
