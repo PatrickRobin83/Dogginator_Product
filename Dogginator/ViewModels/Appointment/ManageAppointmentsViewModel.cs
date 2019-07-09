@@ -16,6 +16,7 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         #region Fields
         BindableCollection<DogModel> _availableDogs;
+        bool _isDailyGuest;
         DogModel _selectedDog;
         DateTime _arrivingDay;
         DateTime _leavingDay;
@@ -66,6 +67,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 
             }
         }
+        public bool IsDailyGuest
+        {
+            get { return _isDailyGuest; }
+            set
+            {
+                _isDailyGuest = value;
+                NotifyOfPropertyChange(() => IsDailyGuest);
+            }
+        }
         #endregion
 
         #region Constructor
@@ -108,6 +118,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             //TODO: Calculate the days in total for 1 Month for every Dog in the Month.
             Console.WriteLine($"Hund: {SelectedDog.Name} kommt am: {ArrivingDay.ToString("dddd")} den {ArrivingDay.Date.ToShortDateString()} und geht am: {LeavingDay.ToString("dddd")} den {LeavingDay.ToShortDateString()}");
             Console.WriteLine($"{SelectedDog.Name} ist im Monat {DateTime.Today.ToString("MMMM")} {LeavingDay.Subtract(ArrivingDay).Days} Tage gekommen.");
+            if (IsDailyGuest)
+            {
+                Console.WriteLine($"{SelectedDog.Name} ist ein Tagesgast");
+            }
+            else
+            {
+                Console.WriteLine($"{SelectedDog.Name} ist ein Übernachtungsgast");
+
+            }
         }
         #endregion
 
