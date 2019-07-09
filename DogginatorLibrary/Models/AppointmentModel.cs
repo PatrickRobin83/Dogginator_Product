@@ -20,6 +20,8 @@ namespace DogginatorLibrary.Models
         public bool IsDailyGuest { get; set; }
         public int DaysInMonth { get; set; }
 
+        //ToDo: Lets see whats happen
+
         #endregion
 
         #region Constructor
