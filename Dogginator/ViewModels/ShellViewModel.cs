@@ -3,6 +3,11 @@ using DogginatorLibrary;
 using DogginatorLibrary.Models;
 using DogginatorLibrary.Enums;
 using DogginatorLibrary.Helper;
+using LoginLibrary.ViewModels;
+using AppointmentLibrary.ViewModels;
+using ConsistedBookLibrary.ViewModels;
+using CustomerLibrary.ViewModels;
+using DogLibrary.ViewModels;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
@@ -42,8 +47,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             BackupDatabaseHelper.BackupDatabase();
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             //TODO: Activate the LoginView after Debugging
-            //ActivateItem(new LoginViewModel());
-            ActivateItem(new ManageAppointmentsViewModel());
+            ActivateItem(new LoginViewModel());
+            //ActivateItem(new ManageAppointmentsViewModel());
             //ActivateItem(new ManageProductsViewModel());
             //ActivateItem(new OverViewViewModel(true,true));
 

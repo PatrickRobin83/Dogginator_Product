@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="CustomerLibrary.Views.CustomerDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" FontSize="14" Background="White"
+             d:DesignHeight="650" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Row 0 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 10 0 0" 
+                   Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Center" FontSize="28" FontWeight="Bold">
+            Kunden Details
+        </TextBlock>
+
+        
+        <!-- Row 1 -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="350" MinWidth="350">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Anrede:</TextBlock>
+                    <CheckBox x:Name="NotActive" Margin="200 0 0 0">Inaktiv</CheckBox>
+                </StackPanel>
+                <TextBox x:Name="Salution" IsReadOnly="True" MinWidth="60" MaxWidth="60" HorizontalAlignment="Left"></TextBox>
+                <TextBlock>Vorname:</TextBlock>
+                <TextBox x:Name="FirstName" MaxWidth="200" MinWidth="200" HorizontalAlignment="Left"/>
+                <TextBlock >Nachname:</TextBlock>
+                <TextBox x:Name="LastName" MaxWidth="200" MinWidth="200" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Strasse:</TextBlock>
+                    <TextBlock Margin=" 110 0 0 0">Hausnummer:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="Street" MinWidth="150" MaxWidth="150"/>
+                    <TextBox x:Name="Housenumber" Margin="5 0 0 0" MaxWidth="60" MinWidth="45" HorizontalAlignment="Left"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Postleitzahl:</TextBlock>
+                    <TextBlock Margin="83 0 0 0">Stadt:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="ZipCode" MinWidth="60" MaxWidth="100"/>
+                    <TextBox x:Name="City" Margin="95 0 0 0" MinWidth="180" MaxWidth="180" HorizontalAlignment="Left"/>
+                </StackPanel>
+                <TextBlock>Telefon:</TextBlock>
+                <TextBox x:Name="PhoneNumber" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Mobilfunk:</TextBlock>
+                    <TextBlock Margin="89 0 0 0">Email:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="MobileNumber" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="Email" Margin="5 0 0 0"  MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
+                </StackPanel>
+                <TextBlock>geb. Datum:</TextBlock>
+                <DatePicker x:Name="Birthday" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Margin="20 0 0 0">Notizen/Besonderheiten</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+                    <TextBox x:Name="NoteToAdd" Margin="0 0 0 0" MinWidth="250" MaxWidth="250"/>
+                    <Button x:Name="SaveNoteInList" Margin="10 0 0 0">Notiz hinzufügen</Button>
+                    <Button x:Name="DeleteNoteInList" Margin="10 0 0 0">Notiz löschen</Button>
+                </StackPanel>
+                <ListView x:Name="Notes" Margin="20 0 0 5" MinHeight="25" MaxHeight="230" MinWidth="120" 
+                          ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     SelectedItem="{Binding Path=SelectedNote, Mode=OneWayToSource}"
+                   DisplayMemberPath="Description" />
+            </StackPanel>
+        </StackPanel>
+      
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="CustomerDetailsIsVisible" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" Margin="0 20 0 0">Hunde des Kunden</TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="146 20 0 0" >Erfasste Hunde</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ListView x:Name="OwnedDogs" SelectedItem="{Binding Path=SelectedDog, Mode=OneWayToSource}" 
+                          DisplayMemberPath="Name" MaxHeight="200" MinHeight="200" MinWidth="120" ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                <StackPanel Orientation="Vertical" Margin="0 0 0 0">
+                    <Button x:Name="AddDog" Margin="5 0 0 0" >Hund anlegen</Button>
+                    <Button x:Name="EditDog" Margin="5 5 0 0" >Hunde Details Öffnen</Button>
+                    <Button x:Name="AddDogToList" Margin="5 40 0 0">&lt;--</Button>
+                    <Button x:Name="RemoveDogFromList" Margin="5 5 0 0" >--></Button>
+                </StackPanel>
+                <ListView x:Name="AvailableDogs" MinWidth="120" MaxWidth="120" MinHeight="200" MaxHeight="200" 
+                          SelectedItem="{Binding Path=AvailableSelectedDog, Mode=OneWayToSource}"
+                          DisplayMemberPath="Name"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="SaveCustomer" Background="Green" Padding="5" Margin="0 5 5 0" Content="Speichern"/>
+                <Button x:Name="Back" Background="Red" Foreground="White" Padding="5" Margin="5 5 0 0" Content="Zurück"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="AddDogIsVisible" Orientation="Vertical" Grid.Row="2">
+            <ContentControl x:Name="ActiveAddDogView"/>
+        </StackPanel>
+        <StackPanel x:Name="EditDogIsVisible" Orientation="Vertical" Grid.Row="2">
+            <ContentControl x:Name="ActiveEditDogView"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

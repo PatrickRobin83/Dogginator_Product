@@ -90,41 +90,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="EventAggregationProvider.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConsistedBook\ConsistedBookViewModel.cs" />
-    <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
-    <Compile Include="ViewModels\Dog\CreateNewDogViewModel.cs" />
     <Compile Include="ViewModels\Invoice\CreateNewInvoiceViewModel.cs" />
     <Compile Include="ViewModels\Option\OptionViewModel.cs" />
     <Compile Include="ViewModels\Product\CreateNewProductViewModel.cs" />
     <Compile Include="ViewModels\User\CreateUserViewModel.cs" />
-    <Compile Include="ViewModels\Customer\CustomerDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Dog\DogDetailsViewModel.cs" />
     <Compile Include="ViewModels\Invoice\InvoiceDetailsViewModel.cs" />
     <Compile Include="ViewModels\Product\ManageProductsViewModel.cs" />
     <Compile Include="ViewModels\Product\ProductDetailsViewModel.cs" />
     <Compile Include="ViewModels\User\UserDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Login\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Appointment\ManageAppointmentsViewModel.cs" />
     <Compile Include="ViewModels\Invoice\ManageInvoicesViewModel.cs" />
-    <Compile Include="ViewModels\Customer\ManageCustomerViewModel.cs" />
-    <Compile Include="ViewModels\Dog\ManageDogsViewModel.cs" />
     <Compile Include="ViewModels\Overview\OverViewViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\ConsistedBook\ConsistedBookView.xaml.cs">
-      <DependentUpon>ConsistedBookView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Customer\CreateCustomerView.xaml.cs">
-      <DependentUpon>CreateCustomerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Dog\CreateNewDogView.xaml.cs">
-      <DependentUpon>CreateNewDogView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Invoice\CreateNewInvoiceView.xaml.cs">
       <DependentUpon>CreateNewInvoiceView.xaml</DependentUpon>
     </Compile>
@@ -133,12 +114,6 @@
     </Compile>
     <Compile Include="Views\Product\CreateNewProductView.xaml.cs">
       <DependentUpon>CreateNewProductView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Customer\CustomerDetailsView.xaml.cs">
-      <DependentUpon>CustomerDetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Dog\DogDetailsView.xaml.cs">
-      <DependentUpon>DogDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Invoice\InvoiceDetailsView.xaml.cs">
       <DependentUpon>InvoiceDetailsView.xaml</DependentUpon>
@@ -152,20 +127,8 @@
     <Compile Include="Views\User\UserDetailsView.xaml.cs">
       <DependentUpon>UserDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Appointment\ManageAppointmentsView.xaml.cs">
-      <DependentUpon>ManageAppointmentsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Invoice\ManageInvoicesView.xaml.cs">
       <DependentUpon>ManageInvoicesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Customer\ManageCustomerView.xaml.cs">
-      <DependentUpon>ManageCustomerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Dog\ManageDogsView.xaml.cs">
-      <DependentUpon>ManageDogsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\User\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
@@ -206,18 +169,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\ConsistedBook\ConsistedBookView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Customer\CreateCustomerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dog\CreateNewDogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Invoice\CreateNewInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,14 +178,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Product\CreateNewProductView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Customer\CustomerDetailsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dog\DogDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,23 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Login\LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Appointment\ManageAppointmentsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Invoice\ManageInvoicesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Customer\ManageCustomerView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Dog\ManageDogsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -288,9 +215,29 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppointmentLibrary\AppointmentLibrary.csproj">
+      <Project>{330100ba-3c51-4d99-b6a8-a993a44514ec}</Project>
+      <Name>AppointmentLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsistedBookLibrary\ConsistedBookLibrary.csproj">
+      <Project>{da7c94c5-ea0a-4983-8166-ac629cfbb4ea}</Project>
+      <Name>ConsistedBookLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
+      <Project>{08d24b1e-b65e-4110-938f-7d9ab6fbf615}</Project>
+      <Name>CustomerLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DogginatorLibrary\DogginatorLibrary.csproj">
       <Project>{1cd608e6-6e86-4baf-866e-0d13073bcc2e}</Project>
       <Name>DogginatorLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DogLibrary\DogLibrary.csproj">
+      <Project>{bb17e68c-3ad9-4bb9-ba29-2e8042dc8f3c}</Project>
+      <Name>DogLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoginLibrary\LoginLibrary.csproj">
+      <Project>{405cf7e3-6d8d-474e-84ac-642ff5b8d865}</Project>
+      <Name>LoginLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

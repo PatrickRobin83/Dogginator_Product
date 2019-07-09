@@ -1,154 +1,69 @@
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\DoggiNator.db
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Dogginator.exe.config
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Dogginator.exe
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Dogginator.pdb
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.Core.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Dapper.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\DogginatorLibrary.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.SqlServer.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\System.Windows.Interactivity.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.dll
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\DogginatorLibrary.pdb
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\DogginatorLibrary.dll.config
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.Core.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\Dapper.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.SqlServer.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.xml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.dll.config
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csprojAssemblyReference.cache
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ConsistedBook\ConsistedBookView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CreateCustomerView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\CreateNewDogView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\CreateNewInvoiceView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\CreateNewProductView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CustomerDetailsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\DogDetailsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ManageProductsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\User\UserDetailsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Login\LoginView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Appointment\ManageAppointmentsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\ManageInvoicesView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\ManageCustomerView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\ManageDogsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\User\CreateUserView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Overview\OverViewView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ShellView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\App.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator_Content.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator_MarkupCompile.cache
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator_MarkupCompile.lref
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\App.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ConsistedBook\ConsistedBookView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CreateCustomerView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\CreateNewDogView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\CreateNewInvoiceView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\CreateNewProductView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CustomerDetailsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\DogDetailsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ManageProductsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\User\UserDetailsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Login\LoginView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Appointment\ManageAppointmentsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\ManageInvoicesView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\ManageCustomerView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\ManageDogsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\User\CreateUserView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Overview\OverViewView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\ShellView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.g.resources
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\de.rietrob.dogginator_product.dogginator.Properties.Resources.resources
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.GenerateResource.cache
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CoreCompileInputs.cache
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CopyComplete
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.exe
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.pdb
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\DoggiNator.db
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Dogginator.exe.config
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Dogginator.exe
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Dogginator.pdb
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.Core.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Dapper.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\DogginatorLibrary.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.SqlServer.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Windows.Interactivity.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\DogginatorLibrary.pdb
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\DogginatorLibrary.dll.config
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Caliburn.Micro.Platform.Core.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\Dapper.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\EntityFramework.SqlServer.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.xml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.dll.config
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\ConsistedBook\ConsistedBookView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CreateCustomerView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\CreateNewDogView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\CreateNewInvoiceView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\CreateNewProductView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CustomerDetailsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\DogDetailsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ManageProductsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\User\UserDetailsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Login\LoginView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Appointment\ManageAppointmentsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\ManageInvoicesView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\ManageCustomerView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\ManageDogsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\User\CreateUserView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Overview\OverViewView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\ShellView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\App.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator_Content.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator_MarkupCompile.cache
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator_MarkupCompile.lref
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\App.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\ConsistedBook\ConsistedBookView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CreateCustomerView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\CreateNewDogView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\CreateNewInvoiceView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\CreateNewProductView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\CustomerDetailsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\DogDetailsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ManageProductsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\User\UserDetailsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Login\LoginView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Appointment\ManageAppointmentsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Invoice\ManageInvoicesView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Customer\ManageCustomerView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Dog\ManageDogsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\User\CreateUserView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Overview\OverViewView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\ShellView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.g.resources
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\de.rietrob.dogginator_product.dogginator.Properties.Resources.resources
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.GenerateResource.Cache
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CoreCompileInputs.cache
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.exe
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.pdb
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Product\ProductDetailsView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.g.cs
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.baml
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.g.cs
-D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Views\Option\OptionView.baml
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csprojAssemblyReference.cache
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CopyComplete
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\DoggiNator.db
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Dogginator.exe.config
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Dogginator.exe
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Dogginator.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\AppointmentLibrary.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Caliburn.Micro.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Caliburn.Micro.Platform.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\ConsistedBookLibrary.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\CustomerLibrary.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Dapper.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\DogginatorLibrary.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\DogLibrary.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\EntityFramework.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\EntityFramework.SqlServer.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\LoginLibrary.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\System.Windows.Interactivity.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\System.Data.SQLite.dll
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\AppointmentLibrary.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\ConsistedBookLibrary.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\CustomerLibrary.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\DogginatorLibrary.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\DogginatorLibrary.dll.config
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\DogLibrary.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\LoginLibrary.pdb
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Caliburn.Micro.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Caliburn.Micro.Platform.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Caliburn.Micro.Platform.Core.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\Dapper.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\EntityFramework.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\EntityFramework.SqlServer.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\System.Data.SQLite.xml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\bin\Debug\System.Data.SQLite.dll.config
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.csprojAssemblyReference.cache
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Invoice\CreateNewInvoiceView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Option\OptionView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Product\CreateNewProductView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Product\ManageProductsView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Product\ProductDetailsView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\User\UserDetailsView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Invoice\ManageInvoicesView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\User\CreateUserView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Overview\OverViewView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\ShellView.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\App.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator_Content.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator_MarkupCompile.cache
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator_MarkupCompile.lref
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\App.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Invoice\CreateNewInvoiceView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Option\OptionView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Product\CreateNewProductView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Invoice\InvoiceDetailsView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Product\ManageProductsView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Product\ProductDetailsView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\User\UserDetailsView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Invoice\ManageInvoicesView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\User\CreateUserView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\Overview\OverViewView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Views\ShellView.baml
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.g.resources
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\de.rietrob.dogginator_product.dogginator.Properties.Resources.resources
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.csproj.GenerateResource.cache
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.csproj.CoreCompileInputs.cache
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.csproj.CopyComplete
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.exe
+D:\SourceCode\VisualStudio\Dogginator_Product - Kopie\Dogginator\obj\Debug\Dogginator.pdb
