@@ -10,6 +10,16 @@ namespace DogginatorLibrary.Messages
 {
     public static class ErrorMessages
     {
+        #region Fields
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Constructor
+        #endregion
+
+        #region Methods
         public static void ShowUserPasswordError()
         {
             MessageBox.Show("Benutzername oder Passwort ist leer oder falsch", "Fehler: Benutzername / Passwort", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
@@ -17,7 +27,7 @@ namespace DogginatorLibrary.Messages
 
         public static void ShowUserNotActiveError()
         {
-            MessageBox.Show("Der Benutzer ist nicht mehr aktiv", "Fehler: User ist Inaktiv" , System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            MessageBox.Show("Der Benutzer ist nicht mehr aktiv", "Fehler: User ist Inaktiv", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
         }
 
         public static void DogToRemoveError(DogModel dogToRemove)
@@ -36,6 +46,7 @@ namespace DogginatorLibrary.Messages
             MessageBox.Show($"Der Hund {selectedDog.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
                                                $"{selectedDog.CustomerList.First().FirstName} {selectedDog.CustomerList.First().LastName} der einzige Besitzer ist");
         }
-        
+
+        #endregion
     }
 }

@@ -10,9 +10,21 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels.Option
 {
     public class OptionViewModel : Screen
     {
+        #region Fields
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Constructor
         public OptionViewModel()
         {
-            
+
         }
+        #endregion
+
+        #region Methods
+        #endregion
+
     }
 }

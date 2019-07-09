@@ -10,14 +10,25 @@ namespace DogginatorLibrary.Helper
 {
     public static class PasswordHelper
     {
+        #region Fields
+        #endregion
+
+        #region Properties
         public static readonly DependencyProperty BoundPassword =
-          DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordHelper), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
+         DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordHelper), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
         public static readonly DependencyProperty BindPassword = DependencyProperty.RegisterAttached(
             "BindPassword", typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false, OnBindPasswordChanged));
 
         private static readonly DependencyProperty UpdatingPassword =
             DependencyProperty.RegisterAttached("UpdatingPassword", typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false));
+
+        #endregion
+
+        #region Constructor
+        #endregion
+
+        #region Methods
 
         private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -109,5 +120,6 @@ namespace DogginatorLibrary.Helper
         {
             dp.SetValue(UpdatingPassword, value);
         }
+        #endregion
     }
 }

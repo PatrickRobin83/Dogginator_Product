@@ -10,6 +10,7 @@ namespace DogginatorLibrary.Enums
     {
         SQLite,
         MySQL,
-        TextFile
+        TextFile,
+        XML
     }
 }

@@ -22,6 +22,9 @@ namespace DogginatorLibrary.Helper
 
         #endregion
 
+        #region Constructor
+        #endregion
+
         #region Methods
 
         public static void BackupDatabase()

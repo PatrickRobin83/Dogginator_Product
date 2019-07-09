@@ -9,5 +9,16 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
     public class ConsistedBookViewModel : Screen
     {
+        #region Fields
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Constructor
+        #endregion
+
+        #region Methods
+        #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace DogginatorLibrary.Models
         public DateTime arrivingDate { get; set; }
         public DateTime leavingDate { get; set; }
         public DogModel dogFromCustomer { get; set; }
+        public int daysInMonth { get; set; }
 
         #endregion
 

@@ -104,7 +104,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         }
         public void SaveAppointment()
         {
+            //TODO: Save the Appointment in Database
+            //TODO: Calculate the days in total for 1 Month for every Dog in the Month.
             Console.WriteLine($"Hund: {SelectedDog.Name} kommt am: {ArrivingDay.ToString("dddd")} den {ArrivingDay.Date.ToShortDateString()} und geht am: {LeavingDay.ToString("dddd")} den {LeavingDay.ToShortDateString()}");
+            Console.WriteLine($"{SelectedDog.Name} ist im Monat {DateTime.Today.ToString("MMMM")} {LeavingDay.Subtract(ArrivingDay).Days} Tage gekommen.");
         }
         #endregion
 

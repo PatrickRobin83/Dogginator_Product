@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
-    class InvoiceDetailsViewModel
+    public class InvoiceDetailsViewModel
     {
+        #region Fields
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Constructor
+        #endregion
+
+        #region Methods
+        #endregion
     }
 }

@@ -9,6 +9,16 @@ namespace DogginatorLibrary.Messages
 {
     public static class SuccessMessages
     {
+        #region Fields
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region Constructor
+        #endregion
+
+        #region Methods
         public static void ChangesSavedSuccess()
         {
             MessageBox.Show("Änderungen wurden gespeichert", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
@@ -18,5 +28,6 @@ namespace DogginatorLibrary.Messages
         {
             MessageBox.Show("User wurde angelegt", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
         }
+        #endregion
     }
 }

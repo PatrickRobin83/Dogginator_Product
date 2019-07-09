@@ -29,14 +29,8 @@ namespace DogginatorLibrary.DataAccess
         #endregion
 
         #region Methods
-        public DogModel AddDog(DogModel dModel, CustomerModel cModel)
-        {
-            AddDogToDatabase(dModel);
-            AddDogToCustomer(dModel, cModel);
-            Get_Customer(cModel);
 
-            return dModel;
-        }
+        #region Customer
 
         public void UpdateCustomer(CustomerModel cModel)
         {
@@ -55,27 +49,6 @@ namespace DogginatorLibrary.DataAccess
                 Console.WriteLine(sqLiteEx.Message);
 
             }
-        }
-
-        public void UpdateDog(DogModel dModel)
-        {
-
-            try
-            {
-                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-                {
-                    connection.Query(@"UPDATE Dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday, 
-                                       permanentcastrated = @PermanentCastrated, 
-                                       castratedsince = @CastratedSince, effectiveuntil = @EffectiveUntil, active = @Active  WHERE id = @Id", dModel);
-                }
-            }
-
-            catch (SQLiteException sqLiteEx)
-            {
-                Console.WriteLine(sqLiteEx.Message + "\r\n" + sqLiteEx.StackTrace);
-            }
-
-
         }
 
         public List<CustomerModel> Get_CustomerAll()
@@ -192,6 +165,164 @@ namespace DogginatorLibrary.DataAccess
             }
         }
 
+        public NoteModel AddNoteToCustomer(CustomerModel cModel, string note)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    NoteModel nModel = new NoteModel();
+                    nModel.Description = note;
+                    nModel.Id = connection.Query<int>("INSERT INTO note (description, active) Values('" + note + "', 1); SELECT last_insert_rowid();").First();
+                    connection.Query("UPDATE customer SET edit_date = datetime('now') WHERE customer.id= " + cModel.Id);
+                    connection.Execute("INSERT INTO note_to_customer (customerId, noteId) Values(" + cModel.Id + ", " + nModel.Id + ")");
+                    cModel.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + cModel.Id).ToList();
+
+                    return nModel;
+                }
+
+            }
+            catch (SQLiteException sqLiteEx)
+            {
+                Console.WriteLine(sqLiteEx.Message);
+                return null;
+            }
+        }
+
+        public CustomerModel Get_Customer(CustomerModel model)
+        {
+
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            {
+                model = connection.Query<CustomerModel>("SELECT * FROM CUSTOMER WHERE id = " + model.Id + ";").First();
+
+                model.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + model.Id).ToList();
+                model.OwnedDogs = connection.Query<DogModel>("SELECT d.* FROM dog d INNER JOIN customer_to_dog cd on dogId = d.id WHERE customerId = " + model.Id).ToList();
+
+                foreach (DogModel dogModel in model.OwnedDogs)
+                {
+                    dogModel.Characteristics = connection.Query<CharacteristicsModel>("SELECT c.* FROM characteristics c INNER JOIN dog_to_characteristics dc on dc.id = c.id WHERE dogId = " + dogModel.Id).ToList();
+                    dogModel.Diseases = connection.Query<DiseasesModel>("SELECT d.* FROM diseases d INNER JOIN dog_to_diseases dd on dd.id = d.id WHERE dogId = " + dogModel.Id).ToList();
+                }
+                return model;
+            }
+
+        }
+
+        public List<CustomerModel> Get_CustomerInactiveAndActive()
+        {
+            List<CustomerModel> output;
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    output = connection.Query<CustomerModel>("SELECT * FROM CUSTOMER;").ToList();
+
+                    foreach (CustomerModel customerModel in output)
+                    {
+                        customerModel.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + customerModel.Id).ToList();
+                        customerModel.OwnedDogs = connection.Query<DogModel>("SELECT d.* FROM dog d INNER JOIN customer_to_dog cd on dogId = d.id WHERE customerId = " + customerModel.Id).ToList();
+                        foreach (DogModel dogModel in customerModel.OwnedDogs)
+                        {
+                            dogModel.Characteristics = connection.Query<CharacteristicsModel>("SELECT c.* FROM characteristics c INNER JOIN dog_to_characteristics dc on dc.id = c.id WHERE dogId = " + dogModel.Id).ToList();
+                            dogModel.Diseases = connection.Query<DiseasesModel>("SELECT d.* FROM diseases d INNER JOIN dog_to_diseases dd on dd.id = d.id WHERE dogId = " + dogModel.Id).ToList();
+                            dogModel.CustomerList = connection.Query<CustomerModel>("SELECT c.* FROM customer c INNER JOIN customer_to_dog cd on customerId = c.id WHERE dogId = " + dogModel.Id).ToList();
+                        }
+                    }
+                }
+                return output;
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+                return new List<CustomerModel>();
+            }
+        }
+
+        public List<CustomerModel> SearchResultsCustomer(string searchText, bool activeAndInactive)
+        {
+            List<CustomerModel> results = new List<CustomerModel>();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (activeAndInactive)
+                    {
+                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
+                        $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
+                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%'").ToList();
+                    }
+                    else
+                    {
+                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where (firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
+                        $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
+                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%') AND active = 1").ToList();
+                    }
+
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+
+            }
+            return results;
+        }
+
+        public void DeleteNoteFromList(NoteModel noteModel, CustomerModel cModel)
+        {
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query("UPDATE note SET active = 0  WHERE note.id = " + noteModel.Id + ";");
+                    Get_Customer(cModel);
+                    UpdateCustomer(cModel);
+                }
+
+            }
+            catch (SQLiteException sqLiteEx)
+            {
+                Console.WriteLine(sqLiteEx.Message);
+            }
+
+        }
+
+        #endregion
+
+        #region Dog
+        public DogModel AddDog(DogModel dModel, CustomerModel cModel)
+        {
+            AddDogToDatabase(dModel);
+            AddDogToCustomer(dModel, cModel);
+            Get_Customer(cModel);
+
+            return dModel;
+        }
+
+        public void UpdateDog(DogModel dModel)
+        {
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query(@"UPDATE Dog SET edit_date = datetime('now'), name = @Name, breed = @Breed, color = @Color, gender = @Gender, birthday = @Birthday, 
+                                       permanentcastrated = @PermanentCastrated, 
+                                       castratedsince = @CastratedSince, effectiveuntil = @EffectiveUntil, active = @Active  WHERE id = @Id", dModel);
+                }
+            }
+
+            catch (SQLiteException sqLiteEx)
+            {
+                Console.WriteLine(sqLiteEx.Message + "\r\n" + sqLiteEx.StackTrace);
+            }
+
+
+        }
+
         public DogModel AddDogToDatabase(DogModel dModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -255,69 +386,6 @@ namespace DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
                 return new List<DogModel>();
             }
-        }
-
-        public NoteModel AddNoteToCustomer(CustomerModel cModel, string note)
-        {
-            try
-            {
-                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-                {
-                    NoteModel nModel = new NoteModel();
-                    nModel.Description = note;
-                    nModel.Id = connection.Query<int>("INSERT INTO note (description, active) Values('" + note + "', 1); SELECT last_insert_rowid();").First();
-                    connection.Query("UPDATE customer SET edit_date = datetime('now') WHERE customer.id= " + cModel.Id);
-                    connection.Execute("INSERT INTO note_to_customer (customerId, noteId) Values(" + cModel.Id + ", " + nModel.Id + ")");
-                    cModel.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + cModel.Id).ToList();
-
-                    return nModel;
-                }
-
-            }
-            catch (SQLiteException sqLiteEx)
-            {
-                Console.WriteLine(sqLiteEx.Message);
-                return null;
-            }
-        }
-
-        public CustomerModel Get_Customer(CustomerModel model)
-        {
-
-            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-            {
-                model = connection.Query<CustomerModel>("SELECT * FROM CUSTOMER WHERE id = " + model.Id + ";").First();
-
-                model.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + model.Id).ToList();
-                model.OwnedDogs = connection.Query<DogModel>("SELECT d.* FROM dog d INNER JOIN customer_to_dog cd on dogId = d.id WHERE customerId = " + model.Id).ToList();
-
-                foreach (DogModel dogModel in model.OwnedDogs)
-                {
-                    dogModel.Characteristics = connection.Query<CharacteristicsModel>("SELECT c.* FROM characteristics c INNER JOIN dog_to_characteristics dc on dc.id = c.id WHERE dogId = " + dogModel.Id).ToList();
-                    dogModel.Diseases = connection.Query<DiseasesModel>("SELECT d.* FROM diseases d INNER JOIN dog_to_diseases dd on dd.id = d.id WHERE dogId = " + dogModel.Id).ToList();
-                }
-                return model;
-            }
-
-        }
-
-        public void DeleteNoteFromList(NoteModel noteModel, CustomerModel cModel)
-        {
-            try
-            {
-                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-                {
-                    connection.Query("UPDATE note SET active = 0  WHERE note.id = " + noteModel.Id + ";");
-                    Get_Customer(cModel);
-                    UpdateCustomer(cModel);
-                }
-
-            }
-            catch (SQLiteException sqLiteEx)
-            {
-                Console.WriteLine(sqLiteEx.Message);
-            }
-
         }
 
         public void DeleteDogToCustomerRelation(CustomerModel cModel, DogModel dModel)
@@ -458,68 +526,6 @@ namespace DogginatorLibrary.DataAccess
             }
         }
 
-        public List<CustomerModel> Get_CustomerInactiveAndActive()
-        {
-            List<CustomerModel> output;
-
-            try
-            {
-                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-                {
-                    output = connection.Query<CustomerModel>("SELECT * FROM CUSTOMER;").ToList();
-
-                    foreach (CustomerModel customerModel in output)
-                    {
-                        customerModel.Notes = connection.Query<NoteModel>("SELECT n.* FROM note n INNER JOIN note_to_customer nc on noteId = n.id WHERE active = 1 AND customerId = " + customerModel.Id).ToList();
-                        customerModel.OwnedDogs = connection.Query<DogModel>("SELECT d.* FROM dog d INNER JOIN customer_to_dog cd on dogId = d.id WHERE customerId = " + customerModel.Id).ToList();
-                        foreach (DogModel dogModel in customerModel.OwnedDogs)
-                        {
-                            dogModel.Characteristics = connection.Query<CharacteristicsModel>("SELECT c.* FROM characteristics c INNER JOIN dog_to_characteristics dc on dc.id = c.id WHERE dogId = " + dogModel.Id).ToList();
-                            dogModel.Diseases = connection.Query<DiseasesModel>("SELECT d.* FROM diseases d INNER JOIN dog_to_diseases dd on dd.id = d.id WHERE dogId = " + dogModel.Id).ToList();
-                            dogModel.CustomerList = connection.Query<CustomerModel>("SELECT c.* FROM customer c INNER JOIN customer_to_dog cd on customerId = c.id WHERE dogId = " + dogModel.Id).ToList();
-                        }
-                    }
-                }
-                return output;
-            }
-            catch (SQLiteException sqEx)
-            {
-                Console.WriteLine(sqEx.Message);
-                return new List<CustomerModel>();
-            }
-        }
-
-        public List<CustomerModel> SearchResultsCustomer(string searchText, bool activeAndInactive)
-        {
-            List<CustomerModel> results = new List<CustomerModel>();
-
-            try
-            {
-                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
-                {
-                    if (activeAndInactive)
-                    {
-                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
-                        $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
-                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%'").ToList();
-                    }
-                    else
-                    {
-                        results = connection.Query<CustomerModel>($"SELECT * FROM customer where (firstname like '%{searchText}%' OR lastname like '%{searchText}%' OR Street like '%{searchText}%'" +
-                        $"OR housenumber like '%{searchText}%' OR zipcode like '%{searchText}%' OR city like '%{searchText}%' OR phonenumber like '%{searchText}%' OR " +
-                        $"mobilenumber like '%{searchText}%' OR email like '%{searchText}%' or birthday like '%{searchText}%') AND active = 1").ToList();
-                    }
-
-                }
-            }
-            catch (SQLiteException sqEx)
-            {
-                Console.WriteLine(sqEx.Message);
-
-            }
-            return results;
-        }
-
         public List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive)
         {
             List<DogModel> results = new List<DogModel>();
@@ -546,9 +552,12 @@ namespace DogginatorLibrary.DataAccess
 
             }
             return results;
-           
+
         }
 
+        #endregion
+
+        #region User
         public UserModel IsUserAndPasswordRight(UserModel input)
         {
             try
@@ -675,7 +684,9 @@ namespace DogginatorLibrary.DataAccess
 
             return output;
         }
+        #endregion
 
+        #region Product
         public List<ProductModel> GetAllProducts()
         {
             List<ProductModel> products = new List<ProductModel>();
@@ -763,6 +774,8 @@ namespace DogginatorLibrary.DataAccess
             return output;
         }
 
+
+        #endregion
 
         #endregion
     }
