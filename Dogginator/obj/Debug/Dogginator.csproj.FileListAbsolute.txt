@@ -57,8 +57,6 @@ D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginat
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CopyComplete
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.exe
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\obj\Debug\Dogginator.pdb
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\x86\sqlite3.dll
-D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\x64\sqlite3.dll
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.EF6.dll
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\System.Data.SQLite.Linq.dll
 D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\UserLibrary.dll.config
