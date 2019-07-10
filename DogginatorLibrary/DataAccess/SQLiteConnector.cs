@@ -562,7 +562,7 @@ namespace DogginatorLibrary.DataAccess
         {
             try
             {
-                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     if (connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").ToList().Count > 0)
                     {

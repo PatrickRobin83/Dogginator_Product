@@ -8,6 +8,9 @@ using AppointmentLibrary.ViewModels;
 using ConsistedBookLibrary.ViewModels;
 using CustomerLibrary.ViewModels;
 using DogLibrary.ViewModels;
+using InvoiceLibrary.ViewModels;
+using OverviewLibrary.ViewModels;
+using ProductLibrary.ViewModels;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {

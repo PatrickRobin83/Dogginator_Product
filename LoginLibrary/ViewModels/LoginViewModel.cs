@@ -3,6 +3,7 @@ using DogginatorLibrary;
 using DogginatorLibrary.Helper;
 using DogginatorLibrary.Messages;
 using DogginatorLibrary.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,7 +83,7 @@ namespace LoginLibrary.ViewModels
         
         public void Login()
         {
-            if (!string.IsNullOrWhiteSpace(UserName))
+                if (!string.IsNullOrWhiteSpace(UserName))
             {
                 User.Username = UserName.ToLower();
                 User = GlobalConfig.Connection.IsUserAndPasswordRight(User);

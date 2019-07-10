@@ -31,7 +31,12 @@ namespace de.rietrob.dogginator_product.dogginator
             assemblies.Add(typeof(ConsistedBookLibrary.ViewModels.ConsistedBookViewModel).Assembly);
             assemblies.Add(typeof(CustomerLibrary.ViewModels.ManageCustomerViewModel).Assembly);
             assemblies.Add(typeof(DogLibrary.ViewModels.ManageDogsViewModel).Assembly);
-           
+            assemblies.Add(typeof(InvoiceLibrary.ViewModels.ManageInvoicesViewModel).Assembly);
+            assemblies.Add(typeof(OptionLibrary.ViewModels.OptionViewModel).Assembly);
+            assemblies.Add(typeof(OverviewLibrary.ViewModels.OverViewViewModel).Assembly);
+            assemblies.Add(typeof(ProductLibrary.ViewModels.ManageProductsViewModel).Assembly);
+            assemblies.Add(typeof(UserLibrary.ViewModels.UserDetailsViewModel).Assembly);
+
             return assemblies;
         }
     }
