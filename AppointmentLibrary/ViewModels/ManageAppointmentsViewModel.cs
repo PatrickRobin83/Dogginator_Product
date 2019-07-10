@@ -117,7 +117,7 @@ namespace AppointmentLibrary.ViewModels
             //TODO: Save the Appointment in Database
             //TODO: Calculate the days in total for 1 Month for every Dog in the Month.
             Console.WriteLine($"Hund: {SelectedDog.Name} kommt am: {ArrivingDay.ToString("dddd")} den {ArrivingDay.Date.ToShortDateString()} und geht am: {LeavingDay.ToString("dddd")} den {LeavingDay.ToShortDateString()}");
-            Console.WriteLine($"{SelectedDog.Name} ist im Monat {DateTime.Today.ToString("MMMM")} {LeavingDay.Subtract(ArrivingDay).Days} Tage gekommen.");
+            Console.WriteLine($"{SelectedDog.Name} für {LeavingDay.Subtract(ArrivingDay).Days} Tage gebucht.");
             if (IsDailyGuest)
             {
                 Console.WriteLine($"{SelectedDog.Name} ist ein Tagesgast");
@@ -134,6 +134,5 @@ namespace AppointmentLibrary.ViewModels
             return 0;
         }
         #endregion
-
     }
 }

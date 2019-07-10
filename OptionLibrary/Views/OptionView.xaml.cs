@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OptionLibrary.Views.Option
+namespace OptionLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für OptionView.xaml
