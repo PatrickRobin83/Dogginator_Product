@@ -802,5 +802,27 @@ namespace DogginatorLibrary.DataAccess
         }
 
         #endregion
+
+        #region CityToZipcode
+
+        public List<string> getCityToZipcode(string zipCode)
+        {
+            List<string> foundcitys = new List<string>();
+
+            try
+            {
+                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                   /// foundcitys = connection.Query()
+                }
+            }catch(SQLiteException ex)
+            {
+                Console.WriteLine(ex.ErrorCode);
+            }
+
+            return foundcitys;
+        }
+
+        #endregion
     }
 }

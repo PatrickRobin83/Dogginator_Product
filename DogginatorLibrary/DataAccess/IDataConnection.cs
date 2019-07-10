@@ -114,5 +114,11 @@ namespace DogginatorLibrary.DataAccess
         List<AppointmentModel> getAppointmentsForDog(DogModel dogModel);
 
         #endregion
+
+        #region CityToZipcode
+
+        List<string> getCityToZipcode(string zipCode);
+
+        #endregion
     }
 }
