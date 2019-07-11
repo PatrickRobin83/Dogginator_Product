@@ -808,12 +808,23 @@ namespace DogginatorLibrary.DataAccess
         public List<string> getCityToZipcode(string zipCode)
         {
             List<string> foundcitys = new List<string>();
+            string id_zip;
+            List<string> id_city = new List<string>();
 
             try
             {
                 using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                   /// foundcitys = connection.Query()
+                    if(connection.Query<string>($"Select id from zipcode where zip = {zipCode}").Count() > 0)
+                    {
+                        id_zip = connection.Query<string>($"Select id from zipcode where zip = {zipCode}").First();
+                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = {id_zip}").ToList();
+                        foreach (string cityZip in id_city)
+                        {
+                            foundcitys.Add(connection.Query<string>($"Select name from city where id = {cityZip}").First());
+                        }
+                    }
+
                 }
             }catch(SQLiteException ex)
             {

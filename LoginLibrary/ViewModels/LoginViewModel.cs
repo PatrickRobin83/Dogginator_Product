@@ -75,7 +75,6 @@ namespace LoginLibrary.ViewModels
 
         public LoginViewModel()
         {
-            
         }
         #endregion
 

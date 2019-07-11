@@ -20,7 +20,7 @@ namespace CustomerLibrary.ViewModels
         private string _street = "";
         private string _housenumber = "";
         private string _zipcode = "";
-        private string _city = "";
+        private string _selectedcity = "";
         private string _phoneNumber = "";
         private string _mobileNumber = "";
         private string _email = "";
@@ -40,9 +40,20 @@ namespace CustomerLibrary.ViewModels
         private bool _rDBFemaleSalutionIsChecked;
         private bool _rDBMaleSalutionIsChecked;
         private bool _dogCreated = false;
+        private List<string> _citys = new List<string>();
         #endregion
 
         #region Properties
+
+        public List<string> Citys
+        {
+            get { return _citys; }
+            set
+            {
+                _citys = value;
+                NotifyOfPropertyChange(() => Citys);
+            }
+        }
         public int Id
         {
             get { return _id; }
@@ -91,13 +102,13 @@ namespace CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
-        public string City
+        public string SelectedCity
         {
-            get { return _city; }
+            get { return _selectedcity; }
             set
             {
-                _city = value;
-                NotifyOfPropertyChange(() => City);
+                _selectedcity = value;
+                NotifyOfPropertyChange(() => SelectedCity);
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
@@ -108,6 +119,20 @@ namespace CustomerLibrary.ViewModels
             {
                 _zipcode = value;
                 NotifyOfPropertyChange(() => ZipCode);
+                if(ZipCode.Length == 5)
+                {
+                    Citys = GlobalConfig.Connection.getCityToZipcode(ZipCode);
+                    if(Citys.Count > 0)
+                    {
+                        SelectedCity = Citys[0];
+                    }
+                    NotifyOfPropertyChange(() => Citys);
+                }
+                if(ZipCode.Length < 5 && ZipCode.Length >= 0)
+                {
+                    Citys = new List<string>();
+                    NotifyOfPropertyChange(() => Citys);
+                }
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
@@ -405,7 +430,7 @@ namespace CustomerLibrary.ViewModels
             {
                 bool output = false;
                 if (!string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(Street) &&
-                    !string.IsNullOrWhiteSpace(Housenumber) && !string.IsNullOrWhiteSpace(ZipCode) && !string.IsNullOrWhiteSpace(City) && 
+                    !string.IsNullOrWhiteSpace(Housenumber) && !string.IsNullOrWhiteSpace(ZipCode) && !string.IsNullOrWhiteSpace(SelectedCity) && 
                     (!string.IsNullOrWhiteSpace(PhoneNumber) || !string.IsNullOrWhiteSpace(MobileNumber) || !string.IsNullOrWhiteSpace(Email)))
                 {
                     if (!string.IsNullOrEmpty(Email))
@@ -449,7 +474,7 @@ namespace CustomerLibrary.ViewModels
             cm.Street = Street;
             cm.HouseNumber = Housenumber;
             cm.ZipCode = ZipCode;
-            cm.City = City;
+            cm.City = SelectedCity;
             cm.PhoneNumber = PhoneNumber;
             cm.MobileNumber = MobileNumber;
             cm.Email = Email;

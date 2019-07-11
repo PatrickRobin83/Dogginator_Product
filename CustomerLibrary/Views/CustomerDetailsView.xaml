@@ -51,7 +51,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="ZipCode" MinWidth="60" MaxWidth="100"/>
-                    <TextBox x:Name="City" Margin="95 0 0 0" MinWidth="180" MaxWidth="180" HorizontalAlignment="Left"/>
+                    <ComboBox ItemsSource="{Binding Path=Citys, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedCity, Mode=TwoWay}" Margin="95 0 0 0" MinWidth="170" MaxWidth="170" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <TextBlock>Telefon:</TextBlock>
                 <TextBox x:Name="PhoneNumber" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
