@@ -54,11 +54,14 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             //ActivateItem(new ManageAppointmentsViewModel());
             //ActivateItem(new ManageProductsViewModel());
             //ActivateItem(new OverViewViewModel(true,true));
+            //ActivateItem(new ManageCustomerViewModel());
+
+
         }
         #endregion
 
         #region Methods
-       
+
         public bool CanLoadOverview
         {
             get { return IsLoggedIn; }

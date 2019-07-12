@@ -163,22 +163,39 @@ namespace CustomerLibrary.ViewModels
             set
             {
                 _zipcode = value;
-                NotifyOfPropertyChange(() => ZipCode);
+
+                if (ZipCode.Length > 5)
+                {
+                    ZipCode = string.Empty;
+                }
+
                 if (ZipCode.Length == 5)
                 {
-                    Citys = GlobalConfig.Connection.getCityToZipcode(ZipCode);
-                    if (Citys.Count > 0)
+                    Int32 inputNumber;
+
+                    if (false == Int32.TryParse(ZipCode, out inputNumber))
                     {
-                        SelectedCity = Citys[0];
+                        ZipCode = string.Empty;
                     }
-                    NotifyOfPropertyChange(() => Citys);
+                    
+                    else
+                    {
+
+                        Citys = GlobalConfig.Connection.getCityToZipcode(ZipCode);
+                        if (Citys.Count > 0)
+                        {
+                            SelectedCity = Citys[0];
+                        }
+                        NotifyOfPropertyChange(() => Citys);
+                    }
+                    if (ZipCode.Length < 5 && ZipCode.Length >= 0)
+                    {
+                        Citys = new List<string>();
+                        NotifyOfPropertyChange(() => Citys);
+                    }
+                    NotifyOfPropertyChange(() => ZipCode);
+                    NotifyOfPropertyChange(() => CanSaveCustomer);
                 }
-                if (ZipCode.Length < 5 && ZipCode.Length >= 0)
-                {
-                    Citys = new List<string>();
-                    NotifyOfPropertyChange(() => Citys);
-                }
-                NotifyOfPropertyChange(() => CanSaveCustomer);
             }
         }
         public string Housenumber

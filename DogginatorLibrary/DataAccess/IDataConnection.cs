@@ -112,6 +112,8 @@ namespace DogginatorLibrary.DataAccess
         #region Appointment
 
         List<AppointmentModel> getAppointmentsForDog(DogModel dogModel);
+        AppointmentModel AddAppointmentToDatabase(AppointmentModel apointmentModel);
+        bool isAppointmentInDatabase(AppointmentModel appointmentModel);
 
         #endregion
 

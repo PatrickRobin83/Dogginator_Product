@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DogginatorLibrary;
+using DogginatorLibrary.Messages;
 using DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace AppointmentLibrary.ViewModels
         DogModel _selectedDog;
         DateTime _arrivingDay;
         DateTime _leavingDay;
+        AppointmentModel _appointmentModel = new AppointmentModel();
+        int _daysofVisit = 0;
         
 
         #endregion
@@ -76,6 +79,26 @@ namespace AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => IsDailyGuest);
             }
         }
+
+        public AppointmentModel AppointmentModel
+        {
+            get { return _appointmentModel; }
+            set
+            {
+                _appointmentModel = value;
+                NotifyOfPropertyChange(() => AppointmentModel);
+            }
+        }
+
+        public int DaysOfVisit
+        {
+            get { return _daysofVisit; }
+            set
+            {
+                _daysofVisit = value;
+                NotifyOfPropertyChange(() => DaysOfVisit);
+            }
+        }
         #endregion
 
         #region Constructor
@@ -96,16 +119,11 @@ namespace AppointmentLibrary.ViewModels
             {
                 bool canSave = false;
 
-                int result = DateTime.Compare(LeavingDay, ArrivingDay);
-                if (result >= 0)
+                if(ArrivingDay >= DateTime.Today && LeavingDay >= DateTime.Today && ArrivingDay <= LeavingDay)
                 {
                     canSave = true;
                 }
-                else
-                {
-                    canSave = false;
-                }
-
+                
                 return canSave;
             }
 
@@ -114,24 +132,31 @@ namespace AppointmentLibrary.ViewModels
         }
         public void SaveAppointment()
         {
-            //TODO: Save the Appointment in Database
-            //TODO: Calculate the days in total for 1 Month for every Dog in the Month.
-            Console.WriteLine($"Hund: {SelectedDog.Name} kommt am: {ArrivingDay.ToString("dddd")} den {ArrivingDay.Date.ToShortDateString()} und geht am: {LeavingDay.ToString("dddd")} den {LeavingDay.ToShortDateString()}");
-            Console.WriteLine($"{SelectedDog.Name} für {LeavingDay.Subtract(ArrivingDay).Days} Tage gebucht.");
-            if (IsDailyGuest)
+            DaysOfVisit = getDays();
+
+            AppointmentModel.dogFromCustomer = SelectedDog;
+            AppointmentModel.arrivingDate = ArrivingDay;
+            AppointmentModel.leavingDate = LeavingDay;
+            AppointmentModel.IsDailyGuest = IsDailyGuest;
+            AppointmentModel.days = DaysOfVisit;
+
+            if(GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
             {
-                Console.WriteLine($"{SelectedDog.Name} ist ein Tagesgast");
+                ErrorMessages.AppointmentIsAlreadyInDatabaseError(AppointmentModel);
             }
             else
             {
-                Console.WriteLine($"{SelectedDog.Name} ist ein Übernachtungsgast");
-
+                AppointmentModel = GlobalConfig.Connection.AddAppointmentToDatabase(AppointmentModel);
+                SuccessMessages.AppointmentCreatedSuccess();
+                ArrivingDay = DateTime.Today;
+                LeavingDay = DateTime.Today;
+                IsDailyGuest = false;
             }
+            
         }
-        public int getDays()
+        private int getDays()
         {
-            //TODO: Figure out how to calculate the Days of Visit
-            return 0;
+            return LeavingDay.Subtract(ArrivingDay).Days + 1;
         }
         #endregion
     }

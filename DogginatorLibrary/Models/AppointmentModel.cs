@@ -18,7 +18,6 @@ namespace DogginatorLibrary.Models
         public DateTime leavingDate { get; set; }
         public DogModel dogFromCustomer { get; set; }
         public bool IsDailyGuest { get; set; }
-
         public int days { get; set; }
         #endregion
 

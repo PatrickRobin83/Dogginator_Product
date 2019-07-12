@@ -22,29 +22,37 @@ namespace DogginatorLibrary.Messages
         #region Methods
         public static void ShowUserPasswordError()
         {
-            MessageBox.Show("Benutzername oder Passwort ist leer oder falsch", "Fehler: Benutzername / Passwort", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            MessageBox.Show("Benutzername oder Passwort ist leer oder falsch", "Fehler: Benutzername / Passwort", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public static void ShowUserNotActiveError()
         {
-            MessageBox.Show("Der Benutzer ist nicht mehr aktiv", "Fehler: User ist Inaktiv", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            MessageBox.Show("Der Benutzer ist nicht mehr aktiv", "Fehler: User ist Inaktiv", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public static void DogToRemoveError(DogModel dogToRemove)
         {
             MessageBox.Show($"Der Hund {dogToRemove.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
-                                                   $"{dogToRemove.CustomerList.First().FirstName} {dogToRemove.CustomerList.First().LastName} der einzige Besitzer ist");
+                                                   $"{dogToRemove.CustomerList.First().FirstName} {dogToRemove.CustomerList.First().LastName} der einzige Besitzer ist"
+                                                   , "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         public static void DogAlreadCustomerRelationError()
         {
-            MessageBox.Show("Hund ist dem Kunden bereits zugeordnet!", "Hinweis", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Exclamation);
+            MessageBox.Show("Hund ist dem Kunden bereits zugeordnet!", "Hinweis" , MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public static void DogCanNotRemovedFromCustomerError(DogModel selectedDog)
         {
             MessageBox.Show($"Der Hund {selectedDog.Name} kann nicht von der Liste entfernt werden, \r\nweil der Besitzer " +
-                                               $"{selectedDog.CustomerList.First().FirstName} {selectedDog.CustomerList.First().LastName} der einzige Besitzer ist");
+                                               $"{selectedDog.CustomerList.First().FirstName} {selectedDog.CustomerList.First().LastName} der einzige Besitzer ist", "Fehler"
+                                               , MessageBoxButton.OK, MessageBoxImage.Error); ;
+        }
+
+        public static void AppointmentIsAlreadyInDatabaseError(AppointmentModel appointmentModel)
+        {
+            MessageBox.Show($"Der Eintrag für {appointmentModel.dogFromCustomer.Name} wurde mit diesen Details schon eingetragen.\r\nBitte verwenden Sie die Funktion: Termin bearbeiten" +
+                $"          \r\noder legen Sie einen neuen Termin mit anderen Details an.","Fehler - Termin Duplikat",MessageBoxButton.OK,MessageBoxImage.Error);
         }
 
         #endregion

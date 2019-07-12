@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CustomerLibrary.ViewModels
 {
@@ -118,22 +119,41 @@ namespace CustomerLibrary.ViewModels
             set
             {
                 _zipcode = value;
-                NotifyOfPropertyChange(() => ZipCode);
-                if(ZipCode.Length == 5)
+
+                if (ZipCode.Length > 5)
                 {
-                    Citys = GlobalConfig.Connection.getCityToZipcode(ZipCode);
-                    if(Citys.Count > 0)
+                    ZipCode = string.Empty;
+                }
+
+                if (ZipCode.Length == 5)
+                {
+                    Int32 inputNumber;
+
+                    if (false == Int32.TryParse(ZipCode, out inputNumber))
                     {
-                        SelectedCity = Citys[0];
+                        ZipCode = string.Empty;
                     }
-                    NotifyOfPropertyChange(() => Citys);
+                    else
+                    {
+                        
+                        Citys = GlobalConfig.Connection.getCityToZipcode(ZipCode);
+                        if (Citys.Count > 0)
+                        {
+                            SelectedCity = Citys[0];
+                        }
+                        NotifyOfPropertyChange(() => Citys);
+                    }
+                    if (ZipCode.Length < 5 && ZipCode.Length >= 0)
+                    {
+                        Citys = new List<string>();
+                        NotifyOfPropertyChange(() => Citys);
+                    }
+                    NotifyOfPropertyChange(() => ZipCode);
+                    NotifyOfPropertyChange(() => CanCreateCustomer);
                 }
-                if(ZipCode.Length < 5 && ZipCode.Length >= 0)
-                {
-                    Citys = new List<string>();
-                    NotifyOfPropertyChange(() => Citys);
-                }
-                NotifyOfPropertyChange(() => CanCreateCustomer);
+
+                   
+            
             }
         }
         public string Housenumber

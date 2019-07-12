@@ -290,6 +290,40 @@ namespace DogginatorLibrary.DataAccess
 
         }
 
+        #region CityToZipcode
+
+        public List<string> getCityToZipcode(string zipCode)
+        {
+            List<string> foundcitys = new List<string>();
+            string id_zip;
+            List<string> id_city = new List<string>();
+
+            try
+            {
+                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (connection.Query<string>($"Select id from zipcode where zip = {zipCode}").Count() > 0)
+                    {
+                        id_zip = connection.Query<string>($"Select id from zipcode where zip = {zipCode}").First();
+                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = {id_zip}").ToList();
+                        foreach (string cityZip in id_city)
+                        {
+                            foundcitys.Add(connection.Query<string>($"Select name from city where id = {cityZip}").First());
+                        }
+                    }
+                    foundcitys.Sort();
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.ErrorCode);
+            }
+
+            return foundcitys;
+        }
+
+        #endregion
+
         #endregion
 
         #region Dog
@@ -776,8 +810,6 @@ namespace DogginatorLibrary.DataAccess
 
         #endregion
 
-        #endregion
-
         #region Appointment
 
         public List<AppointmentModel> getAppointmentsForDog(DogModel dogModel)
@@ -801,38 +833,36 @@ namespace DogginatorLibrary.DataAccess
 
         }
 
-        #endregion
-
-        #region CityToZipcode
-
-        public List<string> getCityToZipcode(string zipCode)
+        public AppointmentModel AddAppointmentToDatabase(AppointmentModel appointmentModel)
         {
-            List<string> foundcitys = new List<string>();
-            string id_zip;
-            List<string> id_city = new List<string>();
-
-            try
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
+                
                 {
-                    if(connection.Query<string>($"Select id from zipcode where zip = {zipCode}").Count() > 0)
-                    {
-                        id_zip = connection.Query<string>($"Select id from zipcode where zip = {zipCode}").First();
-                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = {id_zip}").ToList();
-                        foreach (string cityZip in id_city)
-                        {
-                            foundcitys.Add(connection.Query<string>($"Select name from city where id = {cityZip}").First());
-                        }
-                    }
-
+                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.arrivingDate}','{appointmentModel.leavingDate}','{appointmentModel.IsDailyGuest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
                 }
-            }catch(SQLiteException ex)
-            {
-                Console.WriteLine(ex.ErrorCode);
             }
-
-            return foundcitys;
+            return appointmentModel;
         }
+
+        public bool isAppointmentInDatabase(AppointmentModel appointmentModel)
+        {
+            bool isInDatabase = false;
+
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            {
+                List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
+                AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND date_from = '{appointmentModel.arrivingDate}' AND date_to = '{appointmentModel.leavingDate}'").ToList();
+                if (AppointmentModelList.Count >= 1)
+                {
+                    isInDatabase = true;
+                }
+                
+            }
+                return isInDatabase;
+        }
+
+        #endregion
 
         #endregion
     }
