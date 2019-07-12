@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CE7BF11D-6901-492D-8D68-9BC46E184818}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>InvoiceLibrary</RootNamespace>
+    <RootNamespace>de.rietrob.dogginator_product.InvoiceLibrary</RootNamespace>
     <AssemblyName>InvoiceLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

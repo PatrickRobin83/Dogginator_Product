@@ -7,7 +7,7 @@
     <ProjectGuid>{1CD608E6-6E86-4BAF-866E-0D13073BCC2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DogginatorLibrary</RootNamespace>
+    <RootNamespace>de.rietrob.dogginator_product.DogginatorLibrary</RootNamespace>
     <AssemblyName>DogginatorLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

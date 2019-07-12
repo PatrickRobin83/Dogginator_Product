@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DogginatorLibrary.Helper
+namespace de.rietrob.dogginator_product.DogginatorLibrary.Helper
 {
     public static class PasswordHelper
     {

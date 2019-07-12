@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DA7C94C5-EA0A-4983-8166-AC629CFBB4EA}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>ConsistedBookLibrary</RootNamespace>
+    <RootNamespace>de.rietrob.dogginator_product.ConsistedBookLibrary</RootNamespace>
     <AssemblyName>ConsistedBookLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

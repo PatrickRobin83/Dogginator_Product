@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ConsistedBookLibrary.Views
+namespace de.rietrob.dogginator_product.ConsistedBookLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für ConsistedBookView.xaml

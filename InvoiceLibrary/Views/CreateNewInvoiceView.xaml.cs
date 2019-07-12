@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace InvoiceLibrary.Views
+namespace de.rietrob.dogginator_product.InvoiceLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für CreateNewInvoiceView.xaml

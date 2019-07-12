@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DogginatorLibrary
+namespace de.rietrob.dogginator_product.DogginatorLibrary
 {
     public static class EventAggregationProvider
     {

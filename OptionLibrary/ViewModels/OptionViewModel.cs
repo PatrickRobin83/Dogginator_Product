@@ -1,12 +1,12 @@
 ﻿using Caliburn.Micro;
-using DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OptionLibrary.ViewModels
+namespace de.rietrob.dogginator_product.OptionLibrary.ViewModels
 {
     public class OptionViewModel : Screen
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DogginatorLibrary.Messages
+namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
 {
     public static class SuccessMessages
     {

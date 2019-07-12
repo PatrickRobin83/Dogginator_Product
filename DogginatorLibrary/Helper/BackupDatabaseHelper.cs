@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace DogginatorLibrary.Helper
+namespace de.rietrob.dogginator_product.DogginatorLibrary.Helper
 {
     public static class BackupDatabaseHelper
     {

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AppointmentLibrary.Views
+namespace de.rietrob.dogginator_product.AppointmentLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für ManageAppointmentsView.xaml

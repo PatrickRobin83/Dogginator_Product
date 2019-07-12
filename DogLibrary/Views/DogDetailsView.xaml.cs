@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DogLibrary.Views
+namespace de.rietrob.dogginator_product.DogLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für DogDetailsView.xaml

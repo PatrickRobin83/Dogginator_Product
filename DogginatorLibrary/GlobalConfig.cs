@@ -1,10 +1,10 @@
-﻿using DogginatorLibrary.DataAccess;
-using DogginatorLibrary.Enums;
+﻿using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
+using de.rietrob.dogginator_product.DogginatorLibrary.Enums;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DogginatorLibrary
+namespace de.rietrob.dogginator_product.DogginatorLibrary
 {
     public static class GlobalConfig
     {

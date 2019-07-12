@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5D240507-E6D9-423F-A910-51C0E57F629A}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>OptionLibrary</RootNamespace>
+    <RootNamespace>de.rietrob.dogginator_product.OptionLibrary</RootNamespace>
     <AssemblyName>OptionLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

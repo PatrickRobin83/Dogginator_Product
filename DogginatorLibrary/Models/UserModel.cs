@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DogginatorLibrary.Models
+namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 {
     public class UserModel
     {

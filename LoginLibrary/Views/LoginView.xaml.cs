@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LoginLibrary.Views
+namespace de.rietrob.dogginator_product.LoginLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für LoginView.xaml

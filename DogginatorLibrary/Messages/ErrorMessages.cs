@@ -1,4 +1,4 @@
-﻿using DogginatorLibrary.Models;
+﻿using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DogginatorLibrary.Messages
+namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
 {
     public static class ErrorMessages
     {
@@ -53,6 +53,12 @@ namespace DogginatorLibrary.Messages
         {
             MessageBox.Show($"Der Eintrag für {appointmentModel.dogFromCustomer.Name} wurde mit diesen Details schon eingetragen.\r\nBitte verwenden Sie die Funktion: Termin bearbeiten" +
                 $"          \r\noder legen Sie einen neuen Termin mit anderen Details an.","Fehler - Termin Duplikat",MessageBoxButton.OK,MessageBoxImage.Error);
+        }
+
+        public static void DogIsInThisTimespanAlreadyInDatabaseError(AppointmentModel appointmentModel)
+        {
+            MessageBox.Show($"Der Eintrag für {appointmentModel.dogFromCustomer.Name} ist in diesem Zeitraum schon gebucht.\r\nBitte verwenden Sie die Funktion: Termin bearbeiten" +
+                $"          \r\noder legen Sie einen neuen Termin mit anderen Daten an.", "Fehler - Hund wurde schon gebucht", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         #endregion

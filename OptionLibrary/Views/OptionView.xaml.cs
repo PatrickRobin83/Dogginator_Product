@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OptionLibrary.Views
+namespace de.rietrob.dogginator_product.OptionLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für OptionView.xaml

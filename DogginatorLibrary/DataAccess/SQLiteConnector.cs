@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DogginatorLibrary.DataAccess
+namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 {
     public class SQLiteConnector : IDataConnection
     {
@@ -852,14 +852,33 @@ namespace DogginatorLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
                 List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
-                AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND date_from = '{appointmentModel.arrivingDate}' AND date_to = '{appointmentModel.leavingDate}'").ToList();
+                AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND " +
+                                                                          $"date_from = '{appointmentModel.arrivingDate}' AND " +
+                                                                          $"date_to = '{appointmentModel.leavingDate}'").ToList();
                 if (AppointmentModelList.Count >= 1)
                 {
                     isInDatabase = true;
                 }
-                
             }
                 return isInDatabase;
+        }
+
+        public bool isDogInTimeSpanAlreadyInDatabase(AppointmentModel appointmentModel)
+        {
+            bool isInDatabase = false;
+
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            {
+                List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
+                AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND " +
+                                                                          $"'{appointmentModel.arrivingDate}' BETWEEN date_from AND date_to").ToList();
+                if (AppointmentModelList.Count >= 1)
+                {
+                    isInDatabase = true;
+                }
+            }
+
+            return isInDatabase;
         }
 
         #endregion

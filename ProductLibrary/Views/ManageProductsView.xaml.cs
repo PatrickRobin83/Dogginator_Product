@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProductLibrary.Views
+namespace de.rietrob.dogginator_product.ProductLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für ManageProductsView.xaml

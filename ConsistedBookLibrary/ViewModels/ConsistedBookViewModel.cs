@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsistedBookLibrary.ViewModels
+namespace de.rietrob.dogginator_product.ConsistedBookLibrary.ViewModels
 {
     public class ConsistedBookViewModel : Screen
     {

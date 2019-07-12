@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OverviewLibrary.Views
+namespace de.rietrob.dogginator_product.OverviewLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für OverViewView.xaml

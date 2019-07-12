@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UserLibrary.Views
+namespace de.rietrob.dogginator_product.UserLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für EditUserView.xaml

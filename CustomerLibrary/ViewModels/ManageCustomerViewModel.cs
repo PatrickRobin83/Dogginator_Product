@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
-using DogginatorLibrary;
-using DogginatorLibrary.DataAccess;
-using DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace CustomerLibrary.ViewModels
+namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
 {
     public class ManageCustomerViewModel : Conductor<object>.Collection.OneActive, IHandle<CustomerModel>
     {

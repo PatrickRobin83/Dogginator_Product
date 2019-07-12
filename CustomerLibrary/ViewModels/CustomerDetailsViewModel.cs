@@ -1,14 +1,14 @@
 ﻿using Caliburn.Micro;
-using DogginatorLibrary;
-using DogginatorLibrary.Messages;
-using DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerLibrary.ViewModels
+namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
 {
     public class CustomerDetailsViewModel : Conductor<object>.Collection.OneActive , IHandle<DogModel>
     {

@@ -1,4 +1,4 @@
-﻿using DogginatorLibrary.DataAccess;
+﻿using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,13 +1,13 @@
 ﻿using Caliburn.Micro;
-using OptionLibrary.ViewModels;
-using UserLibrary.ViewModels;
-using DogginatorLibrary;
-using DogginatorLibrary.Helper;
-using DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.OptionLibrary.ViewModels;
+using de.rietrob.dogginator_product.UserLibrary.ViewModels;
+using de.rietrob.dogginator_product.DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary.Helper;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Windows;
 
-namespace OverviewLibrary.ViewModels
+namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
 {
     public class OverViewViewModel : Conductor<object>.Collection.OneActive, IHandle<string>
     {

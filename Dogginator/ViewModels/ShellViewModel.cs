@@ -1,16 +1,16 @@
 ﻿using Caliburn.Micro;
-using DogginatorLibrary;
-using DogginatorLibrary.Models;
-using DogginatorLibrary.Enums;
-using DogginatorLibrary.Helper;
-using LoginLibrary.ViewModels;
-using AppointmentLibrary.ViewModels;
-using ConsistedBookLibrary.ViewModels;
-using CustomerLibrary.ViewModels;
-using DogLibrary.ViewModels;
-using InvoiceLibrary.ViewModels;
-using OverviewLibrary.ViewModels;
-using ProductLibrary.ViewModels;
+using de.rietrob.dogginator_product.DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.DogginatorLibrary.Enums;
+using de.rietrob.dogginator_product.DogginatorLibrary.Helper;
+using de.rietrob.dogginator_product.LoginLibrary.ViewModels;
+using de.rietrob.dogginator_product.CustomerLibrary.ViewModels;
+using de.rietrob.dogginator_product.DogLibrary.ViewModels;
+using de.rietrob.dogginator_product.InvoiceLibrary.ViewModels;
+using de.rietrob.dogginator_product.ProductLibrary.ViewModels;
+using de.rietrob.dogginator_product.AppointmentLibrary.ViewModels;
+using de.rietrob.dogginator_product.ConsistedBookLibrary.ViewModels;
+using de.rietrob.dogginator_product.OverviewLibrary.ViewModels;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {

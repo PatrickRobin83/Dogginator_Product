@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvoiceLibrary.ViewModels
+namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
 {
     public class InvoiceDetailsViewModel
     {

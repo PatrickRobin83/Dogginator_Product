@@ -1,13 +1,13 @@
 ﻿using Caliburn.Micro;
-using DogginatorLibrary;
-using DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductLibrary.ViewModels
+namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
 {
     public class ProductDetailsViewModel : Screen
     {

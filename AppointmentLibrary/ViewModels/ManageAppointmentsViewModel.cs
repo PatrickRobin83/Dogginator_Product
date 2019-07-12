@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
-using DogginatorLibrary;
-using DogginatorLibrary.Messages;
-using DogginatorLibrary.Models;
+using de.rietrob.dogginator_product.DogginatorLibrary;
+using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace AppointmentLibrary.ViewModels
+namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 {
     public class ManageAppointmentsViewModel : Conductor<object>
     {
@@ -143,6 +143,10 @@ namespace AppointmentLibrary.ViewModels
             if(GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
             {
                 ErrorMessages.AppointmentIsAlreadyInDatabaseError(AppointmentModel);
+            }
+            else if (GlobalConfig.Connection.isDogInTimeSpanAlreadyInDatabase(AppointmentModel))
+            {
+                ErrorMessages.DogIsInThisTimespanAlreadyInDatabaseError(AppointmentModel);
             }
             else
             {

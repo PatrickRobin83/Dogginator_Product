@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CustomerLibrary.Views
+namespace de.rietrob.dogginator_product.CustomerLibrary.Views
 {
     /// <summary>
     /// Interaktionslogik für CreateCustomerView.xaml
