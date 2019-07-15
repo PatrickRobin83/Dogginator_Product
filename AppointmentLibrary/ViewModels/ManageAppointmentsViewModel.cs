@@ -4,6 +4,7 @@ using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,6 +18,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
         #region Fields
         BindableCollection<DogModel> _availableDogs;
+        BindableCollection<AppointmentModel> _availableAppointments = new BindableCollection<AppointmentModel>();
+        BindableCollection<AppointmentModel> _isinWeekAppointments = new BindableCollection<AppointmentModel>();
         bool _isDailyGuest;
         DogModel _selectedDog;
         DateTime _arrivingDay;
@@ -24,7 +27,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         AppointmentModel _appointmentModel = new AppointmentModel();
         int _daysofVisit = 0;
         
-
         #endregion
 
         #region Properties
@@ -99,16 +101,45 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => DaysOfVisit);
             }
         }
+
+        public BindableCollection<AppointmentModel> AvailableAppointments
+        {
+            get { return _availableAppointments; }
+
+            set
+            {
+                _availableAppointments = value;
+                NotifyOfPropertyChange(() => AvailableAppointments);
+            }
+        }
+
+        public BindableCollection<AppointmentModel> IsInWeekAppointments
+        {
+            get { return _isinWeekAppointments; }
+
+            set
+            {
+                _isinWeekAppointments = value;
+                NotifyOfPropertyChange(() => IsInWeekAppointments);
+            }
+        }
         #endregion
 
         #region Constructor
         public ManageAppointmentsViewModel()
         {
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+
             SelectedDog = AvailableDogs.First();
             ArrivingDay = DateTime.Now;
             LeavingDay = DateTime.Now;
-
+            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
+            AppointmentsInCurrentWeek(AvailableAppointments);
+            foreach (AppointmentModel apm in IsInWeekAppointments)
+            {
+                Console.WriteLine(GlobalConfig.Connection.GetDog(apm.DogId).Name + " ist diese Woche gebucht");
+            }
+            
         }
         #endregion
 
@@ -135,8 +166,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             DaysOfVisit = getDays();
 
             AppointmentModel.dogFromCustomer = SelectedDog;
-            AppointmentModel.arrivingDate = ArrivingDay;
-            AppointmentModel.leavingDate = LeavingDay;
+            AppointmentModel.date_from = ArrivingDay;
+            AppointmentModel.date_to = LeavingDay;
             AppointmentModel.IsDailyGuest = IsDailyGuest;
             AppointmentModel.days = DaysOfVisit;
 
@@ -162,6 +193,22 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             return LeavingDay.Subtract(ArrivingDay).Days + 1;
         }
+
+        public BindableCollection<AppointmentModel> AppointmentsInCurrentWeek(BindableCollection<AppointmentModel> appointmentlist)
+        {
+            foreach (AppointmentModel ap in appointmentlist)
+            {
+                if(GlobalConfig.getWeekOfYear(DateTime.Today) <= GlobalConfig.getWeekOfYear(ap.date_to) && 
+                    GlobalConfig.getWeekOfYear(DateTime.Today) >= GlobalConfig.getWeekOfYear(ap.date_from))
+                {
+                    IsInWeekAppointments.Add(ap);
+                }
+            }
+
+            return IsInWeekAppointments;
+        }
+
+
         #endregion
     }
 }

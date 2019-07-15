@@ -26,7 +26,7 @@
         </TextBlock>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="400" MinWidth="400">
+            <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="500" MinWidth="500" Width="500">
                 <StackPanel Orientation="Horizontal">
                     <RadioButton x:Name="RDBFemaleSalutionIsChecked">Frau</RadioButton>
                     <RadioButton x:Name="RDBMaleSalutionIsChecked" Margin="30 0 0 0 ">Herr</RadioButton>
@@ -49,7 +49,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="ZipCode" MinWidth="100" MaxWidth="100" HorizontalAlignment="Left"/>
-                    <ComboBox ItemsSource="{Binding Path=Citys, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedCity, Mode=TwoWay}" Margin="111 0 0 0" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
+                    <ComboBox ItemsSource="{Binding Path=Citys, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedCity, Mode=TwoWay}" Margin="111 0 0 0" MinWidth="200" MaxWidth="200" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <TextBlock>Telefon:</TextBlock>
                 <TextBox x:Name="PhoneNumber" MinWidth="200" MaxWidth="200" HorizontalAlignment="Left"/>

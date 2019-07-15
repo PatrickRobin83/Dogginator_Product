@@ -11,6 +11,7 @@ using de.rietrob.dogginator_product.ProductLibrary.ViewModels;
 using de.rietrob.dogginator_product.AppointmentLibrary.ViewModels;
 using de.rietrob.dogginator_product.ConsistedBookLibrary.ViewModels;
 using de.rietrob.dogginator_product.OverviewLibrary.ViewModels;
+using System.Windows.Controls;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {
@@ -39,7 +40,6 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => IsAdmin);
             }
         }
-    
 
         #endregion
 
@@ -50,8 +50,8 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             BackupDatabaseHelper.BackupDatabase();
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             //TODO: Activate the LoginView after Debugging
-            ActivateItem(new LoginViewModel());
-            //ActivateItem(new ManageAppointmentsViewModel());
+            //ActivateItem(new LoginViewModel());
+            ActivateItem(new ManageAppointmentsViewModel());
             //ActivateItem(new ManageProductsViewModel());
             //ActivateItem(new OverViewViewModel(true,true));
             //ActivateItem(new ManageCustomerViewModel());

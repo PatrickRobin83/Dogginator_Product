@@ -87,6 +87,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         void DeleteCharacteristics(CharacteristicsModel model);
         void DeleteDogFromDatabase(DogModel model);
         List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive);
+
+        DogModel GetDog(int id);
         
         #endregion
 
@@ -112,6 +114,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #region Appointment
 
         List<AppointmentModel> getAppointmentsForDog(DogModel dogModel);
+
+        List<AppointmentModel> getAppointments();
         AppointmentModel AddAppointmentToDatabase(AppointmentModel apointmentModel);
         bool isAppointmentInDatabase(AppointmentModel appointmentModel);
 

@@ -27,7 +27,7 @@
         
         <!-- Row 1 -->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="350" MinWidth="350">
+            <StackPanel Orientation="Vertical" Margin=" 0 5 0 5" MaxWidth="400" MinWidth="400">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock>Anrede:</TextBlock>
                     <CheckBox x:Name="NotActive" Margin="200 0 0 0">Inaktiv</CheckBox>
@@ -51,7 +51,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="ZipCode" MinWidth="60" MaxWidth="100"/>
-                    <ComboBox ItemsSource="{Binding Path=Citys, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedCity, Mode=TwoWay}" Margin="95 0 0 0" MinWidth="170" MaxWidth="170" HorizontalAlignment="Left"/>
+                    <ComboBox ItemsSource="{Binding Path=Citys, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedCity, Mode=TwoWay}" Margin="95 0 0 0" MinWidth="200" MaxWidth="170" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <TextBlock>Telefon:</TextBlock>
                 <TextBox x:Name="PhoneNumber" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
@@ -66,14 +66,14 @@
                 <TextBlock>geb. Datum:</TextBlock>
                 <DatePicker x:Name="Birthday" MinWidth="150" MaxWidth="150" HorizontalAlignment="Left"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBlock Margin="20 0 0 0">Notizen/Besonderheiten</TextBlock>
-                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+            <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="500">
+                <TextBlock Margin="10 0 0 0">Notizen/Besonderheiten</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="10 0 0 0">
                     <TextBox x:Name="NoteToAdd" Margin="0 0 0 0" MinWidth="250" MaxWidth="250"/>
                     <Button x:Name="SaveNoteInList" Margin="10 0 0 0">Notiz hinzufügen</Button>
                     <Button x:Name="DeleteNoteInList" Margin="10 0 0 0">Notiz löschen</Button>
                 </StackPanel>
-                <ListView x:Name="Notes" Margin="20 0 0 5" MinHeight="25" MaxHeight="230" MinWidth="120" 
+                <ListView x:Name="Notes" Margin="10 0 0 5" MinHeight="25" MaxHeight="200" MinWidth="200" 
                           ScrollViewer.CanContentScroll="True" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                      SelectedItem="{Binding Path=SelectedNote, Mode=OneWayToSource}"

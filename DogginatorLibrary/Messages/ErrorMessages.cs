@@ -57,7 +57,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
 
         public static void DogIsInThisTimespanAlreadyInDatabaseError(AppointmentModel appointmentModel)
         {
-            MessageBox.Show($"Der Eintrag für {appointmentModel.dogFromCustomer.Name} ist in diesem Zeitraum schon gebucht.\r\nBitte verwenden Sie die Funktion: Termin bearbeiten" +
+            MessageBox.Show($"Der Eintrag für {appointmentModel.dogFromCustomer.Name} ist in dem Zeitraum {appointmentModel.date_from.ToShortDateString()} - {appointmentModel.date_to.ToShortDateString()} schon gebucht.\r\nBitte verwenden Sie die Funktion: Termin bearbeiten" +
                 $"          \r\noder legen Sie einen neuen Termin mit anderen Daten an.", "Fehler - Hund wurde schon gebucht", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 

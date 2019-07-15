@@ -302,17 +302,19 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    if (connection.Query<string>($"Select id from zipcode where zip = {zipCode}").Count() > 0)
+                    if (connection.Query<string>($"Select id from zipcode where zip = '{zipCode}'").Any())
                     {
-                        id_zip = connection.Query<string>($"Select id from zipcode where zip = {zipCode}").First();
-                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = {id_zip}").ToList();
+                        id_zip = connection.Query<string>($"Select id from zipcode where zip = '{zipCode}'").First();
+                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = '{id_zip}'").ToList();
                         foreach (string cityZip in id_city)
                         {
-                            foundcitys.Add(connection.Query<string>($"Select name from city where id = {cityZip}").First());
+                            foundcitys.Add(connection.Query<string>($"Select name from city where id = '{cityZip}'").First());
                         }
+
+                        foundcitys.Sort();
                     }
-                    foundcitys.Sort();
                 }
+                    
             }
             catch (SQLiteException ex)
             {
@@ -589,6 +591,25 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
         }
 
+        public DogModel GetDog(int id)
+        {
+            DogModel dogModel = new DogModel();
+
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    dogModel = connection.Query<DogModel>($"SELECT * FROM Dog WHERE id = {id};").First();
+                }
+            }
+            catch(SQLiteException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+                    return dogModel;
+        }
+
         #endregion
 
         #region User
@@ -839,7 +860,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 
                 {
-                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.arrivingDate}','{appointmentModel.leavingDate}','{appointmentModel.IsDailyGuest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
+                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.date_from}','{appointmentModel.date_to}','{appointmentModel.IsDailyGuest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
                 }
             }
             return appointmentModel;
@@ -853,8 +874,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
                 AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND " +
-                                                                          $"date_from = '{appointmentModel.arrivingDate}' AND " +
-                                                                          $"date_to = '{appointmentModel.leavingDate}'").ToList();
+                                                                          $"date_from = '{appointmentModel.date_from}' AND " +
+                                                                          $"date_to = '{appointmentModel.date_to}'").ToList();
                 if (AppointmentModelList.Count >= 1)
                 {
                     isInDatabase = true;
@@ -871,7 +892,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
                 AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND " +
-                                                                          $"'{appointmentModel.arrivingDate}' BETWEEN date_from AND date_to").ToList();
+                                                                          $"'{appointmentModel.date_from}' BETWEEN date_from AND date_to").ToList();
                 if (AppointmentModelList.Count >= 1)
                 {
                     isInDatabase = true;
@@ -879,6 +900,32 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
 
             return isInDatabase;
+        }
+
+        public List<AppointmentModel> getAppointments()
+        {
+            List<AppointmentModel> appointments = new List<AppointmentModel>();
+            try
+            {
+                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    appointments = connection.Query<AppointmentModel>($"SELECT * FROM appointment").ToList();
+                }
+                
+            }
+            catch (SQLiteException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
+           foreach (AppointmentModel model in appointments)
+           {
+                model.dogFromCustomer = GetDog(model.DogId);
+                model.dogFromCustomer.CustomerList = GetAllCustomerForDog(GetDog(model.DogId));
+           }
+
+            return appointments;
         }
 
         #endregion

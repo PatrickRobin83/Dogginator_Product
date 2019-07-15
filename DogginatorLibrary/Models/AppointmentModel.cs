@@ -14,11 +14,13 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 
         #region Properties
         public int Id { get; set; }
-        public DateTime arrivingDate { get; set; }
-        public DateTime leavingDate { get; set; }
+        public DateTime date_from { get; set; }
+        public DateTime date_to { get; set; }
         public DogModel dogFromCustomer { get; set; }
         public bool IsDailyGuest { get; set; }
         public int days { get; set; }
+
+        public int DogId { get; set; }
         #endregion
 
         #region Constructor

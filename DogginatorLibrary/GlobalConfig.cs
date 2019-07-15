@@ -1,6 +1,7 @@
 ﻿using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
 using de.rietrob.dogginator_product.DogginatorLibrary.Enums;
 using System.Configuration;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -91,6 +92,13 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
             // Return the hexadecimal string.
             return sBuilder.ToString();
         }
+
+        public static int getWeekOfYear(System.DateTime date)
+        {
+            CultureInfo CUI = CultureInfo.CurrentCulture;
+            return CUI.Calendar.GetWeekOfYear(date, CUI.DateTimeFormat.CalendarWeekRule, CUI.DateTimeFormat.FirstDayOfWeek);
+        }
+
         #endregion
     }
 }
