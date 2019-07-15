@@ -26,6 +26,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         DateTime _leavingDay;
         AppointmentModel _appointmentModel = new AppointmentModel();
         int _daysofVisit = 0;
+        BindableCollection<DateTime> _dates = new BindableCollection<DateTime>();
         
         #endregion
 
@@ -135,10 +136,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             LeavingDay = DateTime.Now;
             AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
             AppointmentsInCurrentWeek(AvailableAppointments);
-            foreach (AppointmentModel apm in IsInWeekAppointments)
-            {
-                Console.WriteLine(GlobalConfig.Connection.GetDog(apm.DogId).Name + " ist diese Woche gebucht");
-            }
+            //foreach (AppointmentModel apm in IsInWeekAppointments)
+            //{
+            //    if (apm.date_from)
+            //    Console.WriteLine(GlobalConfig.Connection.GetDog(apm.DogId).Name + " ist diese Woche gebucht");
+            //}
+
             
         }
         #endregion
