@@ -918,13 +918,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
                 Console.WriteLine(ex.Message);
             }
-
            foreach (AppointmentModel model in appointments)
            {
                 model.dogFromCustomer = GetDog(model.DogId);
                 model.dogFromCustomer.CustomerList = GetAllCustomerForDog(GetDog(model.DogId));
            }
-
             return appointments;
         }
 

@@ -68,7 +68,6 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CModel);
             }
         }
-
         public Screen ActiveEditDogView
         {
             get { return _activeEditDogView ; }
@@ -78,7 +77,6 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveEditDogView);
             }
         }
-
         public bool EditDogIsVisible
         {
             get { return _editDogIsVisible; }
@@ -88,7 +86,6 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => EditDogIsVisible);
             }
         }
-
         public int Id
         {
             get { return _id; }
@@ -776,7 +773,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
         }
 
         /// <summary>
-        /// Changes the bottom part of the view and loads the CreatenNwDogView 
+        /// Changes the bottom part of the view and loads the CreateNewDogView 
         /// </summary>
         public void AddDog()
         {
@@ -785,7 +782,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             CustomerDetailsIsVisible = false;
             AddDogIsVisible = true;
         }
-
+        /// <summary>
+        /// Updates the already existing DogModel
+        /// </summary>
+        /// <param name="dogModel"></param>
         public void Handle(DogModel dogModel)
         {
             if (dogModel.Id > 0)

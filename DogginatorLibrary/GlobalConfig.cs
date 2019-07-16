@@ -1,5 +1,6 @@
 ﻿using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
 using de.rietrob.dogginator_product.DogginatorLibrary.Enums;
+using System;
 using System.Configuration;
 using System.Globalization;
 using System.Security.Cryptography;
@@ -98,6 +99,23 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
             CultureInfo CUI = CultureInfo.CurrentCulture;
             return CUI.Calendar.GetWeekOfYear(date, CUI.DateTimeFormat.CalendarWeekRule, CUI.DateTimeFormat.FirstDayOfWeek);
         }
+
+        public static DateTime GetFirstDayOfWeek(DateTime dayInWeek)
+        {
+            CultureInfo defaultCultureInfo = CultureInfo.CurrentCulture;
+            return GetFirstDateOfWeek(dayInWeek, defaultCultureInfo);
+        }
+
+        public static DateTime GetFirstDateOfWeek(DateTime dayInWeek, CultureInfo cultureInfo)
+        {
+            DayOfWeek firstDay = cultureInfo.DateTimeFormat.FirstDayOfWeek;
+            DateTime firstDayInWeek = dayInWeek.Date;
+            while (firstDayInWeek.DayOfWeek != firstDay)
+                firstDayInWeek = firstDayInWeek.AddDays(-1);
+
+            return firstDayInWeek;
+        }
+
 
         #endregion
     }
