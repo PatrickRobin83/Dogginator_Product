@@ -1,11 +1,6 @@
 ﻿using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
 {

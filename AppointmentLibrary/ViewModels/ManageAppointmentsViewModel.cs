@@ -1,14 +1,21 @@
-﻿using Caliburn.Micro;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   ManageAppointmentViewModel.cs
+ *   Date			:   2019-07-17
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 
 namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels

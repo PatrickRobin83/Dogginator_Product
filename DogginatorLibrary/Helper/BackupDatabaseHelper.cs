@@ -1,8 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   BackupDatabaseHelper.cs
+ *   Date			:   17.07.2019 23:59:25
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using System;
 using System.IO;
 
 namespace de.rietrob.dogginator_product.DogginatorLibrary.Helper
@@ -18,7 +26,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Helper
         #endregion
 
         #region Properties
-        public static DateTime output { get; set; }
 
         #endregion
 
@@ -26,7 +33,9 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Helper
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Checks if the database has a backup file if or if its older than 3 Days. If that is true the database will be stored in a backup database file
+        /// </summary>
         public static void BackupDatabase()
         {
             if (!Directory.Exists(GlobalConfig.DatabaseBackupPath()))

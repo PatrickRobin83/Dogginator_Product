@@ -2,9 +2,7 @@
 using de.rietrob.dogginator_product.OptionLibrary.ViewModels;
 using de.rietrob.dogginator_product.UserLibrary.ViewModels;
 using de.rietrob.dogginator_product.DogginatorLibrary;
-using de.rietrob.dogginator_product.DogginatorLibrary.Helper;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
-using System;
 using System.Windows;
 
 namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels

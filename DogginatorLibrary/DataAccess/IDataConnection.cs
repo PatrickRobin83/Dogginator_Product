@@ -1,9 +1,18 @@
-﻿using de.rietrob.dogginator_product.DogginatorLibrary.Models;
-using System;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   IDataConnection.cs
+ *   Date			:   17.07.2019 23:59:25
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 {

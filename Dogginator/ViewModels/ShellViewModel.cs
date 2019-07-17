@@ -11,7 +11,6 @@ using de.rietrob.dogginator_product.ProductLibrary.ViewModels;
 using de.rietrob.dogginator_product.AppointmentLibrary.ViewModels;
 using de.rietrob.dogginator_product.ConsistedBookLibrary.ViewModels;
 using de.rietrob.dogginator_product.OverviewLibrary.ViewModels;
-using System.Windows.Controls;
 
 namespace de.rietrob.dogginator_product.dogginator.ViewModels
 {

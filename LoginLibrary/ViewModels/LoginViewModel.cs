@@ -1,17 +1,8 @@
 ﻿using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
-using de.rietrob.dogginator_product.DogginatorLibrary.Helper;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
-using Dapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+
 
 namespace de.rietrob.dogginator_product.LoginLibrary.ViewModels
 {
