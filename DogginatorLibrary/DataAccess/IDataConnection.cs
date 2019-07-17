@@ -10,73 +10,22 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
     public interface IDataConnection
     {
         #region Customer
-        /// <summary>
-        /// This Method should connect to the Database and get Information about all saved Customers
-        /// </summary>
-        /// <returns>
-        /// Returns a List of CustomerModels
-        /// </returns>
         List<CustomerModel> Get_CustomerAll();
-
         List<CustomerModel> Get_CustomerInactiveAndActive();
-
-        /// <summary>
-        /// This Method should connect to the Database and get Information about all saved Dogs
-        /// </summary>
-        /// <returns>
-        /// Returns a List of DogModels
-        /// </returns>
-
-        /// <summary>
-        /// Adds the Customer Model
-        /// </summary>
-        /// <returns>
-        /// Customer complete with id 
-        /// </returns>
         CustomerModel AddCustomer(CustomerModel cModel);
-
-        /// <summary>
-        /// Deletes a Customer Model
-        /// </summary>
-        /// <param name="model"></param>
         void DeleteCustomer(CustomerModel model);
-
-        /// <summary>
-        /// Updates a Customer
-        /// </summary>
         void UpdateCustomer(CustomerModel cModel);
-
         NoteModel AddNoteToCustomer(CustomerModel cModel, string note);
-
         CustomerModel Get_Customer(CustomerModel model);
-
         void DeleteNoteFromList(NoteModel noteModel, CustomerModel cModel);
-
         List<CustomerModel> SearchResultsCustomer(string searchText, bool isActiveAndInactive);
-
         #endregion
 
         #region Dog
-
         List<DogModel> Get_DogsAll();
         List<DogModel> Get_DogsInactiveAndActive();
-        /// <summary>
-        /// Adds the Dog Model
-        /// </summary>
-        /// <returns>
-        /// Dog complete with id 
-        /// </returns>
         DogModel AddDog(DogModel dModel, CustomerModel cModel);
-        /// <summary>
-        /// Updates a Dog
-        /// </summary>
         void UpdateDog(DogModel dModel);
-        /// <summary>
-        /// Saves the new Note about the Customer in the DataBase
-        /// </summary>
-        /// <param name="cModel">Customermodel with the correct ID</param>
-        /// <param name="note">Note to save</param>
-        /// <returns>The Notemodel with the ID</returns>
         DogModel AddDogToDatabase(DogModel dModel);
         void AddDogToCustomer(DogModel dModel, CustomerModel cModel);
         List<CustomerModel> GetAllCustomerForDog(DogModel dModel);
@@ -87,9 +36,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         void DeleteCharacteristics(CharacteristicsModel model);
         void DeleteDogFromDatabase(DogModel model);
         List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive);
-
         DogModel GetDog(int id);
-        
         #endregion
 
         #region User
@@ -108,25 +55,19 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         void DeleteProductFromDatabase(ProductModel productModel);
         void UpdateProduct(ProductModel productModel);
         List<ProductModel> SearchResulProducts(string searchText, bool showInactive);
-
         #endregion
 
         #region Appointment
 
         List<AppointmentModel> getAppointmentsForDog(DogModel dogModel);
-
         List<AppointmentModel> getAppointments();
         AppointmentModel AddAppointmentToDatabase(AppointmentModel apointmentModel);
         bool isAppointmentInDatabase(AppointmentModel appointmentModel);
-
         bool isDogInTimeSpanAlreadyInDatabase(AppointmentModel appointmentModel);
-
         #endregion
 
         #region CityToZipcode
-
         List<string> getCityToZipcode(string zipCode);
-
         #endregion
     }
 }

@@ -329,6 +329,14 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #endregion
 
         #region Dog
+        /// <summary>
+        /// Inserts the Dog into the Database
+        /// Inserts the DogToCustomer Relation into the Database
+        /// Add the Customer to the DogModel Customer List
+        /// </summary>
+        /// <returns>
+        /// Dog complete with id 
+        /// </returns>
         public DogModel AddDog(DogModel dModel, CustomerModel cModel)
         {
             AddDogToDatabase(dModel);
@@ -337,7 +345,9 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             return dModel;
         }
-
+        /// <summary>
+        /// Updates a Dog in the Database with new Attributes
+        /// </summary>
         public void UpdateDog(DogModel dModel)
         {
 
@@ -358,7 +368,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
 
         }
-
+        /// <summary>
+        /// Inserts the Dog with Characteristics and Diseases in the Database
+        /// </summary>
+        /// <param name="dModel">Dogmodel to save</param>
+        /// <returns>Dogmodel with the ID from the Database</returns>
         public DogModel AddDogToDatabase(DogModel dModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -385,7 +399,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             return dModel;
         }
-
+        /// <summary>
+        /// Inserts a DogToCustomer Relation in the Database.
+        /// </summary>
+        /// <param name="dModel">DogModel ID which is needed to save the relation in Database</param>
+        /// <param name="cModel">CustomerModel ID which is needed to save the relation in the Database</param>
         public void AddDogToCustomer(DogModel dModel, CustomerModel cModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -393,7 +411,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 connection.Query("INSERT INTO customer_to_dog (customerId, dogId) VALUES (" + cModel.Id + " ," + dModel.Id + ")");
             }
         }
-
+        /// <summary>
+        /// Selects all Dogs in the Database inactive and active
+        /// </summary>
+        /// <returns>List of DogModels</returns>
         public List<DogModel> Get_DogsAll()
         {
             List<DogModel> output = new List<DogModel>();
@@ -423,7 +444,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<DogModel>();
             }
         }
-
+        /// <summary>
+        /// Deletes the DogToCustomer relation entry in the Database
+        /// </summary>
+        /// <param name="cModel">CutomerModel needed for the deletion</param>
+        /// <param name="dModel">DogModel needed for the deletion</param>
         public void DeleteDogToCustomerRelation(CustomerModel cModel, DogModel dModel)
         {
             try
@@ -439,7 +464,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Deletes the Relation Between Dog and Disease in the Database
+        /// </summary>
+        /// <param name="dModel">DogModel that holds a List of its own disease</param>
         public void DeleteDogDiseasesRelation(DogModel dModel)
         {
             try
@@ -462,7 +490,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Deletes the Relation Between Dog and Characteristics in the Database
+        /// </summary>
+        /// <param name="dModel">Dogmodel that holds a List of its own characterisitcs</param>
         public void DeleteDogToCharacteristicsRelation(DogModel dModel)
         {
             try
@@ -485,14 +516,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-
-        public void DeleteDiseases(DiseasesModel model)
+        /// <summary>
+        /// Deletes the Diseases from the database
+        /// </summary>
+        /// <param name="diseasesModel">Disease Model to delete from database</param>
+        public void DeleteDiseases(DiseasesModel diseasesModel)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query("DELETE FROM diseases WHERE id = " + model.Id);
+                    connection.Query("DELETE FROM diseases WHERE id = " + diseasesModel.Id);
                 }
             }
             catch (SQLiteException ex)
@@ -500,14 +534,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-
-        public void DeleteCharacteristics(CharacteristicsModel model)
+        /// <summary>
+        /// Deletes the given Characteristic from the database
+        /// </summary>
+        /// <param name="characteristicsModel">Characteristics Model to delete from database</param>
+        public void DeleteCharacteristics(CharacteristicsModel characteristicsModel)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query("DELETE FROM characteristics WHERE id = " + model.Id);
+                    connection.Query("DELETE FROM characteristics WHERE id = " + characteristicsModel.Id);
                 }
             }
             catch (SQLiteException ex)
@@ -515,14 +552,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-
-        public void DeleteDogFromDatabase(DogModel model)
+        /// <summary>
+        /// Delete the given Dog from the Database
+        /// </summary>
+        /// <param name="dogModel">DogModel to delete from database</param>
+        public void DeleteDogFromDatabase(DogModel dogModel)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query("UPDATE dog SET edit_date = datetime('now'), active = 0 WHERE id= " + model.Id);
+                    connection.Query("UPDATE dog SET edit_date = datetime('now'), active = 0 WHERE id= " + dogModel.Id);
                 }
             }
             catch (SQLiteException sqLiteEx)
@@ -531,7 +571,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return;
             }
         }
-
+        /// <summary>
+        /// Selects all inactive and active dogs from the database and return the result as a List
+        /// </summary>
+        /// <returns>List<DogModel></returns>
         public List<DogModel> Get_DogsInactiveAndActive()
         {
             List<DogModel> output = new List<DogModel>();
@@ -561,7 +604,12 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<DogModel>();
             }
         }
-
+        /// <summary>
+        /// Searches in the Table Dogs for the given Text in every column
+        /// </summary>
+        /// <param name="searchText">string of the searchtext that was entered in the Textbox</param>
+        /// <param name="activeAndInactive">bool if searched only for active dogs or active and inactive dogs</param>
+        /// <returns>Returns a List of Dogmodel that  matches the searchtext</returns>
         public List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive)
         {
             List<DogModel> results = new List<DogModel>();
@@ -590,7 +638,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             return results;
 
         }
-
+        /// <summary>
+        /// Selects a DogModel from the Database
+        /// </summary>
+        /// <param name="id">DogModel id from the entry in the database</param>
+        /// <returns>a complete Dogmodel out of the database</returns>
         public DogModel GetDog(int id)
         {
             DogModel dogModel = new DogModel();
@@ -613,15 +665,20 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #endregion
 
         #region User
-        public UserModel IsUserAndPasswordRight(UserModel input)
+        /// <summary>
+        /// checks database for user password combination
+        /// </summary>
+        /// <param name="userModel">UserModel that holds the username and password</param>
+        /// <returns>true if the combination is right - false if the combination is wrong</returns>
+        public UserModel IsUserAndPasswordRight(UserModel userModel)
         {
             try
             {
                 using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    if (connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").ToList().Count > 0)
+                    if (connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + userModel.Username + "';").ToList().Count > 0)
                     {
-                        input = connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + input.Username + "';").First();
+                        userModel = connection.Query<UserModel>("SELECT * FROM user WHERE username = '" + userModel.Username + "';").First();
                     }
                 }
             }
@@ -629,16 +686,19 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 Console.WriteLine(sqEx.Message);
             }
-            return input;
+            return userModel;
         }
-
-        public void InsertUserToDatabase(UserModel model)
+        /// <summary>
+        /// Inserts a user into the user table in the database
+        /// </summary>
+        /// <param name="userModel"></param>
+        public void InsertUserToDatabase(UserModel userModel)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query(@"INSERT INTO user (username, password, isadmin,isactive,create_date) VALUES(@Username, @Password, @IsAdmin,1, datetime('now') );", model);
+                    connection.Query(@"INSERT INTO user (username, password, isadmin,isactive,create_date) VALUES(@Username, @Password, @IsAdmin,1, datetime('now') );", userModel);
                 }
             }
             catch (SQLiteException sqEx)
@@ -646,7 +706,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-
+        /// <summary>
+        /// Selects all active user from the database
+        /// </summary>
+        /// <returns>Returns a List of UserModel</returns>
         public List<UserModel> GetAllActiveUser()
         {
             List<UserModel> output = new List<UserModel>();
@@ -664,14 +727,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return output;
         }
-
-        public void DeleteUserFromDataBase(UserModel model)
+        /// <summary>
+        /// Deletes the given user from the database
+        /// </summary>
+        /// <param name="userModel"></param>
+        public void DeleteUserFromDataBase(UserModel userModel)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query($" UPDATE user SET edit_date = datetime('now'), isactive = 0 WHERE {model.Id} = id");
+                    connection.Query($" UPDATE user SET edit_date = datetime('now'), isactive = 0 WHERE {userModel.Id} = id");
                 }
             }
             catch (SQLiteException sqEx)
@@ -679,7 +745,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-
+        /// <summary>
+        /// Selects all Users from Database active also as inactive
+        /// </summary>
+        /// <returns>List of Users</returns>
         public List<UserModel> GetAllUser()
         {
             List<UserModel> output = new List<UserModel>();
@@ -697,14 +766,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return output;
         }
-
-        public void UpdateUser(UserModel model)
+        /// <summary>
+        /// Updates the values of the given user in the database
+        /// </summary>
+        /// <param name="userModel">User to update</param>
+        public void UpdateUser(UserModel userModel)
         {
             try
             {
                 using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    connection.Query($" UPDATE user SET edit_date = datetime('now'), isactive = {model.IsActive}, username = '{model.Username}' , password = '{model.Password}', isadmin = {model.IsAdmin} WHERE '{model.Id}' = id");
+                    connection.Query($" UPDATE user SET edit_date = datetime('now'), isactive = {userModel.IsActive}, username = '{userModel.Username}' , password = '{userModel.Password}', isadmin = {userModel.IsAdmin} WHERE '{userModel.Id}' = id");
                 }
             }
             catch (SQLiteException sqEx)
@@ -712,7 +784,12 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-
+        /// <summary>
+        /// Searches in the Table user for the given Text in every column
+        /// </summary>
+        /// <param name="searchText">Searches in the Table Dogs for the given Text in every column</param>
+        /// <param name="showInactive">bool if searched only for active users or active and inactive users </param>
+        /// <returns></returns>
         public List<UserModel> SearchResultUser(string searchText, bool showInactive)
         {
             List<UserModel> output = new List<UserModel>();
@@ -742,6 +819,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #endregion
 
         #region Product
+        /// <summary>
+        /// Selects all Products from the database and writes it into a List of ProductModel 
+        /// </summary>
+        /// <returns>List of ProductModel</returns>
         public List<ProductModel> GetAllProducts()
         {
             List<ProductModel> products = new List<ProductModel>();
@@ -760,7 +841,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<ProductModel>();
             }
         }
-
+        /// <summary>
+        /// Adds a product into the table product from the database
+        /// </summary>
+        /// <param name="productModel">ProductModel to add</param>
+        /// <returns>given ProductModel with id from database table</returns>
         public ProductModel AddProductToDatabase(ProductModel productModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -770,7 +855,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return productModel;
             }
         }
-
+        /// <summary>
+        /// Deletes the product from the table product in database
+        /// </summary>
+        /// <param name="productModel">ProductModel to delete</param>
         public void DeleteProductFromDatabase(ProductModel productModel)
         {
             try
@@ -786,7 +874,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return;
             }
         }
-
+        /// <summary>
+        /// Updates the values from the ProductModel in the database with the values of the given ProductModel
+        /// </summary>
+        /// <param name="productModel">Product to update</param>
         public void UpdateProduct(ProductModel productModel)
         {
             try
@@ -801,7 +892,12 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-
+        /// <summary>
+        /// Returns a List with ProductModel that matches the searchstring from the textbox and all or only the active products
+        /// </summary>
+        /// <param name="searchText">string from the TextBox </param>
+        /// <param name="showInactive">bool only active or also inactive products</param>
+        /// <returns>List of products that matches the search string and the bool</returns>
         public List<ProductModel> SearchResulProducts(string searchText, bool showInactive)
         {
             List<ProductModel> output = new List<ProductModel>();
