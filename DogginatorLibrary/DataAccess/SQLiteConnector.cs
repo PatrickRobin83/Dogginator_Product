@@ -1015,7 +1015,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 
                 {
-                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.date_from}','{appointmentModel.date_to}','{appointmentModel.IsDailyGuest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
+                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.date_from}','{appointmentModel.date_to}','{appointmentModel.isdayliguest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
                 }
             }
             return appointmentModel;

@@ -173,7 +173,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             ArrivingDay = DateTime.Now;
             LeavingDay = DateTime.Now;
             AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
-           // AppointmentsInCurrentWeek(AvailableAppointments); 
+            //_isinWeekAppointments = AppointmentsInCurrentWeek(AvailableAppointments);
+            AppointmentsInCurrentWeek(AvailableAppointments); 
         }
         #endregion
 
@@ -205,7 +206,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.dogFromCustomer = SelectedDog;
             AppointmentModel.date_from = ArrivingDay;
             AppointmentModel.date_to = LeavingDay;
-            AppointmentModel.IsDailyGuest = IsDailyGuest;
+            AppointmentModel.isdayliguest = IsDailyGuest;
             AppointmentModel.days = DaysOfVisit;
 
             if(GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
@@ -244,13 +245,23 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             foreach (AppointmentModel ap in appointmentlist)
             {
-                Console.WriteLine(GlobalConfig.GetFirstDayOfWeek(ap.date_from).ToShortDateString());
-
-                if (GlobalConfig.getWeekOfYear(DateTime.Today) <= GlobalConfig.getWeekOfYear(ap.date_to) && 
-                    GlobalConfig.getWeekOfYear(DateTime.Today) >= GlobalConfig.getWeekOfYear(ap.date_from))
+                if (ap.date_from >= GlobalConfig.GetFirstDayOfWeek(DateTime.Today) && ap.date_from <= GlobalConfig.GetFirstDayOfWeek(DateTime.Today).AddDays(7))
                 {
+                    //TODO: Why the isDailyguest everytime false
+                    if (ap.isdayliguest)
+                    {
+                        for (int i = 0; i < ap.days ; i++)
+                        {
+                            Console.WriteLine($"{ap.dogFromCustomer.Name} ist gebucht vom {ap.date_from} bis {ap.date_to} und wird jeden Morgen gebracht und jeden Abend abgeholt.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{ap.dogFromCustomer.Name} kommt am {ap.date_from} und geht am {ap.date_to} mit Übernachtung werden {ap.days} Tage berechnet");
+                    }
                     IsInWeekAppointments.Add(ap);
                 }
+               
             }
             return IsInWeekAppointments;
         }
