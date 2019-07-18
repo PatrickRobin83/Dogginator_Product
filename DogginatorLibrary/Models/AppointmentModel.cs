@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-/**
+﻿/**
  * -----------------------------------------------------------------------------
  *	 
  *   Filename		:   AppointmentModel.cs
@@ -11,6 +9,9 @@ using System.Collections.Generic;
  * @author     Patrick Robin <support@rietrob.de>
  * @Version      1.0.0
  */
+
+using System;
+
 namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 {
     public class AppointmentModel

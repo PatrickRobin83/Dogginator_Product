@@ -1,11 +1,20 @@
-﻿using Caliburn.Micro;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   CreateNewDogViewModel.cs
+ *   Date			:   17.07.2019 23:59:25
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 {
@@ -14,7 +23,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         #region Fields
         private bool _whenIsVisible = false;
         private bool _effectiveUntilIsVisible = false;
-
         private string  _name = "";
         private string _breed = "";
         private string _color = "";
@@ -32,7 +40,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         private string _addCharacteristicsText = "";
         private BindableCollection<CharacteristicsModel> _characteristicsList = new BindableCollection<CharacteristicsModel>();
         private CharacteristicsModel _selectedCharacteristics = new CharacteristicsModel();
-
         #endregion
 
         #region Properties
@@ -45,7 +52,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => WhenIsVisible);
             }
         }
-
         public bool EffectiveUntilIsVisible
         {
             get { return _effectiveUntilIsVisible; }
@@ -55,7 +61,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => EffectiveUntilIsVisible);
             }
         }
-
         public string Name
         {
             get { return _name; }
@@ -115,7 +120,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => Birthday);
             }
         }
-
         public bool CastrationIsDurable
         {
             get { return _castrationIsDurable; }
@@ -147,7 +151,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 
             }
         }
-
         public DateTime CastratedSince
         {
             get { return _castratedSince; }
@@ -157,7 +160,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CastratedSince);
             }
         }
-
         public DateTime EffectiveUntil
         {
             get { return _effectiveUntil; }
@@ -168,7 +170,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanSaveDog);
             }
         }
-
         public bool PermanentCastrated
         {
             get { return _permanentCastrated; }
@@ -178,8 +179,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => PermanentCastrated);
                 NotifyOfPropertyChange(() => CanSaveDog);
             }
-        }
-                
+        }   
         public string AddDiseaseText
         {
             get { return _addDiseaseText; }
@@ -238,7 +238,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanRemoveCharacteristics);
             }
         }
-        
         #endregion
 
         #region Contstructor
@@ -249,7 +248,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             Birthday = DateTime.Now;
             CastratedSince = DateTime.Now;
             EffectiveUntil = DateTime.Now;
-
         }
         #endregion
 
@@ -272,7 +270,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
             
         }
-
         /// <summary>
         /// Add a disease to the List
         /// </summary>
@@ -284,7 +281,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             AddDiseaseText = "";
 
         }
-
         /// <summary>
         /// This checks if it is possible to add a characteristic to the characteristics List
         /// </summary>
@@ -303,7 +299,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
             
         }
-
         /// <summary>
         /// Add a characteristic to the List
         /// </summary>
@@ -314,7 +309,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             CharacteristicsList.Add(model);
             AddCharacteristicsText = "";
         }
-
         /// <summary>
         /// This checks if it is possible to remove a disease from the List
         /// </summary>
@@ -332,7 +326,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
-
         /// <summary>
         /// This removes the selected entry from the List
         /// </summary>
@@ -340,7 +333,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         {
             DiseasesList.Remove(SelectedDisease);
         }
-
         /// <summary>
         /// This checks if it is possible to remove a characteristic from the List
         /// </summary>
@@ -358,7 +350,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
-
         /// <summary>
         /// This removes the selected entry from the list
         /// </summary>
@@ -366,7 +357,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         {
             CharacteristicsList.Remove(SelectedCharacteristics);
         }
-
         /// <summary>
         /// this checks if all required fields are set
         /// </summary>
@@ -384,7 +374,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
-
         /// <summary>
         /// this saves the dog to the list
         /// </summary>
@@ -423,7 +412,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(dogModel);
         }
-
         /// <summary>
         /// This abort the Dog creation and return to the CreateNewCustomer View
         /// </summary>

@@ -1,8 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   UserModel.cs
+ *   Date			:   17.07.2019 23:59:25
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
 
 namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 {

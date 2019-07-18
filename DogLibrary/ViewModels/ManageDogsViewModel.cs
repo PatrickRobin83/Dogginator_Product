@@ -1,4 +1,16 @@
-﻿using Caliburn.Micro;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   ManageDogsViewModel.cs
+ *   Date			:   17.07.2019 23:59:25
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 
@@ -12,11 +24,8 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         private bool _dogOverviewIsVisible = true;
         private bool _dogDetailsIsVisible = false;
         private Screen _activeDogsDetailsView;
-
         private string _dogSearchText = "";
         private bool _showalsoInactive = false;
-        private string _marker = "";
-
         #endregion
 
         #region Properties
@@ -67,7 +76,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveDogsDetailsView);
             }
         }
-
         public string DogSearchText
         {
             get { return _dogSearchText; }
@@ -92,17 +100,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => AvailableDogs);
             }
         }
-
-        public string Marker
-        {
-            get { return _marker; }
-            set
-            {
-                _marker = value;
-                NotifyOfPropertyChange(() => Marker);
-            }
-        }
-
         #endregion
 
         #region Contstructor
@@ -125,7 +122,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 
             return AvailableDogs;
         }
-
+        /// <summary>
+        /// Converts the bool isActive into a string True = Aktiv -- False = Inaktiv
+        /// </summary>
+        /// <param name="dogList"></param>
         private void ActiveDog(BindableCollection<DogModel> dogList)
         {
             foreach (DogModel model in dogList)
@@ -142,7 +142,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 
             }
         }
-
         /// <summary>
         /// Activates or deactivates the Delete Dog Button
         /// </summary>
@@ -159,7 +158,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 return output;
             }
         }
-
         /// <summary>
         /// Deletes the dog to customer relation and dog to disease relation and the dog to characteristic relation and finally sets the dog active
         /// </summary>
@@ -180,7 +178,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             ShowalsoInactive = false;
             NotifyOfPropertyChange(() => ShowalsoInactive);
         }
-
         /// <summary>
         /// Activates or deactivate the EditDog Button
         /// </summary>
@@ -197,7 +194,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 return output;
             }
         }
-
         /// <summary>
         /// opens the DogsDetailsView
         /// </summary>
@@ -208,7 +204,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             DogOverviewIsVisible = false;
             DogDetailsIsVisible = true;
         }
-
         /// <summary>
         /// Is triggered if a Dogmodel is given back to the UI-Thread
         /// </summary>
@@ -229,8 +224,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             ShowalsoInactive = false;
             NotifyOfPropertyChange(() => ShowalsoInactive);
         }
-
-
         #endregion
     }
 }

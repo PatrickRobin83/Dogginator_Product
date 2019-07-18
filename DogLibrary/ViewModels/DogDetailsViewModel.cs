@@ -1,11 +1,20 @@
-﻿using Caliburn.Micro;
+﻿/**
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   DogDetailsViewModel.cs
+ *   Date			:   17.07.2019 23:59:25
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 {
@@ -368,7 +377,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         #endregion
 
         #region Methods
-
         /// <summary>
         /// This checks if it is possible to add a disease to the diseases List. 
         /// </summary>
@@ -386,7 +394,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
-
         /// <summary>
         /// Add a disease to the List
         /// </summary>
@@ -399,7 +406,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             IsDiseaseToSave = true;
 
         }
-
         /// <summary>
         /// This checks if it is possible to add a characteristic to the characteristics List
         /// </summary>
@@ -418,7 +424,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
 
         }
-
         /// <summary>
         /// Add a characteristic to the List
         /// </summary>
@@ -430,7 +435,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             AddCharacteristicsText = "";
             IsCharacteristicToSave = true;
         }
-
         /// <summary>
         /// This checks if it is possible to remove a disease from the List
         /// </summary>
@@ -448,7 +452,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
-
         /// <summary>
         /// This removes the selected entry from the List
         /// </summary>
@@ -457,7 +460,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             DiseasesList.Remove(SelectedDisease);
             IsDiseaseToSave = true;
         }
-
         /// <summary>
         /// This checks if it is possible to remove a characteristic from the List
         /// </summary>
@@ -475,7 +477,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
-
         public void RemoveCharacteristics()
         {
             CharacteristicsList.Remove(SelectedCharacteristics);
@@ -541,7 +542,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 return false;
             }
         }
-
         /// <summary>
         /// this saves the dog to the list
         /// </summary>
@@ -588,7 +588,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(DogToEdit);
             TryClose();
         }
-
         /// <summary>
         /// This abort the Dog creation and return to the CreateNewCustomer View
         /// </summary>
@@ -599,8 +598,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new DogModel());
             this.TryClose();
         }
-
-
         #endregion
     }
 }
