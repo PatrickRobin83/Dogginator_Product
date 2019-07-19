@@ -40,7 +40,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         /// <summary>
         /// True if the Dog is a daily guest False if the dog is an overnighter
         /// </summary>
-        public bool isdayliguest { get; set; }
+        public bool isdailyguest { get; set; }
         /// <summary>
         /// Days the dog stays for this appointment
         /// </summary>
