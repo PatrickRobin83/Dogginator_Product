@@ -11,6 +11,7 @@
  */
 
 using Caliburn.Micro;
+using de.rietrob.dogginator_product.AppointmentLibrary.Helper;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
@@ -83,6 +84,14 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             set
             {
                 _arrivingDay = value;
+                if (LeavingDay.Equals(ArrivingDay))
+                {
+                    IsDailyGuest = true;
+                }
+                else
+                {
+                    IsDailyGuest = false;
+                }
                 NotifyOfPropertyChange(() => CanSaveAppointment);
                 NotifyOfPropertyChange(() => ArrivingDay);
                 
@@ -97,6 +106,14 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             set
             {
                 _leavingDay = value;
+                if (ArrivingDay.Equals(LeavingDay))
+                {
+                    IsDailyGuest = true;
+                }
+                else
+                {
+                    IsDailyGuest = false;
+                }
                 NotifyOfPropertyChange(() => CanSaveAppointment);
                 NotifyOfPropertyChange(() => LeavingDay);
                 
@@ -205,7 +222,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         /// </summary>
         public void SaveAppointment()
         {
-            DaysOfVisit = getDays();
+            DaysOfVisit = DateCalculator.getDays(LeavingDay,ArrivingDay);
 
             AppointmentModel.dogFromCustomer = SelectedDog;
             AppointmentModel.date_from = ArrivingDay;
@@ -231,15 +248,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
             
         }
-        /// <summary>
-        /// calculates the days between arriving date and leaving date
-        /// </summary>
-        /// <returns>the calculated days as an int</returns>
-        private int getDays()
-        {
-            return LeavingDay.Subtract(ArrivingDay).Days + 1;
-        }
-
+        
         /// <summary>
         /// Gets all appoitnments in the current Week of the Year 
         /// </summary>

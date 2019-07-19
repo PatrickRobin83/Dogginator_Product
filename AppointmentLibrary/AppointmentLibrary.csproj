@@ -69,6 +69,7 @@
     <Compile Include="..\.shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helper\DateCalculator.cs" />
     <Compile Include="ViewModels\ManageAppointmentsViewModel.cs" />
     <Compile Include="Views\ManageAppointmentsView.xaml.cs">
       <DependentUpon>ManageAppointmentsView.xaml</DependentUpon>
