@@ -27,10 +27,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.Helper
         #endregion
 
         #region Constructor
-        public DateCalculator()
-        {
-
-        }
         #endregion
 
         #region Methods
