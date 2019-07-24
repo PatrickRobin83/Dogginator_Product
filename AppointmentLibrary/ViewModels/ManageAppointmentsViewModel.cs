@@ -16,6 +16,7 @@ using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
+using System.Globalization;
 using System.Linq;
 
 
@@ -46,6 +47,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         DateTime _firstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today);
 
         DateTime _lastDayOfWeek = GlobalConfig.GetFirstDayOfWeek(GlobalConfig.GetFirstDayOfWeek(DateTime.Today)).AddDays(6);
+
+        AppointmentModel _selectedAppointment;
 
         #endregion
 
@@ -105,7 +108,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             get { return _leavingDay; }
             set
             {
-                _leavingDay = value;
+                _leavingDay = value.Date;
                 if (ArrivingDay.Equals(LeavingDay))
                 {
                     IsDailyGuest = true;
@@ -181,6 +184,33 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => IsInWeekAppointments);
             }
         }
+
+        public AppointmentModel SelectedAppointment
+        {
+            get { return _selectedAppointment; }
+            set
+            {
+                _selectedAppointment = value;
+                NotifyOfPropertyChange(() => SelectedAppointment);
+            }
+        }
+
+        public string FirstDayOfWeek
+        {
+            get { return _firstDayOfWeek.ToShortDateString(); }
+            set
+            {
+                value = _firstDayOfWeek.ToShortDateString();
+            }
+        }
+        public string LastDayOfWeek
+        {
+            get { return _lastDayOfWeek.ToShortDateString(); }
+            set
+            {
+                value = _lastDayOfWeek.ToShortDateString();
+            }
+        }
         #endregion
 
         #region Constructor
@@ -198,7 +228,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentsInCurrentWeek(AvailableAppointments); 
         }
         #endregion
-
+        
         #region Methods
         /// <summary>
         /// Enables or disables the "Save Appointment Button"
@@ -262,7 +292,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
             return IsInWeekAppointments;
         }
-
+        // TODO: Get the Buttons work Create an DetailsView For Appointments
         private string DisplayAppointmentAsString(AppointmentModel appointmentModel)
         {
             string resultstring = "";

@@ -49,6 +49,18 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         /// Id from the Dog what the appointment is for
         /// </summary>
         public int DogId { get; set; }
+
+        public string ArrivingDateForTable
+        {
+            get
+            {
+                return date_from.ToShortDateString();
+            }
+        }
+        public string LeavingDateForTable
+        {
+            get { return date_to.ToShortDateString(); }
+        }
         #endregion
 
         #region Constructor
