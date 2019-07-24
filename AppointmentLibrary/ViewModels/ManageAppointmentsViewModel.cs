@@ -259,6 +259,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.date_to = LeavingDay;
             AppointmentModel.isdailyguest = IsDailyGuest;
             AppointmentModel.days = DaysOfVisit;
+            AppointmentModel.dogID = SelectedDog.Id;
 
             if(GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
             {
@@ -276,7 +277,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 LeavingDay = DateTime.Today;
                 IsDailyGuest = false;
             }
-            
+            IsInWeekAppointments = AppointmentsInCurrentWeek(AvailableAppointments);
         }
         
         /// <summary>

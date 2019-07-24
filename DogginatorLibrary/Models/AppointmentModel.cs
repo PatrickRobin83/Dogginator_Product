@@ -48,7 +48,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         /// <summary>
         /// Id from the Dog what the appointment is for
         /// </summary>
-        public int DogId { get; set; }
+        public int dogID { get; set; }
 
         public string ArrivingDateForTable
         {

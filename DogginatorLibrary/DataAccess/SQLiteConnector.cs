@@ -1086,8 +1086,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
            foreach (AppointmentModel model in appointments)
            {
-                model.dogFromCustomer = GetDog(model.DogId);
-                model.dogFromCustomer.CustomerList = GetAllCustomerForDog(GetDog(model.DogId));
+                model.dogFromCustomer = GetDog(model.dogID);
+                model.dogFromCustomer.CustomerList = GetAllCustomerForDog(GetDog(model.dogID));
            }
             return appointments;
         }
