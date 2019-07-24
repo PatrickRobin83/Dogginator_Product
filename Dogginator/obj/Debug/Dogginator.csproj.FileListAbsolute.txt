@@ -122,3 +122,5 @@ D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.cs
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.csproj.CopyComplete
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.exe
 D:\SourceCode\VisualStudio\Dogginator_Product\Dogginator\obj\Debug\Dogginator.pdb
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\MainMenuLibrary.dll
+D:\Projekte\MeineProgrammierung\Dogginator_Product\Dogginator\bin\Debug\MainMenuLibrary.pdb
