@@ -23,7 +23,6 @@
         <!-- Row 0 -->
         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="28">Dogginator</TextBlock>
         <!-- Row 1 -->
-
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5 5 5 5" VerticalAlignment="Top">
             <Button x:Name="LoadOverview" Padding="5" Margin="5">Übersicht</Button>
             <Button x:Name="LoadCustomer" Padding="5" Margin="5">Kunden Verwaltung</Button>

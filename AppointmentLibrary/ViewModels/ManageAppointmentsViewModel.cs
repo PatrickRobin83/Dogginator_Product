@@ -262,7 +262,11 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
             return IsInWeekAppointments;
         }
-
+        /// <summary>
+        /// Only a method to control the output
+        /// </summary>
+        /// <param name="appointmentModel"></param>
+        /// <returns>A string with information about the appointment</returns>
         private string DisplayAppointmentAsString(AppointmentModel appointmentModel)
         {
             string resultstring = "";
