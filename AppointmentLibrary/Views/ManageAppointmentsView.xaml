@@ -64,6 +64,8 @@
                 <TextBlock x:Name="FirstDayOfWeek" Text="{Binding Path=FirstDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 0 15 10 0"/>
                 <TextBlock FontSize="28" FontWeight="DemiBold" Margin=" 0 15 0 0">bis</TextBlock>
                 <TextBlock x:Name="LastDayOfWeek" Text="{Binding Path=LastDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 15 15 10 0"/>
+                <Button x:Name="PreviousWeek" FontSize="24" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche zurück</Button>
+                <Button x:Name="NextWeek" FontSize="24" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche vor</Button>
             </StackPanel>
 
             <!--Row 5-->
@@ -85,7 +87,7 @@
                 <Button x:Name="LoadAppointment"  Margin="0 0 5 0" Padding="5">
                     Termin bearbeiten
                 </Button>
-                <Button x:Name="DeleteAppoinment" Background="Red" Foreground="White"  Margin="0 0 5 0" Padding="5">
+                <Button x:Name="DeleteAppointment" Background="Red" Foreground="White"  Margin="0 0 5 0" Padding="5">
                     Termin Löschen
                 </Button>
             </StackPanel>

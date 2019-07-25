@@ -27,13 +27,13 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
         #region Fields
         BindableCollection<DogModel> _availableDogs;
-        
+
         BindableCollection<AppointmentModel> _availableAppointments = new BindableCollection<AppointmentModel>();
-       
+
         BindableCollection<AppointmentModel> _isinWeekAppointments = new BindableCollection<AppointmentModel>();
 
         bool _isDailyGuest;
-       
+
         DogModel _selectedDog;
 
         DateTime _arrivingDay;
@@ -97,7 +97,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 }
                 NotifyOfPropertyChange(() => CanSaveAppointment);
                 NotifyOfPropertyChange(() => ArrivingDay);
-                
+
             }
         }
         /// <summary>
@@ -119,9 +119,20 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 }
                 NotifyOfPropertyChange(() => CanSaveAppointment);
                 NotifyOfPropertyChange(() => LeavingDay);
-                
+
             }
         }
+
+        public BindableCollection<AppointmentModel> IsInWeekAppointments
+        {
+            get { return _isinWeekAppointments; }
+            set
+            {
+                _isinWeekAppointments = value;
+                NotifyOfPropertyChange(() => IsInWeekAppointments);
+            }
+        }
+
         /// <summary>
         /// indicates is it a daily guest appointment or a overnight appointment
         /// </summary>
@@ -171,20 +182,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => AvailableAppointments);
             }
         }
-        /// <summary>
-        /// List of all appointments in the current week
-        /// </summary>
-        public BindableCollection<AppointmentModel> IsInWeekAppointments
-        {
-            get { return _isinWeekAppointments; }
-
-            set
-            {
-                _isinWeekAppointments = value;
-                NotifyOfPropertyChange(() => IsInWeekAppointments);
-            }
-        }
-
         public AppointmentModel SelectedAppointment
         {
             get { return _selectedAppointment; }
@@ -192,6 +189,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 _selectedAppointment = value;
                 NotifyOfPropertyChange(() => SelectedAppointment);
+                NotifyOfPropertyChange(() => CanLoadAppointment);
+                NotifyOfPropertyChange(() => CanDeleteAppointment);
             }
         }
 
@@ -229,9 +228,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 AppointmentsInCurrentWeek(model);
             }
+            IsInWeekAppointments.OrderBy(x => x.date_from);
         }
         #endregion
-        
+
         #region Methods
         /// <summary>
         /// Enables or disables the "Save Appointment Button"
@@ -243,19 +243,59 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 bool canSave = false;
 
-                if(ArrivingDay >= DateTime.Today && LeavingDay >= DateTime.Today && ArrivingDay <= LeavingDay)
+                if (ArrivingDay >= DateTime.Today && LeavingDay >= DateTime.Today && ArrivingDay <= LeavingDay)
                 {
                     canSave = true;
-                }                
+                }
                 return canSave;
             }
         }
+
+        public bool CanLoadAppointment
+        {
+            get
+            {
+                bool canEdit = false;
+                if (SelectedAppointment != null)
+                {
+                    canEdit = true;
+                }
+                return canEdit;
+            }
+        }
+
+        public void LoadAppointment(AppointmentModel model)
+        {
+            model = SelectedAppointment;
+            Console.WriteLine(model.dogFromCustomer.Name);
+        }
+
+        public bool CanDeleteAppointment
+        {
+            get
+            {
+                bool canDelete = false;
+                if (SelectedAppointment != null)
+                {
+                    canDelete = true;
+                }
+                return canDelete;
+            }
+        }
+
+        public void DeleteAppointment(AppointmentModel model)
+        {
+            model = SelectedAppointment;
+            Console.WriteLine(model.dogFromCustomer.Name);
+        }
+
         /// <summary>
         /// Saves the Appointment with the data into the database
         /// </summary>
         public void SaveAppointment()
         {
-            DaysOfVisit = DateCalculator.getDays(LeavingDay,ArrivingDay);
+            IsInWeekAppointments.Clear();
+            DaysOfVisit = DateCalculator.getDays(LeavingDay, ArrivingDay);
 
             AppointmentModel.dogFromCustomer = SelectedDog;
             AppointmentModel.date_from = ArrivingDay;
@@ -264,7 +304,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.days = DaysOfVisit;
             AppointmentModel.dogID = SelectedDog.Id;
 
-            if(GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
+            if (GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
             {
                 ErrorMessages.AppointmentIsAlreadyInDatabaseError(AppointmentModel);
             }
@@ -278,10 +318,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 SuccessMessages.AppointmentCreatedSuccess();
                 AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
             }
+
             foreach (AppointmentModel model in AvailableAppointments)
             {
                 AppointmentsInCurrentWeek(model);
             }
+            IsInWeekAppointments.OrderBy(x => x.date_from);
             ArrivingDay = DateTime.Today;
             LeavingDay = DateTime.Today;
             IsDailyGuest = false;
@@ -294,28 +336,31 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         /// <param name="appointmentlist">The List of all available Appointment</param>
         /// <returns>A list of Appointments in the current week</returns>
         /// 
-        BindableCollection<AppointmentModel> tempAppointmentModelsList = new BindableCollection<AppointmentModel>();
+
+        public void PreviousWeek()
+        {
+            FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today.AddDays(7)).ToShortDateString();
+            Console.WriteLine(FirstDayOfWeek);
+        }
         public void AppointmentsInCurrentWeek(AppointmentModel appointment)
         {
-
             if (appointment.date_from >= _firstDayOfWeek && appointment.date_from <= _lastDayOfWeek)
             {
-
-                if (IsInWeekAppointments.Count > 0)
-                    for (int i = 0; i < IsInWeekAppointments.Count; i++)
-                    {
-                        if (appointment.Id != IsInWeekAppointments[i].Id)
-                        {
-                            IsInWeekAppointments.Add(appointment);
-                        }
-                    }
-                else
+                if (!IsInWeekAppointments.Contains(appointment))
                 {
                     IsInWeekAppointments.Add(appointment);
                 }
+
+                //foreach (AppointmentModel ap in IsInWeekAppointments)
+                //{
+                //    if (ap.Id != appointment.Id)
+                //    {
+                //        IsInWeekAppointments.Add(appointment);
+                //    }
             }
+           
         }
-        // TODO: Get the Buttons work Create an DetailsView For Appointments
-        #endregion
     }
+    // TODO: Create an EditView For Appointments
+    #endregion
 }
