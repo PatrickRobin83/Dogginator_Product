@@ -115,6 +115,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
                 return $" { Salution }  { FirstName }  { LastName }";
             }
         }
+        public string Name
+        {
+            get { return $"{LastName}, {FirstName}"; }
+        }
 #endregion
 
         #region Contstructor

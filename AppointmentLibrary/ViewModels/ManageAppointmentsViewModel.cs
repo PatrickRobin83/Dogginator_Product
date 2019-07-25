@@ -50,6 +50,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
         AppointmentModel _selectedAppointment;
 
+
         #endregion
 
         #region Properties
@@ -199,7 +200,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             get { return _firstDayOfWeek.ToShortDateString(); }
             set
             {
-                value = _firstDayOfWeek.ToShortDateString();
+                _firstDayOfWeek = Convert.ToDateTime(value);
+                NotifyOfPropertyChange(() => FirstDayOfWeek);
+                CheckIsInWeek(AvailableAppointments);
+               
             }
         }
         public string LastDayOfWeek
@@ -207,7 +211,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             get { return _lastDayOfWeek.ToShortDateString(); }
             set
             {
-                value = _lastDayOfWeek.ToShortDateString();
+                _lastDayOfWeek = Convert.ToDateTime(value);
+                NotifyOfPropertyChange(() => LastDayOfWeek);
+                CheckIsInWeek(AvailableAppointments);
             }
         }
         #endregion
@@ -336,31 +342,43 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         /// <param name="appointmentlist">The List of all available Appointment</param>
         /// <returns>A list of Appointments in the current week</returns>
         /// 
-
         public void PreviousWeek()
         {
-            FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today.AddDays(7)).ToShortDateString();
-            Console.WriteLine(FirstDayOfWeek);
+            FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(-7)).ToShortDateString();
+            LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
+        }
+
+        public void NextWeek()
+        {
+            FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(7)).ToShortDateString();
+            LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
+        }
+
+        public void CurrentWeek()
+        {
+            FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today).ToShortDateString();
+            LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
         }
         public void AppointmentsInCurrentWeek(AppointmentModel appointment)
         {
-            if (appointment.date_from >= _firstDayOfWeek && appointment.date_from <= _lastDayOfWeek)
+            if (appointment.date_from >= Convert.ToDateTime(FirstDayOfWeek) && appointment.date_from <= Convert.ToDateTime(LastDayOfWeek))
             {
                 if (!IsInWeekAppointments.Contains(appointment))
                 {
                     IsInWeekAppointments.Add(appointment);
                 }
-
-                //foreach (AppointmentModel ap in IsInWeekAppointments)
-                //{
-                //    if (ap.Id != appointment.Id)
-                //    {
-                //        IsInWeekAppointments.Add(appointment);
-                //    }
             }
            
         }
+        public void CheckIsInWeek(BindableCollection<AppointmentModel> appointments)
+        {
+            IsInWeekAppointments.Clear();
+            foreach (AppointmentModel ap in appointments)
+            {
+                AppointmentsInCurrentWeek(ap);
+            }
+        }
     }
-    // TODO: Create an EditView For Appointments
+        // TODO: Create an EditView For Appointments
     #endregion
 }

@@ -96,6 +96,20 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
                 return $"{ Name } { Breed } { Color } { Gender } { Birthday } {DogActive}";
             }
         }
+
+        public string DogAndCustomer
+        {
+            
+            get
+            {
+                string CustomerName = "";
+                if (CustomerList.Count > 0)
+                {
+                    CustomerName = $"{CustomerList[0].LastName}, {CustomerList[0].FirstName}";
+                }
+                return $"Hund: {Name} --- Kunde: {CustomerName}";
+            }
+        }
         #endregion
 
         #region Contstructor

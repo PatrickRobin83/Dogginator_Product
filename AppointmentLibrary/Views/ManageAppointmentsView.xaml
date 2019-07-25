@@ -33,10 +33,10 @@
                 <TextBlock FontSize="20" FontWeight="Medium">Termin erstellen</TextBlock>
             </StackPanel>
             <!--Row 3-->
-                <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
                 <StackPanel Orientation="Vertical" Margin="0,0,20,0">
                     <TextBlock>Hund auswählen</TextBlock>
-                    <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="Name"></ComboBox>
+                    <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="0,0,20,0">
                     <TextBlock>Tag der Ankunft</TextBlock>
@@ -55,21 +55,27 @@
             </StackPanel>
             <!---Row 4-->
 
-            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" 
-                   HorizontalAlignment="Left">
-                <TextBlock  FontSize="28" 
+            <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,20,0,0">
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="PreviousWeek" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche zurück</Button>
+                    <Button x:Name="CurrentWeek" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">aktuelle Woche</Button>
+                    <Button x:Name="NextWeek" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche vor</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  FontSize="28" 
                     Margin=" 0 15 10 0" FontWeight="DemiBold">
             Termine vom
-                </TextBlock>
-                <TextBlock x:Name="FirstDayOfWeek" Text="{Binding Path=FirstDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 0 15 10 0"/>
-                <TextBlock FontSize="28" FontWeight="DemiBold" Margin=" 0 15 0 0">bis</TextBlock>
-                <TextBlock x:Name="LastDayOfWeek" Text="{Binding Path=LastDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 15 15 10 0"/>
-                <Button x:Name="PreviousWeek" FontSize="24" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche zurück</Button>
-                <Button x:Name="NextWeek" FontSize="24" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche vor</Button>
+                    </TextBlock>
+                    <TextBlock x:Name="FirstDayOfWeek" Text="{Binding Path=FirstDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 0 15 10 0"/>
+                    <TextBlock FontSize="28" FontWeight="DemiBold" Margin=" 0 15 0 0">bis</TextBlock>
+                    <TextBlock x:Name="LastDayOfWeek" Text="{Binding Path=LastDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 15 15 10 0"/>
+                </StackPanel>
             </StackPanel>
 
+
             <!--Row 5-->
-                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="left" Margin="0,60,0,0">
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="left" Margin="0,150,0,0">
                 <DataGrid x:Name="IsInWeekAppointments" ItemsSource="{Binding Path=IsInWeekAppointments}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
                       CanUserResizeColumns="False" MinHeight="250" MaxHeight="250" SelectionMode="Single"
