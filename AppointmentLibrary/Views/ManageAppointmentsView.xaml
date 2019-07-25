@@ -81,7 +81,7 @@
                       CanUserResizeColumns="False" MinHeight="250" MaxHeight="250" SelectionMode="Single"
                       Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedAppointment, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding dogFromCustomer.Name}"/>
+                        <DataGridTextColumn Header="Name Hund --- Besitzer" IsReadOnly="True" Binding="{Binding dogFromCustomer.DogAndCustomer}"/>
                         <DataGridTextColumn Header="Kommt am" IsReadOnly="True" Binding="{Binding ArrivingDateForTable}"/>
                         <DataGridTextColumn Header="Geht am" IsReadOnly="True" Binding="{Binding LeavingDateForTable}"/>
                         <DataGridCheckBoxColumn Header="Tagesgast" IsReadOnly="True" Binding="{Binding isdailyguest}"/>
