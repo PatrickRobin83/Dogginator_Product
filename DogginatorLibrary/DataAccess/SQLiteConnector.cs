@@ -1032,7 +1032,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
                 List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
-                AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND " +
+                AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogID AND " +
                                                                           $"date_from = '{appointmentModel.date_from}' AND " +
                                                                           $"date_to = '{appointmentModel.date_to}'").ToList();
                 if (AppointmentModelList.Count >= 1)

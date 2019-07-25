@@ -225,7 +225,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             LeavingDay = DateTime.Now;
             AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
             //_isinWeekAppointments = AppointmentsInCurrentWeek(AvailableAppointments);
-            AppointmentsInCurrentWeek(AvailableAppointments); 
+            foreach (AppointmentModel model in AvailableAppointments)
+            {
+                AppointmentsInCurrentWeek(model);
+            }
         }
         #endregion
         
@@ -273,45 +276,46 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 AppointmentModel = GlobalConfig.Connection.AddAppointmentToDatabase(AppointmentModel);
                 SuccessMessages.AppointmentCreatedSuccess();
-                ArrivingDay = DateTime.Today;
-                LeavingDay = DateTime.Today;
-                IsDailyGuest = false;
+                AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
             }
-            IsInWeekAppointments = AppointmentsInCurrentWeek(AvailableAppointments);
+            foreach (AppointmentModel model in AvailableAppointments)
+            {
+                AppointmentsInCurrentWeek(model);
+            }
+            ArrivingDay = DateTime.Today;
+            LeavingDay = DateTime.Today;
+            IsDailyGuest = false;
+
         }
-        
+
         /// <summary>
         /// Gets all appoitnments in the current Week of the Year 
         /// </summary>
         /// <param name="appointmentlist">The List of all available Appointment</param>
         /// <returns>A list of Appointments in the current week</returns>
-        public BindableCollection<AppointmentModel> AppointmentsInCurrentWeek(BindableCollection<AppointmentModel> appointmentlist)
+        /// 
+        BindableCollection<AppointmentModel> tempAppointmentModelsList = new BindableCollection<AppointmentModel>();
+        public void AppointmentsInCurrentWeek(AppointmentModel appointment)
         {
-            foreach (AppointmentModel ap in appointmentlist)
-            {
-                DisplayAppointmentAsString(ap);
-            }
-            return IsInWeekAppointments;
-        }
-        // TODO: Get the Buttons work Create an DetailsView For Appointments
-        private string DisplayAppointmentAsString(AppointmentModel appointmentModel)
-        {
-            string resultstring = "";
 
-            if (appointmentModel.date_from >= _firstDayOfWeek && appointmentModel.date_from <= _lastDayOfWeek)
+            if (appointment.date_from >= _firstDayOfWeek && appointment.date_from <= _lastDayOfWeek)
             {
-                if (appointmentModel.isdailyguest)
-                {
-                    Console.WriteLine($"{appointmentModel.dogFromCustomer.Name} ist gebucht vom {appointmentModel.date_from} bis {appointmentModel.date_to} und wird morgens abgegeben und abends abgeholt.");
-                }
+
+                if (IsInWeekAppointments.Count > 0)
+                    for (int i = 0; i < IsInWeekAppointments.Count; i++)
+                    {
+                        if (appointment.Id != IsInWeekAppointments[i].Id)
+                        {
+                            IsInWeekAppointments.Add(appointment);
+                        }
+                    }
                 else
                 {
-                    Console.WriteLine($"{appointmentModel.dogFromCustomer.Name} ist gebucht vom {appointmentModel.date_from} bis zum {appointmentModel.date_to}");
+                    IsInWeekAppointments.Add(appointment);
                 }
-                IsInWeekAppointments.Add(appointmentModel);
             }
-            return resultstring;
         }
+        // TODO: Get the Buttons work Create an DetailsView For Appointments
         #endregion
     }
 }
