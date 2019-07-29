@@ -67,6 +67,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             //ActivateItem(new OverViewViewModel(true,true));
             //ActivateItem(new ManageCustomerViewModel());
 
+            // hier schreiben wir mal was neues rein. mal schauen ob das übertragen wird. 
+
+
 
         }
         #endregion
