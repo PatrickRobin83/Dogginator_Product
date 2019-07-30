@@ -73,6 +73,9 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         AppointmentModel AddAppointmentToDatabase(AppointmentModel apointmentModel);
         bool isAppointmentInDatabase(AppointmentModel appointmentModel);
         bool isDogInTimeSpanAlreadyInDatabase(AppointmentModel appointmentModel);
+
+        //TODO: Add a method to update the Appointment in the Database and return the AppointmentModel with the new values
+        //TODO: Add a method to delete the appoitnment from the Database
         #endregion
 
         #region CityToZipcode

@@ -145,7 +145,6 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
                 NotifyOfPropertyChange(() => AddUserIsVisible);
             }
         }
-
         public Screen ActiveEditUser
         {
             get { return _activeEditUser; }

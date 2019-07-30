@@ -207,12 +207,12 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         /// <summary>
         /// Is triggered if a Dogmodel is given back to the UI-Thread
         /// </summary>
-        /// <param name="message"></param>
-        public void Handle(DogModel message)
+        /// <param name="dogModel"></param>
+        public void Handle(DogModel dogModel)
         {
-            if(message != null && message.Id > 0)
+            if(dogModel != null && dogModel.Id > 0)
             {
-                GlobalConfig.Connection.UpdateDog(message);
+                GlobalConfig.Connection.UpdateDog(dogModel);
                 AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());  
             }
             DogOverviewIsVisible = true;

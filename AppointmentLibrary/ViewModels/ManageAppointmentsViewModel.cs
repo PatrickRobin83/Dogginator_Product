@@ -16,39 +16,30 @@ using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
-using System.Globalization;
 using System.Linq;
 
 
 namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 {
-    public class ManageAppointmentsViewModel : Conductor<object>
+    public class ManageAppointmentsViewModel : Conductor<object>.Collection.OneActive, IHandle<AppointmentModel>
     {
 
         #region Fields
         BindableCollection<DogModel> _availableDogs;
-
         BindableCollection<AppointmentModel> _availableAppointments = new BindableCollection<AppointmentModel>();
-
         BindableCollection<AppointmentModel> _isinWeekAppointments = new BindableCollection<AppointmentModel>();
-
         bool _isDailyGuest;
-
         DogModel _selectedDog;
-
         DateTime _arrivingDay;
-
         DateTime _leavingDay;
-
         AppointmentModel _appointmentModel = new AppointmentModel();
-
         int _daysofVisit = 0;
-
         DateTime _firstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today);
-
         DateTime _lastDayOfWeek = GlobalConfig.GetFirstDayOfWeek(GlobalConfig.GetFirstDayOfWeek(DateTime.Today)).AddDays(6);
-
         AppointmentModel _selectedAppointment;
+        Screen _appointmentsDetailsView;
+        bool _appointmentsDetailsViewIsVisible;
+        bool _manageAppointmentsIsVisible;
 
 
         #endregion
@@ -123,7 +114,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
             }
         }
-
         public BindableCollection<AppointmentModel> IsInWeekAppointments
         {
             get { return _isinWeekAppointments; }
@@ -133,7 +123,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => IsInWeekAppointments);
             }
         }
-
         /// <summary>
         /// indicates is it a daily guest appointment or a overnight appointment
         /// </summary>
@@ -194,7 +183,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanDeleteAppointment);
             }
         }
-
         public string FirstDayOfWeek
         {
             get { return _firstDayOfWeek.ToShortDateString(); }
@@ -216,6 +204,37 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 CheckIsInWeek(AvailableAppointments);
             }
         }
+
+
+        public Screen AppointmentsDetailsView
+        {
+            get { return _appointmentsDetailsView; }
+            set
+            {
+                _appointmentsDetailsView = value;
+                NotifyOfPropertyChange(() => AppointmentsDetailsView);
+            }
+        }
+        public bool AppointmentsDetailsViewIsVisible
+        {
+            get { return _appointmentsDetailsViewIsVisible; }
+            set
+            {
+                _appointmentsDetailsViewIsVisible = value;
+                NotifyOfPropertyChange(() => AppointmentsDetailsViewIsVisible);
+            }
+        }
+        public bool ManageAppointmentsIsVisible
+        {
+            get { return _manageAppointmentsIsVisible; }
+            set
+            {
+                _manageAppointmentsIsVisible = value;
+                NotifyOfPropertyChange(() => ManageAppointmentsIsVisible);
+            }
+        }
+
+
         #endregion
 
         #region Constructor
@@ -229,12 +248,14 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             ArrivingDay = DateTime.Now;
             LeavingDay = DateTime.Now;
             AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
-            //_isinWeekAppointments = AppointmentsInCurrentWeek(AvailableAppointments);
             foreach (AppointmentModel model in AvailableAppointments)
             {
                 AppointmentsInCurrentWeek(model);
             }
             IsInWeekAppointments.OrderBy(x => x.date_from);
+            ManageAppointmentsIsVisible = true;
+            AppointmentsDetailsViewIsVisible = false;
+            EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
 
@@ -269,13 +290,15 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 return canEdit;
             }
         }
-
         public void LoadAppointment(AppointmentModel model)
         {
             model = SelectedAppointment;
-            Console.WriteLine(model.dogFromCustomer.Name);
+            AppointmentsDetailsView = new AppointmentDetailsViewModel(model, AvailableDogs);
+            Items.Add(AppointmentsDetailsView);
+            ManageAppointmentsIsVisible = false;
+            AppointmentsDetailsViewIsVisible = true;
+            //Console.WriteLine(model.dogFromCustomer.Name);
         }
-
         public bool CanDeleteAppointment
         {
             get
@@ -288,13 +311,11 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 return canDelete;
             }
         }
-
         public void DeleteAppointment(AppointmentModel model)
         {
             model = SelectedAppointment;
             Console.WriteLine(model.dogFromCustomer.Name);
         }
-
         /// <summary>
         /// Saves the Appointment with the data into the database
         /// </summary>
@@ -335,7 +356,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             IsDailyGuest = false;
 
         }
-
         /// <summary>
         /// Gets all appoitnments in the current Week of the Year 
         /// </summary>
@@ -347,13 +367,11 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(-7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
         }
-
         public void NextWeek()
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
         }
-
         public void CurrentWeek()
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today).ToShortDateString();
@@ -378,7 +396,22 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 AppointmentsInCurrentWeek(ap);
             }
         }
+        public void Handle(AppointmentModel ap)
+        {
+            if (ap != null && ap.Id > 0)
+            {
+                //TODO: Add Code to Update the Appointment in the Database
+                Console.WriteLine($"{ap.dogFromCustomer.DogAndCustomer} wurde umgebucht");
+                
+                /*Example Code from the DogDetailsView
+                //GlobalConfig.Connection.UpdateDog(ap);
+                //AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+                */
+            }
+            ManageAppointmentsIsVisible = true;
+            AppointmentsDetailsViewIsVisible = false;
+            //TODO: Fill the Fields with the default values
+        }
     }
-        // TODO: Create an EditView For Appointments
     #endregion
 }

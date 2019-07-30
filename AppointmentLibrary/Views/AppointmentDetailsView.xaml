@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="de.rietrob.dogginator_product.AppointmentLibrary.Views.AppointmentDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Row 1 -->
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
+                   HorizontalAlignment="Center" FontSize="28" 
+                    Margin=" 0 0 0 20" FontWeight="DemiBold">
+            Termin bearbeiten
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" Margin="0,0,20,0">
+                <TextBlock>Hund auswählen</TextBlock>
+                <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,20,0">
+                <TextBlock>Tag der Ankunft</TextBlock>
+                <DatePicker x:Name="ArrivingDay" SelectedDateFormat="Short"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,20,0">
+                <TextBlock>Tag der Abreise</TextBlock>
+                <DatePicker x:Name="LeavingDay" SelectedDateFormat="Short"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,20,0">
+                <CheckBox x:Name="IsDailyGuest" Margin="0,25,0,0">Tagesgast</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="EditAppointment" Margin="0,10,0,0" HorizontalAlignment="Center" Height="40">Termin speichern</Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="CancelEdit" Margin="60 5 0 0" Background="Red" Foreground="White" Height="40" Width="120">Abbrechen</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
