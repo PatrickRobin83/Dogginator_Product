@@ -81,7 +81,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         /// <summary>
         /// is the dog active
         /// </summary>
-        public bool Active { get; set; }
+        public int Active { get; set; }
         /// <summary>
         /// is dog active as a string
         /// </summary>

@@ -380,7 +380,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         public void SaveDog()
         {
             DogModel dogModel = new DogModel();
-
             dogModel.Name = Name;
             dogModel.Breed = Breed;
             dogModel.Color = Color;
@@ -400,8 +399,6 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 dogModel.EffectiveUntil = EffectiveUntil.ToString("dd.MM.yyyy");
                 dogModel.PermanentCastrated = false;
             }
-
-
             if(DiseasesList.Count > 0)
             {
                 dogModel.Diseases = new List<DiseasesModel>(DiseasesList);

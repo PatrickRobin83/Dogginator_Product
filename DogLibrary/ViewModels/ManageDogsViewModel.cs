@@ -131,11 +131,11 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             foreach (DogModel model in dogList)
 
             {
-                if (model.Active)
+                if (model.Active == 1)
                 {
                     model.DogActive = "Aktiv";
                 }
-                else
+                else if(model.Active == 0)
                 {
                     model.DogActive = "inaktiv";
                 }
@@ -163,7 +163,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         /// </summary>
         public void DeleteDog()
         {
-            SelectedDog.Active = false;
+            SelectedDog.Active = 0;
             GlobalConfig.Connection.DeleteDogDiseasesRelation(SelectedDog);
             GlobalConfig.Connection.DeleteDogToCharacteristicsRelation(SelectedDog);
             GlobalConfig.Connection.DeleteDogFromDatabase(SelectedDog);
@@ -212,9 +212,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         {
             if(dogModel != null && dogModel.Id > 0)
             {
-                GlobalConfig.Connection.UpdateDog(dogModel);
-                AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());  
+                GlobalConfig.Connection.UpdateDog(dogModel);  
             }
+
+            AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
             DogOverviewIsVisible = true;
             DogDetailsIsVisible = false;
             SelectedDog = null;

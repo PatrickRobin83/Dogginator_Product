@@ -229,12 +229,12 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
         /// gets a Model from CreatNewCustomer and Adds this Model to the List in the ManageCustomerView 
         /// and also Add the Customer to the Database
         /// </summary>
-        /// <param name="message">
+        /// <param name="customerModel">
         /// This Param is a CustomerModel with all it needs to be saved in the Database
         /// </param>
-        public void Handle(CustomerModel message)
+        public void Handle(CustomerModel customerModel)
         {
-            if(message.FirstName == null)
+            if(customerModel.FirstName == null)
             {
                 LoadCreateCustomerIsVisible = false;
                 LoadCustomerDetailsIsVisible = false;
@@ -243,13 +243,11 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 return;
             }
 
-            if (AvailableCustomers.Any(c => message.Id == c.Id))
+            if (!AvailableCustomers.Any(c => customerModel.Id == c.Id))
             {
+                AvailableCustomers.Add(customerModel);
             }
-            else
-            {
-                AvailableCustomers.Add(message);
-            }
+            
             LoadCreateCustomerIsVisible = false;
             LoadCustomerDetailsIsVisible = false;
             CustomerListIsVisible = true;
@@ -257,8 +255,6 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
             ActiveCustomer(AvailableCustomers);
             NotifyOfPropertyChange(() => AvailableCustomers);
-
-
         }
         #endregion
     }

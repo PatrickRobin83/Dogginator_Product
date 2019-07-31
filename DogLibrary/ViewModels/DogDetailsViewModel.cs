@@ -358,7 +358,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             {
                 CharacteristicsList = new BindableCollection<CharacteristicsModel>(DogToEdit.Characteristics);
             }
-            if (DogToEdit.Active)
+            if (DogToEdit.Active == 1)
             {
                 NotActive = false;
             }
@@ -491,14 +491,14 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             {
                 if (NotActive)
                 {
-                    if (DogToEdit.Active == true)
+                    if (DogToEdit.Active == 1)
                     {
                         return true;
                     }
                 }
                 else
                 {
-                    if (DogToEdit.Active == false)
+                    if (DogToEdit.Active == 0)
                     {
                         return true;
                     }
@@ -577,11 +577,11 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
             if (NotActive)
             {
-                DogToEdit.Active = false;
+                DogToEdit.Active = 0;
             }
             else
             {
-                DogToEdit.Active = true;
+                DogToEdit.Active = 1;
             }
             IsDiseaseToSave = false;
             IsCharacteristicToSave = false;
