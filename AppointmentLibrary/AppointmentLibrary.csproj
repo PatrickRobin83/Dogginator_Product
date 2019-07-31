@@ -69,6 +69,7 @@
     <Compile Include="..\.shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converter\ConvertBoolToInt.cs" />
     <Compile Include="Helper\DateCalculator.cs" />
     <Compile Include="ViewModels\AppointmentDetailsViewModel.cs" />
     <Compile Include="ViewModels\ManageAppointmentsViewModel.cs" />

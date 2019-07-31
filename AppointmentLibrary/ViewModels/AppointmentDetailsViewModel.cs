@@ -12,6 +12,7 @@
 
 using Caliburn.Micro;
 using de.rietrob.dogginator_product.AppointmentLibrary.Helper;
+using de.rietrob.dogginator_product.AppointmentLibrary.Converter;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
@@ -150,7 +151,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
             ArrivingDay = AppointmentModel.date_from;
             LeavingDay = AppointmentModel.date_to;
-            IsDailyGuest = AppointmentModel.isdailyguest;
+
         }
         #endregion
 
@@ -174,7 +175,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             AppointmentModel.date_from = ArrivingDay;
             AppointmentModel.date_to = LeavingDay;
-            AppointmentModel.isdailyguest = IsDailyGuest;
+            AppointmentModel.isdailyguest =ConvertBoolToInt.GetBoolToInt(IsDailyGuest);
             AppointmentModel.dogFromCustomer = SelectedDog;
 
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);

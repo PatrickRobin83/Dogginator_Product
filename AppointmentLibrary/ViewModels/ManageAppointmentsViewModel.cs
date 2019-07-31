@@ -12,6 +12,7 @@
 
 using Caliburn.Micro;
 using de.rietrob.dogginator_product.AppointmentLibrary.Helper;
+using de.rietrob.dogginator_product.AppointmentLibrary.Converter;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
@@ -204,8 +205,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 CheckIsInWeek(AvailableAppointments);
             }
         }
-
-
         public Screen AppointmentsDetailsView
         {
             get { return _appointmentsDetailsView; }
@@ -233,8 +232,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => ManageAppointmentsIsVisible);
             }
         }
-
-
         #endregion
 
         #region Constructor
@@ -277,7 +274,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 return canSave;
             }
         }
-
+        /// <summary>
+        /// Enables the Load Appointment Button
+        /// </summary>
+        /// <returns> the bool value if the Load Appointment Button is enabled or disabled</returns>
         public bool CanLoadAppointment
         {
             get
@@ -290,6 +290,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 return canEdit;
             }
         }
+        /// <summary>
+        /// Loads the Appointment Details View and fill the fields with the values from the given AppoinmentModel
+        /// </summary>
+        /// <param name="model">Appointment to edit</param>
         public void LoadAppointment(AppointmentModel model)
         {
             model = SelectedAppointment;
@@ -297,8 +301,11 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             Items.Add(AppointmentsDetailsView);
             ManageAppointmentsIsVisible = false;
             AppointmentsDetailsViewIsVisible = true;
-            //Console.WriteLine(model.dogFromCustomer.Name);
         }
+        /// <summary>
+        /// Enables or disables the Delete Appointment Button 
+        /// </summary>
+        /// <returns>the bool value Button enabled = true disabled = false</returns>
         public bool CanDeleteAppointment
         {
             get
@@ -311,10 +318,14 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 return canDelete;
             }
         }
+        /// <summary>
+        /// Deletes the given appointment from the list and the database
+        /// </summary>
+        /// <param name="model">Apointment to delete</param>
         public void DeleteAppointment(AppointmentModel model)
         {
             model = SelectedAppointment;
-            Console.WriteLine(model.dogFromCustomer.Name);
+            //TODO: Add Logic for appointment deletion
         }
         /// <summary>
         /// Saves the Appointment with the data into the database
@@ -327,7 +338,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.dogFromCustomer = SelectedDog;
             AppointmentModel.date_from = ArrivingDay;
             AppointmentModel.date_to = LeavingDay;
-            AppointmentModel.isdailyguest = IsDailyGuest;
+            AppointmentModel.isdailyguest = ConvertBoolToInt.GetBoolToInt(IsDailyGuest);
             AppointmentModel.days = DaysOfVisit;
             AppointmentModel.dogID = SelectedDog.Id;
 
@@ -357,26 +368,42 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
         }
         /// <summary>
-        /// Gets all appoitnments in the current Week of the Year 
+        /// Gets all appoitnments in the previous Week of the Year 
         /// </summary>
         /// <param name="appointmentlist">The List of all available Appointment</param>
-        /// <returns>A list of Appointments in the current week</returns>
+        /// <returns>A list of Appointments in the previous week</returns>
         /// 
         public void PreviousWeek()
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(-7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
         }
+        /// <summary>
+        /// Gets all appoitnments in the next Week of the Year 
+        /// </summary>
+        /// <param name="appointmentlist">The List of all available Appointment</param>
+        /// <returns>A list of Appointments in the next week</returns>
+        /// 
         public void NextWeek()
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
         }
+        /// <summary>
+        /// Gets all appoitnments in the current Week of the Year 
+        /// </summary>
+        /// <param name="appointmentlist">The List of all available Appointment</param>
+        /// <returns>A list of Appointments in the current week</returns>
+        /// 
         public void CurrentWeek()
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
         }
+        /// <summary>
+        /// Compares the given appointment with the date values of the current week. If the appointment is in the current week it will saved in a List
+        /// </summary>
+        /// <param name="appointment">Appointment to check if it is in the current week</param>
         public void AppointmentsInCurrentWeek(AppointmentModel appointment)
         {
             if (appointment.date_from >= Convert.ToDateTime(FirstDayOfWeek) && appointment.date_from <= Convert.ToDateTime(LastDayOfWeek))
@@ -386,7 +413,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                     IsInWeekAppointments.Add(appointment);
                 }
             }
-           
         }
         public void CheckIsInWeek(BindableCollection<AppointmentModel> appointments)
         {

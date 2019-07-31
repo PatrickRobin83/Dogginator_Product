@@ -1013,7 +1013,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
-                
                 {
                     appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.date_from}','{appointmentModel.date_to}','{appointmentModel.isdailyguest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
                 }
@@ -1076,8 +1075,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
                     appointments = connection.Query<AppointmentModel>($"SELECT * FROM appointment").ToList();
-                }
-                
+                } 
             }
             catch (SQLiteException ex)
             {
