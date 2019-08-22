@@ -161,6 +161,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
+
         //public bool CanEditAppointment()
         //{
         //    bool canEdit = false;
@@ -177,7 +178,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.date_to = LeavingDay;
             AppointmentModel.isdailyguest =ConvertBoolToInt.GetBoolToInt(IsDailyGuest);
             AppointmentModel.dogFromCustomer = SelectedDog;
-
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);
             this.TryClose();
         }
