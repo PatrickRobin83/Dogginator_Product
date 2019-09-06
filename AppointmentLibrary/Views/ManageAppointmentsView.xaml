@@ -35,7 +35,7 @@
             <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
                 <StackPanel Orientation="Vertical" Margin="0,0,20,0">
                     <TextBlock>Hund auswählen</TextBlock>
-                    <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer"></ComboBox>
+                    <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer" Width="300"></ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="0,0,20,0">
                     <TextBlock>Tag der Ankunft</TextBlock>
