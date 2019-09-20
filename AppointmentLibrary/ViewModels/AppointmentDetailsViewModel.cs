@@ -161,7 +161,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
-
         //public bool CanEditAppointment()
         //{
         //    bool canEdit = false;
@@ -171,7 +170,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         //    }
         //    return canEdit;
         //}
-
         public void EditAppointment()
         {
             AppointmentModel.date_from = ArrivingDay;
@@ -182,6 +180,5 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             this.TryClose();
         }
         #endregion
-
     }
 }

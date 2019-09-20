@@ -404,7 +404,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         /// Compares the given appointment with the date values of the current week. If the appointment is in the current week it will saved in a List
         /// </summary>
         /// <param name="appointment">Appointment to check if it is in the current week</param>
-        public void AppointmentsInCurrentWeek(AppointmentModel appointment)
+        private void AppointmentsInCurrentWeek(AppointmentModel appointment)
         {
             if (appointment.date_from >= Convert.ToDateTime(FirstDayOfWeek) && appointment.date_from <= Convert.ToDateTime(LastDayOfWeek))
             {
@@ -414,6 +414,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 }
             }
         }
+        /// <summary>
+        /// After checking is the appointment in the current displayed week adds it to the list, if it is not already in
+        /// </summary>
+        /// <param name="appointments">List of AppointmentModels</param>
         public void CheckIsInWeek(BindableCollection<AppointmentModel> appointments)
         {
             IsInWeekAppointments.Clear();
@@ -422,6 +426,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 AppointmentsInCurrentWeek(ap);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ap"></param>
         public void Handle(AppointmentModel ap)
         {
             if (ap != null && ap.Id > 0)

@@ -31,6 +31,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.Converter
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Converts a given bool into an int
+        /// </summary>
+        /// <param name="isDailyGuest"></param>
+        /// <returns>1 / 0 1=true 0=false </returns>
         public static int GetBoolToInt(bool isDailyGuest)
         {
             int result = 0;
@@ -43,7 +49,11 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.Converter
             return result;
 
         }
-
+        /// <summary>
+        /// converts a given int 1 / 0 into an bool
+        /// </summary>
+        /// <param name="isDailyGuest"></param>
+        /// <returns>bool true=1 false=0</returns>
         public static bool GetIntToBool(int isDailyGuest)
         {
             bool result = false;
