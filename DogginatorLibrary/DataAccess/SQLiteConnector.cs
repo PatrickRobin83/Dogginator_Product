@@ -1089,6 +1089,18 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
            }
             return appointments;
         }
+
+        public AppointmentModel editAppointmentModel(AppointmentModel appointmentModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppointmentModel deleteAppointmentModel(AppointmentModel appointmentModel)
+        {
+            throw new NotImplementedException();
+        }
+
+
         #endregion
 
         #endregion

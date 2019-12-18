@@ -14,7 +14,7 @@
 namespace de.rietrob.dogginator_product.DogginatorLibrary.Enums
 {
     /// <summary>
-    /// Way to store Data Defaullt: SQLite
+    /// Way to store Data Default: SQLite
     /// </summary>
     public enum DataBaseType
     {
