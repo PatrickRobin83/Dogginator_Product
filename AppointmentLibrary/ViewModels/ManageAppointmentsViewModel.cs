@@ -255,7 +255,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
-
         #region Methods
         /// <summary>
         /// Enables or disables the "Save Appointment Button"

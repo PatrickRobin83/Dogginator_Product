@@ -51,17 +51,25 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
-
+        /// <summary>
+        ///  Database Filename
+        /// </summary>
         public static string DatabaseFilename()
         {
             return ConfigurationManager.AppSettings[0].ToString();
         }
-
+        /// <summary>
+        /// Backup Path for the Database
+        /// </summary>
         public static string DatabaseBackupPath()
         {
             return $"{ConfigurationManager.AppSettings[1].ToString()}";
         }
-
+        /// <summary>
+        /// Function to encrypt the password into a Hash
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns>password string in decrypted</returns>
         public  static string HashThePassword(string password)
         {
             using (MD5 md5Hash = MD5.Create())
@@ -72,7 +80,12 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
                 return passHash;
             }
         }
-
+        /// <summary>
+        /// Converts the given string into a md5 hash
+        /// </summary>
+        /// <param name="md5Hash"></param>
+        /// <param name="input"></param>
+        /// <returns>hexadecimal string</returns>
         private static string GetMd5Hash(MD5 md5Hash, string input)
         {
 
@@ -93,30 +106,32 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
             // Return the hexadecimal string.
             return sBuilder.ToString();
         }
-
+        /// <summary>
+        /// Determine the current Week of the Year
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns>The Week in a number between 1 and 52</returns>
         public static int getWeekOfYear(System.DateTime date)
         {
             CultureInfo CUI = CultureInfo.CurrentCulture;
             return CUI.Calendar.GetWeekOfYear(date, CUI.DateTimeFormat.CalendarWeekRule, CUI.DateTimeFormat.FirstDayOfWeek);
         }
-
+        /// <summary>
+        /// Determine the first day of the week 
+        /// </summary>
+        /// <param name="dayInWeek"></param>
+        /// <returns>The Date of the Monday in the Week</returns>
         public static DateTime GetFirstDayOfWeek(DateTime dayInWeek)
         {
             CultureInfo defaultCultureInfo = CultureInfo.CurrentCulture;
-            return GetFirstDateOfWeek(dayInWeek, defaultCultureInfo);
-        }
 
-        public static DateTime GetFirstDateOfWeek(DateTime dayInWeek, CultureInfo cultureInfo)
-        {
-            DayOfWeek firstDay = cultureInfo.DateTimeFormat.FirstDayOfWeek;
+            DayOfWeek firstDay = defaultCultureInfo.DateTimeFormat.FirstDayOfWeek;
             DateTime firstDayInWeek = dayInWeek.Date;
             while (firstDayInWeek.DayOfWeek != firstDay)
                 firstDayInWeek = firstDayInWeek.AddDays(-1);
 
             return firstDayInWeek;
         }
-
-
         #endregion
     }
 }
