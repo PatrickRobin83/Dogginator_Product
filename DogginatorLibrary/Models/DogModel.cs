@@ -107,7 +107,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
                 {
                     CustomerName = $"{CustomerList[0].LastName}, {CustomerList[0].FirstName}";
                 }
-                return $"Hund: {Name} --- Kunde: {CustomerName}";
+                return $"{Name} --- {CustomerName}";
             }
         }
         #endregion

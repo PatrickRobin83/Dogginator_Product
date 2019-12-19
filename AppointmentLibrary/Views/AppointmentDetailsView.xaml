@@ -21,9 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- Row 1 -->
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" 
-                   HorizontalAlignment="Center" FontSize="28" 
-                    Margin=" 0 0 0 20" FontWeight="DemiBold">
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="22" Margin=" 0 0 0 20" FontWeight="DemiBold">
             Termin bearbeiten
         </TextBlock>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -43,11 +41,12 @@
                 <CheckBox x:Name="IsDailyGuest" Margin="0,25,0,0">Tagesgast</CheckBox>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <Button x:Name="EditAppointment" Margin="0,10,0,0" HorizontalAlignment="Center" Height="40">Termin speichern</Button>
+              
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="CancelEdit" Margin="60 5 0 0" Background="Red" Foreground="White" Height="40" Width="120">Abbrechen</Button>
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 450 0 0">
+            <Button x:Name="EditAppointment" Margin="0,0,20,0" HorizontalAlignment="Center" Height="40">Termin speichern</Button>
+            <Button x:Name="CancelEdit" Margin="0 0 0 0" Background="Red" Foreground="White" Height="40" Width="120">Abbrechen</Button>
         </StackPanel>
     </Grid>
 </UserControl>

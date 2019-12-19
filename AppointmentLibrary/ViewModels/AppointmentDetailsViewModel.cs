@@ -62,6 +62,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 _selectedDog = value;
                 NotifyOfPropertyChange(() => SelectedDog);
+                NotifyOfPropertyChange(() => CanEditAppointment);
               
             }
         }
@@ -82,9 +83,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 {
                     IsDailyGuest = false;
                 }
-                //NotifyOfPropertyChange(() => CanSaveAppointment);
                 NotifyOfPropertyChange(() => ArrivingDay);
-
+                NotifyOfPropertyChange(() => CanEditAppointment);
             }
         }
         /// <summary>
@@ -104,9 +104,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 {
                     IsDailyGuest = false;
                 }
-                //NotifyOfPropertyChange(() => CanSaveAppointment);
+                NotifyOfPropertyChange(() => CanEditAppointment);
                 NotifyOfPropertyChange(() => LeavingDay);
-
             }
         }
 
@@ -120,6 +119,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 _isDailyGuest = value;
                 NotifyOfPropertyChange(() => IsDailyGuest);
+                NotifyOfPropertyChange(() => CanEditAppointment);
             }
         }
         /// <summary>
@@ -132,9 +132,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             {
                 _appointmentModel = value;
                 NotifyOfPropertyChange(() => AppointmentModel);
+                NotifyOfPropertyChange(() => CanEditAppointment);
             }
         }
-
         #endregion
 
         #region Constructor
@@ -151,6 +151,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
             ArrivingDay = AppointmentModel.date_from;
             LeavingDay = AppointmentModel.date_to;
+            IsDailyGuest = Convert.ToBoolean(AppointmentModel.isdailyguest);
 
         }
         #endregion
@@ -161,15 +162,34 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
-        //public bool CanEditAppointment()
-        //{
-        //    bool canEdit = false;
-        //    if(ArrivingDay != AppointmentModel.date_from || LeavingDay != AppointmentModel.date_to || IsDailyGuest != AppointmentModel.isdailyguest || AppointmentModel.dogID != SelectedDog.Id)
-        //    {
-        //        canEdit = true;
-        //    }
-        //    return canEdit;
-        //}
+        public bool CanEditAppointment
+        {
+            get
+            {
+                bool canEdit = false;
+                if (ArrivingDay != AppointmentModel.date_from)
+                {
+                    canEdit = true;
+                }
+                else if (LeavingDay != AppointmentModel.date_to)
+                {
+                    canEdit = true;
+                }
+
+                else if (IsDailyGuest != Convert.ToBoolean(AppointmentModel.isdailyguest))
+                {
+                    canEdit = true;
+                }
+
+                else if (AppointmentModel.dogID != SelectedDog.Id)
+                {
+                    canEdit = true;
+                }
+                return canEdit;
+            }
+            
+            
+        }
         public void EditAppointment()
         {
             AppointmentModel.date_from = ArrivingDay;
