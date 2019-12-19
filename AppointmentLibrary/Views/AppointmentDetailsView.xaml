@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Height="600.383">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -26,8 +25,8 @@
         </TextBlock>
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" Margin="0,0,20,0">
-                <TextBlock>Hund auswählen</TextBlock>
-                <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer"></ComboBox>
+                <TextBlock>Hund --- Besitzer</TextBlock>
+                <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer" IsReadOnly="True" IsEditable="False" IsEnabled="true" ></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="0,0,20,0">
                 <TextBlock>Tag der Ankunft</TextBlock>
@@ -41,12 +40,15 @@
                 <CheckBox x:Name="IsDailyGuest" Margin="0,25,0,0">Tagesgast</CheckBox>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-              
+
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 450 0 0">
-            <Button x:Name="EditAppointment" Margin="0,0,20,0" HorizontalAlignment="Center" Height="40">Termin speichern</Button>
-            <Button x:Name="CancelEdit" Margin="0 0 0 0" Background="Red" Foreground="White" Height="40" Width="120">Abbrechen</Button>
+            <Button x:Name="EditAppointment" Margin="0,0,5,0" HorizontalAlignment="Center" Background="LightGreen" Height="40">Termin speichern</Button>
+            <Button x:Name="DeleteAppointment" Background="Red" Foreground="White"  Margin="0 0 5 0" Padding="5">
+                Termin Löschen
+            </Button>
+            <Button x:Name="CancelEdit" Margin="0 0 0 0" Background="Gray" Foreground="White" Height="40" Width="120">Abbrechen</Button>
         </StackPanel>
     </Grid>
 </UserControl>

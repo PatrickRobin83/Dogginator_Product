@@ -443,7 +443,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
             ManageAppointmentsIsVisible = true;
             AppointmentsDetailsViewIsVisible = false;
-            //TODO: Fill the Fields with the default values
         }
     }
     #endregion

@@ -28,7 +28,7 @@
             Hunde Details
         </TextBlock>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
-            <StackPanel Orientation="Vertical" Margin="0 5 0 5" MaxWidth="160" MinWidth="160">
+            <StackPanel Orientation="Vertical" Margin="0 5 0 0" MaxWidth="160" MinWidth="160">
                 <CheckBox x:Name="NotActive">Inaktiv</CheckBox>
                 <TextBlock>Name:</TextBlock>
                 <TextBox x:Name="Name" Height="20"/>
@@ -41,7 +41,7 @@
                 <TextBlock>Geburtsdatum:</TextBlock>
                 <DatePicker x:Name="Birthday" Height="25" SelectedDateFormat="Short"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="200" MinWidth="200">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 0" MaxWidth="200" MinWidth="200">
                 <TextBlock>Dauerhaft Kastriert</TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <RadioButton x:Name="CastrationIsDurable" Margin="0 5 0 0">Ja</RadioButton>
@@ -57,7 +57,7 @@
                     <DatePicker x:Name="EffectiveUntil" SelectedDateFormat="Short"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="310" MinWidth="310">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 0" MaxWidth="310" MinWidth="310">
                 <TextBlock>Krankheiten:</TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="AddDiseaseText" MinWidth="230" MaxWidth="125"/>
@@ -69,7 +69,7 @@
                           Margin="0 5 0 0" SelectedItem="{Binding Path=SelectedDisease, Mode=OneWayToSource}"/>
                 <Button x:Name="RemoveDisease" MaxWidth="100" Margin="0 5 0 0">entfernen</Button>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10 5 0 5" MaxWidth="310" MinWidth="300">
+            <StackPanel Orientation="Vertical" Margin="10 5 0 0" MaxWidth="310" MinWidth="300">
                 <TextBlock>Besonderheiten:</TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="AddCharacteristicsText" MinWidth="230" MaxWidth="230"/>
@@ -88,8 +88,8 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">
-            <Button x:Name="EditDog" Margin="0 5 0 0" Background="Green">Speichern</Button>
-            <Button x:Name="CancelCreation" Margin="60 5 0 0" Background="Red" Foreground="White">Abbrechen</Button>
+            <Button x:Name="EditDog" Margin="0 5 0 0" Background="LightGreen">Speichern</Button>
+            <Button x:Name="CancelCreation" Margin="60 5 0 0" Background="Gray" Foreground="White">Abbrechen</Button>
         </StackPanel>
     </Grid>
 </UserControl>

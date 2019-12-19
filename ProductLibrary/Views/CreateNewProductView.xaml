@@ -40,8 +40,8 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin=" 5 0 5 0">
-                <Button x:Name="CreateItem" Margin="0 0 5 0"  Background="Green">Artikel anlegen</Button>
-                <Button x:Name="CancelCreation" Margin="5 0 0 0" Background="Red" Foreground="White">Abbrechen</Button>
+                <Button x:Name="CreateItem" Margin="0 0 5 0"  Background="LightGreen">Artikel anlegen</Button>
+                <Button x:Name="CancelCreation" Margin="5 0 0 0" Background="Gray" Foreground="White">Abbrechen</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

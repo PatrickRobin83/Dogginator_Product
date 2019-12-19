@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Row 0 -->
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 10 0 0" 
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 0 0" 
                    Grid.ColumnSpan="2" 
                    HorizontalAlignment="Center" FontSize="28" FontWeight="Bold">
             Kunden Details
@@ -101,7 +101,7 @@
                           DisplayMemberPath="Name"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="SaveCustomer" Background="Green" Padding="5" Margin="0 5 5 0" Content="Speichern"/>
+                <Button x:Name="SaveCustomer" Background="LightGreen" Padding="5" Margin="0 5 5 0" Content="Speichern"/>
                 <Button x:Name="Back" Background="Red" Foreground="White" Padding="5" Margin="5 5 0 0" Content="Zurück"/>
             </StackPanel>
         </StackPanel>

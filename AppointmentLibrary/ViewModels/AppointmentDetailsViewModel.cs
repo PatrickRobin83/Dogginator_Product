@@ -34,6 +34,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         DateTime _leavingDay;
         AppointmentModel _appointmentModel = new AppointmentModel();
         int _daysofVisit = 0;
+        string _dogAndCustomer;
 
         #endregion
 
@@ -81,10 +82,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 }
                 else
                 {
-                    IsDailyGuest = false;
+                    IsDailyGuest = Convert.ToBoolean(AppointmentModel.isdailyguest);
+                    //IsDailyGuest = false;
                 }
                 NotifyOfPropertyChange(() => ArrivingDay);
                 NotifyOfPropertyChange(() => CanEditAppointment);
+                NotifyOfPropertyChange(() => IsDailyGuest);
             }
         }
         /// <summary>
@@ -102,10 +105,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 }
                 else
                 {
-                    IsDailyGuest = false;
+                    // IsDailyGuest = false;
+                    IsDailyGuest = Convert.ToBoolean(AppointmentModel.isdailyguest);
                 }
                 NotifyOfPropertyChange(() => CanEditAppointment);
                 NotifyOfPropertyChange(() => LeavingDay);
+                NotifyOfPropertyChange(() => IsDailyGuest);
             }
         }
 
@@ -135,6 +140,16 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditAppointment);
             }
         }
+
+        public string DogAndCustomer
+        {
+            get {return _dogAndCustomer; }
+            set
+            {
+                _dogAndCustomer = value;
+                NotifyOfPropertyChange(() => DogAndCustomer);
+            }
+        }
         #endregion
 
         #region Constructor
@@ -152,13 +167,21 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             ArrivingDay = AppointmentModel.date_from;
             LeavingDay = AppointmentModel.date_to;
             IsDailyGuest = Convert.ToBoolean(AppointmentModel.isdailyguest);
-
+            DogAndCustomer = AppointmentModel.dogFromCustomer.DogAndCustomer;
         }
         #endregion
 
         #region Methods
         public void CancelEdit()
         {
+            EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
+            this.TryClose();
+        }
+
+        public void DeleteAppointment()
+        {
+            //TODO: Add Logic for appointment deletion
+            Console.WriteLine("Wurde gelöscht");
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
