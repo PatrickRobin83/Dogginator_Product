@@ -73,8 +73,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         AppointmentModel AddAppointmentToDatabase(AppointmentModel apointmentModel);
         bool isAppointmentInDatabase(AppointmentModel appointmentModel);
         bool isDogInTimeSpanAlreadyInDatabase(AppointmentModel appointmentModel);
-        AppointmentModel editAppointmentModel(AppointmentModel appointmentModel);
-        AppointmentModel deleteAppointmentModel(AppointmentModel appointmentModel);
+        void editAppointmentModel(AppointmentModel appointmentModel);
+        void deleteAppointmentModel(AppointmentModel appointmentModel);
 
         #endregion
 

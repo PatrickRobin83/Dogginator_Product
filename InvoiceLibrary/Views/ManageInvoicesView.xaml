@@ -4,8 +4,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Background="LightBlue"
-             d:DesignHeight="450" d:DesignWidth="800">
+                       d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">Manage Invoices View</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Row 1 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                   HorizontalAlignment="Center" FontSize="28" 
+                   Margin=" 0 0 0 20" FontWeight="DemiBold">
+            Rechnungs Verwaltung
+        </TextBlock>
+        <StackPanel x:Name="InvoiceOverviewIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 5 0">Suche:</TextBlock>
+                <TextBox x:Name="InvoiceSearchText" MinWidth="560"/>
+                <CheckBox x:Name="ShowAlsoInactive" Margin="15 0 0 0" VerticalAlignment="Center">Zeige auch inaktive</CheckBox>
+            </StackPanel>
+            <DataGrid x:Name="AvailableProductList" ItemsSource="{Binding Path=AvailableProducts}" 
+                      AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
+                      CanUserResizeColumns="False" MinHeight="425" MaxHeight="425" SelectionMode="Single"
+                      Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Rechnungsnummer" IsReadOnly="True" /> <!--="{Binding ItemNumber}"-->
+                    <DataGridTextColumn Header="Kurzbeschreibung" IsReadOnly="True" /> <!--Binding="{Binding Shortdescription}"-->
+                    <DataGridTextColumn Header="Preis" IsReadOnly="True" /> <!--Binding="{Binding Price}"-->
+                    <DataGridTextColumn Header="Geändert am" IsReadOnly="True" /> <!-- Binding="{Binding Edit_Date}"-->
+                    <DataGridTextColumn Header="Erstellt am" IsReadOnly="True" /> <!-- Binding="{Binding Create_Date}" -->
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" 
+                    Margin=" 5 5 5 5">
+                <Button x:Name="AddProduct" Background="Gray" Foreground="White"  Margin="0 0 5 0" Padding="5">
+                    Artikel hinzufügen
+                </Button>
+                <Button x:Name="EditProduct" Background="Gray" Foreground="White" Margin="0 0 5 0" Padding="5">
+                    Artikel bearbeiten
+                </Button>
+                <Button x:Name="DeleteProduct" Background="Gray" Foreground="White"  Margin="0 0 5 0" Padding="5">
+                    Artikel Löschen
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="ProductDetailsIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <ContentControl x:Name="ActiveProductDetailsView"/>
+        </StackPanel>
+        <StackPanel x:Name="AddProductIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <ContentControl x:Name="ActiveAddProductView"/>
+        </StackPanel>
     </Grid>
 </UserControl>
+

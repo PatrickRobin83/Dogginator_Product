@@ -35,6 +35,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         AppointmentModel _appointmentModel = new AppointmentModel();
         int _daysofVisit = 0;
         string _dogAndCustomer;
+        bool _isAppointmentActive;
 
         #endregion
 
@@ -140,7 +141,15 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditAppointment);
             }
         }
-
+        public int DaysOfVisit 
+        {
+            get { return _daysofVisit; }
+            set
+            {
+                _daysofVisit = value;
+                NotifyOfPropertyChange(() => DaysOfVisit);
+            }
+        }
         public string DogAndCustomer
         {
             get {return _dogAndCustomer; }
@@ -150,6 +159,17 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => DogAndCustomer);
             }
         }
+        public bool IsAppointmentActive
+        {
+            get { return _isAppointmentActive; }
+            set
+            {
+                _isAppointmentActive = value;
+                NotifyOfPropertyChange(() => IsActive);
+            }
+
+        }
+
         #endregion
 
         #region Constructor
@@ -180,7 +200,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
         public void DeleteAppointment()
         {
-            //TODO: Add Logic for appointment deletion
+            GlobalConfig.Connection.deleteAppointmentModel(AppointmentModel);
             Console.WriteLine("Wurde gelöscht");
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
@@ -219,6 +239,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.date_to = LeavingDay;
             AppointmentModel.isdailyguest =ConvertBoolToInt.GetBoolToInt(IsDailyGuest);
             AppointmentModel.dogFromCustomer = SelectedDog;
+            AppointmentModel.isActive = IsAppointmentActive;
+            AppointmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);
             this.TryClose();
         }

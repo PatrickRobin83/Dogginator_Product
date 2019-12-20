@@ -49,7 +49,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         /// Id from the Dog what the appointment is for
         /// </summary>
         public int dogID { get; set; }
-
         public string ArrivingDateForTable
         {
             get
@@ -61,6 +60,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         {
             get { return date_to.ToShortDateString(); }
         }
+        public string Edit_Date { get; set; }
+        public string Create_Date { get; set; }
+        public bool isActive { get; set; }
+
         #endregion
 
         #region Constructor

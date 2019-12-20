@@ -255,6 +255,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
+
         #region Methods
         /// <summary>
         /// Enables or disables the "Save Appointment Button"
@@ -321,10 +322,11 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         /// Deletes the given appointment from the list and the database
         /// </summary>
         /// <param name="model">Apointment to delete</param>
-        public void DeleteAppointment(AppointmentModel model)
+        public void DeleteAppointment()
         {
-            model = SelectedAppointment;
-            //TODO: Add Logic for appointment deletion
+            GlobalConfig.Connection.deleteAppointmentModel(SelectedAppointment);
+            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
+            CheckIsInWeek(AvailableAppointments);
         }
         /// <summary>
         /// Saves the Appointment with the data into the database
@@ -340,6 +342,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.isdailyguest = ConvertBoolToInt.GetBoolToInt(IsDailyGuest);
             AppointmentModel.days = DaysOfVisit;
             AppointmentModel.dogID = SelectedDog.Id;
+            AppointmentModel.isActive = true;
+            
 
             if (GlobalConfig.Connection.isAppointmentInDatabase(AppointmentModel))
             {
@@ -376,6 +380,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(-7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
+            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
+            CheckIsInWeek(AvailableAppointments);
         }
         /// <summary>
         /// Gets all appoitnments in the next Week of the Year 
@@ -387,6 +393,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
+            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
+            CheckIsInWeek(AvailableAppointments);
         }
         /// <summary>
         /// Gets all appoitnments in the current Week of the Year 
@@ -398,6 +406,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
+            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
+            CheckIsInWeek(AvailableAppointments);
         }
         /// <summary>
         /// Compares the given appointment with the date values of the current week. If the appointment is in the current week it will saved in a List
@@ -433,14 +443,10 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             if (ap != null && ap.Id > 0)
             {
-                //TODO: Add Code to Update the Appointment in the Database
-                Console.WriteLine($"{ap.dogFromCustomer.DogAndCustomer} wurde umgebucht");
-                
-                /*Example Code from the DogDetailsView
-                //GlobalConfig.Connection.UpdateDog(ap);
-                //AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
-                */
+                GlobalConfig.Connection.editAppointmentModel(ap);
             }
+            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.getAppointments());
+            CheckIsInWeek(AvailableAppointments);
             ManageAppointmentsIsVisible = true;
             AppointmentsDetailsViewIsVisible = false;
         }

@@ -1014,7 +1014,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
                 {
-                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.date_from}','{appointmentModel.date_to}','{appointmentModel.isdailyguest}','{appointmentModel.days}'); SELECT last_insert_rowid();", appointmentModel).First();
+                    appointmentModel.Id = connection.Query<int>($"INSERT INTO appointment (dogID, date_from, date_to, isdailyguest, days, create_date, isActive) VALUES ('{appointmentModel.dogFromCustomer.Id}','{appointmentModel.date_from}','{appointmentModel.date_to}','{appointmentModel.isdailyguest}','{appointmentModel.days}', datetime('now'), 1); SELECT last_insert_rowid();", appointmentModel).First();
                 }
             }
             return appointmentModel;
@@ -1074,7 +1074,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
                 {
-                    appointments = connection.Query<AppointmentModel>($"SELECT * FROM appointment").ToList();
+                    appointments = connection.Query<AppointmentModel>($"SELECT * FROM appointment where isActive=1").ToList();
                 } 
             }
             catch (SQLiteException ex)
@@ -1090,14 +1090,27 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             return appointments;
         }
 
-        public AppointmentModel editAppointmentModel(AppointmentModel appointmentModel)
+        public void editAppointmentModel(AppointmentModel appointmentModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    connection.Query($"UPDATE appointment SET edit_date = datetime('now'), dogID='{appointmentModel.dogID}', date_from='{appointmentModel.date_from}', date_to='{appointmentModel.date_to}', isdailyguest='{appointmentModel.isdailyguest}', days='{appointmentModel.days}', isActive=1 WHERE '{appointmentModel.Id}' = id ");
+                }
+            }
+            catch (SQLiteException sqEx)
+            {
+                Console.WriteLine(sqEx.Message);
+            }
         }
 
-        public AppointmentModel deleteAppointmentModel(AppointmentModel appointmentModel)
+        public void deleteAppointmentModel(AppointmentModel appointmentModel)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
+            {
+                connection.Query($"UPDATE appointment SET isActive = 0 WHERE '{appointmentModel.Id}' = id ");
+            }
         }
 
 
