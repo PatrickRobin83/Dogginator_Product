@@ -197,11 +197,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
-
         public void DeleteAppointment()
         {
             GlobalConfig.Connection.deleteAppointmentModel(AppointmentModel);
-            Console.WriteLine("Wurde gelöscht");
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
