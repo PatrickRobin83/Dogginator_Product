@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderRegionName/@EntryValue">Header</s:String>
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">/*&#xD;
+*----------------------------------------------------------------------------------&#xD;
+*          Filename: $FILENAME$&#xD;
+*          Date:        $CREATED_YEAR$-$CREATED_MONTH$-$CREATED_DAY$&#xD;
+*          All rights reserved&#xD;
+*&#xD;
+*----------------------------------------------------------------------------------&#xD;
+* @author Patrick Robin &lt;support@rietrob.de&gt;&#xD;
+* @Version&#xD;
+*/</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=SQ/@EntryIndexedValue">SQ</s:String></wpf:ResourceDictionary>

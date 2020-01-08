@@ -1,4 +1,16 @@
-﻿using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
+﻿/*
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   GlobalConfig.cs
+ *   Date			:   2019-01-26 01:40
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using de.rietrob.dogginator_product.DogginatorLibrary.DataAccess;
 using de.rietrob.dogginator_product.DogginatorLibrary.Enums;
 using System;
 using System.Configuration;

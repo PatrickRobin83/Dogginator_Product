@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*
+ * -----------------------------------------------------------------------------
+ *	 
+ *   Filename		:   SuccessMessages.cs
+ *   Date			:   2019-07-18 08:18
+ *   All rights reserved
+ * 
+ * -----------------------------------------------------------------------------
+ * @author     Patrick Robin <support@rietrob.de>
+ * @Version      1.0.0
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

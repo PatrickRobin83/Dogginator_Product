@@ -1,4 +1,4 @@
-﻿/**
+﻿/*
  * -----------------------------------------------------------------------------
  *	 
  *   Filename		:   SQLiteConnector.cs
@@ -1089,7 +1089,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
            }
             return appointments;
         }
-
         public void editAppointmentModel(AppointmentModel appointmentModel)
         {
             try
@@ -1104,7 +1103,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-
         public void deleteAppointmentModel(AppointmentModel appointmentModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
