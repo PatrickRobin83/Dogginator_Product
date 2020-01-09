@@ -49,11 +49,24 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelperTests\DateCalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelTests\ManageAppointmentsViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppointmentLibrary\AppointmentLibrary.csproj">
+      <Project>{330100ba-3c51-4d99-b6a8-a993a44514ec}</Project>
+      <Name>AppointmentLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DogginatorLibrary\DogginatorLibrary.csproj">
+      <Project>{1cd608e6-6e86-4baf-866e-0d13073bcc2e}</Project>
+      <Name>DogginatorLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
