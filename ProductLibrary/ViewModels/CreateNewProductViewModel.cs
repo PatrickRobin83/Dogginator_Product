@@ -20,13 +20,11 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
     public class CreateNewProductViewModel : Screen
     {
         #region Fields
-        private bool _isActive = true;
+        private bool _isActiveItem = true;
         private int _itemNumber;
         private string _shortdescription = "";
         private string _longdescription = "";
         private string _price = "";
-        private DateTime _createDate;
-        private DateTime _editDate;
 
         #endregion
 
@@ -73,13 +71,13 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
-        public bool IsActive
+        public bool IsActiveItem
         {
-            get { return _isActive; }
+            get { return _isActiveItem; }
             set
             {
-                _isActive = value;
-                NotifyOfPropertyChange(() => IsActive);
+                _isActiveItem = value;
+                NotifyOfPropertyChange(() => IsActiveItem);
             }
         }
         #endregion
@@ -127,7 +125,7 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             product.Shortdescription = ShortDescription;
             product.Longdescription = LongDescription;
             product.Price = Price + "€";
-            product.Active = IsActive;
+            product.Active = IsActiveItem;
             GlobalConfig.Connection.AddProductToDatabase(product);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(product);
         }

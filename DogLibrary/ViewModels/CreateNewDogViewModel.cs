@@ -23,7 +23,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         #region Fields
         private bool _whenIsVisible = false;
         private bool _effectiveUntilIsVisible = false;
-        private string  _name = "";
+        private string  _dogName = "";
         private string _breed = "";
         private string _color = "";
         private BindableCollection<string> _gender = new BindableCollection<string>();
@@ -61,13 +61,13 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => EffectiveUntilIsVisible);
             }
         }
-        public string Name
+        public string DogName
         {
-            get { return _name; }
+            get { return _dogName; }
             set
             {
-                _name = value;
-                NotifyOfPropertyChange(() => Name);
+                _dogName = value;
+                NotifyOfPropertyChange(() => DogName);
                 NotifyOfPropertyChange(() => CanSaveDog);
             }
         }
@@ -364,7 +364,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         {
             get
             {
-                if (Name.Length > 0 && Breed.Length > 0 && Color.Length > 0 && SelectedGender.Length > 0)
+                if (DogName.Length > 0 && Breed.Length > 0 && Color.Length > 0 && SelectedGender.Length > 0)
                 {
                     return true;
                 }
@@ -380,7 +380,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         public void SaveDog()
         {
             DogModel dogModel = new DogModel();
-            dogModel.Name = Name;
+            dogModel.Name = DogName;
             dogModel.Breed = Breed;
             dogModel.Color = Color;
             dogModel.Gender = SelectedGender;

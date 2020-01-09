@@ -12,7 +12,6 @@
 
 using Caliburn.Micro;
 using de.rietrob.dogginator_product.AppointmentLibrary.Helper;
-using de.rietrob.dogginator_product.AppointmentLibrary.Converter;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
@@ -339,7 +338,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             AppointmentModel.dogFromCustomer = SelectedDog;
             AppointmentModel.date_from = ArrivingDay;
             AppointmentModel.date_to = LeavingDay;
-            AppointmentModel.isdailyguest = ConvertBoolToInt.GetBoolToInt(IsDailyGuest);
+            AppointmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
             AppointmentModel.days = DaysOfVisit;
             AppointmentModel.dogID = SelectedDog.Id;
             AppointmentModel.isActive = true;

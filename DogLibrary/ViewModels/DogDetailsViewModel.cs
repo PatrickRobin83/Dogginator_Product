@@ -25,7 +25,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         private bool _whenIsVisible = false;
         private bool _effectiveUntilIsVisible;
         private BindableCollection<string> _gender = new BindableCollection<string>();
-        private string _name = "";
+        private string _dogName = "";
         private string _breed = "";
         private string _color = "";
         private string _selectedGender = "";
@@ -89,13 +89,13 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
-        public string Name
+        public string DogName
         {
-            get { return _name; }
+            get { return _dogName; }
             set
             {
-                _name = value;
-                NotifyOfPropertyChange(() => Name);
+                _dogName = value;
+                NotifyOfPropertyChange(() => DogName);
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
@@ -318,7 +318,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         public DogDetailsViewModel(DogModel dog)
         {
             DogToEdit = dog;
-            Name = DogToEdit.Name;
+            DogName = DogToEdit.Name;
             Breed = DogToEdit.Breed;
             Color = DogToEdit.Color;
             Gender.Add("Weibchen");
@@ -503,7 +503,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                         return true;
                     }
                 }
-                if (!DogToEdit.Name.Equals(Name) && Name.Length > 3)
+                if (!DogToEdit.Name.Equals(DogName) && DogName.Length > 3)
                 {
                     return true;
                 }
@@ -547,7 +547,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         /// </summary>
         public void EditDog()
         {
-            DogToEdit.Name = Name;
+            DogToEdit.Name = DogName;
             DogToEdit.Breed = Breed;
             DogToEdit.Color = Color;
             DogToEdit.Gender = SelectedGender;

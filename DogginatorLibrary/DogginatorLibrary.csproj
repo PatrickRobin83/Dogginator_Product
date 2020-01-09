@@ -86,6 +86,7 @@
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\DiseasesModel.cs" />
     <Compile Include="Models\DogModel.cs" />
+    <Compile Include="Models\InvoiceModel.cs" />
     <Compile Include="Models\NoteModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\UserModel.cs" />

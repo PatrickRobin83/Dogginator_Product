@@ -31,7 +31,7 @@
             <StackPanel Orientation="Vertical" Margin="0 5 0 0" MaxWidth="160" MinWidth="160">
                 <CheckBox x:Name="NotActive">Inaktiv</CheckBox>
                 <TextBlock>Name:</TextBlock>
-                <TextBox x:Name="Name" Height="20"/>
+                <TextBox x:Name="DogName" Height="20"/>
                 <TextBlock>Rasse:</TextBlock>
                 <TextBox x:Name="Breed" Height="20"/>
                 <TextBlock>Farbe:</TextBlock>

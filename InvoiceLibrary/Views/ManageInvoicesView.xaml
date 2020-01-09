@@ -27,36 +27,37 @@
                 <TextBox x:Name="InvoiceSearchText" MinWidth="560"/>
                 <CheckBox x:Name="ShowAlsoInactive" Margin="15 0 0 0" VerticalAlignment="Center">Zeige auch inaktive</CheckBox>
             </StackPanel>
-            <DataGrid x:Name="AvailableProductList" ItemsSource="{Binding Path=AvailableProducts}" 
+            <DataGrid x:Name="AvailableInvoiceList" ItemsSource="{Binding Path=AvailableInvoices}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
                       CanUserResizeColumns="False" MinHeight="425" MaxHeight="425" SelectionMode="Single"
-                      Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedProduct, Mode=TwoWay}">
+                      Margin=" 0 5 0 0" SelectedItem="{Binding Path=SelectedInvoice, Mode=TwoWay}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Rechnungsnummer" IsReadOnly="True" /> <!--="{Binding ItemNumber}"-->
-                    <DataGridTextColumn Header="Kurzbeschreibung" IsReadOnly="True" /> <!--Binding="{Binding Shortdescription}"-->
-                    <DataGridTextColumn Header="Preis" IsReadOnly="True" /> <!--Binding="{Binding Price}"-->
-                    <DataGridTextColumn Header="Geändert am" IsReadOnly="True" /> <!-- Binding="{Binding Edit_Date}"-->
-                    <DataGridTextColumn Header="Erstellt am" IsReadOnly="True" /> <!-- Binding="{Binding Create_Date}" -->
+                    <DataGridTextColumn Header="Rechnungsnummer" IsReadOnly="True" Binding="{Binding BillingNumber}"/>
+                    <DataGridTextColumn Header="Kunde" IsReadOnly="True" Binding="{Binding CustomerName}" />
+                    <DataGridTextColumn Header="Summe" IsReadOnly="True" Binding="{Binding BillTotal}" />
+                    <DataGridTextColumn Header="Geändert am" IsReadOnly="True" Binding="{Binding Edit_Date}"/>
+                    <DataGridTextColumn Header="Erstellt am" IsReadOnly="True" Binding="{Binding Create_Date}"/>
+                    <DataGridCheckBoxColumn Header="Betrag Beglichen" IsReadOnly="True" Binding="{Binding IsBilled}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" 
                     Margin=" 5 5 5 5">
-                <Button x:Name="AddProduct" Background="Gray" Foreground="White"  Margin="0 0 5 0" Padding="5">
-                    Artikel hinzufügen
+                <Button x:Name="AddInvoice" Background="Gray" Foreground="White"  Margin="0 0 5 0" Padding="5">
+                    Rechnung erstellen
                 </Button>
-                <Button x:Name="EditProduct" Background="Gray" Foreground="White" Margin="0 0 5 0" Padding="5">
-                    Artikel bearbeiten
+                <Button x:Name="EditInvoice" Background="Gray" Foreground="White" Margin="0 0 5 0" Padding="5">
+                    Rechnung bearbeiten
                 </Button>
-                <Button x:Name="DeleteProduct" Background="Gray" Foreground="White"  Margin="0 0 5 0" Padding="5">
-                    Artikel Löschen
+                <Button x:Name="DeleteInvoice" Background="Gray" Foreground="White" Margin="0 0 5 0" Padding="5">
+                    Rechnung Löschen <!--Only set to NotActive-->
                 </Button>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="ProductDetailsIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
-            <ContentControl x:Name="ActiveProductDetailsView"/>
+        <StackPanel x:Name="InvoiceDetailsIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <ContentControl x:Name="ActiveInvoiceDetailsView"/>
         </StackPanel>
-        <StackPanel x:Name="AddProductIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
-            <ContentControl x:Name="ActiveAddProductView"/>
+        <StackPanel x:Name="AddInvoiceIsVisible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <ContentControl x:Name="ActiveAddInvoiceView"/>
         </StackPanel>
     </Grid>
 </UserControl>

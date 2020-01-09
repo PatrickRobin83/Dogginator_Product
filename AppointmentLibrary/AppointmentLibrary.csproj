@@ -69,7 +69,6 @@
     <Compile Include="..\.shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Converter\ConvertBoolToInt.cs" />
     <Compile Include="Helper\DateCalculator.cs" />
     <Compile Include="ViewModels\AppointmentDetailsViewModel.cs" />
     <Compile Include="ViewModels\ManageAppointmentsViewModel.cs" />
@@ -119,6 +118,9 @@
       <Project>{1cd608e6-6e86-4baf-866e-0d13073bcc2e}</Project>
       <Name>DogginatorLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
