@@ -75,6 +75,7 @@
                         <DataGridTextColumn Header="Name des Hundes --- Name des Besitzers" IsReadOnly="True" Binding="{Binding dogFromCustomer.DogAndCustomer}"/>
                         <DataGridTextColumn Header="Kommt am" IsReadOnly="True" Binding="{Binding ArrivingDateForTable}"/>
                         <DataGridTextColumn Header="Geht am" IsReadOnly="True" Binding="{Binding LeavingDateForTable}"/>
+                        <DataGridTextColumn Header="Tage" IsReadOnly="True" Binding="{Binding days}"/>
                         <DataGridCheckBoxColumn Header="Tagesgast" IsReadOnly="True" Binding="{Binding isdailyguest}"/>
                     </DataGrid.Columns>
                 </DataGrid>
