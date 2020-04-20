@@ -434,10 +434,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 AppointmentsInCurrentWeek(ap);
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ap"></param>
         public void Handle(AppointmentModel ap)
         {
             if (ap != null && ap.Id > 0)

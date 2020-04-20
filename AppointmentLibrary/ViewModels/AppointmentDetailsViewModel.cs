@@ -15,6 +15,7 @@ using de.rietrob.dogginator_product.AppointmentLibrary.Helper;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 using System;
+using de.rietrob.dogginator_product.DogginatorLibrary.Messages;
 
 namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 {
@@ -101,9 +102,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 {
                     IsDailyGuest = true;
                 }
-                else
-                {
-                    // IsDailyGuest = false;
+                else 
+                { 
                     IsDailyGuest = Convert.ToBoolean(AppointmentModel.isdailyguest);
                 }
                 NotifyOfPropertyChange(() => CanEditAppointment);
@@ -111,7 +111,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => IsDailyGuest);
             }
         }
-
         /// <summary>
         /// indicates is it a daily guest appointment or a overnight appointment
         /// </summary>
@@ -138,6 +137,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditAppointment);
             }
         }
+        /// <summary>
+        /// represents the Number of days for this appointment
+        /// </summary>
         public int DaysOfVisit 
         {
             get { return _daysofVisit; }
@@ -147,6 +149,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => DaysOfVisit);
             }
         }
+        /// <summary>
+        /// represents the Name from the dog and customer in a special format
+        /// </summary>
         public string DogAndCustomer
         {
             get {return _dogAndCustomer; }
@@ -156,6 +161,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 NotifyOfPropertyChange(() => DogAndCustomer);
             }
         }
+        /// <summary>
+        /// indicates if the appointment is active or not
+        /// </summary>
         public bool IsAppointmentActive
         {
             get { return _isAppointmentActive; }
@@ -189,17 +197,26 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         #endregion
 
         #region Methods
+        /// <summary>
+        /// A Method to cancel editing the appoointment
+        /// </summary>
         public void CancelEdit()
         {
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
+        /// <summary>
+        /// Deletes the Appoitnment from database and refreshes the UI
+        /// </summary>
         public void DeleteAppointment()
         {
             GlobalConfig.Connection.deleteAppointmentModel(AppointmentModel);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
+        /// <summary>
+        /// Activates or deactivates the Edit Button.
+        /// </summary>
         public bool CanEditAppointment
         {
             get
@@ -228,15 +245,37 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             
             
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void EditAppointment()
         {
-            AppointmentModel.date_from = ArrivingDay;
-            AppointmentModel.date_to = LeavingDay;
-            AppointmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
-            AppointmentModel.dogFromCustomer = SelectedDog;
-            AppointmentModel.isActive = IsAppointmentActive;
-            AppointmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
-            EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);
+           // // TODO: implement a check if the choosen dog is already booked in the edited timespan 
+           //AppointmentModel tempAppontmentModel = new AppointmentModel();
+           //tempAppontmentModel.date_from = ArrivingDay;
+           //tempAppontmentModel.date_to = LeavingDay;
+           //tempAppontmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
+           //tempAppontmentModel.dogFromCustomer = SelectedDog;
+           //tempAppontmentModel.isActive = IsAppointmentActive;
+           //tempAppontmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
+
+           // if (GlobalConfig.Connection.isDogInTimeSpanAlreadyInDatabase(tempAppontmentModel))
+           // {
+           //     ErrorMessages.DogIsInThisTimespanAlreadyInDatabaseError(tempAppontmentModel);
+           //     EventAggregationProvider.DogginatorAggregator.PublishOnUIThread( new AppointmentModel());
+           // }
+           // else
+           // {
+
+                AppointmentModel.date_from = ArrivingDay;
+                AppointmentModel.date_to = LeavingDay;
+                AppointmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
+                AppointmentModel.dogFromCustomer = SelectedDog;
+                AppointmentModel.isActive = IsAppointmentActive;
+                AppointmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
+                EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);
+           // }
+            
             this.TryClose();
         }
         #endregion

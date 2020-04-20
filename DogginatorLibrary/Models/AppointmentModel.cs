@@ -68,6 +68,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 
         #region Constructor
 
+        public AppointmentModel()
+        {
+
+        }
         #endregion
 
         #region Methods
