@@ -250,33 +250,27 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         /// </summary>
         public void EditAppointment()
         {
-           // // TODO: implement a check if the choosen dog is already booked in the edited timespan 
-           //AppointmentModel tempAppontmentModel = new AppointmentModel();
-           //tempAppontmentModel.date_from = ArrivingDay;
-           //tempAppontmentModel.date_to = LeavingDay;
-           //tempAppontmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
-           //tempAppontmentModel.dogFromCustomer = SelectedDog;
-           //tempAppontmentModel.isActive = IsAppointmentActive;
-           //tempAppontmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
+         // TODO: implement a check if the choosen dog is already booked in the edited timespan 
+         
 
-           // if (GlobalConfig.Connection.isDogInTimeSpanAlreadyInDatabase(tempAppontmentModel))
-           // {
-           //     ErrorMessages.DogIsInThisTimespanAlreadyInDatabaseError(tempAppontmentModel);
-           //     EventAggregationProvider.DogginatorAggregator.PublishOnUIThread( new AppointmentModel());
-           // }
-           // else
-           // {
+           AppointmentModel.date_from = ArrivingDay;
+           AppointmentModel.date_to = LeavingDay;
+           AppointmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
+           AppointmentModel.dogFromCustomer = SelectedDog;
+           AppointmentModel.isActive = IsAppointmentActive;
+           AppointmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
+           
+           if (GlobalConfig.Connection.isDogInTimeSpanAlreadyInDatabase(AppointmentModel))
+           {
+               ErrorMessages.DogIsInThisTimespanAlreadyInDatabaseError(AppointmentModel);
+               EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
+           }
+           else
+           {
+               EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);
+           }
 
-                AppointmentModel.date_from = ArrivingDay;
-                AppointmentModel.date_to = LeavingDay;
-                AppointmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
-                AppointmentModel.dogFromCustomer = SelectedDog;
-                AppointmentModel.isActive = IsAppointmentActive;
-                AppointmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
-                EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(AppointmentModel);
-           // }
-            
-            this.TryClose();
+           this.TryClose();
         }
         #endregion
     }
