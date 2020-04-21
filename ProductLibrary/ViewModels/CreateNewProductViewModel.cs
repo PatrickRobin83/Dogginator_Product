@@ -126,7 +126,7 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             product.Longdescription = LongDescription;
             product.Price = Price + "€";
             product.Active = IsActiveItem;
-            GlobalConfig.Connection.AddProductToDatabase(product);
+            GlobalConfig.Connection.AddProductToDataStore(product);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(product);
         }
 

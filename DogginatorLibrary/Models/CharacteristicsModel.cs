@@ -20,13 +20,15 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 
         #region Properties
         /// <summary>
-        /// Id of the characteristics model out of the database
+        /// Id of the characteristics model out of the data store
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Description of the Characteristic
         /// </summary>
         public string Description { get; set; }
+
         #endregion
 
         #region Contstructor

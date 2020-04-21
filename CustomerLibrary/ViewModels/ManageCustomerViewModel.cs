@@ -34,6 +34,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// True if the Customer OverView is Visible
+        /// </summary>
         public bool CustomerListIsVisible
         {
             get { return _customerListIsVisible; }
@@ -43,6 +47,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CustomerListIsVisible);
             }
         }
+
+        /// <summary>
+        /// True if the CreatCustomer View is visible
+        /// </summary>
         public bool LoadCreateCustomerIsVisible
         {
             get { return _loadCreateCustomerIsVisible; }
@@ -52,6 +60,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => LoadCreateCustomerIsVisible);
             }
         }
+
+        /// <summary>
+        /// True if the EditCustomerView is visible
+        /// </summary>
         public bool LoadCustomerDetailsIsVisible
         {
             get { return _loadCustomerDetailsIsVisible; }
@@ -61,6 +73,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => LoadCustomerDetailsIsVisible);
             }
         }
+
+        /// <summary>
+        /// Screen of the CreateCustomerView
+        /// </summary>
         public Screen ActiveAddCreateCustomerView
         {
             get { return _activeAddCreateCustomerView; }
@@ -70,6 +86,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveAddCreateCustomerView);
             }
         }
+
+        /// <summary>
+        /// Screen of the CustomerDetailsView
+        /// </summary>
         public Screen ActiveAddCustomerDetailsView
         {
             get { return _activeAddCustomerDetailsView; }
@@ -79,6 +99,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveAddCustomerDetailsView);
             }
         }
+
+        /// <summary>
+        /// The selected customer in the ListView
+        /// </summary>
         public CustomerModel SelectedCustomer
         {
             get { return _selectedCustomer; }
@@ -90,6 +114,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanLoadCustomerDetails);
             }
         }
+
+        /// <summary>
+        /// The List of All Available Customers shown in the ListView
+        /// </summary>
         public BindableCollection<CustomerModel> AvailableCustomers
         {
             get { return _availableCustomers; }
@@ -99,6 +127,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => AvailableCustomers);
             }
         }
+
+        /// <summary>
+        /// True if a Customer is selected. Button Load CustomerDetailView is Active
+        /// </summary>
         public bool CanLoadCustomerDetails
         {
             get
@@ -112,6 +144,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 return output;
             }
         }
+
+        /// <summary>
+        /// True if a Customer is selected. Button Delete Customer is Active
+        /// </summary>
         public bool CanDeleteCustomer
         {
             get
@@ -125,6 +161,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 return output;
             }
         }
+
+        /// <summary>
+        /// Text from the TextBox on the ManageCustomerView
+        /// </summary>
         public string CustomerSearchText
         {
             get { return _customerSearchText; }
@@ -138,6 +178,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
 
             }
         }
+
+        /// <summary>
+        /// True if the Checkbox is checked. 
+        /// </summary>
         public bool ShowAlsoInactive
         {
             get { return _showAlsoInactive; }
@@ -155,6 +199,9 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
         #endregion
 
         #region Contstructor
+        /// <summary>
+        /// Initilizes the Customer List and register to events for customer models handling
+        /// </summary>
         public ManageCustomerViewModel()
         { 
             AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.Get_CustomerAll());
@@ -162,10 +209,15 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             
         }
+
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Creates a new Bindable Collections of Customer Models and fills it with the CustomerModels from the Database
+        /// </summary>
+        /// <returns> the Bindable Collection of CutsomerModels</returns>
         private BindableCollection<CustomerModel> getCustomers()
         {
             AvailableCustomers = new BindableCollection<CustomerModel>(GlobalConfig.Connection.SearchResultsCustomer(CustomerSearchText, ShowAlsoInactive));
@@ -173,6 +225,10 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             return AvailableCustomers;
         }
 
+        /// <summary>
+        /// Create a new Bindable Collection with all Customers from the Database wich are marked as Active
+        /// </summary>
+        /// <param name="customerList"></param>
         private void ActiveCustomer(BindableCollection<CustomerModel> customerList)
         {
             foreach (CustomerModel model in customerList)
@@ -226,7 +282,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
         }
 
         /// <summary>
-        /// gets a Model from CreatNewCustomer and Adds this Model to the List in the ManageCustomerView 
+        /// gets a Model from CreateNewCustomer and Adds this Model to the List in the ManageCustomerView 
         /// and also Add the Customer to the Database
         /// </summary>
         /// <param name="customerModel">

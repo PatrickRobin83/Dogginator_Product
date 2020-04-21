@@ -65,6 +65,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => Id);
             }
         }
+
         /// <summary>
         /// Birthday of the Customer
         /// </summary>
@@ -77,6 +78,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => Birthday);
             }
         }
+
         /// <summary>
         /// Email of the Customer
         /// </summary>
@@ -90,6 +92,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// Mobile Number of the Customer
         /// </summary>
@@ -103,6 +106,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// PhoneNumber of the Customer
         /// </summary>
@@ -116,6 +120,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// the selected city from the combobox
         /// </summary>
@@ -129,6 +134,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// zipcode of the customer
         /// </summary>
@@ -155,7 +161,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                     else
                     {
                         
-                        Citys = GlobalConfig.Connection.getCityToZipcode(ZipCode);
+                        Citys = GlobalConfig.Connection.GetCityToZipcode(ZipCode);
                         if (Citys.Count > 0)
                         {
                             SelectedCity = Citys[0];
@@ -175,6 +181,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             
             }
         }
+
         /// <summary>
         /// housenumber of the customer
         /// </summary>
@@ -188,6 +195,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// streetname where the customer lives
         /// </summary>
@@ -201,6 +209,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// Lastname of the customer
         /// </summary>
@@ -214,6 +223,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// firstname of the customer
         /// </summary>
@@ -227,6 +237,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// special notes for the customer
         /// </summary>
@@ -239,6 +250,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => NoteToSave);
             }
         }
+
         /// <summary>
         /// the selected dog to add to the customer
         /// </summary>
@@ -252,6 +264,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanAddDogToList);
             }
         }
+
         /// <summary>
         /// Remove a Dog from the Ownershiplist
         /// </summary>
@@ -265,6 +278,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanRemoveDogFromList);
             }
         }
+
         /// <summary>
         /// List of dogs from the customer
         /// </summary>
@@ -278,6 +292,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => OwnedDogs);
             }
         }
+
         /// <summary>
         /// List of the special notes for the customer
         /// </summary>
@@ -291,6 +306,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             }
 
         }
+
         /// <summary>
         /// Selected note from the Note Listview
         /// </summary>
@@ -303,6 +319,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => SelectedNote);
             }
         }
+
         /// <summary>
         /// List of all Available Dogs from the Database
         /// </summary>
@@ -315,6 +332,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => AvailableDogs);
             }
         }
+
         /// <summary>
         /// Date the customer was created.
         /// </summary>
@@ -327,6 +345,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CreateDate);
             }
         }
+
         /// <summary>
         /// Last date the cutomer was editted
         /// </summary>
@@ -339,6 +358,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => EditDate);
             }
         }
+
         /// <summary>
         /// Create New Dog View
         /// </summary>
@@ -351,6 +371,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveAddCreateNewDogView);
             }
         }
+
         /// <summary>
         /// bool that indicates --> is the List with dogs visible
         /// </summary>
@@ -363,6 +384,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => DogListsIsVisible);
             }
         }
+
         /// <summary>
         /// bool that indicates --> is the create new dog view is visible
         /// </summary>
@@ -375,6 +397,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CreateNewDogIsVisible);
             }
         }
+
         /// <summary>
         /// RadioButton Gender Female
         /// </summary>
@@ -387,6 +410,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => RDBFemaleSalutionIsChecked);
             }
         }
+
         /// <summary>
         /// Radiobutton Gender Male
         /// </summary>
@@ -399,6 +423,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => RDBMaleSalutionIsChecked);
             }
         }
+
         /// <summary>
         /// gives back true if the creation was successfull or false if the creation fails
         /// </summary>
@@ -412,6 +437,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateCustomer);
             }
         }
+
         /// <summary>
         /// List of citys with the matching zipcode
         /// </summary>
@@ -424,8 +450,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
                 NotifyOfPropertyChange(() => Citys);
             }
         }
-
-
+        
         #endregion
 
         #region Contstructor
@@ -439,6 +464,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             Birthday = DateTime.Now;
             WireUpLists();
         }
+
         #endregion
 
         #region Methods
@@ -670,6 +696,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             CreateNewDogIsVisible = false;
             this.TryClose();
         }
+
         #endregion
     }
 }

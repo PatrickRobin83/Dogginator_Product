@@ -32,6 +32,9 @@ namespace de.rietrob.dogginator_product.LoginLibrary.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Bool to determine is User valid
+        /// </summary>
         public bool IsUserValid
         {
             get { return _isUserValid; }
@@ -42,6 +45,9 @@ namespace de.rietrob.dogginator_product.LoginLibrary.ViewModels
             }
         }
        
+        /// <summary>
+        /// string from passwordbox
+        /// </summary>
         public string Password
         {
             get { return _password; }
@@ -52,6 +58,9 @@ namespace de.rietrob.dogginator_product.LoginLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// string from Username TextBox
+        /// </summary>
         public string UserName
         {
             get { return _username; }
@@ -62,6 +71,9 @@ namespace de.rietrob.dogginator_product.LoginLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// UserModel
+        /// </summary>
         public UserModel User
         {
             get { return _user; }
@@ -83,6 +95,9 @@ namespace de.rietrob.dogginator_product.LoginLibrary.ViewModels
 
         #region Methods
         
+        /// <summary>
+        /// Method to validate a user password combination
+        /// </summary>
         public void Login()
         {
                 if (!string.IsNullOrWhiteSpace(UserName))

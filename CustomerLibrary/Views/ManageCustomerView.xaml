@@ -59,9 +59,9 @@
             </DataGrid>
 
             <!-- Row 4 -->
-            <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
-                    HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom" 
-                    Margin=" 5 5 5 5">
+            <StackPanel
+                HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom" 
+                        Margin=" 5 5 5 5">
                 <Button x:Name="LoadCreateNewCustomer" Background="Gray" Foreground="White" Margin="0 0 5 0" Padding="5">
                     Kunde anlegen
                 </Button>

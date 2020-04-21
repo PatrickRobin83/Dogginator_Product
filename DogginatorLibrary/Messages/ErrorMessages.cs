@@ -29,6 +29,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         #endregion
 
         #region Methods
+
         /// <summary>
         /// Shows a Messagebox if the given user or password is wrong
         /// </summary>
@@ -36,6 +37,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         {
             MessageBox.Show("Benutzername oder Passwort ist leer oder falsch", "Fehler: Benutzername / Passwort", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
         /// <summary>
         /// Shows a messagebox if the user cant login because it is set inactive
         /// </summary>
@@ -43,6 +45,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         {
             MessageBox.Show("Der Benutzer ist nicht mehr aktiv", "Fehler: User ist Inaktiv", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
         /// <summary>
         /// Shows a messagebox if the dog has only one owner
         /// </summary>
@@ -53,6 +56,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
                                                    $"{dogToRemove.CustomerList.First().FirstName} {dogToRemove.CustomerList.First().LastName} der einzige Besitzer ist"
                                                    , "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
         /// <summary>
         /// Shows a messagebox if the Customer has already a relation to the dog
         /// </summary>
@@ -60,6 +64,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         {
             MessageBox.Show("Hund ist dem Kunden bereits zugeordnet!", "Hinweis" , MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         /// <summary>
         /// Shows a messagebox if the dog has only one owner
         /// </summary>
@@ -70,6 +75,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
                                                $"{selectedDog.CustomerList.First().FirstName} {selectedDog.CustomerList.First().LastName} der einzige Besitzer ist", "Fehler"
                                                , MessageBoxButton.OK, MessageBoxImage.Error); ;
         }
+
         /// <summary>
         /// Shows a messagebox if the Appoitnment is already in the Database
         /// </summary>
@@ -79,6 +85,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
             MessageBox.Show($"Der Eintrag für {appointmentModel.dogFromCustomer.Name} wurde mit diesen Details schon eingetragen.\r\nBitte verwenden Sie die Funktion: Termin bearbeiten" +
                 $"          \r\noder legen Sie einen neuen Termin mit anderen Details an.","Fehler - Termin Duplikat",MessageBoxButton.OK,MessageBoxImage.Error);
         }
+
         /// <summary>
         /// Shows a messagebox if the dog is already booked in the given AppointmentModel Timespan 
         /// </summary>

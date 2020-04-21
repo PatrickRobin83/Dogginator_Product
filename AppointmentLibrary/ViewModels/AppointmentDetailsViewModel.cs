@@ -178,6 +178,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Initialize of the values in the UI from the given Appointmentmodel
+        /// </summary>
+        /// <param name="appointment"></param>
+        /// <param name="dogs"></param>
         public AppointmentDetailsViewModel(AppointmentModel appointment, BindableCollection<DogModel> dogs)
         {
             AppointmentModel = appointment;
@@ -205,15 +211,17 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
+
         /// <summary>
         /// Deletes the Appoitnment from database and refreshes the UI
         /// </summary>
         public void DeleteAppointment()
         {
-            GlobalConfig.Connection.deleteAppointmentModel(AppointmentModel);
+            GlobalConfig.Connection.DeleteAppointmentModel(AppointmentModel);
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
             this.TryClose();
         }
+
         /// <summary>
         /// Activates or deactivates the Edit Button.
         /// </summary>
@@ -245,14 +253,12 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             
             
         }
+
         /// <summary>
-        /// 
+        /// Edit the Appointment in the Database and sends the AppointmentModel to UI Thread.
         /// </summary>
         public void EditAppointment()
         {
-         // TODO: implement a check if the choosen dog is already booked in the edited timespan 
-         
-
            AppointmentModel.date_from = ArrivingDay;
            AppointmentModel.date_to = LeavingDay;
            AppointmentModel.isdailyguest = Convert.ToInt32(IsDailyGuest);
@@ -260,7 +266,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
            AppointmentModel.isActive = IsAppointmentActive;
            AppointmentModel.days = DateCalculator.getDays(LeavingDay, ArrivingDay);
            
-           if (GlobalConfig.Connection.isDogInTimeSpanAlreadyInDatabase(AppointmentModel))
+           if (GlobalConfig.Connection.IsDogInTimeSpanAlreadyInDataStore(AppointmentModel))
            {
                ErrorMessages.DogIsInThisTimespanAlreadyInDatabaseError(AppointmentModel);
                EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new AppointmentModel());
@@ -272,6 +278,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
 
            this.TryClose();
         }
+
         #endregion
     }
 }

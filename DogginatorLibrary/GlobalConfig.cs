@@ -27,9 +27,19 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Connection type for the data store
+        /// </summary>
         public static IDataConnection Connection { get; private set; }
+
+        /// <summary>
+        /// Constant Name for the Bakupfile of the local Database Type
+        /// </summary>
         public const string DATABASEBACKUPFILENAME = @"Dogginator_Backup.db"; 
+
         public const string CANCEL = "Cancel";
+
         public const string USERCREATED = "User Created";
         public const string USERDELETED = "User Deleted";
         public const string USEREDIT = "User Edited";
@@ -41,6 +51,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         #endregion
 
         #region Methods
+
         /// <summary>
         /// Select which Datastorage to use 
         /// </summary>
@@ -63,6 +74,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
+
         /// <summary>
         ///  Database Filename
         /// </summary>
@@ -70,6 +82,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         {
             return ConfigurationManager.AppSettings[0].ToString();
         }
+
         /// <summary>
         /// Backup Path for the Database
         /// </summary>
@@ -77,6 +90,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         {
             return $"{ConfigurationManager.AppSettings[1].ToString()}";
         }
+
         /// <summary>
         /// Function to encrypt the password into a Hash
         /// </summary>
@@ -92,6 +106,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
                 return passHash;
             }
         }
+
         /// <summary>
         /// Converts the given string into a md5 hash
         /// </summary>
@@ -118,6 +133,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
             // Return the hexadecimal string.
             return sBuilder.ToString();
         }
+
         /// <summary>
         /// Determine the current Week of the Year
         /// </summary>
@@ -128,6 +144,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
             CultureInfo CUI = CultureInfo.CurrentCulture;
             return CUI.Calendar.GetWeekOfYear(date, CUI.DateTimeFormat.CalendarWeekRule, CUI.DateTimeFormat.FirstDayOfWeek);
         }
+
         /// <summary>
         /// Determine the first day of the week 
         /// </summary>
@@ -144,6 +161,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
 
             return firstDayInWeek;
         }
+
         #endregion
     }
 }

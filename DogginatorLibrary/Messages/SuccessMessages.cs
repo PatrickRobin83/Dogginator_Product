@@ -31,6 +31,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         #endregion
 
         #region Methods
+
         /// <summary>
         /// Shows a Messagebox if the changes saved succesfull
         /// </summary>
@@ -38,6 +39,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         {
             MessageBox.Show("Änderungen wurden gespeichert", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         /// <summary>
         /// Shows a messagebox if the user creation was successfull
         /// </summary>
@@ -45,6 +47,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         {
             MessageBox.Show("User wurde angelegt", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         /// <summary>
         /// Shows a messagebox if the appointment creation was successfull
         /// </summary>
@@ -52,6 +55,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Messages
         {
             MessageBox.Show("Termin wurde angelegt", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
         #endregion
     }
 }

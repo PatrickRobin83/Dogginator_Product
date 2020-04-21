@@ -17,12 +17,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using de.rietrob.dogginator_product.DogginatorLibrary.Helper;
 
 namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 {
     public class SQLiteConnector : IDataConnection
     {
         #region Fields
+
         /// <summary>
         /// Database Name
         ///</summary>
@@ -41,10 +43,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #region Methods
 
         #region Customer
-        /// <summary>
-        /// Updates the given Customer on the table customer in the database
-        /// </summary>
-        /// <param name="cModel">CustomerModel to update</param>
+
         public void UpdateCustomer(CustomerModel cModel)
         {
             try
@@ -63,10 +62,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             }
         }
-        /// <summary>
-        /// Selects all Customers from the database an stores them in a List of CustomerModels
-        /// </summary>
-        /// <returns>List of CustomerModel</returns>
+
         public List<CustomerModel> Get_CustomerAll()
         {
             List<CustomerModel> output;
@@ -97,10 +93,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<CustomerModel>();
             }
         }
-        /// <summary>
-        /// Deletes the given CustomerModel from the database
-        /// </summary>
-        /// <param name="customerModel">CustomerModel to delete</param>
+
         public void DeleteCustomer(CustomerModel customerModel)
         {
             try
@@ -116,11 +109,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return;
             }
         }
-        /// <summary>
-        /// Adds the given CustomerModel into the table customer from the database
-        /// </summary>
-        /// <param name="customerModel">CustomerModel to add</param>
-        /// <returns>CustomerModel with the id from the database table customer</returns>
+
         public CustomerModel AddCustomer(CustomerModel customerModel)
         {
             try
@@ -169,11 +158,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return null;
             }
         }
-        /// <summary>
-        /// Selects all Customers for the given Dog
-        /// </summary>
-        /// <param name="dogModel">DogModel to get the Customers for</param>
-        /// <returns></returns>
+
         public List<CustomerModel> GetAllCustomerForDog(DogModel dogModel)
         {
             try
@@ -191,12 +176,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<CustomerModel>();
             }
         }
-        /// <summary>
-        /// Adds a given note as String to the given CustomerModel to the database
-        /// </summary>
-        /// <param name="customerModel">CustomerModel to add the note to</param>
-        /// <param name="note">The note to add</param>
-        /// <returns>CustomerModel with added note</returns>
+
         public NoteModel AddNoteToCustomer(CustomerModel customerModel, string note)
         {
             try
@@ -220,11 +200,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return null;
             }
         }
-        /// <summary>
-        /// Selects a single CustomerModel from the database after updated it
-        /// </summary>
-        /// <param name="customerModel">CustomerModel</param>
-        /// <returns>CustomerModel with all values filled in</returns>
+
         public CustomerModel Get_Customer(CustomerModel customerModel)
         {
 
@@ -244,10 +220,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
 
         }
-        /// <summary>
-        /// Selects all Customers from the database 
-        /// </summary>
-        /// <returns>List of all Customers in the database active an inactiv </returns>
+
         public List<CustomerModel> Get_CustomerInactiveAndActive()
         {
             List<CustomerModel> output;
@@ -278,12 +251,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<CustomerModel>();
             }
         }
-        /// <summary>
-        /// Selects all CustomerModels which matches with the searchtext 
-        /// </summary>
-        /// <param name="searchText">string what to search for</param>
-        /// <param name="activeAndInactive">bool if searched for only active customers or also inactive</param>
-        /// <returns>List of CustomerModel which matches with the searchtext</returns>
+
         public List<CustomerModel> SearchResultsCustomer(string searchText, bool activeAndInactive)
         {
             List<CustomerModel> results = new List<CustomerModel>();
@@ -314,11 +282,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return results;
         }
-        /// <summary>
-        /// removes the give node from the customer
-        /// </summary>
-        /// <param name="noteModel">Note to delete from the List</param>
-        /// <param name="customerModel">CustomerModel where the note to remove from</param>
+
+        
         public void DeleteNoteFromList(NoteModel noteModel, CustomerModel customerModel)
         {
             try
@@ -338,56 +303,10 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
         }
 
-        #region CityToZipcode
-        /// <summary>
-        /// Selects the Citys which matches with the given zipcode
-        /// </summary>
-        /// <param name="zipCode">String of german zipcode to search the citys for</param>
-        /// <returns>List of Citys as a string value</returns>
-        public List<string> getCityToZipcode(string zipCode)
-        {
-            List<string> foundcitys = new List<string>();
-            string id_zip;
-            List<string> id_city = new List<string>();
-
-            try
-            {
-                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
-                {
-                    if (connection.Query<string>($"Select id from zipcode where zip = '{zipCode}'").Any())
-                    {
-                        id_zip = connection.Query<string>($"Select id from zipcode where zip = '{zipCode}'").First();
-                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = '{id_zip}'").ToList();
-                        foreach (string cityZip in id_city)
-                        {
-                            foundcitys.Add(connection.Query<string>($"Select name from city where id = '{cityZip}'").First());
-                        }
-
-                        foundcitys.Sort();
-                    }
-                }
-                    
-            }
-            catch (SQLiteException ex)
-            {
-                Console.WriteLine(ex.ErrorCode);
-            }
-
-            return foundcitys;
-        }
         #endregion
-
-        #endregion
-
+        
         #region Dog
-        /// <summary>
-        /// Inserts the Dog into the Database
-        /// Inserts the DogToCustomer Relation into the Database
-        /// Add the Customer to the DogModel Customer List
-        /// </summary>
-        /// <returns>
-        /// Dog complete with id 
-        /// </returns>
+        
         public DogModel AddDog(DogModel dModel, CustomerModel cModel)
         {
             AddDogToDatabase(dModel);
@@ -396,9 +315,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             return dModel;
         }
-        /// <summary>
-        /// Updates a Dog in the Database with new Attributes
-        /// </summary>
+
         public void UpdateDog(DogModel dModel)
         {
 
@@ -419,11 +336,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
 
         }
-        /// <summary>
-        /// Inserts the Dog with Characteristics and Diseases in the Database
-        /// </summary>
-        /// <param name="dModel">Dogmodel to save</param>
-        /// <returns>Dogmodel with the ID from the Database</returns>
+
         public DogModel AddDogToDatabase(DogModel dModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -450,11 +363,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             return dModel;
         }
-        /// <summary>
-        /// Inserts a DogToCustomer Relation in the Database.
-        /// </summary>
-        /// <param name="dModel">DogModel ID which is needed to save the relation in Database</param>
-        /// <param name="cModel">CustomerModel ID which is needed to save the relation in the Database</param>
+
         public void AddDogToCustomer(DogModel dModel, CustomerModel cModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
@@ -462,10 +371,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 connection.Query("INSERT INTO customer_to_dog (customerId, dogId) VALUES (" + cModel.Id + " ," + dModel.Id + ")");
             }
         }
-        /// <summary>
-        /// Selects all Dogs in the Database inactive and active
-        /// </summary>
-        /// <returns>List of DogModels</returns>
+        
         public List<DogModel> Get_DogsAll()
         {
             List<DogModel> output = new List<DogModel>();
@@ -495,11 +401,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<DogModel>();
             }
         }
-        /// <summary>
-        /// Deletes the DogToCustomer relation entry in the Database
-        /// </summary>
-        /// <param name="cModel">CutomerModel needed for the deletion</param>
-        /// <param name="dModel">DogModel needed for the deletion</param>
+
         public void DeleteDogToCustomerRelation(CustomerModel cModel, DogModel dModel)
         {
             try
@@ -515,10 +417,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        /// <summary>
-        /// Deletes the Relation Between Dog and Disease in the Database
-        /// </summary>
-        /// <param name="dModel">DogModel that holds a List of its own disease</param>
+
         public void DeleteDogDiseasesRelation(DogModel dModel)
         {
             try
@@ -541,10 +440,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        /// <summary>
-        /// Deletes the Relation Between Dog and Characteristics in the Database
-        /// </summary>
-        /// <param name="dModel">Dogmodel that holds a List of its own characterisitcs</param>
+
         public void DeleteDogToCharacteristicsRelation(DogModel dModel)
         {
             try
@@ -567,10 +463,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        /// <summary>
-        /// Deletes the Diseases from the database
-        /// </summary>
-        /// <param name="diseasesModel">Disease Model to delete from database</param>
+
         public void DeleteDiseases(DiseasesModel diseasesModel)
         {
             try
@@ -585,10 +478,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        /// <summary>
-        /// Deletes the given Characteristic from the database
-        /// </summary>
-        /// <param name="characteristicsModel">Characteristics Model to delete from database</param>
+
         public void DeleteCharacteristics(CharacteristicsModel characteristicsModel)
         {
             try
@@ -603,10 +493,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        /// <summary>
-        /// Delete the given Dog from the Database
-        /// </summary>
-        /// <param name="dogModel">DogModel to delete from database</param>
+
         public void DeleteDogFromDatabase(DogModel dogModel)
         {
             try
@@ -622,10 +509,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return;
             }
         }
-        /// <summary>
-        /// Selects all inactive and active dogs from the database and return the result as a List
-        /// </summary>
-        /// <returns>List<DogModel></returns>
+
         public List<DogModel> Get_DogsInactiveAndActive()
         {
             List<DogModel> output = new List<DogModel>();
@@ -655,12 +539,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<DogModel>();
             }
         }
-        /// <summary>
-        /// Searches in the Table Dogs for the given Text in every column
-        /// </summary>
-        /// <param name="searchText">string of the searchtext that was entered in the Textbox</param>
-        /// <param name="activeAndInactive">bool if searched only for active dogs or active and inactive dogs</param>
-        /// <returns>Returns a List of Dogmodel that  matches the searchtext</returns>
+
         public List<DogModel> SearchResultDogs(string searchText, bool activeAndInactive)
         {
             List<DogModel> results = new List<DogModel>();
@@ -689,11 +568,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             return results;
 
         }
-        /// <summary>
-        /// Selects a DogModel from the Database
-        /// </summary>
-        /// <param name="id">DogModel id from the entry in the database</param>
-        /// <returns>a complete Dogmodel out of the database</returns>
+
         public DogModel GetDog(int id)
         {
             DogModel dogModel = new DogModel();
@@ -716,11 +591,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #endregion
 
         #region User
-        /// <summary>
-        /// checks database for user password combination
-        /// </summary>
-        /// <param name="userModel">UserModel that holds the username and password</param>
-        /// <returns>true if the combination is right - false if the combination is wrong</returns>
+        
         public UserModel IsUserAndPasswordRight(UserModel userModel)
         {
             try
@@ -739,10 +610,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return userModel;
         }
-        /// <summary>
-        /// Inserts a user into the user table in the database
-        /// </summary>
-        /// <param name="userModel"></param>
+
         public void InsertUserToDatabase(UserModel userModel)
         {
             try
@@ -757,10 +625,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-        /// <summary>
-        /// Selects all active user from the database
-        /// </summary>
-        /// <returns>Returns a List of UserModel</returns>
+
         public List<UserModel> GetAllActiveUser()
         {
             List<UserModel> output = new List<UserModel>();
@@ -778,10 +643,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return output;
         }
-        /// <summary>
-        /// Deletes the given user from the database
-        /// </summary>
-        /// <param name="userModel"></param>
+
         public void DeleteUserFromDataBase(UserModel userModel)
         {
             try
@@ -796,10 +658,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-        /// <summary>
-        /// Selects all Users from Database active also as inactive
-        /// </summary>
-        /// <returns>List of Users</returns>
+
         public List<UserModel> GetAllUser()
         {
             List<UserModel> output = new List<UserModel>();
@@ -817,10 +676,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return output;
         }
-        /// <summary>
-        /// Updates the values of the given user in the database
-        /// </summary>
-        /// <param name="userModel">User to update</param>
+
         public void UpdateUser(UserModel userModel)
         {
             try
@@ -835,12 +691,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-        /// <summary>
-        /// Searches in the Table user for the given Text in every column
-        /// </summary>
-        /// <param name="searchText">Searches in the Table Dogs for the given Text in every column</param>
-        /// <param name="showInactive">bool if searched only for active users or active and inactive users </param>
-        /// <returns></returns>
+
         public List<UserModel> SearchResultUser(string searchText, bool showInactive)
         {
             List<UserModel> output = new List<UserModel>();
@@ -867,13 +718,11 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             return output;
         }
+
         #endregion
 
         #region Product
-        /// <summary>
-        /// Selects all Products from the database and writes it into a List of ProductModel 
-        /// </summary>
-        /// <returns>List of ProductModel</returns>
+        
         public List<ProductModel> GetAllProducts()
         {
             List<ProductModel> products = new List<ProductModel>();
@@ -892,12 +741,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return new List<ProductModel>();
             }
         }
-        /// <summary>
-        /// Adds a product into the table product from the database
-        /// </summary>
-        /// <param name="productModel">ProductModel to add</param>
-        /// <returns>given ProductModel with id from database table</returns>
-        public ProductModel AddProductToDatabase(ProductModel productModel)
+
+        public ProductModel AddProductToDataStore(ProductModel productModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
@@ -906,11 +751,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return productModel;
             }
         }
-        /// <summary>
-        /// Deletes the product from the table product in database
-        /// </summary>
-        /// <param name="productModel">ProductModel to delete</param>
-        public void DeleteProductFromDatabase(ProductModel productModel)
+
+        public void DeleteProductFromDataStore(ProductModel productModel)
         {
             try
             {
@@ -925,10 +767,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 return;
             }
         }
-        /// <summary>
-        /// Updates the values from the ProductModel in the database with the values of the given ProductModel
-        /// </summary>
-        /// <param name="productModel">Product to update</param>
+
         public void UpdateProduct(ProductModel productModel)
         {
             try
@@ -943,13 +782,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-        /// <summary>
-        /// Returns a List with ProductModel that matches the searchstring from the textbox and all or only the active products
-        /// </summary>
-        /// <param name="searchText">string from the TextBox </param>
-        /// <param name="showInactive">bool only active or also inactive products</param>
-        /// <returns>List of products that matches the search string and the bool</returns>
-        public List<ProductModel> SearchResulProducts(string searchText, bool showInactive)
+
+        public List<ProductModel> SearchResultProducts(string searchText, bool showInactive)
         {
             List<ProductModel> output = new List<ProductModel>();
 
@@ -979,12 +813,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         #endregion
 
         #region Appointment
-        /// <summary>
-        /// Selects all appointments for the given dog
-        /// </summary>
-        /// <param name="dogModel">DogModel to get the appointments for</param>
-        /// <returns>List of AppointmentModels</returns>
-        public List<AppointmentModel> getAppointmentsForDog(DogModel dogModel)
+        
+        public List<AppointmentModel> GetAppointmentsForDog(DogModel dogModel)
         {
             List<AppointmentModel> appointments = new List<AppointmentModel>();
 
@@ -1004,12 +834,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
 
         }
-        /// <summary>
-        /// Adds a Appointment for the dog to the database
-        /// </summary>
-        /// <param name="appointmentModel">AppointmentModel to add</param>
-        /// <returns>AppointmentModel with id</returns>
-        public AppointmentModel AddAppointmentToDatabase(AppointmentModel appointmentModel)
+
+        public AppointmentModel AddAppointmentToDataStore(AppointmentModel appointmentModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
@@ -1019,12 +845,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
             return appointmentModel;
         }
-        /// <summary>
-        /// Checks if the given AppointmentModel is already in the database
-        /// </summary>
-        /// <param name="appointmentModel">AppointmentModel to search for</param>
-        /// <returns>true if the given AppointmentModel is in database false if not</returns>
-        public bool isAppointmentInDatabase(AppointmentModel appointmentModel)
+
+        public bool IsAppointmentInDataStore(AppointmentModel appointmentModel)
         {
             bool isInDatabase = false;
 
@@ -1041,12 +863,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
                 return isInDatabase;
         }
-        /// <summary>
-        /// Checks whether the dog is in the given TimeSpan already booked
-        /// </summary>
-        /// <param name="appointmentModel">AppointmentModel with the TimeSpan</param>
-        /// <returns>Returns true if the dog is already booked in the given timeframe</returns>
-        public bool isDogInTimeSpanAlreadyInDatabase(AppointmentModel appointmentModel)
+
+        public bool IsDogInTimeSpanAlreadyInDataStore(AppointmentModel appointmentModel)
         {
             bool isInDatabase = false;
 
@@ -1054,20 +872,38 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             {
                 List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
                 AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogId AND " +
-                                                                          $"'{appointmentModel.date_from}' BETWEEN date_from AND date_to").ToList();
+                                                                          $"isActive = '1'").ToList();
                 if (AppointmentModelList.Count >= 1)
                 {
-                    isInDatabase = true;
+                    List<AppointmentModel> tempList = AppointmentModelList.ToList();
+
+                    foreach (AppointmentModel model in tempList)
+                    {
+                        if (model.Id == appointmentModel.Id)
+                        {
+                            AppointmentModelList.Remove(model);
+                            break;
+                        }
+                    }
+                    tempList.Clear();
+
+                    foreach (AppointmentModel apModel in AppointmentModelList)
+                    {
+                        if (appointmentModel.date_from >= apModel.date_from || appointmentModel.date_from <= apModel.date_to ||
+                            appointmentModel.date_to >= apModel.date_from || appointmentModel.date_to <= apModel.date_to)
+                        {
+                            isInDatabase = true;
+                            break;
+                        }
+                    }
+                    
                 }
             }
 
             return isInDatabase;
         }
-        /// <summary>
-        /// Selects all ApointmentModel from the database
-        /// </summary>
-        /// <returns>List of all Appointments from the database</returns>
-        public List<AppointmentModel> getAppointments()
+
+        public List<AppointmentModel> GetAppointments()
         {
             List<AppointmentModel> appointments = new List<AppointmentModel>();
             try
@@ -1089,7 +925,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
            }
             return appointments;
         }
-        public void editAppointmentModel(AppointmentModel appointmentModel)
+
+        public void EditAppointmentModel(AppointmentModel appointmentModel)
         {
             try
             {
@@ -1103,7 +940,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 Console.WriteLine(sqEx.Message);
             }
         }
-        public void deleteAppointmentModel(AppointmentModel appointmentModel)
+
+        public void DeleteAppointmentModel(AppointmentModel appointmentModel)
         {
             using (IDbConnection connection = new System.Data.SQLite.SQLiteConnection(GlobalConfig.CnnString(db)))
             {
@@ -1111,6 +949,42 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             }
         }
 
+
+        #endregion
+
+        #region CityToZipcode
+
+        public List<string> GetCityToZipcode(string zipCode)
+        {
+            List<string> foundcitys = new List<string>();
+            string id_zip;
+            List<string> id_city = new List<string>();
+
+            try
+            {
+                using (IDbConnection connection = new SQLiteConnection(GlobalConfig.CnnString(db)))
+                {
+                    if (connection.Query<string>($"Select id from zipcode where zip = '{zipCode}'").Any())
+                    {
+                        id_zip = connection.Query<string>($"Select id from zipcode where zip = '{zipCode}'").First();
+                        id_city = connection.Query<string>($"Select id_city from ziptocity where id_zip = '{id_zip}'").ToList();
+                        foreach (string cityZip in id_city)
+                        {
+                            foundcitys.Add(connection.Query<string>($"Select name from city where id = '{cityZip}'").First());
+                        }
+
+                        foundcitys.Sort();
+                    }
+                }
+
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine(ex.ErrorCode);
+            }
+
+            return foundcitys;
+        }
 
         #endregion
 

@@ -20,14 +20,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         #endregion
 
         #region Properties
+
         /// <summary>
-        /// Unique Id from the database
+        /// Unique Id from the data store
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Note Content like "Customer does not pay on time"
         /// </summary>
         public string Description { get; set; }
+
         #endregion
 
         #region Contstructor

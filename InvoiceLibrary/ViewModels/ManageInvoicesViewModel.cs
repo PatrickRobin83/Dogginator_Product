@@ -33,47 +33,70 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Value from TextBox SearchText
+        /// </summary>
         public string InvoiceSearchText
         {
             get => _invoiceSearchText;
             set => _invoiceSearchText = value;
         }
 
+        /// <summary>
+        /// Value of CheckBox Show also Inactive
+        /// </summary>
         public bool ShowAlsoInactive
         {
             get => _showAlsoInactive;
             set => _showAlsoInactive = value;
         }
 
+        /// <summary>
+        /// List of all Invoices shown in the DataGridView
+        /// </summary>
         public BindableCollection<InvoiceModel> AvailableInvoices
         {
             get => _availableInvoices;
             set => _availableInvoices = value;
         }
 
+        /// <summary>
+        /// Selected Invoice on the DataGridView
+        /// </summary>
         public InvoiceModel SelectedInvoice
         {
             get => _selectedInvoice;
             set => _selectedInvoice = value;
         }
 
+        /// <summary>
+        /// From each Item in the DataGrid the string Billingnumber
+        /// </summary>
         public string BillingNumber
         {
             get => _billingNumber;
             set => _billingNumber = value;
         }
 
+        /// <summary>
+        /// From each Item in the DataGrid the double Bill Total
+        /// </summary>
         public double BillTotal
         {
             get => _billTotal;
             set => _billTotal = value;
         }
 
+        /// <summary>
+        /// For each Item in the DataGFrid the Bool Is Billed
+        /// </summary>
         public bool IsBilled
         {
             get => _isBilled;
             set => _isBilled = value;
         }
+
 
         public CustomerModel Customer
         {
@@ -89,21 +112,31 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Create new Invoice. Opens the CreateNewInvoiceView
+        /// </summary>
         public void AddInvoice()
         {
-            //Change View To CreateNewInvoiceView
+            // TODO: Change View To CreateNewInvoiceView
             
         }
 
+        /// <summary>
+        /// Opens the InvoiceDetailsView to edit the Invoice
+        /// </summary>
         public void EditInvoice()
         {
-            //Change View to InvoiceDetailsView
+            // TODO: Change View to InvoiceDetailsView
         }
 
+        /// <summary>
+        /// Deletes the selected Invoices from the Data store and from the DataGrid
+        /// </summary>
         public void DeleteInvoice()
         {
-            //Set Selected Invoice to IsInvoiceActive = false;
+            // TODO: Set Selected Invoice to IsInvoiceActive = false;
         }
+
         #endregion
 
 

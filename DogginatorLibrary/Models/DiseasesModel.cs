@@ -19,14 +19,17 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
         #endregion
 
         #region Properties
+
         /// <summary>
-        /// Id of the Disease from the database
+        /// Id of the Disease from the data store
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Description of the Disease
         /// </summary>
         public string Name { get; set; }
+
         #endregion
 
         #region Contstructor

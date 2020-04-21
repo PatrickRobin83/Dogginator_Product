@@ -14,7 +14,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
 {
     public class InvoiceModel
     {
-        
 
         #region Fields
 

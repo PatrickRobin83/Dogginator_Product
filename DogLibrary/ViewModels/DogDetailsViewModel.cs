@@ -49,6 +49,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// The given Object<DogModel> 
+        /// </summary>
         public DogModel DogToEdit
         {
             get { return _dogToEdit; }
@@ -58,6 +61,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => DogToEdit);
             }
         }
+
+        /// <summary>
+        /// ComboBox with a List of strings for the Gender
+        /// </summary>
         public BindableCollection<string> Gender
         {
             get { return _gender; }
@@ -69,6 +76,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
 
         }
 
+        /// <summary>
+        /// Bool for WhenCastrated Area is visible
+        /// </summary>
         public bool WhenIsVisible
         {
             get { return _whenIsVisible; }
@@ -79,6 +89,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Bool for EffectiveUntil Area is visible
+        /// </summary>
         public bool EffectiveUntilIsVisible
         {
             get { return _effectiveUntilIsVisible; }
@@ -89,6 +102,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value of the TextBox DogName
+        /// </summary>
         public string DogName
         {
             get { return _dogName; }
@@ -99,6 +115,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// Text of TextBox Breed
+        /// </summary>
         public string Breed
         {
             get { return _breed; }
@@ -109,6 +129,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// Text of TextBox Color
+        /// </summary>
         public string Color
         {
             get { return _color; }
@@ -119,6 +143,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// The selected Item from the Gender ComboBox
+        /// </summary>
         public string SelectedGender
         {
             get { return _selectedGender; }
@@ -129,6 +157,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// Text from the DatePicker Birthday
+        /// </summary>
         public DateTime Birthday
         {
             get { return _birthday; }
@@ -140,7 +172,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Value of RadioButton CastrationIsDurable
+        /// </summary>
         public bool CastrationIsDurable
         {
             get { return _castrationIsDurable; }
@@ -162,6 +196,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
+
+        /// <summary>
+        /// Value of RadioButton CastrationIsNotDurable
+        /// </summary>
         public bool CastrationIsNotDurable
         {
             get { return _castrationIsNotDurable; }
@@ -179,6 +217,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value of Datepicker CastratedSince
+        /// </summary>
         public DateTime CastratedSince
         {
             get { return _castratedSince; }
@@ -190,6 +231,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value of DatePicker EffectiveUntil
+        /// </summary>
         public DateTime EffectiveUntil
         {
             get { return _effectiveUntil; }
@@ -201,6 +245,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// If Castration Durable = true --> Permament Castrated also true
+        /// </summary>
         public bool PermanentCastrated
         {
             get { return _permanentCastrated; }
@@ -212,6 +259,9 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value from TextBox Disease
+        /// </summary>
         public string AddDiseaseText
         {
             get { return _addDiseaseText; }
@@ -222,6 +272,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanAddDisease);
             }
         }
+
+        /// <summary>
+        /// List of values for the DiseasesListView
+        /// </summary>
         public BindableCollection<DiseasesModel> DiseasesList
         {
             get { return _diseasesList; }
@@ -232,6 +286,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// Disease selected on the Diseases ListView
+        /// </summary>
         public DiseasesModel SelectedDisease
         {
             get { return _selectedDisease; }
@@ -242,6 +300,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanRemoveDisease);
             }
         }
+
+        /// <summary>
+        /// Value from TextBox Characteristics
+        /// </summary>
         public string AddCharacteristicsText
         {
             get { return _addCharacteristicsText; }
@@ -252,6 +314,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanAddCharacteristics);
             }
         }
+
+        /// <summary>
+        /// List of values for the Characterristics ListView
+        /// </summary>
         public BindableCollection<CharacteristicsModel> CharacteristicsList
         {
             get { return _characteristicsList; }
@@ -262,6 +328,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// Characteristics selected in the characteristics ListView
+        /// </summary>
         public CharacteristicsModel SelectedCharacteristics
         {
             get { return _selectedCharacteristics; }
@@ -273,6 +343,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// List of Owner for ListView Owner
+        /// </summary>
         public BindableCollection<CustomerModel> Owner
         {
             get { return _owner; }
@@ -282,6 +356,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => Owner);
             }
         }
+
+        /// <summary>
+        /// True if a disease is to Save
+        /// </summary>
         public bool IsDiseaseToSave
         {
             get { return _isDiseaseToSave; }
@@ -292,6 +370,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// True if a Characteristic is to save
+        /// </summary>
         public bool IsCharacteristicToSave
         {
             get { return _isCharacteristicToSave; }
@@ -302,6 +384,10 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
+        /// <summary>
+        /// Indicates whether the Dog is Active or not. True --> is inactive False = Active
+        /// </summary>
         public bool NotActive
         {
             get { return _notActive; }
@@ -312,9 +398,15 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditDog);
             }
         }
+
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Constructor initializes everything
+        /// </summary>
+        /// <param name="dog"></param>
         public DogDetailsViewModel(DogModel dog)
         {
             DogToEdit = dog;
@@ -377,6 +469,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         #endregion
 
         #region Methods
+
         /// <summary>
         /// This checks if it is possible to add a disease to the diseases List. 
         /// </summary>
@@ -394,6 +487,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
+
         /// <summary>
         /// Add a disease to the List
         /// </summary>
@@ -406,6 +500,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             IsDiseaseToSave = true;
 
         }
+
         /// <summary>
         /// This checks if it is possible to add a characteristic to the characteristics List
         /// </summary>
@@ -424,6 +519,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             }
 
         }
+
         /// <summary>
         /// Add a characteristic to the List
         /// </summary>
@@ -435,6 +531,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             AddCharacteristicsText = "";
             IsCharacteristicToSave = true;
         }
+
         /// <summary>
         /// This checks if it is possible to remove a disease from the List
         /// </summary>
@@ -452,6 +549,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
+
         /// <summary>
         /// This removes the selected entry from the List
         /// </summary>
@@ -460,6 +558,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             DiseasesList.Remove(SelectedDisease);
             IsDiseaseToSave = true;
         }
+
         /// <summary>
         /// This checks if it is possible to remove a characteristic from the List
         /// </summary>
@@ -477,11 +576,13 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 }
             }
         }
+
         public void RemoveCharacteristics()
         {
             CharacteristicsList.Remove(SelectedCharacteristics);
             IsCharacteristicToSave = true;
         }
+
         /// <summary>
         /// this checks if all required fields are set
         /// </summary>
@@ -542,6 +643,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
                 return false;
             }
         }
+
         /// <summary>
         /// this saves the dog to the list
         /// </summary>
@@ -588,6 +690,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(DogToEdit);
             TryClose();
         }
+
         /// <summary>
         /// This abort the Dog creation and return to the CreateNewCustomer View
         /// </summary>
@@ -598,6 +701,7 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new DogModel());
             this.TryClose();
         }
+
         #endregion
     }
 }

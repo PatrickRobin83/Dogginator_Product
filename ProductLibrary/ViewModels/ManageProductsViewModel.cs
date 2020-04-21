@@ -187,7 +187,7 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         }
         public void DeleteProduct()
         {
-            GlobalConfig.Connection.DeleteProductFromDatabase(SelectedProduct);
+            GlobalConfig.Connection.DeleteProductFromDataStore(SelectedProduct);
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
             //Console.WriteLine("Delete Product pressed");
         }
@@ -208,7 +208,7 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         }
         private BindableCollection<ProductModel> getProducts()
         {
-            AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.SearchResulProducts(ProductSearchText, ShowAlsoInactive));
+            AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.SearchResultProducts(ProductSearchText, ShowAlsoInactive));
             return AvailableProducts;
         }
 

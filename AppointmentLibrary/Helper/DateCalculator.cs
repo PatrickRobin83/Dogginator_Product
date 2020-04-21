@@ -30,6 +30,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.Helper
         #endregion
 
         #region Methods
+
         /// <summary>
         /// calculates the days between arriving date and leaving date
         /// </summary>
@@ -38,6 +39,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.Helper
         {
             return dateToSubstractFrom.Subtract(dateSubstract).Days + 1;
         }
+
         #endregion
 
     }

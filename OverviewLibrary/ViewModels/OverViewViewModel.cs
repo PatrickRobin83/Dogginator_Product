@@ -41,6 +41,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Label customercount show how many customers currently in data store
+        /// </summary>
         public int CustomerCount
         {
             get { return _customerCount; }
@@ -51,6 +54,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Label Dog Count show how many customers currently in data store
+        /// </summary>
         public int DogCount
         {
             get { return _dogCount; }
@@ -61,6 +67,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// if true UsermanagementView is visible
+        /// </summary>
         public bool ManageUserIsVisible
         {
             get { return _manageUserIsVisible; }
@@ -71,6 +80,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Text from TextBox Search Text
+        /// </summary>
         public string UserSearchText
         {
             get { return _userSearchText; }
@@ -83,6 +95,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value of Checkbox Show also Incative
+        /// </summary>
         public bool ShowAlsoInactive
         {
             get { return _showAlsoInactive; }
@@ -95,6 +110,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
               
             }
         }
+
+        /// <summary>
+        /// If True the OptionsButton is visible
+        /// </summary>
         public Visibility OptionVisibility
         {
             get { return _optionVisibility; }
@@ -105,6 +124,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// List of all Availlable User shown in DataGrid
+        /// </summary>
         public BindableCollection<UserModel> AvailableUserList
         {
             get { return _availableUserList; }
@@ -115,6 +137,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// The selected User from the DataGrid
+        /// </summary>
         public UserModel SelectedUser
         {
             get { return _selectedUser; }
@@ -127,6 +152,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// View of the Add User mask 
+        /// </summary>
         public Screen ActiveAddUser
         {
             get { return _activeAddUser; }
@@ -136,6 +164,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveAddUser);
             }
         }
+
+        /// <summary>
+        /// True if the Add User View is visible
+        /// </summary>
         public bool AddUserIsVisible
         {
             get { return _addUserIsVisible; }
@@ -145,6 +177,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
                 NotifyOfPropertyChange(() => AddUserIsVisible);
             }
         }
+
+        /// <summary>
+        /// View if the Edit User mask
+        /// </summary>
         public Screen ActiveEditUser
         {
             get { return _activeEditUser; }
@@ -154,6 +190,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveEditUser);
             }
         }
+
+        /// <summary>
+        /// True if the Edit User View is Visible
+        /// </summary>
         public bool EditUserIsVisible
         {
             get { return _editUserIsVisible;  }
@@ -164,6 +204,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// True if the Options View is Visible
+        /// </summary>
         public bool OptionIsVisible
         {
             get { return _optionIsVisible; }
@@ -173,6 +216,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
                 NotifyOfPropertyChange(() => OptionIsVisible);
             }
         }
+
+        /// <summary>
+        /// View of the Options mask
+        /// </summary>
         public Screen ActiveOption
         {
             get { return _activeOption; }
@@ -186,6 +233,12 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Default Constructor intializes everything
+        /// </summary>
+        /// <param name="isLoggedIn"></param>
+        /// <param name="isAdmin"></param>
         public OverViewViewModel(bool isLoggedIn, bool isAdmin)
         {
             OptionVisibility = Visibility.Hidden;
