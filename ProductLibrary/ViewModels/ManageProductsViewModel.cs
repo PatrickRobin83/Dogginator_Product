@@ -33,6 +33,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Value of the Search TextBox
+        /// </summary>
         public string ProductSearchText
         {
             get { return _productSearchText; }
@@ -45,6 +49,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// List of all Products in the Data store shown in a DataGridView
+        /// </summary>
         public BindableCollection<ProductModel> AvailableProducts
         {
             get { return _availableProducts; }
@@ -55,6 +62,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Selected Product in the DataGridView
+        /// </summary>
         public ProductModel SelectedProduct
         {
             get { return _selectedProduct; }
@@ -67,6 +77,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// If true the Edit Product Button is activated.
+        /// </summary>
         public bool CanEditProduct
         {
             get
@@ -80,6 +93,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// If true the Delete Product Button is activated
+        /// </summary>
         public bool CanDeleteProduct
         {
             get
@@ -93,6 +109,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// If true the ManageProductView is visible
+        /// </summary>
         public bool ProductOverviewIsVisible
         {
             get { return _productOverviewIsVisible; }
@@ -103,6 +122,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// If true the CreateProductView is visible
+        /// </summary>
         public bool AddProductIsVisible
         {
             get { return _addProductIsVisible; }
@@ -113,6 +135,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// If true the ProductDetailsView is visible
+        /// </summary>
         public bool ProductDetailsIsVisible
         {
             get { return _productDetailsIsVisible; }
@@ -123,6 +148,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Represents the ProductDetailsView
+        /// </summary>
         public Screen ActiveProductDetailsView
         {
             get { return _activeProductDetailsView; }
@@ -133,6 +161,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Represents the CreateProductView
+        /// </summary>
         public Screen ActiveAddProductView
         {
             get { return _activeAddProductView; }
@@ -142,6 +173,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => ActiveAddProductView);
             }
         }
+
+        /// <summary>
+        /// Value of the Show also inactive Checkbox. If true also all inactive Products will be shown in the DataGridView
+        /// </summary>
         public bool ShowAlsoInactive
         {
             get { return _showAlsoInactive; }
@@ -168,6 +203,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Loads the ProductDetailsView and fill all controls with the values of the ProductModel
+        /// </summary>
         public void EditProduct()
         {
             ActiveProductDetailsView = new ProductDetailsViewModel(SelectedProduct);
@@ -177,6 +215,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             ProductDetailsIsVisible = true;
 
         }
+
+        /// <summary>
+        /// Loads the CreateProductView
+        /// </summary>
         public void AddProduct()
         {
             ActiveAddProductView = new CreateNewProductViewModel();
@@ -185,15 +227,23 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             AddProductIsVisible = true;
             ProductOverviewIsVisible = false;
         }
+
+        /// <summary>
+        /// Deletes the Product and refreshes the DataGridView
+        /// </summary>
         public void DeleteProduct()
         {
             GlobalConfig.Connection.DeleteProductFromDataStore(SelectedProduct);
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
-            //Console.WriteLine("Delete Product pressed");
         }
-        public void Handle(ProductModel message)
+
+        /// <summary>
+        /// Refreshes the UI after creating or editing a Product
+        /// </summary>
+        /// <param name="productModel"></param>
+        public void Handle(ProductModel productModel)
         {
-            if (message != null && message.ItemNumber > 0)
+            if (productModel != null && productModel.ItemNumber > 0)
             {
                 AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.GetAllProducts());
             }
@@ -206,6 +256,11 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             ShowAlsoInactive = false;
             NotifyOfPropertyChange(() => ShowAlsoInactive);
         }
+
+        /// <summary>
+        /// Trigger a data store query with the value of the SearchTextBox
+        /// </summary>
+        /// <returns>A List with Product that contains the given Search string</returns>
         private BindableCollection<ProductModel> getProducts()
         {
             AvailableProducts = new BindableCollection<ProductModel>(GlobalConfig.Connection.SearchResultProducts(ProductSearchText, ShowAlsoInactive));

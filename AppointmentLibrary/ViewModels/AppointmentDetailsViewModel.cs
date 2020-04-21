@@ -203,6 +203,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         #endregion
 
         #region Methods
+
         /// <summary>
         /// A Method to cancel editing the appoointment
         /// </summary>

@@ -30,6 +30,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Product Model which wil be edited
+        /// </summary>
         public ProductModel ProductToEdit
         {
             get { return _productToEdit; }
@@ -39,6 +43,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(()=> ProductToEdit);
             }
         }
+
+        /// <summary>
+        /// Value for the ItemNumber TextBox
+        /// </summary>
         public int ItemNumber {
             get { return _itemNumber; }
             set
@@ -47,6 +55,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => ItemNumber);
             }
         }
+
+        /// <summary>
+        /// The Value of the Is Active Checkbox
+        /// </summary>
         public bool NotActive
         {
             get { return _notActive; }
@@ -58,6 +70,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value of the short description TextBox
+        /// </summary>
         public string ShortDescription
         {
             get { return _shortdescription; }
@@ -68,6 +83,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditProduct);
             }
         }
+
+        /// <summary>
+        /// Value of the Long Description TextBox
+        /// </summary>
         public string LongDescription
         {
             get { return _longdescription; }
@@ -78,6 +97,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditProduct);
             }
         }
+
+        /// <summary>
+        /// Value of the Price TextBox
+        /// </summary>
         public string Price
         {
             get { return _price; }
@@ -93,6 +116,11 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Constructor which takes a Producmodel as parameter
+        /// </summary>
+        /// <param name="product"></param>
         public ProductDetailsViewModel(ProductModel product)
         {
             ProductToEdit = product;
@@ -115,6 +143,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// If true the Edit Product Button is activated
+        /// </summary>
         public bool CanEditProduct
         {
 
@@ -157,6 +188,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Edits the Products values and stores them in the data store. A message will be sent to the ManageProductsViewModel
+        /// and this ProductDetailsView will be closed
+        /// </summary>
         public void EditProduct()
         {
             ProductToEdit.Shortdescription = ShortDescription;
@@ -176,6 +211,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             this.TryClose();
         }
 
+        /// <summary>
+        /// Cancels the Product Editing and sents a message to the ManageProductsViewModel and closes the ProductDetailsView
+        /// </summary>
         public void Cancel()
         {
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new ProductModel());

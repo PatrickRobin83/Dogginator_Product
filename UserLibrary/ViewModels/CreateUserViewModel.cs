@@ -30,6 +30,9 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// The complete UserModel with all Properties filled
+        /// </summary>
         public UserModel User
         {
             get { return _user; }
@@ -39,6 +42,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => User);
             }
         }
+
+        /// <summary>
+        /// The value from the UserName TextBox
+        /// </summary>
         public string UserName
         {
             get { return _username; }
@@ -48,6 +55,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => UserName);
             }
         }
+
+        /// <summary>
+        /// The value from the UserPassword PasswordBox
+        /// </summary>
         public string UserPassword
         {
             get { return _userPassword; }
@@ -58,6 +69,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateUser);
             }
         }
+
+        /// <summary>
+        /// The Value from the UserPasswordRepeat PasswordBox
+        /// </summary>
         public string UserPasswordRepeat
         {
             get { return _userPasswordRepeat; }
@@ -68,6 +83,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateUser);
             }
         }
+
+        /// <summary>
+        /// The Value of the Is Admin CheckBox
+        /// </summary>
         public bool IsAdmin
         {
             get { return _isAdmin; }
@@ -77,7 +96,6 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => IsAdmin);
             }
         }
-
 
         #endregion
 
@@ -90,12 +108,18 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Cancels the User creation and sends a Message to the OverViewViewModel and closes the CreateUserView
+        /// </summary>
         public void CancelCreation()
         {
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(GlobalConfig.CANCEL);
             TryClose();
         }
 
+        /// <summary>
+        /// If true the Create User Button is activated
+        /// </summary>
         public bool CanCreateUser
         {
             get
@@ -113,6 +137,9 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
             
         }
 
+        /// <summary>
+        /// Creates a UserModel and send it to the data store and to the OverviewViewModel and closes the CreateUserView
+        /// </summary>
         public void CreateUser()
         {
             User.Username = UserName.ToLower();

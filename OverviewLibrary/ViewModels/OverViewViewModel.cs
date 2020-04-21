@@ -256,6 +256,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Loads the Create User View
+        /// </summary>
         public void LoadCreateUser()
         {
             ActiveAddUser = new CreateUserViewModel();
@@ -267,6 +271,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             NotifyOfPropertyChange(() => ManageUserIsVisible);
         }
 
+        /// <summary>
+        /// If true the button Edit User is activated
+        /// </summary>
         public bool CanLoadUserDetails
         {
             get
@@ -282,6 +289,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Loads the User Details View
+        /// </summary>
         public void LoadUserDetails()
         {
             ActiveEditUser = new UserDetailsViewModel(SelectedUser);
@@ -293,6 +303,9 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             NotifyOfPropertyChange(() => ManageUserIsVisible);
         }
 
+        /// <summary>
+        /// If true the Delete User Button is active
+        /// </summary>
         public bool CanDeleteUser
         {
             get
@@ -308,12 +321,18 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Deletes the User. Sets the User is Active to false and refreshes the UI.
+        /// </summary>
         public void DeleteUser()
         {
             GlobalConfig.Connection.DeleteUserFromDataBase(SelectedUser);
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.GetAllActiveUser());
         }
 
+        /// <summary>
+        /// Loads the Options View
+        /// </summary>
         public void LoadOption()
         {
             ActiveOption = new OptionViewModel();
@@ -325,7 +344,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             NotifyOfPropertyChange(() => ManageUserIsVisible);
         }
 
-
+        /// <summary>
+        /// In relation of the given Message the UI will update and show the right content
+        /// </summary>
+        /// <param name="message"></param>
         public void Handle(string message)
         {
             if (message.Equals(GlobalConfig.CANCEL))
@@ -369,6 +391,10 @@ namespace de.rietrob.dogginator_product.OverviewLibrary.ViewModels
             ShowAlsoInactive = false;
         }
 
+        /// <summary>
+        /// Searches in the data store for the given string
+        /// </summary>
+        /// <returns>A List of Users which contains the search term</returns>
         private BindableCollection<UserModel> getUser()
         {
             AvailableUserList = new BindableCollection<UserModel>(GlobalConfig.Connection.SearchResultUser(UserSearchText, ShowAlsoInactive));

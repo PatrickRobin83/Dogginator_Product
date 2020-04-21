@@ -29,6 +29,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Value of the ItemNumber TextBox
+        /// </summary>
         public int ItemNumber
         {
             get { return _itemNumber; }
@@ -39,6 +43,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateItem);
             }
         }
+
+        /// <summary>
+        /// Value of the Shortdescription TextBox
+        /// </summary>
         public string ShortDescription
         {
             get { return _shortdescription; }
@@ -49,6 +57,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateItem);
             }
         }
+
+        /// <summary>
+        /// Value of the Longdescription TextBox
+        /// </summary>
         public string LongDescription
         {
             get { return _longdescription; }
@@ -60,6 +72,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Value of the Price Textbox
+        /// </summary>
         public string Price
         {
             get { return _price; }
@@ -70,7 +85,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanCreateItem);
             }
         }
-
+        /// <summary>
+        /// Value of the IsActive Checkbox. If checked the Item is active and the value is true.
+        /// </summary>
         public bool IsActiveItem
         {
             get { return _isActiveItem; }
@@ -91,6 +108,10 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// If true the CreateItem Button is activated
+        /// </summary>
         public bool CanCreateItem
         {
             get
@@ -118,6 +139,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
 
         }
 
+        /// <summary>
+        /// Creates a Product Model
+        /// </summary>
         public void CreateItem()
         {
             ProductModel product = new ProductModel();
@@ -130,6 +154,9 @@ namespace de.rietrob.dogginator_product.ProductLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(product);
         }
 
+        /// <summary>
+        /// Cancels the Item creation and returns to the ProductOverView
+        /// </summary>
         public void CancelCreation()
         {
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new ProductModel());
