@@ -34,6 +34,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// Tells the Programlogic that the User is logged in.
+        /// </summary>
         public bool IsLoggedIn
         {
             get { return _isLoggedIn; }
@@ -43,6 +47,10 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
                 NotifyOfPropertyChange(() => IsLoggedIn);
             }
         }
+
+        /// <summary>
+        /// Tells the Logic, that the logged in User is an admin user an can open the Options and change everything.
+        /// </summary>
         public bool IsAdmin {
             get { return _isAdmin; }
             set
@@ -150,6 +158,9 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             }
         }
 
+        /// <summary>
+        /// Logging out the user and return to login window
+        /// </summary>
         public void Logout()
         {
             IsLoggedIn = false;
@@ -166,11 +177,18 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             NotifyOfPropertyChange(() => CanLoadProducts);
         }
 
+        /// <summary>
+        /// Closes the complete program
+        /// </summary>
         public void Exit()
         {
             TryClose();
         }
 
+        /// <summary>
+        /// Handles the 
+        /// </summary>
+        /// <param name="message"></param>
         public void Handle(UserModel message)
         {
 

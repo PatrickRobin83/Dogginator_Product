@@ -30,6 +30,9 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// The User given by creating a object of this class
+        /// </summary>
         public UserModel User
         {
             get { return _user; }
@@ -39,6 +42,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => User);
             }
         }
+
+        /// <summary>
+        /// Value from Username TextBox
+        /// </summary>
         public string UserName
         {
             get { return _username; }
@@ -49,6 +56,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditUser);
             }
         }
+
+        /// <summary>
+        /// Value from UserPassword PasswordBox
+        /// </summary>
         public string UserPassword
         {
             get { return _userPassword; }
@@ -59,6 +70,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditUser);
             }
         }
+
+        /// <summary>
+        /// Value from UserPasswordRepeat PasswordBox
+        /// </summary>
         public string UserPasswordRepeat
         {
             get { return _userPasswordRepeat; }
@@ -69,6 +84,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditUser);
             }
         }
+
+        /// <summary>
+        /// Value from IsAdmin Checkbox
+        /// </summary>
         public bool IsAdmin
         {
             get { return _isAdmin; }
@@ -79,6 +98,10 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
                 NotifyOfPropertyChange(() => CanEditUser);
             }
         }
+
+        /// <summary>
+        /// Value from isUserActive Checkbox
+        /// </summary>
         public bool IsUserActive
         {
             get { return _isUserActive; }
@@ -92,6 +115,11 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Constructor for setting up the controls with the values from the UserModel Object
+        /// </summary>
+        /// <param name="userToEdit"></param>
         public UserDetailsViewModel(UserModel userToEdit)
         {
             User = userToEdit;
@@ -103,6 +131,9 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
 
         #region Method
 
+        /// <summary>
+        /// If true the EditUser Button is active
+        /// </summary>
         public bool CanEditUser
         {
             get
@@ -139,6 +170,9 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
             }
         }
 
+        /// <summary>
+        /// Updates the UserModel values and send the information to the data storage. Closes the UserDetailsView and Updates the OverviewView
+        /// </summary>
         public void EditUser()
         {
             User.Username = UserName;
@@ -153,6 +187,9 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
 
         }
 
+        /// <summary>
+        /// Cancels the EditUser mode and return to the default OverviewView
+        /// </summary>
         public void CancelEdit()
         {
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(GlobalConfig.CANCEL);

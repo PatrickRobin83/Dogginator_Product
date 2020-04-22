@@ -100,10 +100,7 @@ namespace de.rietrob.dogginator_product.UserLibrary.ViewModels
         #endregion
 
         #region Constructor
-        public CreateUserViewModel()
-        {
-            
-        }
+       
         #endregion
 
         #region Methods
