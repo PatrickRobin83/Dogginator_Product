@@ -80,76 +80,121 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// If true the Load OverView Button is activated
+        /// </summary>
         public bool CanLoadOverview
         {
             get { return IsLoggedIn; }
         }
         
+        /// <summary>
+        /// Loads the Overview View
+        /// </summary>
         public void LoadOverview()
         {
            ActivateItem(new OverViewViewModel(IsLoggedIn, IsAdmin));
         }
 
+        /// <summary>
+        /// if true the Load Customer Button is activated
+        /// </summary>
         public bool CanLoadCustomer
         {
             get { return IsLoggedIn; }
         }
 
+        /// <summary>
+        /// Loads the Customer View
+        /// </summary>
         public void LoadCustomer()
         {
             ActivateItem(new ManageCustomerViewModel());
         }
 
+        /// <summary>
+        /// If true the Load Dog View Button is activated
+        /// </summary>
         public bool CanLoadDog
         {
             get { return IsLoggedIn; }
         }
 
+        /// <summary>
+        /// Loads the Dog OverView View
+        /// </summary>
         public void LoadDog()
         {
             ActivateItem(new ManageDogsViewModel());
         }
 
+        /// <summary>
+        /// If true the Load Appointment View Button is activated
+        /// </summary>
         public bool CanLoadAppointment
         {
             get { return IsLoggedIn; }
         }
 
+        /// <summary>
+        /// Loads the Appointment Overview View
+        /// </summary>
         public void LoadAppointment()
         {
             ActivateItem(new ManageAppointmentsViewModel());
         }
 
+        /// <summary>
+        /// If true the Load Consisted Book Button is activated
+        /// </summary>
         public bool CanLoadConsistedBook
         {
             get { return IsLoggedIn; }
         }
 
+        /// <summary>
+        /// Loads the Consisted Book Overview View
+        /// </summary>
         public void LoadConsistedBook()
         {
             ActivateItem(new ConsistedBookViewModel());
         }
 
+        /// <summary>
+        /// if true the Load Biling button is activated
+        /// </summary>
         public bool CanLoadBilling
         {
             get { return IsLoggedIn; }
         }
 
+        /// <summary>
+        /// Loads the Billing Overview View
+        /// </summary>
         public void LoadBilling()
         {
             ActivateItem(new ManageInvoicesViewModel());
         }
 
+        /// <summary>
+        /// If true the Load Product Button is activated
+        /// </summary>
         public bool CanLoadProducts
         {
             get { return IsLoggedIn; }
         }
 
+        /// <summary>
+        /// Loads the Products Overview View
+        /// </summary>
         public void LoadProducts()
         {
             ActivateItem(new ManageProductsViewModel());
         }
 
+        /// <summary>
+        /// If true the Logout Button is activated
+        /// </summary>
         public bool CanLogout
         {
             get
@@ -186,15 +231,15 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
         }
 
         /// <summary>
-        /// Handles the 
+        /// Indicates is the given Usermodel from the login form an Admin Account or not
         /// </summary>
         /// <param name="message"></param>
         public void Handle(UserModel message)
         {
-
             if (!string.IsNullOrWhiteSpace(message.Password))
             {
                 IsLoggedIn = true;
+
                 if (message.IsAdmin)
                 {
                     IsAdmin = true;
