@@ -293,7 +293,6 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             SelectedDog = AvailableDogs.First();
             ArrivingDay = DateTime.Now;
             LeavingDay = DateTime.Now;
-            //DatePickerForWeek = DateTime.Now;
             IsInWeekAppointments.OrderBy(x => x.date_from);
             ManageAppointmentsIsVisible = true;
             AppointmentsDetailsViewIsVisible = false;
@@ -303,6 +302,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
                 AppointmentsInCurrentWeek(model);
             }
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
+            DatePickerForWeek = DateTime.Now;
         }
         #endregion
 
