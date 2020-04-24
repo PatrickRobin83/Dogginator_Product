@@ -123,7 +123,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
         void AddDogToCustomer(DogModel dModel, CustomerModel cModel);
 
         /// <summary>
-        /// Selects all Dogs in the Data store inactive and active
+        /// Selects all active Dogs in the Data store
         /// </summary>
         /// <returns>List of DogModels</returns>
         List<DogModel> Get_DogsAll();

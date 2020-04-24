@@ -27,8 +27,8 @@
             Termin Verwaltung
         </TextBlock>
         <StackPanel x:Name="ManageAppointmentsIsVisible" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
-            <TextBlock Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="22" FontWeight="DemiBold">Termin anlegen</TextBlock>
-            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
+            <TextBlock HorizontalAlignment="Center" FontSize="22" FontWeight="DemiBold">Termin anlegen</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
                 <StackPanel Orientation="Vertical" Margin="0,0,20,0">
                     <TextBlock>Hund auswählen</TextBlock>
                     <ComboBox ItemsSource="{Binding Path=AvailableDogs, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedDog, Mode=TwoWay}" DisplayMemberPath="DogAndCustomer" Width="300"></ComboBox>
@@ -49,24 +49,22 @@
                 </StackPanel>
             </StackPanel>
             <!---Row 4-->
-            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,35,0,0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0,35,0,0">
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="PreviousWeek" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche zurück</Button>
                     <Button x:Name="CurrentWeek" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">aktuelle Woche</Button>
                     <Button x:Name="NextWeek" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15, 15, 10 0">Woche vor</Button>
+                    <DatePicker VerticalAlignment="Center" Margin="5,13,0,0" x:Name="DatePickerForWeek"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
-                    <TextBlock  FontSize="28" 
-                    Margin=" 0 15 10 0" FontWeight="DemiBold">
-            Termine vom
-                    </TextBlock>
+                    <TextBlock  FontSize="28" Margin=" 0 15 10 0" FontWeight="DemiBold">Termine vom</TextBlock>
                     <TextBlock x:Name="FirstDayOfWeek" Text="{Binding Path=FirstDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 0 15 10 0"/>
                     <TextBlock FontSize="28" FontWeight="DemiBold" Margin=" 0 15 0 0">bis</TextBlock>
                     <TextBlock x:Name="LastDayOfWeek" Text="{Binding Path=LastDayOfWeek }" FontSize="28" FontWeight="DemiBold" Margin=" 15 15 10 0"/>
                 </StackPanel>
             </StackPanel>
             <!--Row 5-->
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="left" Margin="0,10,0,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="left" Margin="0,10,0,10">
                 <DataGrid x:Name="IsInWeekAppointments" ItemsSource="{Binding Path=IsInWeekAppointments}" 
                       AutoGenerateColumns="False" CanUserAddRows="False"  CanUserResizeRows="False"
                       CanUserResizeColumns="False" MinHeight="250" MaxHeight="250" SelectionMode="Single"
@@ -81,7 +79,7 @@
                 </DataGrid>
             </StackPanel>
             <!--Row 6 -->
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 10 0 0">
+        <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 10 0 0">
                 <Button x:Name="LoadAppointment" Background="Gray" Foreground="White" Margin="0 0 5 0" Padding="5">
                 Termin bearbeiten
             </Button>

@@ -41,6 +41,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         Screen _appointmentsDetailsView;
         bool _appointmentsDetailsViewIsVisible;
         bool _manageAppointmentsIsVisible;
+        DateTime _datePickerForWeek;
 
 
         #endregion
@@ -119,6 +120,18 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             }
         }
 
+        public DateTime DatePickerForWeek
+        {
+            get { return _datePickerForWeek; }
+
+            set
+            {
+                _datePickerForWeek = value.Date;
+                WeekSelectedShow();
+                NotifyOfPropertyChange(() => IsInWeekAppointments);
+            }
+        }
+        
         /// <summary>
         /// All Appointments in the shown Week
         /// </summary>
@@ -280,14 +293,15 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             SelectedDog = AvailableDogs.First();
             ArrivingDay = DateTime.Now;
             LeavingDay = DateTime.Now;
+            //DatePickerForWeek = DateTime.Now;
+            IsInWeekAppointments.OrderBy(x => x.date_from);
+            ManageAppointmentsIsVisible = true;
+            AppointmentsDetailsViewIsVisible = false;
             AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.GetAppointments());
             foreach (AppointmentModel model in AvailableAppointments)
             {
                 AppointmentsInCurrentWeek(model);
             }
-            IsInWeekAppointments.OrderBy(x => x.date_from);
-            ManageAppointmentsIsVisible = true;
-            AppointmentsDetailsViewIsVisible = false;
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
         }
         #endregion
@@ -409,6 +423,7 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             ArrivingDay = DateTime.Today;
             LeavingDay = DateTime.Today;
             IsDailyGuest = false;
+            DatePickerForWeek = DateTime.Parse(FirstDayOfWeek);
 
         }
 
@@ -422,8 +437,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(-7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
-            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.GetAppointments());
-            CheckIsInWeek(AvailableAppointments);
+            DatePickerForWeek = DateTime.Parse(FirstDayOfWeek);
+            NotifyOfPropertyChange(() => DatePickerForWeek);
         }
 
         /// <summary>
@@ -436,8 +451,8 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(Convert.ToDateTime(FirstDayOfWeek).AddDays(7)).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
-            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.GetAppointments());
-            CheckIsInWeek(AvailableAppointments);
+            DatePickerForWeek = DateTime.Parse(FirstDayOfWeek);
+            NotifyOfPropertyChange(() => DatePickerForWeek);
         }
 
         /// <summary>
@@ -450,8 +465,16 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DateTime.Today).ToShortDateString();
             LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
-            AvailableAppointments = new BindableCollection<AppointmentModel>(GlobalConfig.Connection.GetAppointments());
-            CheckIsInWeek(AvailableAppointments);
+            DatePickerForWeek = DateTime.Parse(FirstDayOfWeek);
+            NotifyOfPropertyChange(() => DatePickerForWeek);
+        }
+
+        public void WeekSelectedShow()
+        {
+            FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DatePickerForWeek).ToShortDateString();
+            LastDayOfWeek = Convert.ToDateTime(FirstDayOfWeek).AddDays(6).ToShortDateString();
+            //DatePickerForWeek = DateTime.Parse(FirstDayOfWeek);
+            //NotifyOfPropertyChange(() => DatePickerForWeek);
         }
 
         /// <summary>

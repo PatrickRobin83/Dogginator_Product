@@ -855,7 +855,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
                 List<AppointmentModel> AppointmentModelList = new List<AppointmentModel>();
                 AppointmentModelList = connection.Query<AppointmentModel>($"Select * FROM appointment WHERE '{appointmentModel.dogFromCustomer.Id}' = dogID AND " +
                                                                           $"date_from = '{appointmentModel.date_from}' AND " +
-                                                                          $"date_to = '{appointmentModel.date_to}'").ToList();
+                                                                          $"date_to = '{appointmentModel.date_to}' AND isActive= '1' ").ToList();
                 if (AppointmentModelList.Count >= 1)
                 {
                     isInDatabase = true;
@@ -889,8 +889,7 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
                     foreach (AppointmentModel apModel in AppointmentModelList)
                     {
-                        if (appointmentModel.date_from >= apModel.date_from || appointmentModel.date_from <= apModel.date_to ||
-                            appointmentModel.date_to >= apModel.date_from || appointmentModel.date_to <= apModel.date_to)
+                        if (appointmentModel.date_from >= apModel.date_from && appointmentModel.date_from <= apModel.date_to)
                         {
                             isInDatabase = true;
                             break;

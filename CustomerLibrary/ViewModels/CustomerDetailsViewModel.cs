@@ -894,7 +894,7 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
         /// Opens the DogDetailsView to edit the dog
         /// </summary>
         /// <param name="dog"></param>
-        public void EditDog(DogModel dog)
+        public void EditDog()
         {
             ActiveEditDogView = new DogLibrary.ViewModels.DogDetailsViewModel(_dogToEdit);
             Items.Add(ActiveEditDogView);
@@ -955,7 +955,13 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             if (dogModel.Id > 0)
             {
                 GlobalConfig.Connection.UpdateDog(dogModel);
+                AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+                //TODO: Renew the OwnedDogList 
                 _isDogToSave = true;
+                NotifyOfPropertyChange(() => OwnedDogs);
+                NotifyOfPropertyChange(() => AvailableDogs);
+
+
             }
             else
             {
@@ -992,7 +998,6 @@ namespace de.rietrob.dogginator_product.CustomerLibrary.ViewModels
             EventAggregationProvider.DogginatorAggregator.PublishOnUIThread(new CustomerModel());
             this.TryClose();
         }
-
         #endregion
     }
 }

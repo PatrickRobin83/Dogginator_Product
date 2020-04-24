@@ -217,6 +217,24 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
             NotifyOfPropertyChange(() => ShowalsoInactive);
         }
 
+        public void DeleteDog(DogModel model)
+        {
+            model.Active = 0;
+            GlobalConfig.Connection.DeleteDogDiseasesRelation(model);
+            GlobalConfig.Connection.DeleteDogToCharacteristicsRelation(model);
+            GlobalConfig.Connection.DeleteDogFromDatabase(model);
+            foreach (CustomerModel cModel in model.CustomerList)
+            {
+                GlobalConfig.Connection.DeleteDogToCustomerRelation(cModel, model);
+            }
+
+            AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+            ActiveDog(AvailableDogs);
+            NotifyOfPropertyChange(() => AvailableDogs);
+            ShowalsoInactive = false;
+            NotifyOfPropertyChange(() => ShowalsoInactive);
+        }
+
         /// <summary>
         /// Activates or deactivate the EditDog Button
         /// </summary>
@@ -253,14 +271,18 @@ namespace de.rietrob.dogginator_product.DogLibrary.ViewModels
         {
             if(dogModel != null && dogModel.Id > 0)
             {
-                GlobalConfig.Connection.UpdateDog(dogModel);  
+                GlobalConfig.Connection.UpdateDog(dogModel);
+                
+                if (dogModel.Active == 0)
+                {
+                    DeleteDog(dogModel);
+                }
             }
-
             AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
             DogOverviewIsVisible = true;
             DogDetailsIsVisible = false;
             SelectedDog = null;
-            AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
+            //AvailableDogs = new BindableCollection<DogModel>(GlobalConfig.Connection.Get_DogsAll());
             ActiveDog(AvailableDogs);
             NotifyOfPropertyChange(() => AvailableDogs);
             ShowalsoInactive = false;

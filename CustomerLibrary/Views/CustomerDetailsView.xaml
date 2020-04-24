@@ -83,14 +83,14 @@
       
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="CustomerDetailsIsVisible" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Left" Margin="0 20 0 0">Hunde des Kunden</TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="146 20 0 0" >Erfasste Hunde</TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="2 20 0 0">Hunde des Kunden</TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="149 20 0 0" >Erfasste Hunde</TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <ListView x:Name="OwnedDogs" SelectedItem="{Binding Path=SelectedDog, Mode=OneWayToSource}" 
                           DisplayMemberPath="Name" MaxHeight="200" MinHeight="200" MinWidth="120" ScrollViewer.CanContentScroll="True"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                <StackPanel Orientation="Vertical" Margin="0 0 0 0">
+                <StackPanel Orientation="Vertical" Margin="0 0 5 0">
                     <Button x:Name="AddDog" Margin="5 0 0 0" >Hund anlegen</Button>
                     <Button x:Name="EditDog" Margin="5 5 0 0" >Hunde Details Öffnen</Button>
                     <Button x:Name="AddDogToList" Margin="5 40 0 0">&lt;--</Button>

@@ -10,6 +10,7 @@
  * @Version      1.0.0
  */
 
+using System.Data.Entity.Core.Metadata.Edm;
 using Caliburn.Micro;
 using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
@@ -69,12 +70,13 @@ namespace de.rietrob.dogginator_product.dogginator.ViewModels
             BackupDatabaseHelper.BackupDatabase();
             EventAggregationProvider.DogginatorAggregator.Subscribe(this);
             //TODO: Activate the LoginView after Debugging
-            //ActivateItem(new LoginViewModel());
+            ActivateItem(new LoginViewModel());
             //ActivateItem(new ManageInvoicesViewModel());
-            ActivateItem(new ManageAppointmentsViewModel());
+            //ActivateItem(new ManageAppointmentsViewModel());
             //ActivateItem(new ManageProductsViewModel());
             //ActivateItem(new OverViewViewModel(true,true));
             //ActivateItem(new ManageCustomerViewModel());
+            //ActivateItem(new ManageDogsViewModel());
         }
         #endregion
 

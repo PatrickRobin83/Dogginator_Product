@@ -143,13 +143,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.Models
             this.Name = name;
         }
 
-        /// <summary>
-        /// Default Construtor
-        /// </summary>
-        public DogModel()
-        {
-        }
-
         #endregion
 
         #region Methods
