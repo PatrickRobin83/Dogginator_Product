@@ -97,7 +97,7 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
             set => _isBilled = value;
         }
 
-
+        // TODO: Write a comment for the Customer Model Property
         public CustomerModel Customer
         {
             get => _customer;
