@@ -6,6 +6,6 @@
              mc:Ignorable="d" FontSize="28" Background="LightBlue"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">ConsistedBook</TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top">Tierbestandsbuch</TextBlock>
     </Grid>
 </UserControl>
