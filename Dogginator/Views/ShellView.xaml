@@ -33,6 +33,7 @@
             <Button x:Name="LoadBilling" Background="Gray" Foreground="White" Padding="5" Margin="5">Rechnungs Verwaltung</Button>
             <Button x:Name="Logout" Background="Gray" Foreground="White" Padding="5" Margin="5">Ausloggen</Button>
             <Button x:Name="Exit" Padding="5" Margin="5" Background="Red" Foreground="White">Beenden</Button>
+            <Label x:Name="Clock" Padding="5" Margin="5" Foreground="White"> </Label>
         </StackPanel>
         <Border Grid.Row="2" Grid.Column="2" Margin="10 10 0 0" BorderBrush="Gray" BorderThickness="1">
             <ContentControl x:Name="ActiveItem" Margin="5" />
