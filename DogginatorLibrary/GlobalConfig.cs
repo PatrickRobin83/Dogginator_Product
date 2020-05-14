@@ -15,6 +15,7 @@ using de.rietrob.dogginator_product.DogginatorLibrary.Enums;
 using System;
 using System.Configuration;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -98,13 +99,42 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary
         /// <returns>password string in decrypted</returns>
         public  static string HashThePassword(string password)
         {
+            string passHash = "";
+
             using (MD5 md5Hash = MD5.Create())
             {
-                string passHash = GetMd5Hash(md5Hash, password);
+                passHash = GetMd5Hash(md5Hash, password);
 
-
-                return passHash;
+                Console.WriteLine($"MD5 Hash: {passHash}");
+                GetSHA256(password);
             }
+
+            return passHash;
+
+        }
+        // TODO: Change the Encryption to SHA256
+        public static void GetSHA256(string password)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                string shaPass = GetSHA256Hash(sha256Hash, password);
+
+                Console.WriteLine($"SHA256 Hash: {shaPass}");
+            }
+        }
+
+        private static string GetSHA256Hash(SHA256 sha256Hash, string input)
+        {
+            byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            StringBuilder sBuilder = new StringBuilder();
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append((data[i].ToString("x2")));
+            }
+
+            return sBuilder.ToString();
         }
 
         /// <summary>
