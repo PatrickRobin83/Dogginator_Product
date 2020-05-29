@@ -324,6 +324,15 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
         #endregion
 
+        #region Invoices
+        /// <summary>
+        /// gets All Invoices from the Datastore
+        /// </summary>
+        /// <returns>List of Invoice Models</returns>
+        List<InvoiceModel> Get_InvoicesActiveAndInactive();
+
+        #endregion
+
         #region CityToZipcode
 
         /// <summary>
