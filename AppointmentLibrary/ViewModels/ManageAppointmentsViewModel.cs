@@ -469,6 +469,9 @@ namespace de.rietrob.dogginator_product.AppointmentLibrary.ViewModels
             NotifyOfPropertyChange(() => DatePickerForWeek);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void WeekSelectedShow()
         {
             FirstDayOfWeek = GlobalConfig.GetFirstDayOfWeek(DatePickerForWeek).ToShortDateString();

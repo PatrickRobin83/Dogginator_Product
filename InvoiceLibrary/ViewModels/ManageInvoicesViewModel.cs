@@ -11,7 +11,12 @@
  */
 
 using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Documents;
 using Caliburn.Micro;
+using de.rietrob.dogginator_product.DogginatorLibrary;
 using de.rietrob.dogginator_product.DogginatorLibrary.Models;
 
 namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
@@ -22,7 +27,7 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
 
         private string _invoiceSearchText;
         private bool _showAlsoInactive;
-        private BindableCollection<InvoiceModel> _availableInvoices;
+        private BindableCollection<InvoiceModel> _availableInvoices = new BindableCollection<InvoiceModel>();
         private InvoiceModel _selectedInvoice;
         private string _billingNumber;
         private CustomerModel _customer;
@@ -39,8 +44,14 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
         /// </summary>
         public string InvoiceSearchText
         {
-            get => _invoiceSearchText;
-            set => _invoiceSearchText = value;
+            get { return _invoiceSearchText;  }
+
+            set
+            {
+                _invoiceSearchText = value;
+                NotifyOfPropertyChange(() => InvoiceSearchText);
+                AvailableInvoices = getInvoices();
+            }
         }
 
         /// <summary>
@@ -57,8 +68,13 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
         /// </summary>
         public BindableCollection<InvoiceModel> AvailableInvoices
         {
-            get => _availableInvoices;
-            set => _availableInvoices = value;
+            get { return _availableInvoices; }
+
+            set
+            {
+                _availableInvoices = value;
+                NotifyOfPropertyChange(() => AvailableInvoices);
+            }
         }
 
         /// <summary>
@@ -108,6 +124,11 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
 
         #region Contstructor
 
+        public ManageInvoicesViewModel()
+        {
+            AvailableInvoices = new BindableCollection<InvoiceModel>(GlobalConfig.Connection.Get_InvoicesActiveAndInactive());
+        }
+
         #endregion
 
         #region Methods
@@ -135,6 +156,12 @@ namespace de.rietrob.dogginator_product.InvoiceLibrary.ViewModels
         public void DeleteInvoice()
         {
             // TODO: Set Selected Invoice to IsInvoiceActive = false;
+        }
+        // ToDO: Write a Comment for this Method
+        public BindableCollection<InvoiceModel> getInvoices()
+        {
+            AvailableInvoices = new BindableCollection<InvoiceModel>(GlobalConfig.Connection.Get_InvoicesActiveAndInactive());
+            return AvailableInvoices;
         }
 
         #endregion

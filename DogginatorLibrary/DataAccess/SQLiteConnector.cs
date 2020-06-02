@@ -949,6 +949,21 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
         #endregion
 
+        #region Invoices
+
+        public List<InvoiceModel> Get_InvoicesActiveAndInactive()
+        {
+            List<InvoiceModel> output;
+            // ToDo: Implement Get_InvoicesActiveAndInactive Method
+            
+            throw new NotImplementedException();
+
+            //return output;
+            
+        }
+
+        #endregion
+
         #region CityToZipcode
 
         public List<string> GetCityToZipcode(string zipCode)
@@ -982,6 +997,8 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 
             return foundcitys;
         }
+
+        
 
         #endregion
 
