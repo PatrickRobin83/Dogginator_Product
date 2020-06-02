@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
-using de.rietrob.dogginator_product.DogginatorLibrary.Helper;
 
 namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
 {
@@ -283,7 +282,6 @@ namespace de.rietrob.dogginator_product.DogginatorLibrary.DataAccess
             return results;
         }
 
-        
         public void DeleteNoteFromList(NoteModel noteModel, CustomerModel customerModel)
         {
             try
